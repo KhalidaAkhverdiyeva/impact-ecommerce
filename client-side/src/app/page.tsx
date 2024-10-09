@@ -1,3 +1,9 @@
+import Header from "@/components/Header/header";
+
 export default function Home() {
-  return <div className="text-[40px] font-[700]">Whazzzupp yoyos?</div>;
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 }
