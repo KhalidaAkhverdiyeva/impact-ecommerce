@@ -29,9 +29,9 @@ const Banner = () => {
   };
 
   return (
-    <div className="bg-[#272727] text-[#fff] text-[12px] md:text-[14px] font-[800] py-[10px] px-[10px] md:py-[14px] flex justify-center">
+    <aside className="bg-[#272727] z-[100] text-[#fff] text-[12px] md:text-[14px] font-[800] py-[10px] px-[10px] md:py-[14px] flex justify-center">
       <div className="flex justify-between items-center w-[450px]">
-        <div onClick={() => handlePrevNext("prev")}>
+        <div onClick={() => handlePrevNext("prev")} className="px-[10px]">
           <MdKeyboardArrowLeft className="text-[18px] cursor-pointer" />
         </div>
 
@@ -44,11 +44,11 @@ const Banner = () => {
           {texts[currentIndex]}
         </div>
 
-        <div onClick={() => handlePrevNext("next")}>
+        <div onClick={() => handlePrevNext("next")} className="text-[10px]">
           <MdKeyboardArrowRight className="text-[18px] cursor-pointer" />
         </div>
       </div>
-    </div>
+    </aside>
   );
 };
 
