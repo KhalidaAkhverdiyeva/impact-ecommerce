@@ -26,3 +26,15 @@
     height: calc(100vh - 38px);
   }
 }
+
+.logo {
+  width: 100px;
+  height: 22px;
+}
+
+@media (min-width: 427px) {
+  .logo {
+    width: 120px;
+    height: 26px;
+  }
+}
