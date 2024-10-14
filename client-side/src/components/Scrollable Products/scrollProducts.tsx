@@ -39,12 +39,13 @@ const ScrollableProducts: React.FC<ScrollableProductsProps> = ({
   }, []);
 
   return (
-    <div className="relative">
+    <div className="">
       <div
-        className="scroll-container relative flex overflow-x-auto px-[20px] md:px-[32px] lg:px-[48px] mx-auto"
+        className="scroll-container relative flex overflow-x-auto px-[20px] md:px-[32px] lg:px-[48px] max-w-[1550px]"
         ref={scrollRef}
       >
         <div className="flex gap-[20px] relative">
+          <ProductCard />
           <ProductCard />
           <ProductCard />
           <ProductCard />

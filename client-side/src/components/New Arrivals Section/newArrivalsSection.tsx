@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { FaAngleRight } from "react-icons/fa";
 import ScrollableProducts from "../Scrollable Products/scrollProducts";
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 
 const NewArrivalsSection = () => {
   const [scrollProgress, setScrollProgress] = useState<number>(0);
@@ -9,7 +10,7 @@ const NewArrivalsSection = () => {
   return (
     <section className="flex flex-col items-center justify-center">
       <div className="py-[48px] px-[20px] md:py-[64px] md:px-[32px] lg:px-[48px] max-w-[1600px] w-full">
-        <h3 className="text-[32px] text-[#272727] md:text-[40px] font-[800]">
+        <h3 className="text-[32px] text-[#272727] md:text-[40px] lg:text-[48px] font-[800]">
           New arrivals
         </h3>
         <div className="flex flex-col lg:flex-row justify-between">
@@ -25,13 +26,27 @@ const NewArrivalsSection = () => {
           </div>
         </div>
       </div>
-      <div className="relative w-full overflow-x-hidden mx-auto max-w-[1600px]">
+      <div className=" w-full overflow-x-hidden mx-auto max-w-[1600px]">
         <ScrollableProducts setScrollProgress={setScrollProgress} />
-        <div className="absolute bottom-0 left-0 w-[90vw] md:w-[91vw] lg:w-[93vw] bg-[#E9E9E9] mx-[20px] md:mx-[32px] lg:mx-[48px] h-[2px] ">
-          <div
-            className="bg-[#272727] h-[2px]"
-            style={{ width: `${scrollProgress}%` }} // Reflect the scroll progress
-          />
+
+        {/* Progress bar container */}
+        <div className=" flex items-center py-[30px] w-[90vw] md:w-[91vw] lg:w-[93vw] mx-[20px] md:mx-[32px] lg:mx-[48px]">
+          <div className="bg-[#E9E9E9] h-[2px] flex-grow">
+            <div
+              className="bg-[#272727] h-[2px]"
+              style={{ width: `${scrollProgress}%` }}
+            />
+          </div>
+
+          {/* Scroll control buttons, only shown on larger screens */}
+          <div className="hidden md:flex gap-3 z-20 ml-[20px]">
+            <button className="text-[#d3d2d2] border-[1px] flex justify-center items-center w-[36px] h-[36px] md:w-[56px] md:h-[56px] border-solid border-[#d3d2d2] rounded-full">
+              <LuChevronLeft size={20} />
+            </button>
+            <button className="text-[#d3d2d2] border-[1px] flex justify-center items-center w-[36px] h-[36px] md:w-[56px] md:h-[56px] border-solid border-[#d3d2d2] rounded-full">
+              <LuChevronRight size={20} />
+            </button>
+          </div>
         </div>
       </div>
     </section>
