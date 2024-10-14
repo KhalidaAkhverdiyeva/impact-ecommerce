@@ -27,7 +27,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div
+    <header
       className={`${
         isSticky
           ? "fixed top-0 left-0 z-[50] w-full bg-white shadow-md"
@@ -90,7 +90,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

@@ -15,6 +15,10 @@ const config: Config = {
       overflowWrap: {
         anywhere: 'anywhere',
       },
+      screens: {
+        '3xl': '1820px', 
+        '4xl': '2560px', 
+      },
     },
   },
   plugins: [],
