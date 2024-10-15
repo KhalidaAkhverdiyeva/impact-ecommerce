@@ -30,7 +30,7 @@ const NewArrivalsSection = () => {
         <ScrollableProducts setScrollProgress={setScrollProgress} />
 
         {/* Progress bar container */}
-        <div className=" flex items-center py-[30px] w-[90vw] md:w-[91vw] lg:w-[93vw] mx-[20px] md:mx-[32px] lg:mx-[48px]">
+        <div className=" flex items-center py-[30px] w-[90vw] md:w-[91vw] lg:w-[93vw] mx-[20px] md:mx-[32px] lg:mx-[48px] max-w-[1500px]">
           <div className="bg-[#E9E9E9] h-[2px] flex-grow">
             <div
               className="bg-[#272727] h-[2px]"
