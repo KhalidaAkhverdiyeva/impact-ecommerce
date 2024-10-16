@@ -1,42 +1,20 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 import { motion } from "framer-motion";
+import { slides } from "@/Static Data/SliderData";
+import SliderControllerButton from "./SliderControllerButton";
 
-const HomeHeroSlider = () => {
+const HeroSliderSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 490);
-  const slides = [
-    {
-      srcSet:
-        "https://impact-theme-home.myshopify.com/cdn/shop/files/Mags_Corner_comb_2_Right_Lint_grey_Rebar_Square_Coffee_Table_marble_tabletop_soft_black_frame_Moire_Kelim_green_DLM_sun_yellow_cb7f484e-59a1-46ee-8c0b-8aa9b9971738.jpg?v=1657547898&width=2800",
-      mobileSrc:
-        "https://impact-theme-home.myshopify.com/cdn/shop/files/Mags_Corner_comb_2_Right_Lint_grey_Rebar_Square_Coffee_Table_marble_tabletop_soft_black_frame_Moire_Kelim_green_DLM_sun_yellow_mobile.jpg?v=1656590750&width=800",
-      text: "Decoration ",
-      title: {
-        mobile: ["Refresh your", "living room"],
-        desktop: ["Refresh your living", "room"],
-      },
-      button: "Shop Decoration",
-    },
-    {
-      srcSet:
-        "https://impact-theme-home.myshopify.com/cdn/shop/files/PC_Portable_olive_Palissade_Lounge_chair_olive_Palissade_Table_olive_Coffee_M_mint_Rainbow_mug.jpg?v=1656504940&width=2800",
-      mobileSrc:
-        "https://impact-theme-home.myshopify.com/cdn/shop/files/PC_Portable_olive_Palissade_Lounge_chair_olive_Palissade_Table_olive_Coffee_M_mint_Rainbow_mug_mobile.jpg?v=1656504947&width=800",
-      text: "Hay PC Portable Lamp",
-      title: {
-        mobile: ["Pierre", "Charpin's", "refined lamp"],
-        desktop: ["Pierre Charpin's", "refined lamp"],
-      },
-      button: "Discover",
-    },
-  ];
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
+    // Check window size on mount and resize
     const handleResize = () => {
       setIsDesktop(window.innerWidth >= 490);
     };
+
+    handleResize();
 
     window.addEventListener("resize", handleResize);
     return () => {
@@ -121,22 +99,12 @@ const HomeHeroSlider = () => {
         );
       })}
 
-      <div className="absolute bottom-4 right-4 md:bottom-[30px] md:right-[30px] lg:bottom-[40px] lg:right-[40px]  flex gap-3 z-20">
-        <button
-          onClick={goToPrevSlide}
-          className="text-white border-2 flex justify-center items-center w-10 h-10 md:w-[56px] md:h-[56px] border-solid border-white rounded-full"
-        >
-          <LuChevronLeft size={20} />
-        </button>
-        <button
-          onClick={goToNextSlide}
-          className="text-white border-2 flex justify-center items-center w-10 h-10 md:w-[56px] md:h-[56px] border-solid border-white rounded-full"
-        >
-          <LuChevronRight size={20} />
-        </button>
-      </div>
+      <SliderControllerButton
+        goToPrevSlide={goToPrevSlide}
+        goToNextSlide={goToNextSlide}
+      />
     </div>
   );
 };
 
-export default HomeHeroSlider;
+export default HeroSliderSection;

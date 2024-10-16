@@ -1,12 +1,7 @@
 "use client";
+import { texts } from "@/Static Data/BannerData";
 import React, { useState } from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
-
-const texts = [
-  "NEW: Discover our collaboration with George Sowden",
-  "Free standard shipping on all orders",
-  "A question? Visit our contact page to send us a message",
-];
 
 const Banner = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
