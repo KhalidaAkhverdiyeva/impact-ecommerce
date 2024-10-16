@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { ModalInfo } from "@/types/infoModalTypes";
 import InfoModal from "./InfoModal";
+import WebInfoModal from "./WebInfoModal";
 import PlusButtons from "./PlusButtons";
 import TextContent from "./TextContent";
 import { images } from "@/static/ImagesData";
@@ -10,12 +11,19 @@ const ClickandCheckSection = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [modalInfo, setModalInfo] = useState<ModalInfo | null>(null);
+  const [isWebModal, setIsWebModal] = useState(false);
 
   const toggleBottomDiv = (info: ModalInfo) => {
+    const isSmallScreen = window.innerWidth < 1024;
+
     setModalInfo(info);
     setIsOpen((prev) => !prev);
+    setIsWebModal(!isSmallScreen);
+
     if (!isOpen) {
-      document.body.style.overflow = "hidden";
+      if (isSmallScreen) {
+        document.body.style.overflow = "hidden";
+      }
     } else {
       closeBottomDiv();
     }
@@ -26,6 +34,7 @@ const ClickandCheckSection = () => {
     setTimeout(() => {
       setIsOpen(false);
       setIsClosing(false);
+      // Always restore scrolling when closing the modal
       document.body.style.overflow = "auto";
     }, 300);
   };
@@ -48,15 +57,25 @@ const ClickandCheckSection = () => {
           ))}
 
           <PlusButtons toggleBottomDiv={toggleBottomDiv} />
+          {isOpen && (
+            <>
+              {isWebModal ? (
+                <WebInfoModal
+                  closeBottomDiv={closeBottomDiv}
+                  isClosing={isClosing}
+                  modalInfo={modalInfo}
+                />
+              ) : (
+                <InfoModal
+                  closeBottomDiv={closeBottomDiv}
+                  isClosing={isClosing}
+                  modalInfo={modalInfo}
+                />
+              )}
+            </>
+          )}
         </div>
       </div>
-      {isOpen && (
-        <InfoModal
-          closeBottomDiv={closeBottomDiv}
-          isClosing={isClosing}
-          modalInfo={modalInfo}
-        />
-      )}
     </div>
   );
 };

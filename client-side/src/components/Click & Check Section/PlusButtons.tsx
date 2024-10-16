@@ -4,14 +4,22 @@ import React from "react";
 import { FaPlus } from "react-icons/fa6";
 
 interface PlusButtonsProps {
-  toggleBottomDiv: (modalInfo: ModalInfo) => void;
+  toggleBottomDiv: (modalInfo: ModalInfo, element: HTMLElement) => void;
 }
 
 const PlusButtons: React.FC<PlusButtonsProps> = ({ toggleBottomDiv }) => {
+  const handleClick = (
+    info: ModalInfo,
+    event: React.MouseEvent<HTMLDivElement>
+  ) => {
+    const element = event.currentTarget; // Get the current element
+    toggleBottomDiv(info, element); // Pass the element to toggleBottomDiv
+  };
+
   return (
     <div>
       <div
-        onClick={() => toggleBottomDiv(sampleModalInfo[0])}
+        onClick={(e) => handleClick(sampleModalInfo[0], e)}
         className="absolute top-[48%] left-[60%] sm:top-[46%] sm:left-[55%] transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
       >
         <div className="relative w-[42px] h-[42px] sm:w-[64px] sm:h-[64px] flex justify-center items-center">
@@ -22,7 +30,7 @@ const PlusButtons: React.FC<PlusButtonsProps> = ({ toggleBottomDiv }) => {
         </div>
       </div>
       <div
-        onClick={() => toggleBottomDiv(sampleModalInfo[1])}
+        onClick={(e) => handleClick(sampleModalInfo[1], e)}
         className="absolute top-[27%] left-[43%] sm:top-[23%] sm:left-[49%] transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
       >
         <div className="relative w-[42px] h-[42px] sm:w-[64px] sm:h-[64px] flex justify-center items-center">

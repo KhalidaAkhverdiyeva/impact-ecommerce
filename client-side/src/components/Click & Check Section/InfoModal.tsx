@@ -13,11 +13,11 @@ const InfoModal: React.FC<InfoModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-end z-50"
+      className="fixed inset-0 bg-black bg-opacity-50 flex  items-end z-50"
       onClick={closeBottomDiv}
     >
       <div
-        className={`flex flex-col items-center m-[10px] ${
+        className={`flex flex-col items-center w-[100%] m-[10px] ${
           isClosing ? "animate-slide-down" : "animate-slide-up"
         }`}
         onClick={(e) => e.stopPropagation()}
