@@ -1,5 +1,5 @@
-import { sampleModalInfo } from "@/Static Data/PlusButtonsData";
-import { ModalInfo } from "@/types/Info Modal Types/infoModalTypes";
+import { sampleModalInfo } from "@/static/PlusButtonsData";
+import { ModalInfo } from "@/types/infoModalTypes";
 import React from "react";
 import { FaPlus } from "react-icons/fa6";
 

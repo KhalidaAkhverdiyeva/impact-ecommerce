@@ -13,15 +13,14 @@ const ScrollableProducts: React.FC<ScrollableProductsProps> = ({
 
   const handleScroll = () => {
     if (scrollRef.current) {
-      const scrollLeft = scrollRef.current.scrollLeft; // Amount scrolled
-      const scrollWidth = scrollRef.current.scrollWidth; // Total width of scrollable content
-      const clientWidth = scrollRef.current.clientWidth; // Visible width of the container
+      const scrollLeft = scrollRef.current.scrollLeft;
+      const scrollWidth = scrollRef.current.scrollWidth;
+      const clientWidth = scrollRef.current.clientWidth;
 
-      // Ensure we're calculating progress correctly
       const progress = Math.min(
         (scrollLeft / (scrollWidth - clientWidth)) * 100,
         100
-      ); // Calculate progress percentage
+      );
       setScrollProgress(progress);
     }
   };

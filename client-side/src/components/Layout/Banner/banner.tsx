@@ -1,5 +1,5 @@
 "use client";
-import { texts } from "@/Static Data/BannerData";
+import { texts } from "@/static/BannerData";
 import React, { useState } from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 

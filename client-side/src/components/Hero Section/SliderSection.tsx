@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { slides } from "@/Static Data/SliderData";
+import { slides } from "@/static/SliderData";
 import SliderControllerButton from "./SliderControllerButton";
 
 const HeroSliderSection = () => {

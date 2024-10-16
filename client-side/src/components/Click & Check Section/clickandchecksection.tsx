@@ -1,25 +1,15 @@
 "use client";
 import React, { useState } from "react";
-import { ModalInfo } from "@/types/Info Modal Types/infoModalTypes";
+import { ModalInfo } from "@/types/infoModalTypes";
 import InfoModal from "./InfoModal";
 import PlusButtons from "./PlusButtons";
 import TextContent from "./TextContent";
+import { images } from "@/static/ImagesData";
 
 const ClickandCheckSection = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [modalInfo, setModalInfo] = useState<ModalInfo | null>(null);
-
-  const images = [
-    {
-      srcSet:
-        "https://impact-theme-home.myshopify.com/cdn/shop/files/PC_Portable_soft_black_Result_Chair_black_wb_lacquer_oak_Terrazzo_Table.jpg?v=1653301777&width=2200",
-      mobileSrc:
-        "https://impact-theme-home.myshopify.com/cdn/shop/files/PC_Portable_soft_black_Result_Chair_black_wb_lacquer_oak_Terrazzo_Table_mobile.jpg?v=1653302092&width=1200",
-      tabletSrc:
-        "https://impact-theme-home.myshopify.com/cdn/shop/files/PC_Portable_soft_black_Result_Chair_black_wb_lacquer_oak_Terrazzo_Table.jpg?v=1653301777&width=1400",
-    },
-  ];
 
   const toggleBottomDiv = (info: ModalInfo) => {
     setModalInfo(info);
