@@ -1,8 +1,8 @@
-import Banner from "@/components/Banner/banner";
+import Banner from "@/components/Layout/Banner/banner";
 import ClickandCheckSection from "@/components/Click & Check Section/clickandchecksection";
-import FloatingTextSection from "@/components/Floating Text Section/floatingTexts";
-import Header from "@/components/Header/header";
-import HomeHeroSlider from "@/components/Home Hero Slider/homeHeroSlider";
+import FloatingTextSection from "@/components/Marquee Text/floatingTexts";
+import Header from "@/components/Layout/Header/header";
+import HomeHeroSlider from "@/components/Home Hero Section/homeHeroSlider";
 import NewArrivalsSection from "@/components/New Arrivals Section/newArrivalsSection";
 
 export default function Home() {

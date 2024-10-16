@@ -4,10 +4,16 @@ import Image from "next/image";
 import React from "react";
 import { IoClose } from "react-icons/io5";
 
-const InfoModal: React.FC<InfoModalProps> = ({ closeBottomDiv, isClosing }) => {
+const InfoModal: React.FC<InfoModalProps> = ({
+  closeBottomDiv,
+  isClosing,
+  modalInfo,
+}) => {
+  if (!modalInfo) return null;
+
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-end z-50 "
+      className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-end z-50"
       onClick={closeBottomDiv}
     >
       <div
@@ -24,15 +30,15 @@ const InfoModal: React.FC<InfoModalProps> = ({ closeBottomDiv, isClosing }) => {
         </button>
         <div className="bg-white rounded-[10px] p-[24px] relative w-full">
           <Image
-            src="https://impact-theme-home.myshopify.com/cdn/shop/files/icon-brightness.png?v=1653312415&width=48"
-            alt="sunicon"
+            src={modalInfo.iconImg}
+            alt={modalInfo.altImg}
             width={24}
             height={24}
           />
-          <h4 className="font-[800] text-[18px] mt-[12px]">Dimmable</h4>
-          <p className="mt-[14px] text-[14px]">
-            Integrated touch step dimmer switch with three standard settings.
-          </p>
+          <h4 className="font-[800] text-[18px] mt-[12px]">
+            {modalInfo.title}
+          </h4>
+          <p className="mt-[14px] text-[14px]">{modalInfo.info}</p>
         </div>
       </div>
     </div>
