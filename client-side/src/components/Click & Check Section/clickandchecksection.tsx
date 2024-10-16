@@ -1,12 +1,12 @@
 "use client";
-import Image from "next/image";
 import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
-import { IoClose } from "react-icons/io5";
+import InfoModal from "../Info Modal/infoModal";
 
 const ClickandCheckSection = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isClosing, setIsClosing] = useState(false); // New state for closing animation
+  const [isClosing, setIsClosing] = useState(false);
+
   const images = [
     {
       srcSet:
@@ -23,17 +23,16 @@ const ClickandCheckSection = () => {
     if (!isOpen) {
       document.body.style.overflow = "hidden";
     } else {
-      closeBottomDiv(); // Trigger close animation
+      closeBottomDiv();
     }
   };
-
   const closeBottomDiv = () => {
-    setIsClosing(true); // Start closing animation
+    setIsClosing(true);
     setTimeout(() => {
-      setIsOpen(false); // Actually close the modal after animation ends
-      setIsClosing(false); // Reset closing state
-      document.body.style.overflow = "auto"; // Enable scrolling
-    }, 300); // Duration should match the animation duration
+      setIsOpen(false);
+      setIsClosing(false);
+      document.body.style.overflow = "auto";
+    }, 300);
   };
 
   return (
@@ -84,40 +83,8 @@ const ClickandCheckSection = () => {
           </div>
         </div>
       </div>
-
-      {/* Overlay and Bottom Section */}
       {isOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-end z-50 "
-          onClick={closeBottomDiv}
-        >
-          <div
-            className={`flex flex-col items-center m-[10px] ${
-              isClosing ? "animate-slide-down" : "animate-slide-up"
-            }`}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="rounded-full mb-[12px] w-[48px] h-[48px] flex justify-center items-center bg-white text-[#272727] cursor-pointer"
-              onClick={closeBottomDiv}
-            >
-              <IoClose size={24} />
-            </button>
-            <div className="bg-white rounded-[10px] p-[24px] relative w-full">
-              <Image
-                src="https://impact-theme-home.myshopify.com/cdn/shop/files/icon-brightness.png?v=1653312415&width=48"
-                alt="sunicon"
-                width={24}
-                height={24}
-              />
-              <h4 className="font-[800] text-[18px] mt-[12px]">Dimmable</h4>
-              <p className="mt-[14px] text-[14px]">
-                Integrated touch step dimmer switch with three standard
-                settings.
-              </p>
-            </div>
-          </div>
-        </div>
+        <InfoModal closeBottomDiv={closeBottomDiv} isClosing={isClosing} />
       )}
     </div>
   );
