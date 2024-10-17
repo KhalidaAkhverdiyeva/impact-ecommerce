@@ -5,6 +5,8 @@ import React, { useRef, useEffect } from "react";
 const WebInfoModal: React.FC<InfoModalProps> = ({
   modalInfo,
   closeBottomDiv,
+  top = "0px",
+  left = "0px",
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -29,7 +31,12 @@ const WebInfoModal: React.FC<InfoModalProps> = ({
   }
 
   return (
-    <div className="absolute z-40" style={{ top: "30%", right: "40%" }}>
+    <div
+      className="z-40 absolute transform -translate-x-1/2 -translate-y-1/2"
+      style={{ top, left }}
+      aria-modal="true"
+      role="dialog"
+    >
       <div ref={modalRef} className="flex flex-col items-center w-[380px]">
         <div className="bg-white bg-opacity-50 backdrop-blur-lg backdrop-saturate-150 p-[30px] relative w-full">
           <Image
@@ -38,9 +45,7 @@ const WebInfoModal: React.FC<InfoModalProps> = ({
             width={24}
             height={24}
           />
-          <h4 className="font-[800] text-[20px] mt-[12px]">
-            {modalInfo.title}
-          </h4>
+          <h4 className="font-bold text-[20px] mt-[12px]">{modalInfo.title}</h4>
           <p className="mt-[14px] text-[16px]">{modalInfo.info}</p>
         </div>
       </div>

@@ -1,25 +1,22 @@
-import { sampleModalInfo } from "@/static/PlusButtonsData";
-import { ModalInfo } from "@/types/infoModalTypes";
 import React from "react";
+import { ModalInfo } from "@/types/infoModalTypes";
 import { FaPlus } from "react-icons/fa6";
+import { sampleModalInfo } from "@/static/PlusButtonsData";
 
 interface PlusButtonsProps {
-  toggleBottomDiv: (modalInfo: ModalInfo, element: HTMLElement) => void;
+  toggleBottomDiv: (modalInfo: ModalInfo, buttonId: string) => void;
 }
 
 const PlusButtons: React.FC<PlusButtonsProps> = ({ toggleBottomDiv }) => {
-  const handleClick = (
-    info: ModalInfo,
-    event: React.MouseEvent<HTMLDivElement>
-  ) => {
-    const element = event.currentTarget; // Get the current element
-    toggleBottomDiv(info, element); // Pass the element to toggleBottomDiv
+  const handleClick = (info: ModalInfo, buttonId: string) => {
+    toggleBottomDiv(info, buttonId);
   };
 
   return (
     <div>
       <div
-        onClick={(e) => handleClick(sampleModalInfo[0], e)}
+        id="button2"
+        onClick={() => handleClick(sampleModalInfo[0], "button2")}
         className="absolute top-[48%] left-[60%] sm:top-[46%] sm:left-[55%] transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
       >
         <div className="relative w-[42px] h-[42px] sm:w-[64px] sm:h-[64px] flex justify-center items-center">
@@ -30,7 +27,8 @@ const PlusButtons: React.FC<PlusButtonsProps> = ({ toggleBottomDiv }) => {
         </div>
       </div>
       <div
-        onClick={(e) => handleClick(sampleModalInfo[1], e)}
+        id="button1"
+        onClick={() => handleClick(sampleModalInfo[1], "button1")}
         className="absolute top-[27%] left-[43%] sm:top-[23%] sm:left-[49%] transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
       >
         <div className="relative w-[42px] h-[42px] sm:w-[64px] sm:h-[64px] flex justify-center items-center">
