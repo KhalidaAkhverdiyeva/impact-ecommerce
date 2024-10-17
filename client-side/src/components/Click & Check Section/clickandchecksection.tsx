@@ -7,18 +7,28 @@ import PlusButtons from "./PlusButtons";
 import TextContent from "./TextContent";
 import { images } from "@/static/ImagesData";
 
-const ClickandCheckSection = () => {
+const ClickandCheckSection: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [modalInfo, setModalInfo] = useState<ModalInfo | null>(null);
   const [isWebModal, setIsWebModal] = useState(false);
+  const [top, setTop] = useState("0px");
+  const [left, setLeft] = useState("0px");
 
-  const toggleBottomDiv = (info: ModalInfo) => {
-    const isSmallScreen = window.innerWidth < 1024;
-
+  const toggleBottomDiv = (info: ModalInfo, buttonId: string) => {
     setModalInfo(info);
     setIsOpen((prev) => !prev);
+
+    const isSmallScreen = window.innerWidth < 1024;
     setIsWebModal(!isSmallScreen);
+
+    if (buttonId === "button1") {
+      setTop("25%");
+      setLeft("65%");
+    } else if (buttonId === "button2") {
+      setTop("50%");
+      setLeft("38%");
+    }
 
     if (!isOpen) {
       if (isSmallScreen) {
@@ -34,7 +44,6 @@ const ClickandCheckSection = () => {
     setTimeout(() => {
       setIsOpen(false);
       setIsClosing(false);
-      // Always restore scrolling when closing the modal
       document.body.style.overflow = "auto";
     }, 300);
   };
@@ -64,6 +73,8 @@ const ClickandCheckSection = () => {
                   closeBottomDiv={closeBottomDiv}
                   isClosing={isClosing}
                   modalInfo={modalInfo}
+                  top={top}
+                  left={left}
                 />
               ) : (
                 <InfoModal
