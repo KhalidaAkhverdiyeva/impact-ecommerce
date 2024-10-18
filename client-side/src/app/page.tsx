@@ -7,6 +7,9 @@ import ExploreCollectionsSection from "@/components/Explore Collections Section/
 import NewArrivalsSection from "@/components/New Arrivals Section/NewArrivalsSection";
 import GrowingImgSection from "@/components/Growing Img Section/growingImgSection";
 import Footer from "@/components/Layout/Footer/footer";
+import ShopifySection from "@/components/Shopify Section/shopifySection";
+import ReadOurStoriesSection from "@/components/Read Our Stories Section/readOurStoriesSection";
+import ImageRevealSlider from "@/components/Remini Reveal Slider/imgRevealSlider";
 
 export default function Home() {
   return (
@@ -20,7 +23,9 @@ export default function Home() {
         <ClickandCheckSection />
         <ExploreCollectionsSection />
         <GrowingImgSection />
-
+        <ReadOurStoriesSection />
+        <ImageRevealSlider />
+        <ShopifySection />
         <Footer />
       </div>
     </div>
