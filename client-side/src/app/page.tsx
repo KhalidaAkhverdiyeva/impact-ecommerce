@@ -11,6 +11,7 @@ import ShopifySection from "@/components/Shopify Section/shopifySection";
 import ReadOurStoriesSection from "@/components/Read Our Stories Section/readOurStoriesSection";
 import ImageRevealSlider from "@/components/Remini Reveal Slider/imgRevealSlider";
 import JustImgSection from "@/components/Just Image Section/justImgSection";
+import CompanyCountSection from "@/components/Company Count Section/companyCountSection";
 
 export default function Home() {
   return (
@@ -24,6 +25,8 @@ export default function Home() {
         <ClickandCheckSection />
         <ExploreCollectionsSection />
         <GrowingImgSection />
+
+        <CompanyCountSection />
         <JustImgSection />
         <ImageRevealSlider />
         <ReadOurStoriesSection />
