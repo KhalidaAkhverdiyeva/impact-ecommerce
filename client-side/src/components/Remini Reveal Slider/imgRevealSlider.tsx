@@ -30,8 +30,17 @@ const ImageRevealSlider = () => {
   );
 
   return (
-    <div className="bg-white ">
+    <div className="bg-white  py-[50px]">
       <div className="max-w-[1600px] mx-auto px-[20px] md:px-[32px] lg:px-[48px]">
+        <div className="text-center pb-[20px] md:pb-[40px]">
+          <h3 className="text-[32px] md:text-[40px] lg:text-[48px] font-[800]">
+            Sources of inspiration
+          </h3>
+          <p className="pt-[15px] text-[14px] md:text-[16px]">
+            Explore our environments and inspire yourself to find the right
+            balance in your home.
+          </p>
+        </div>
         <div className="relative h-[200px] md:h-[400px] lg:h-[700px] xl:h-[800px] overflow-hidden">
           {/* Left Image with clip-path controlled by drag position  */}
           <animated.div

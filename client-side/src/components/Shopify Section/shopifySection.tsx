@@ -2,7 +2,7 @@ import React from "react";
 
 const ShopifySection = () => {
   return (
-    <section className="bg-white  py-[50px] lg:px-[48px]">
+    <section className="bg-white   py-[100px] lg:px-[48px]">
       <div className="max-w-[1600px] mx-auto flex-col  flex lg:flex-row justify-between">
         <div className="flex flex-col items-center flex-1">
           <div>

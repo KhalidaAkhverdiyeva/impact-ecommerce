@@ -3,9 +3,9 @@ import { FaAngleRight } from "react-icons/fa6";
 
 const ReadOurStoriesSection = () => {
   return (
-    <section className="bg-white py-[50px]">
-      <div className="max-w-[1600px] mx-auto flex flex-col gap-[32px] justify-between px-[20px] md:px-[32px]  lg:px-[48px]">
-        <div className="flex flex-col lg:flex-row lg:justify-between">
+    <section className="bg-white ">
+      <div className="max-w-[1600px] mx-auto  flex flex-col gap-[32px] justify-between px-[20px] md:px-[32px]  lg:px-[48px]">
+        <div className="flex flex-col lg:pt-[50px] lg:flex-row lg:justify-between">
           <h4 className="text-[32px] md:text-[46px] font-[800] text-[#272727]">
             Read our stories
           </h4>
@@ -17,20 +17,20 @@ const ReadOurStoriesSection = () => {
           </div>
         </div>
         <div className="flex flex-col lg:flex-row">
-          <div className="flex-[75%]">
+          <div className="flex-[75%] overflow-hidden cursor-pointer">
             <img
               src="https://impact-theme-home.myshopify.com/cdn/shop/articles/Pouf_cool_rose_Mags_3_Seater_comb_1_Hallingdal_220_Plica_Sprinkle_cream_Outline_Cushion_vivid_blue_76d5321d-a7ce-4891-bd3a-35ad1f2c3a7a.jpg?v=1653735991&width=1400"
               alt="sofa"
-              className="w-[100%] h-[100%]"
+              className="w-[100%] h-[100%] transition-transform duration-500 ease-in-out hover:scale-105"
             />
           </div>
 
-          <div className="flex-[40%] bg-[#cf6c6c] flex flex-col gap-[20px] p-[20px] md:p-[48px]">
+          <div className="flex-[40%] bg-[#3C619E] flex flex-col gap-[20px] p-[20px] md:p-[48px]">
             <div className="">
               <div className="text-[16px] font-[700]">Inspiration</div>
             </div>
 
-            <h2 className="text-[32px] md:text-[44px] font-[800] leading-[1.1]">
+            <h2 className="text-[32px] md:text-[44px] font-[800] leading-[1.1] cursor-pointer">
               Enjoy a cozy living room
             </h2>
             <p className="text-[18px] md:text-[20px]">
