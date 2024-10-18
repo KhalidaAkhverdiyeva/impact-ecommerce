@@ -48,12 +48,15 @@ const CompanyCountSection = () => {
         <h3 className="text-[26px] font-[800] text-[#272727]">
           A new kind of design company
         </h3>
-        <p className="text-[14px] md:text-[16px] max-w-[750px] ">
-          Motivated by the certainty that good design is everyone's right, we
-          set out to innovate new ways to answer the ever-evolving needs of the
-          modern world - but at a more accessible price point than industry
-          standards.
-        </p>
+        <div className="mx-auto">
+          {" "}
+          <p className="text-[14px] md:text-[16px] max-w-[750px] ">
+            Motivated by the certainty that good design is everyone's right, we
+            set out to innovate new ways to answer the ever-evolving needs of
+            the modern world - but at a more accessible price point than
+            industry standards.
+          </p>
+        </div>
       </div>
     </section>
   );
