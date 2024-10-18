@@ -1,0 +1,28 @@
+import React from "react";
+
+const RichTextSection = () => {
+  return (
+    <section className="bg-white pt-[50px] ">
+      <div className="max-w-[1600px] mx-auto flex flex-col gap-[10px] md:gap-[20px] px-[20px] md:px-[32px] lg:px-[48px] text-center">
+        <p className="font-[700] text-[#272727]">Designers</p>
+        <h3 className="text-[42px] md:text-[48px] py-[10px] leading-[1] font-[800] text-[#272727]">
+          From all over the world
+        </h3>
+        <div className="mx-auto">
+          <p className=" max-w-[750px] text-[#272727] leading-[1.3] ">
+            HAY has always believed that good design is everyone’s right. That’s
+            why, from the very beginning, co-founders and Creative Directors
+            Mette and Rolf Hay committed to working with their generation’s best
+            designers from all over the world to create high-quality products
+            that would be available to a wide audience.
+          </p>
+          <button className="border-[#272727] text-[#272727] border-[3px] font-[800] border-solid mt-[20px] py-[16px] px-[32px]">
+            View designers
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default RichTextSection;

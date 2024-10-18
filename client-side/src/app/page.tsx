@@ -13,6 +13,8 @@ import ImageRevealSlider from "@/components/Remini Reveal Slider/imgRevealSlider
 import JustImgSection from "@/components/Just Image Section/justImgSection";
 import CompanyCountSection from "@/components/Company Count Section/companyCountSection";
 import HomeDesignerGridSection from "@/components/Home Designer Grid Section/homeDesignerGrid";
+import RichTextSection from "@/components/Designers Rich Text Section/richTextSection";
+import NewsletterCard from "@/components/Newsletter Card/newsletterCard";
 
 export default function Home() {
   return (
@@ -26,7 +28,8 @@ export default function Home() {
         <ClickandCheckSection />
         <ExploreCollectionsSection />
         <GrowingImgSection />
-
+        <NewsletterCard />
+        <RichTextSection />
         <HomeDesignerGridSection />
         <CompanyCountSection />
         <JustImgSection />
