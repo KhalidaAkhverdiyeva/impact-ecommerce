@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { Jost } from "next/font/google";
+import Footer from "@/components/Layout/Footer/footer";
+import Banner from "@/components/Layout/Banner/banner";
 
 const inter = Inter({ subsets: ["latin"] });
 const jost = Jost({ subsets: ["latin"] });
@@ -19,7 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} ${jost.className} antialiased`}>
+        <Banner />
         {children}
+        <Footer />
       </body>
     </html>
   );

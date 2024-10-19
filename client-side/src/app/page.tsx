@@ -1,6 +1,4 @@
-import Banner from "@/components/Layout/Banner/banner";
 import FloatingTextSection from "@/components/Marquee Text/floatingTexts";
-import Header from "@/components/Layout/Header/header";
 import HeroSliderSection from "@/components/Hero Section/SliderSection";
 import ClickandCheckSection from "@/components/Click & Check Section/ClickAndCheckSection";
 import ExploreCollectionsSection from "@/components/Explore Collections Section/exploreCollectionsSection";
@@ -15,11 +13,11 @@ import CompanyCountSection from "@/components/Company Count Section/companyCount
 import HomeDesignerGridSection from "@/components/Home Designer Grid Section/homeDesignerGrid";
 import RichTextSection from "@/components/Designers Rich Text Section/richTextSection";
 import NewsletterCard from "@/components/Newsletter Card/newsletterCard";
+import { Header } from "@/components/Layout/Header/header";
 
 export default function Home() {
   return (
     <div>
-      <Banner />
       <div className="relative">
         <Header />
         <HeroSliderSection />
