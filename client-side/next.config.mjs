@@ -1,7 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['impact-theme-home.myshopify.com', 'localhost'],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'impact-theme-home.myshopify.com',
+                pathname: '/**',
+            },
+            {
+                protocol: 'http',
+                hostname: 'localhost',
+                pathname: '/**',
+            },
+        ],
     },
 };
 
