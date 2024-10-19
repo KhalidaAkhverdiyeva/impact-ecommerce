@@ -4,7 +4,6 @@ import ClickandCheckSection from "@/components/Click & Check Section/ClickAndChe
 import ExploreCollectionsSection from "@/components/Explore Collections Section/exploreCollectionsSection";
 import NewArrivalsSection from "@/components/New Arrivals Section/NewArrivalsSection";
 import GrowingImgSection from "@/components/Growing Img Section/growingImgSection";
-import Footer from "@/components/Layout/Footer/footer";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
 import ReadOurStoriesSection from "@/components/Read Our Stories Section/readOurStoriesSection";
 import ImageRevealSlider from "@/components/Remini Reveal Slider/imgRevealSlider";
@@ -34,7 +33,6 @@ export default function Home() {
         <ImageRevealSlider />
         <ReadOurStoriesSection />
         <ShopifySection />
-        <Footer />
       </div>
     </div>
   );

@@ -121,7 +121,7 @@ export const HeaderWhite = () => {
       className={`${
         isSticky
           ? "fixed top-0 left-0 z-[50] w-full shadow-md bg-white text-black"
-          : "absolute z-[50] w-full bg-white text-black"
+          : " z-[50] w-full  bg-white text-black"
       } flex justify-center transition-all duration-300 ease-in-out`}
     >
       <div className="py-[18px] md:py-[34px] md:px-[32px] lg:px-[48px] px-[20px] flex justify-between items-center w-full max-w-[1600px]">
