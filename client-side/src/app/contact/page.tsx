@@ -1,4 +1,6 @@
 import { HeaderWhite } from "@/components/Layout/Header/header";
+import MessageForm from "@/components/Message Form/messageForm";
+import ShopifySection from "@/components/Shopify Section/shopifySection";
 import React from "react";
 
 const ContactPage = () => {
@@ -24,7 +26,7 @@ const ContactPage = () => {
         </div>
       </div>
 
-      <div className="flex max-w-[1600px] mx-auto flex-col lg:flex-row gap-[50px] py-[50px] lg:py-[100px] px-[20px] md:px-[48px] text-[#272727]">
+      <div className="flex max-w-[1600px] mx-auto flex-col lg:flex-row gap-[50px] py-[50px] lg:py-[100px] px-[20px] md:px-[32px] lg:px-[48px] text-[#272727]">
         <div className="flex flex-col lg:flex-1 gap-[10px] lg:gap-[20px]">
           <p className="text-[18px] font-[800]">Send a message</p>
           <h4 className="text-[34px] lg:text-[40px] font-[900] leading-[1]">
@@ -37,41 +39,23 @@ const ContactPage = () => {
             time.
           </p>
         </div>
-        <div className="lg:flex-1 bg-[#F4F4F4] p-[24px] md:px-[48px] md:py-[40px] flex flex-col gap-[20px]">
-          <div className="flex flex-col md:flex-row gap-[20px]">
-            <input
-              type="text"
-              placeholder="Name"
-              className="p-[16px] border border-solid border-[#2727271F] focus:border-[#272727] bg-transparent w-full outline-none"
-              style={{ color: "rgba(39,39,39,0.6)" }}
-            />
-            <input
-              type="text"
-              placeholder="E-mail"
-              className="p-[16px] border border-solid border-[#2727271F] focus:border-[#272727] bg-transparent w-full outline-none"
-              style={{ color: "rgba(39,39,39,0.6)" }}
-            />
+        <MessageForm bgColor="#EFEFEF" />
+      </div>
+      <section className="md:px-[32px]">
+        <div className="bg-[#3C619E] max-w-[1600px] md:p-[50px] lg:p-[70px] mx-auto text-white flex flex-col gap-[20px] items-center ">
+          <div className="text-[32px] md:text-[40px] lg:text-[48px] font-[900]">
+            Email us directly
           </div>
-
-          <select
-            className="p-[16px] border border-solid border-[#2727271F] focus:border-[#272727] bg-transparent w-full outline-none"
-            style={{ color: "rgba(39,39,39,0.6)" }}
-          >
-            <option value="">Select Subject</option>
-            <option value="Account">Account</option>
-            <option value="Order">Order</option>
-            <option value="Press">Press</option>
-          </select>
-          <textarea
-            placeholder="Message"
-            className="p-[16px] border border-solid border-[#2727271F] focus:border-[#272727] bg-transparent w-full h-[100px] resize-y outline-none"
-            style={{ minHeight: "60px", color: "rgba(39,39,39,0.6)" }}
-          ></textarea>
-          <div className="bg-[#272727] w-[170px] py-[16px] px-[32px] text-center flex justify-center items-center gap-[10px]">
-            <button className="text-white font-[700]">Subscribe</button>
+          <div className="text-[14px] md:text-[16px] underline">
+            help@yourdomain.com
+          </div>
+          <div className=" text-[14px] md:text-[16px] max-w-[650px] text-center">
+            We are available from monday to saturday. Our customer service will
+            get back to you as soon as possible.
           </div>
         </div>
-      </div>
+      </section>
+      <ShopifySection />
     </div>
   );
 };

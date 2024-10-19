@@ -70,9 +70,11 @@ export const Header = () => {
           </Link>
         </div>
         <div className="flex-1 flex justify-end">
-          <div className="text-[17px] font-[700] mx-[10px] hidden lg:block cursor-pointer  hover:text-gray-500">
-            FAQ
-          </div>
+          <Link href="/faq">
+            <div className="text-[17px] font-[700] mx-[10px] hidden lg:block cursor-pointer hover:text-gray-500">
+              FAQ
+            </div>
+          </Link>
 
           <Link href="/contact">
             <div className="text-[17px] font-[700] mx-[10px] hidden lg:block cursor-pointer  hover:text-gray-500">
@@ -156,9 +158,11 @@ export const HeaderWhite = () => {
           </Link>
         </div>
         <div className="flex-1 flex justify-end">
-          <div className="text-[17px] font-[700] mx-[10px] hidden lg:block cursor-pointer hover:text-gray-500">
-            FAQ
-          </div>
+          <Link href="/faq">
+            <div className="text-[17px] font-[700] mx-[10px] hidden lg:block cursor-pointer hover:text-gray-500">
+              FAQ
+            </div>
+          </Link>
 
           <Link href="/contact">
             <div className="text-[17px] font-[700] mx-[10px] hidden lg:block cursor-pointer hover:text-gray-500">
