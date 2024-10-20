@@ -21,23 +21,28 @@ const FAQPage = () => {
           </h2>
         </div>
       </div>
-      <div className="mx-auto max-w-[1600px]">
-        <div className="px-[20px] py-[48px] md:px-[32px] lg:px-[48px]">
-          <h2 className="text-[32px] text-[#272727] font-[800] text-center">
+      <div className="mx-auto max-w-[960px]">
+        <div className="px-[20px] py-[72px] md:px-[32px] lg:px-[48px]">
+          <h2 className="text-[34px] md:text-[46px] lg:text-[60px] text-[#272727] font-[800] text-center leading-[1]">
             Popular questions from our customers
           </h2>
-          <div className="max-w-xl mx-auto mt-10 bg-[#F4F4F4]">
+          <div className=" mx-auto mt-10 bg-[#F4F4F4]">
             <Accordion
               title="How do you calculate your shipping and handling charges?"
               content="We’re dedicated to offering the best shipping methods available to ensure that your order reaches you quickly and safely. Shipping rates will vary, based on the specified delivery method, shipping address and total price of the merchandise in your cart."
             />
             <Accordion
-              title="Accordion Item 2"
-              content="This is the content of the second accordion item."
+              title="Do you charge sales tax?"
+              content="Please know, your order(s) will be taxed unless valid tax exemption documentation has been received prior to order placement. Please visit your local store or contact us for additional questions or support."
             />
             <Accordion
-              title="Accordion Item 3"
-              content="This is the content of the third accordion item."
+              title="How is my order payment processed?"
+              content="When you place an order, we contact the issuing bank to confirm the validity of the payment method. Your bank reserves the funds until the transaction processes or the authorization expires, but this isn’t an actual charge. Some banks call authorizations “pending” or “processing” charges. For more information on specific policies regarding authorizations, contact the issuing bank."
+            />
+            <Accordion
+              isLast
+              title="What if I received damaged or incorrect merchandise?"
+              content="In the event that you receive defective, incorrect or incomplete merchandise, please contact us right away so we can make it right. For faster assistance with a return or exchange claim, please email us at help@yourdomain.com with your order number, contact information and photos documenting possible damages (if applicable). Please retain all items and packaging materials until your claim is resolved. If your replacement item is backordered or out of stock, we’ll notify you as soon as we have the estimated arrival date, or we may work with you to suggest a suitable replacement."
             />
           </div>
         </div>

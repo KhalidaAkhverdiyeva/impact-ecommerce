@@ -1,29 +1,39 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 interface AccordionProps {
   title: string;
   content: string;
+  isLast?: boolean;
 }
 
-const Accordion: React.FC<AccordionProps> = ({ title, content }) => {
+const Accordion: React.FC<AccordionProps> = ({ title, content, isLast }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.style.maxHeight = isOpen
+        ? `${contentRef.current.scrollHeight}px`
+        : "0px";
+    }
+  }, [isOpen]);
+
   return (
-    <div className="border-b border-gray-300">
+    <div className="mx-[20px]">
       <button
-        className="flex justify-between items-center w-full p-4 text-left"
+        className="flex justify-between items-center w-full py-[20px] text-left"
         onClick={toggleAccordion}
       >
-        <span className="text-[16px] text-[#272727] w-[300px] font-[800] flex-grow">
+        <span className="text-[16px] md:text-[18px] text-[#272727] w-[270px] font-[800] flex-grow">
           {title}
         </span>
         <div
-          className={`flex items-center justify-center w-[24px] h-[24px] rounded-full transition-colors duration-300 ${
+          className={`flex items-center justify-center w-[24px] hover:bg-[#272727] hover:text-[white] h-[24px] rounded-full transition-colors duration-300 ${
             isOpen ? "bg-[#272727] text-white" : "bg-[#DFDFDF] text-[#272727]"
           }`}
         >
@@ -47,13 +57,13 @@ const Accordion: React.FC<AccordionProps> = ({ title, content }) => {
         </div>
       </button>
       <div
-        className={`overflow-hidden transition-all duration-300 ease-in-out ${
-          isOpen
-            ? "max-h-[500px] opacity-100 transform translate-y-0"
-            : "max-h-0 opacity-0 transform -translate-y-4"
+        ref={contentRef}
+        className={`overflow-hidden transition-max-height duration-300 ease-in-out ${
+          isLast ? "" : "border-b border-gray-300"
         }`}
+        style={{ maxHeight: "0px" }}
       >
-        <div className="px-4 py-[5px] text-gray-700">{content}</div>
+        <div className="pt-[5px] pb-[20px] text-gray-700">{content}</div>
       </div>
     </div>
   );
