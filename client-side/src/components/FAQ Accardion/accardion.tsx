@@ -1,11 +1,6 @@
 "use client";
+import { AccordionProps } from "@/types/accordionTypes";
 import { useState, useRef, useEffect } from "react";
-
-interface AccordionProps {
-  title: string;
-  content: string;
-  isLast?: boolean;
-}
 
 const Accordion: React.FC<AccordionProps> = ({ title, content, isLast }) => {
   const [isOpen, setIsOpen] = useState(false);

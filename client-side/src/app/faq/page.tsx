@@ -45,6 +45,21 @@ const FAQPage = () => {
               content="In the event that you receive defective, incorrect or incomplete merchandise, please contact us right away so we can make it right. For faster assistance with a return or exchange claim, please email us at help@yourdomain.com with your order number, contact information and photos documenting possible damages (if applicable). Please retain all items and packaging materials until your claim is resolved. If your replacement item is backordered or out of stock, we’ll notify you as soon as we have the estimated arrival date, or we may work with you to suggest a suitable replacement."
             />
           </div>
+          <div className="flex flex-col items-center gap-[6px] pt-[40px]">
+            <div className="w-[160px]">
+              <img
+                src="https://impact-theme-home.myshopify.com/cdn/shop/files/team-fff.png?v=1660058616&width=320"
+                alt=""
+                className="w-full h-full"
+              />
+            </div>
+            <p className="text-center text-[#272727] text-[14px] md:text-[16px]">
+              Our customer support is available Monday to Friday: 8am-8:30pm.
+            </p>
+            <p className="text-[#272727B3] text-[14px] md:text-[16px]">
+              Average answer time: 24h
+            </p>
+          </div>
         </div>
       </div>
 
