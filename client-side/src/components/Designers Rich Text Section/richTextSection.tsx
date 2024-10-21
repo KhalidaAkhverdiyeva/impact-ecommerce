@@ -2,10 +2,10 @@ import React from "react";
 
 const RichTextSection = () => {
   return (
-    <section className="bg-white pt-[50px] ">
+    <section className="bg-white py-[50px] ">
       <div className="max-w-[1600px] mx-auto flex flex-col gap-[10px] md:gap-[20px] px-[20px] md:px-[32px] lg:px-[48px] text-center">
-        <p className="font-[700] text-[#272727]">Designers</p>
-        <h3 className="text-[42px] md:text-[48px] py-[10px] leading-[1] font-[800] text-[#272727]">
+        <p className="font-[800] lg:text-[18px] text-[#272727]">Designers</p>
+        <h3 className="text-[42px] md:text-[48px] lg:text-[62px] py-[10px] leading-[1] font-[800] text-[#272727]">
           From all over the world
         </h3>
         <div className="mx-auto">

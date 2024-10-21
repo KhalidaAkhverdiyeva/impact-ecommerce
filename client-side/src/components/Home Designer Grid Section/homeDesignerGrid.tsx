@@ -2,7 +2,7 @@ import React from "react";
 
 const HomeDesignerGridSection = () => {
   return (
-    <section className="bg-white lg:h-[760px] py-[50px]">
+    <section className="bg-white lg:h-[664px]">
       <div className="mx-auto max-w-[1350px] lg:h-[664px] px-[20px] md:px-[32px] lg:px-[48px]">
         <div className="flex flex-col md:flex-row gap-[12px] lg:gap-[24px] h-[600px] md:h-[320px] lg:h-[664px]">
           <div className=" w-full flex-1 h-[300px] md:h-[100%] md:w-[50%] overflow-hidden flex items-center justify-center relative group cursor-pointer">

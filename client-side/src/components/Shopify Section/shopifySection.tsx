@@ -11,7 +11,7 @@ const ShopifySection = () => {
 
   return (
     <section className="bg-white py-[50px] lg:py-[100px] lg:px-[48px]">
-      <div className="max-w-[1600px] mx-auto">
+      <div className="max-w-[1420px] mx-auto">
         <Swiper
           ref={swiperRef}
           modules={[Mousewheel]}

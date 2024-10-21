@@ -39,15 +39,19 @@ export const Header = () => {
           <div className="block lg:hidden">
             <IoMenu className="text-[30px]" />
           </div>
-          <ul className="text-[17px] font-[700] hidden lg:flex lg:gap-[30px]">
-            <li className="flex justify-center items-center gap-[10px] cursor-pointer  hover:text-gray-500">
+          <ul className="text-[18px] font-[700] hidden lg:flex lg:gap-[30px]">
+            <li className="flex justify-center items-center gap-[10px] cursor-pointer  hover:text-[#D4D7D6] transition-colors duration-500">
               Shop <FaAngleDown />
             </li>
-            <li className="flex justify-center items-center gap-[10px] cursor-pointer  hover:text-gray-500">
+            <li className="flex justify-center items-center gap-[10px] cursor-pointer  hover:text-[#D4D7D6] transition-colors duration-500">
               Designers <FaAngleDown />
             </li>
-            <li className="cursor-pointer  hover:text-gray-500">About</li>
-            <li className="cursor-pointer  hover:text-gray-500">Blog</li>
+            <li className="cursor-pointer  hover:text-[#D4D7D6] transition-colors duration-500">
+              About
+            </li>
+            <li className="cursor-pointer  hover:text-[#D4D7D6] transition-colors duration-500">
+              Blog
+            </li>
           </ul>
 
           <div className="block md:hidden">
@@ -71,13 +75,13 @@ export const Header = () => {
         </div>
         <div className="flex-1 flex justify-end">
           <Link href="/faq">
-            <div className="text-[17px] font-[700] mx-[10px] hidden lg:block cursor-pointer hover:text-gray-500">
+            <div className="text-[17px] font-[700] mx-[10px] hidden lg:block cursor-pointer hover:text-[#D4D7D6] transition-colors duration-500">
               FAQ
             </div>
           </Link>
 
           <Link href="/contact">
-            <div className="text-[17px] font-[700] mx-[10px] hidden lg:block cursor-pointer  hover:text-gray-500">
+            <div className="text-[17px] font-[700] mx-[10px] hidden lg:block cursor-pointer  hover:text-[#D4D7D6] transition-colors duration-500">
               Contact
             </div>
           </Link>
@@ -132,14 +136,14 @@ export const HeaderWhite = () => {
             <IoMenu className="text-[30px]" />
           </div>
           <ul className="text-[17px] font-[700] hidden lg:flex lg:gap-[30px]">
-            <li className="flex justify-center items-center gap-[10px] cursor-pointer hover:text-gray-500">
+            <li className="flex justify-center items-center gap-[10px] cursor-pointer hover:text-[#676767]">
               Shop <FaAngleDown />
             </li>
-            <li className="flex justify-center items-center gap-[10px] cursor-pointer hover:text-gray-500">
+            <li className="flex justify-center items-center gap-[10px] cursor-pointer hover:text-[#676767]">
               Designers <FaAngleDown />
             </li>
-            <li className="cursor-pointer hover:text-gray-500">About</li>
-            <li className="cursor-pointer hover:text-gray-500">Blog</li>
+            <li className="cursor-pointer hover:text-[#676767]">About</li>
+            <li className="cursor-pointer hover:text-[#676767]">Blog</li>
           </ul>
 
           <div className="block md:hidden">
@@ -159,13 +163,13 @@ export const HeaderWhite = () => {
         </div>
         <div className="flex-1 flex justify-end">
           <Link href="/faq">
-            <div className="text-[17px] font-[700] mx-[10px] hidden lg:block cursor-pointer hover:text-gray-500">
+            <div className="text-[17px] font-[700] mx-[10px] hidden lg:block cursor-pointer hover:text-[#676767]">
               FAQ
             </div>
           </Link>
 
           <Link href="/contact">
-            <div className="text-[17px] font-[700] mx-[10px] hidden lg:block cursor-pointer hover:text-gray-500">
+            <div className="text-[17px] font-[700] mx-[10px] hidden lg:block cursor-pointer hover:text-[#676767]">
               Contact
             </div>
           </Link>
