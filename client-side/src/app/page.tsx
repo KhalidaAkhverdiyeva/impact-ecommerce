@@ -21,7 +21,10 @@ export default function Home() {
         <Header />
         <HeroSliderSection />
         <NewArrivalsSection />
-        <FloatingTextSection />
+        <FloatingTextSection
+          text="Good design is everyone's right."
+          color="#708A5C"
+        />
         <ClickandCheckSection />
         <ExploreCollectionsSection />
         <GrowingImgSection />

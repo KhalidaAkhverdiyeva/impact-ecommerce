@@ -42,7 +42,8 @@ export const Header = () => {
           </div>
           <ul className="text-[18px] font-[700] hidden lg:flex lg:gap-[30px]">
             <li className="flex justify-center items-center gap-[10px] cursor-pointer  hover:text-[#D4D7D6] transition-colors duration-500">
-              Shop <FaAngleDown />
+              Shop
+              <FaAngleDown />
             </li>
             <li className="flex justify-center items-center gap-[10px] cursor-pointer  hover:text-[#D4D7D6] transition-colors duration-500">
               Designers <FaAngleDown />
