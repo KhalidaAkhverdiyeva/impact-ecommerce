@@ -7,6 +7,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import { AiOutlineUser } from "react-icons/ai";
 import { FaAngleDown } from "react-icons/fa6";
 import Link from "next/link";
+import LanguageSelector from "./languageSelector";
 
 export const Header = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -86,9 +87,7 @@ export const Header = () => {
             </div>
           </Link>
 
-          <div className="hidden lg:block text-[17px] font-[700] mx-[10px] cursor-pointer">
-            USD $
-          </div>
+          <LanguageSelector />
           <div className="hidden md:block cursor-pointer">
             <IoSearch className="text-[24px] mx-[10px]" />
           </div>
