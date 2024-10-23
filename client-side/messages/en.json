@@ -1,0 +1,14 @@
+{
+    "header": {
+      "title": "Welcome to Our Site",
+      "navigation": {
+        "shop": "Home",
+        "designers": "About Us",
+        "about": "Contact",
+        "blog": "Services",
+        "faq": "FAQ",
+        "contact": "Contact"
+      }
+    }
+  
+  }
