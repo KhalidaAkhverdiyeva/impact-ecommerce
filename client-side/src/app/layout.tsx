@@ -15,11 +15,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+  params: { locale },
+}: {
   children: React.ReactNode;
-}>) {
+  params: { locale: string };
+}) {
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={`${inter.className} ${jost.className} antialiased`}>
         <Banner />
         {children}

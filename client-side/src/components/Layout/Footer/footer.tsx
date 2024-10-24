@@ -2,8 +2,10 @@ import Image from "next/image";
 import React from "react";
 import { FaFacebookF, FaInstagram } from "react-icons/fa6";
 import { LuChevronRight } from "react-icons/lu";
+import { useTranslations } from "next-intl";
 
 const Footer = () => {
+  const t = useTranslations("Footer");
   return (
     <footer className="bg-[#F2F2F2] py-[48px] flex justify-center mx-auto">
       <div className="px-[20px] md:px-[32px] lg:px-[48px] flex flex-col lg:gap-[64px] max-w-[1600px]">
@@ -17,7 +19,7 @@ const Footer = () => {
             />
             <div className="flex flex-col gap-[24px]">
               <h4 className="leading-[1.1] text-[24px] md:text-[32px] lg:text-[36px] font-[800] text-[#272727]">
-                Sign up for new stories and personal offers
+                {t("title")}
               </h4>
               <div className="flex justify-between border-[1px] border-solid border-[#E6E6E6] p-[14px]">
                 <input
