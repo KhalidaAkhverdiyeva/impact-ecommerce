@@ -1,12 +1,18 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+"use client";
 import AboutNumbersSection from "@/components/About Numbers Section/aboutNumbersSection";
 import Quote from "@/components/Designer Quote/quote";
 import { Header } from "@/components/Layout/Header/header";
 import FloatingTextSection from "@/components/Marquee Text/floatingTexts";
+import ProgressBarContainer from "@/components/New Arrivals Section/ProgressBarContainer";
+import ScrollableProducts from "@/components/Scrollable Products/scrollProducts";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import { FaAngleRight } from "react-icons/fa6";
 
 const AboutPage = () => {
+  const [scrollProgress, setScrollProgress] = useState<number>(0);
   return (
     <div className="relative">
       <Header />
@@ -72,7 +78,7 @@ const AboutPage = () => {
         </div>
       </div>
 
-      <Quote />
+      <Quote bgColor="#363D88" />
 
       <div className="max-w-[1600px] mx-auto py-[50px]">
         <div className=" flex flex-col lg:items-center lg:flex-row gap-[36px] lg:gap-[100px] px-[20px] md:px-[32px]  lg:px-[48px] ">
@@ -121,8 +127,28 @@ const AboutPage = () => {
           </div>
         </div>
       </div>
+      <section className="flex flex-col items-center justify-center">
+        <div className=" flex flex-col md:flex-row justify-between md:items-center py-[48px] px-[20px] md:py-[64px] md:px-[32px] lg:px-[48px] max-w-[1600px] w-full">
+          <h3 className="text-[32px] text-[#272727] md:text-[40px] lg:text-[48px] font-[800]">
+            Meet our designers
+          </h3>
+          <div className="flex flex-col lg:flex-row justify-between">
+            <div className="text-[#484848] flex gap-[5px] items-center">
+              <p>View all</p>
+              <button className="bg-[#E9E9E9] p-[6px] rounded-full flex justify-center items-center">
+                <FaAngleRight size={14} />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className=" w-full overflow-x-hidden mx-auto max-w-[1600px]">
+          <ScrollableProducts setScrollProgress={setScrollProgress} />
 
-      <FloatingTextSection text="Meet our designers" color="#BAB0D3" />
+          <ProgressBarContainer scrollProgress={scrollProgress} />
+        </div>
+      </section>
+
+      <FloatingTextSection text="9 stores around the world" color="#363D88" />
       <ShopifySection />
     </div>
   );

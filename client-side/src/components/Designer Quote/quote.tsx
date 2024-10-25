@@ -2,7 +2,11 @@
 import React, { useState } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
-const Quote = () => {
+interface QuoteProps {
+  bgColor: string;
+}
+
+const Quote: React.FC<QuoteProps> = ({ bgColor }) => {
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
   const [isFadingOut, setIsFadingOut] = useState(false);
 
@@ -38,9 +42,12 @@ const Quote = () => {
   };
 
   return (
-    <section className="py-[20px]  md:mx-[32px] lg:mx-[48px] ">
-      <div className="text-white max-w-[1600px] mx-auto bg-[#363D88] py-[20px] md:py-[40px] lg:py-[60px]">
-        <div className="flex flex-col gap-[10px] max-w-[1410px] mx-auto">
+    <section className="py-[20px]   bg-white ">
+      <div
+        className="text-white max-w-[1600px] mx-auto py-[20px] md:py-[40px] lg:py-[60px] md:mx-[32px] lg:mx-[48px]"
+        style={{ backgroundColor: bgColor }}
+      >
+        <div className="flex flex-col gap-[10px] max-w-[1310px] mx-auto">
           <div className="relative">
             <img
               src="data:image/svg+xml,%3Csvg width='86' height='55' viewBox='0 0 86 55' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M71.3163 54.6H42.5163L60.3163 0.400024H85.5163L71.3163 54.6ZM29.3163 54.6H0.716309L18.9163 0.400024H44.1163L29.3163 54.6Z' fill='rgba(233, 233, 233, 0.3)'/%3E%3C/svg%3E%0A"

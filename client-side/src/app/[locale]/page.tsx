@@ -13,6 +13,7 @@ import HomeDesignerGridSection from "@/components/Home Designer Grid Section/hom
 import RichTextSection from "@/components/Designers Rich Text Section/richTextSection";
 import NewsletterCard from "@/components/Newsletter Card/newsletterCard";
 import { Header } from "@/components/Layout/Header/header";
+import Quote from "@/components/Designer Quote/quote";
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
         <ClickandCheckSection />
         <ExploreCollectionsSection />
         <GrowingImgSection />
+        <Quote bgColor="#708A5C" />
         <NewsletterCard />
         <RichTextSection />
         <HomeDesignerGridSection />
