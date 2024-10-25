@@ -1,3 +1,4 @@
+import CollectionCard from "@/components/Collection Card/collectionCard";
 import { HeaderWhite } from "@/components/Layout/Header/header";
 import FloatingTextSection from "@/components/Marquee Text/floatingTexts";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
@@ -23,8 +24,9 @@ const CollectionsPage = () => {
           </span>
         </div>
       </section>
-      <section className="px-[20px] md:px-[32px] lg:px-[48px]">
-        <div className="max-w-[1600px] mx-auto h-[480px]">
+      <CollectionCard />
+      <section>
+        <div className="max-w-[1600px] mx-auto h-[480px] px-[20px] md:px-[32px] lg:px-[48px]">
           <div className="relative h-full">
             <div className="relative h-full">
               <Image
