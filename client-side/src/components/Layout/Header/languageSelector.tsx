@@ -111,7 +111,7 @@ const LanguageSelector: React.FC = () => {
       </div>
 
       {isOpen && (
-        <div className="absolute top-full left-[-50%] mt-2 py-[10px] w-[220px] bg-white cursor-pointer">
+        <div className="absolute top-full left-[-50%] mt-2 py-[10px] w-[220px] bg-white cursor-pointer border">
           {languages.map((language, index) => (
             <div
               key={index}
