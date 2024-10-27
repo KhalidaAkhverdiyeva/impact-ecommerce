@@ -6,9 +6,9 @@ import Image from "next/image";
 import { FiShoppingCart } from "react-icons/fi";
 import { AiOutlineUser } from "react-icons/ai";
 import { FaAngleDown } from "react-icons/fa6";
-import Link from "next/link";
 import LanguageSelector from "./languageSelector";
 import SearchSidebar from "@/components/Search Sidebar/searchSidebar";
+import { Link } from "@/i18n/routing";
 
 export const Header = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -64,12 +64,16 @@ export const Header = () => {
             <li className="flex justify-center items-center gap-[10px] cursor-pointer  hover:text-[#D4D7D6] transition-colors duration-500">
               Designers <FaAngleDown />
             </li>
-            <li className="cursor-pointer  hover:text-[#D4D7D6] transition-colors duration-500">
-              About
-            </li>
-            <li className="cursor-pointer  hover:text-[#D4D7D6] transition-colors duration-500">
-              Blog
-            </li>
+            <Link href="/about">
+              <li className="cursor-pointer  hover:text-[#D4D7D6] transition-colors duration-500">
+                About
+              </li>
+            </Link>
+            <Link href="/news">
+              <li className="cursor-pointer  hover:text-[#D4D7D6] transition-colors duration-500">
+                Blog
+              </li>
+            </Link>
           </ul>
 
           <div className="block md:hidden">

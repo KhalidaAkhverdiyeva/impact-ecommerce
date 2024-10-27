@@ -3,6 +3,7 @@ import React from "react";
 import { FaFacebookF, FaInstagram } from "react-icons/fa6";
 import { LuChevronRight } from "react-icons/lu";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 
 const Footer = () => {
   const t = useTranslations("Footer");
@@ -58,35 +59,51 @@ const Footer = () => {
               <li className="font-[800] text-[18px] text-[#272727] mb-[4px]">
                 Designers
               </li>
-              <li className="text-[#797979] hover:underline cursor-pointer">
-                George Sowden
-              </li>
-              <li className="text-[#797979] hover:underline cursor-pointer">
-                Clara von Zweigbergk
-              </li>
-              <li className="text-[#797979] hover:underline cursor-pointer">
-                Pierre Charpin
-              </li>
-              <li className="text-[#797979] hover:underline cursor-pointer">
-                Thomas Bentzen
-              </li>
-              <li className="text-[#797979] hover:underline cursor-pointer">
-                View all
-              </li>
+              <Link href="george-sowden">
+                <li className="text-[#797979] hover:underline cursor-pointer">
+                  George Sowden
+                </li>
+              </Link>
+              <Link href="clara-von-zweigbergk">
+                <li className="text-[#797979] hover:underline cursor-pointer">
+                  Clara von Zweigbergk
+                </li>
+              </Link>
+              <Link href="pierre-charpin">
+                <li className="text-[#797979] hover:underline cursor-pointer">
+                  Pierre Charpin
+                </li>
+              </Link>
+              <Link href="thomas-bentzen">
+                <li className="text-[#797979] hover:underline cursor-pointer">
+                  Thomas Bentzen
+                </li>
+              </Link>
+              <Link href="/designers">
+                <li className="text-[#797979] hover:underline cursor-pointer">
+                  View all
+                </li>
+              </Link>
             </ul>
             <ul className="text-[16px] flex flex-col gap-[12px]">
               <li className="font-[800] text-[18px] text-[#272727] mb-[4px]">
                 Impact
               </li>
-              <li className="text-[#797979] hover:underline cursor-pointer">
-                About
-              </li>
-              <li className="text-[#797979] hover:underline cursor-pointer">
-                FAQ
-              </li>
-              <li className="text-[#797979] hover:underline cursor-pointer">
-                Contact
-              </li>
+              <Link href="/about">
+                <li className="text-[#797979] hover:underline cursor-pointer">
+                  About
+                </li>
+              </Link>
+              <Link href="/faq">
+                <li className="text-[#797979] hover:underline cursor-pointer">
+                  FAQ
+                </li>
+              </Link>
+              <Link href="/contact">
+                <li className="text-[#797979] hover:underline cursor-pointer">
+                  Contact
+                </li>
+              </Link>
             </ul>
           </div>
           <div className="lg:w-1/4">
