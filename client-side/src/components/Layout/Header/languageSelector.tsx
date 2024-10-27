@@ -2,13 +2,7 @@
 import Image from "next/image";
 import React, { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-
-interface Language {
-  flag: string;
-  country: string;
-  currency: string;
-  locale: string;
-}
+import { Language } from "@/types/languageTypes";
 
 const LanguageSelector: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);

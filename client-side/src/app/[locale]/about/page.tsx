@@ -78,9 +78,7 @@ const AboutPage = () => {
           </div>
         </div>
       </div>
-
       <Quote bgColor="#363D88" />
-
       <div className="max-w-[1600px] mx-auto py-[50px]">
         <div className=" flex flex-col lg:items-center lg:flex-row gap-[36px] lg:gap-[100px] px-[20px] md:px-[32px]  lg:px-[48px] ">
           <div className="flex  lg:w-[55%]">
@@ -144,14 +142,11 @@ const AboutPage = () => {
         </div>
         <div className=" w-full overflow-x-hidden mx-auto max-w-[1600px]">
           <ScrollableProducts setScrollProgress={setScrollProgress} />
-
           <ProgressBarContainer scrollProgress={scrollProgress} />
         </div>
       </section>
-
       <FloatingTextSection text="9 stores around the world" color="#363D88" />
       <RoadScrollSection />
-
       <ShopifySection />
     </div>
   );

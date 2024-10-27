@@ -42,9 +42,9 @@ const Quote: React.FC<QuoteProps> = ({ bgColor }) => {
   };
 
   return (
-    <section className="py-[20px]   bg-white ">
+    <section className="py-[20px] max-w-[1600px] mx-auto  bg-white ">
       <div
-        className="text-white max-w-[1600px] mx-auto py-[20px] md:py-[40px] lg:py-[60px] md:mx-[32px] lg:mx-[48px]"
+        className="text-white py-[20px] md:py-[40px] lg:py-[60px] md:mx-[32px] lg:mx-[48px]"
         style={{ backgroundColor: bgColor }}
       >
         <div className="flex flex-col gap-[10px] max-w-[1310px] mx-auto">
