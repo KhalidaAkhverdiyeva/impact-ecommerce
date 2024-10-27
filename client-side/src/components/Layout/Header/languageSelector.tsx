@@ -20,13 +20,13 @@ const LanguageSelector: React.FC = () => {
     {
       flag: "/images/flags/united-states.png",
       country: "United States",
-      currency: "USD $",
+      currency: "USD ",
       locale: "en",
     },
     {
       flag: "/images/flags/france.png",
       country: "France",
-      currency: "EUR €",
+      currency: "EUR",
       locale: "fr",
     },
   ];

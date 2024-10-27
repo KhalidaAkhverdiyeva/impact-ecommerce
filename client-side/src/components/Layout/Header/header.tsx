@@ -193,7 +193,7 @@ export const HeaderWhite = () => {
           </Link>
 
           <div className="hidden lg:block text-[17px] font-[700] mx-[10px] cursor-pointer">
-            USD $
+            USD
           </div>
           <div className="hidden md:block cursor-pointer">
             <IoSearch className="text-[24px] mx-[10px]" />
