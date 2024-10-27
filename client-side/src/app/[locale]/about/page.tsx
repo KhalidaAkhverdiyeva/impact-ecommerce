@@ -7,7 +7,6 @@ import FloatingTextSection from "@/components/Marquee Text/floatingTexts";
 import ProgressBarContainer from "@/components/New Arrivals Section/ProgressBarContainer";
 import RoadScrollSection from "@/components/Road Scroll Section/roadScrollSection";
 import ScrollableProducts from "@/components/Scrollable Products/scrollProducts";
-import SearchSidebar from "@/components/Search Sidebar/searchSidebar";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
 import Image from "next/image";
 import React, { useState } from "react";
@@ -152,7 +151,7 @@ const AboutPage = () => {
 
       <FloatingTextSection text="9 stores around the world" color="#363D88" />
       <RoadScrollSection />
-      <SearchSidebar />
+
       <ShopifySection />
     </div>
   );

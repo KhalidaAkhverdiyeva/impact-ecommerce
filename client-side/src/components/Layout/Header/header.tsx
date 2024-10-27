@@ -8,9 +8,13 @@ import { AiOutlineUser } from "react-icons/ai";
 import { FaAngleDown } from "react-icons/fa6";
 import Link from "next/link";
 import LanguageSelector from "./languageSelector";
+import SearchSidebar from "@/components/Search Sidebar/searchSidebar";
 
 export const Header = () => {
   const [isSticky, setIsSticky] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [overlayVisible, setOverlayVisible] = useState<boolean>(false);
+  const [textVisible, setTextVisible] = useState<boolean>(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +31,18 @@ export const Header = () => {
     };
   }, []);
 
+  const openSidebar = () => {
+    console.log("hello");
+    setOverlayVisible(true); // Show overlay first
+    setTimeout(() => {
+      setIsOpen(true); // Then show sidebar
+    }, 200); // Delay to allow overlay to appear
+
+    // Set textVisible to true after the sidebar has fully opened
+    setTimeout(() => {
+      setTextVisible(true); // Show text after sidebar opens
+    }, 500); // Match this with the sidebar's transition duration
+  };
   return (
     <header
       className={`${
@@ -89,7 +105,7 @@ export const Header = () => {
           </Link>
 
           <LanguageSelector />
-          <div className="hidden md:block cursor-pointer">
+          <div onClick={openSidebar} className="hidden md:block cursor-pointer">
             <IoSearch className="text-[24px] mx-[10px]" />
           </div>
           <div className="hidden md:block cursor-pointer">
@@ -100,6 +116,8 @@ export const Header = () => {
           </div>
         </div>
       </div>
+
+      <SearchSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
     </header>
   );
 };
