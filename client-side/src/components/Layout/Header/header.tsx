@@ -33,15 +33,14 @@ export const Header = () => {
 
   const openSidebar = () => {
     console.log("hello");
-    setOverlayVisible(true); // Show overlay first
+    setOverlayVisible(true);
     setTimeout(() => {
-      setIsOpen(true); // Then show sidebar
-    }, 200); // Delay to allow overlay to appear
+      setIsOpen(true);
+    }, 200);
 
-    // Set textVisible to true after the sidebar has fully opened
     setTimeout(() => {
-      setTextVisible(true); // Show text after sidebar opens
-    }, 500); // Match this with the sidebar's transition duration
+      setTextVisible(true);
+    }, 500);
   };
   return (
     <header
@@ -81,7 +80,7 @@ export const Header = () => {
           </div>
         </div>
         <div className="flex-1 flex justify-center">
-          <Link href="/" onClick={() => window.location.reload()}>
+          <Link href="/">
             <Image
               src={
                 isSticky
@@ -173,7 +172,7 @@ export const HeaderWhite = () => {
           </div>
         </div>
         <div className="flex-1 flex justify-center">
-          <Link href="/" onClick={() => window.location.reload()}>
+          <Link href="/">
             <Image
               src="https://impact-theme-home.myshopify.com/cdn/shop/files/logo-impact.png?v=1653297704&width=240"
               alt="logo"

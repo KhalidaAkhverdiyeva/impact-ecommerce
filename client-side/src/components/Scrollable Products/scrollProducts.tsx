@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import DesignerCard from "../DesignerCard/designerCard";
+import ProductCard from "../Product Card/productCard";
 
 interface ScrollableProductsProps {
   setScrollProgress: (progress: number) => void;
@@ -55,20 +56,33 @@ const ScrollableProducts: React.FC<ScrollableProductsProps> = ({
   }, []);
 
   return (
-    <div className="">
+    <div>
       <div
-        className="scroll-container relative flex overflow-x-auto px-[20px] md:px-[32px] lg:px-[48px] max-w-[1550px]"
+        className="scroll-container relative flex overflow-x-auto px-[20px] md:px-[32px] lg:px-[48px] max-w-[1600px]"
         ref={scrollRef}
       >
-        <div className="flex gap-[20px] relative">
+        <div className="flex gap-[20px] relative overflow-visible">
+          <div className="flex-1 min-w-[300px]">
+            <ProductCard />
+          </div>
+          <div className="flex-1 min-w-[300px]">
+            <ProductCard />
+          </div>
+          <div className="flex-1 min-w-[300px]">
+            <ProductCard />
+          </div>
+          <div className="flex-1 min-w-[300px]">
+            <ProductCard />
+          </div>
+
+          {/* <DesignerCard />
           <DesignerCard />
           <DesignerCard />
           <DesignerCard />
           <DesignerCard />
           <DesignerCard />
           <DesignerCard />
-          <DesignerCard />
-          <DesignerCard />
+          <DesignerCard /> */}
         </div>
       </div>
     </div>

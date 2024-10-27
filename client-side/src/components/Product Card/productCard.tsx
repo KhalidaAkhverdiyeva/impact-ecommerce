@@ -22,7 +22,7 @@ const ProductCard = () => {
   const underlineLeftPosition = `${selectedIndex * 23}px`;
 
   return (
-    <div className="w-[314px] md:w-[276px] lg:w-[340px]">
+    <div className="w-[100%]">
       <div className="relative">
         <div className="absolute top-[10px] left-[10px] z-[40] text-[12px] flex flex-col">
           <span className="bg-[#3C619E] w-[40px] py-[2px] text-white font-[700] text-center mb-[10px] ">
@@ -43,14 +43,14 @@ const ProductCard = () => {
           <img
             src="https://impact-theme-home.myshopify.com/cdn/shop/products/4104312009000_PC_Portable_olive.jpg?v=1653057933&width=1200"
             alt="Product Image"
-            className={`transition-opacity duration-500 ${
+            className={`transition-opacity duration-500 w-full h-full ${
               isHovered ? "opacity-0" : "opacity-100"
             }`}
           />
           <img
             src="https://impact-theme-home.myshopify.com/cdn/shop/products/La_Pausa_2020_PC_Portable.jpg?v=1653735810&width=1400"
             alt="Product Image Hover"
-            className={`transition-opacity duration-500 absolute inset-0 ${
+            className={`transition-opacity duration-500 absolute w-full h-full inset-0 ${
               isHovered ? "opacity-100" : "opacity-0"
             }`}
           />

@@ -6,10 +6,10 @@ const JustImgSection = () => {
       <picture className="w-full">
         <source
           media="(min-width: 640px)"
-          srcSet="https://impact-theme-home.myshopify.com/cdn/shop/files/Enamel-family-05.jpg?v=1653311262&width=2000"
+          srcSet="https://impact-theme-home.myshopify.com/cdn/shop/files/Sowden_Kettle_Sowden_Toaster.jpg?v=1656321120&width=3200"
         />
         <img
-          src="https://impact-theme-home.myshopify.com/cdn/shop/files/Enamel-family-05_mobile_715d0c91-0660-4a0a-bd19-e830511d6828.jpg?v=1663056832&width=800"
+          src="https://impact-theme-home.myshopify.com/cdn/shop/files/Sowden_Kettle_Sowden_Toaster_mobile.jpg?v=1656322735&width=800"
           alt="lamp img"
           className="w-full h-full object-cover"
         />
