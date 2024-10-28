@@ -3,6 +3,7 @@ import JustImgSection from "@/components/Just Image Section/justImgSection";
 import { HeaderWhite } from "@/components/Layout/Header/header";
 import FloatingTextSection from "@/components/Marquee Text/floatingTexts";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
+import ToasterSection from "@/components/Toaster Section/toasterSection";
 import React from "react";
 
 const SowdenCollectionPage = () => {
@@ -26,6 +27,9 @@ const SowdenCollectionPage = () => {
       </div>
       <JustImgSection />
       <BlueVibezz />
+
+      <ToasterSection />
+
       <div className="max-w-[1600px] mx-auto py-[50px]">
         <div className=" flex flex-col lg:items-center lg:flex-row gap-[36px] lg:gap-[100px] px-[20px] md:px-[32px]  lg:px-[48px] ">
           <div className="flex gap-[20px] lg:w-[55%]">

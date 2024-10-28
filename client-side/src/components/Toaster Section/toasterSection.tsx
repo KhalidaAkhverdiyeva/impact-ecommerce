@@ -1,13 +1,13 @@
 "use client";
 import React, { useState } from "react";
+import { imagesBlue } from "@/static/ImagesData";
 import { ModalInfo } from "@/types/infoModalTypes";
-import InfoModal from "./InfoModal";
-import WebInfoModal from "./WebInfoModal";
-import PlusButtons from "./PlusButtons";
-import TextContent from "./TextContent";
-import { imagesHome } from "@/static/ImagesData";
+import ToasterTextContent from "./toasterTextContent";
+import ToasterPlusButtons from "./toasterButtons";
+import ToasterModal from "./toasterInfo";
+import ToasterWebInfo from "./toasterWebInfo";
 
-const ClickandCheckSection: React.FC = () => {
+const ToasterSection = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [modalInfo, setModalInfo] = useState<ModalInfo | null>(null);
@@ -47,13 +47,12 @@ const ClickandCheckSection: React.FC = () => {
       document.body.style.overflow = "auto";
     }, 300);
   };
-
   return (
     <div className="py-[50px]">
       <div className="relative">
-        <TextContent />
+        <ToasterTextContent />
         <div className="relative">
-          {imagesHome.map((image) => (
+          {imagesBlue.map((image) => (
             <picture key={image.srcSet} className="w-full">
               <source media="(min-width: 640px)" srcSet={image.tabletSrc} />
               <source media="(min-width: 1024px)" srcSet={image.srcSet} />
@@ -65,11 +64,11 @@ const ClickandCheckSection: React.FC = () => {
             </picture>
           ))}
 
-          <PlusButtons toggleBottomDiv={toggleBottomDiv} />
+          <ToasterPlusButtons toggleBottomDiv={toggleBottomDiv} />
           {isOpen && (
             <>
               {isWebModal ? (
-                <WebInfoModal
+                <ToasterWebInfo
                   closeBottomDiv={closeBottomDiv}
                   isClosing={isClosing}
                   modalInfo={modalInfo}
@@ -77,7 +76,7 @@ const ClickandCheckSection: React.FC = () => {
                   left={left}
                 />
               ) : (
-                <InfoModal
+                <ToasterModal
                   closeBottomDiv={closeBottomDiv}
                   isClosing={isClosing}
                   modalInfo={modalInfo}
@@ -91,4 +90,4 @@ const ClickandCheckSection: React.FC = () => {
   );
 };
 
-export default ClickandCheckSection;
+export default ToasterSection;
