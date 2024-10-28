@@ -69,6 +69,50 @@ const SowdenCollectionPage = () => {
         text="Usefulness and enjoyment of everyday objects"
         color="#92BEE5"
       />
+      <div className="max-w-[1600px] mx-auto py-[50px]">
+        <div className="flex gap-[20px] overflow-x-auto lg:overflow-visible px-[20px] md:px-[32px] lg:px-[48px]">
+          <div className="flex-shrink-0 w-[80%] md:w-[40%] lg:flex-1 lg:w-auto relative">
+            <img
+              src="https://impact-theme-home.myshopify.com/cdn/shop/files/enamel_a84eeca5-1f2a-46f8-8dc8-b8224c2451fd.jpg?v=1659338939&width=1000"
+              alt=""
+              className="w-full h-auto relative"
+            />
+            <div className="absolute top-[20px] lg:top-[40px] left-[20px] lg:left-[40px] text-[#272727] w-[270px] lg:w-[330px] leading-[1]">
+              <p className="font-[700] mb-[8px] lg:text-[20px]">Kitchen</p>
+              <p className="font-[800] text-[24px] lg:text-[36px]">
+                The Enamel Collection
+              </p>
+            </div>
+          </div>
+          <div className="flex-shrink-0 w-[80%] md:w-[40%] lg:flex-1 lg:w-auto relative">
+            <img
+              src="https://impact-theme-home.myshopify.com/cdn/shop/files/lighting_2e273aed-7b5b-49c3-94b8-b9e85469563c.jpg?v=1659339037&width=1000"
+              alt=""
+              className="w-full h-auto relative"
+            />
+            <div className="absolute top-[20px] lg:top-[40px] left-[20px] lg:left-[40px] text-[#272727] w-[270px] lg:w-[330px] leading-[1]">
+              <p className="font-[700] mb-[8px] lg:text-[20px]">Lighting</p>
+              <p className="font-[800] text-[24px] lg:text-[36px]">
+                Fresh and stylish lighting options
+              </p>
+            </div>
+          </div>
+          <div className="flex-shrink-0 w-[80%] md:w-[40%] lg:flex-1 lg:w-auto relative">
+            <img
+              src="https://impact-theme-home.myshopify.com/cdn/shop/files/Office_c6239394-624a-44eb-86d4-f72e816409cc.jpg?v=1659340388&width=1000"
+              alt=""
+              className="w-full h-auto relative"
+            />
+            <div className="absolute top-[20px] lg:top-[40px] left-[20px] lg:left-[40px] text-[#272727] w-[270px] lg:w-[330px] leading-[1]">
+              <p className="font-[700] mb-[8px] lg:text-[20px]">Office</p>
+              <p className="font-[800] text-[24px] lg:text-[36px]">
+                Organizing your desk space is essential{" "}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <ShopifySection />
     </div>
   );
