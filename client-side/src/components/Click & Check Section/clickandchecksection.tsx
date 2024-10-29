@@ -54,7 +54,7 @@ const ClickandCheckSection: React.FC = () => {
         <TextContent />
         <div className="relative">
           {imagesHome.map((image) => (
-            <picture key={image.srcSet} className="w-full">
+            <picture className="w-full">
               <source media="(min-width: 640px)" srcSet={image.tabletSrc} />
               <source media="(min-width: 1024px)" srcSet={image.srcSet} />
               <img

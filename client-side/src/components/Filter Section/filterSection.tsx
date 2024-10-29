@@ -2,8 +2,7 @@
 import React, { useState } from "react";
 import ProductCard from "../Product Card/productCard";
 import SortBy from "./sortBy";
-import { IoChevronDownOutline } from "react-icons/io5";
-import CustomSwitch from "./customSwitch";
+import FilterAccordion from "./filterAccordion";
 
 const FilterSection = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -19,7 +18,7 @@ const FilterSection = () => {
             role="presentation"
             fill="none"
             focusable="false"
-            stroke-width="2"
+            strokeWidth="2"
             width="20"
             height="14"
             viewBox="0 0 20 14"
@@ -49,39 +48,8 @@ const FilterSection = () => {
       </div>
       <div className="flex gap-[40px]">
         {/* Filter Accordion */}
-        <div className="w-[300px]">
-          <div className=" mx-auto  text-[#272727]">
-            <div className="flex justify-between py-[20px] border-t-[1px]">
-              <div className="font-[700] text-[18px]">In stock only</div>
-              <CustomSwitch />
-            </div>
-            <div className="flex justify-between py-[20px] border-t-[1px] pr-[10px]">
-              <div className="font-[700] text-[18px]">Designer</div>
-              <div className="bg-[#E9E9E9] rounded-full w-[24px]  h-[24px] flex justify-center items-center">
-                <IoChevronDownOutline />
-              </div>
-            </div>
-            <div className="flex justify-between py-[20px] border-t-[1px] pr-[10px]">
-              <div className="font-[700] text-[18px]">Color</div>
-              <div className="bg-[#E9E9E9] rounded-full w-[24px] h-[24px] flex justify-center items-center">
-                <IoChevronDownOutline />
-              </div>
-            </div>
-            <div className="flex justify-between py-[20px] border-t-[1px] pr-[10px]">
-              <div className="font-[700] text-[18px]">Brand</div>
-              <div className="bg-[#E9E9E9] rounded-full w-[24px] h-[24px] flex justify-center items-center">
-                <IoChevronDownOutline />
-              </div>
-            </div>
-            <div className="flex justify-between py-[20px] border-t-[1px] pr-[10px]">
-              <div className="font-[700] text-[18px]">Product type</div>
-              <div className="bg-[#E9E9E9] rounded-full w-[24px] h-[24px] flex justify-center items-center">
-                <IoChevronDownOutline />
-              </div>
-            </div>
-          </div>
-        </div>
 
+        <FilterAccordion />
         {/* Product Cards */}
         <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[25px]">
           <ProductCard />
