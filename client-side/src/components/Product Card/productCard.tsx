@@ -79,9 +79,9 @@ const ProductCard = () => {
         <div className="text-[#272727B3]">$78.00</div>
 
         <div className="flex gap-2 mt-4">
-          {colors.map((color) => (
+          {colors.map((color, index) => (
             <div
-              key={color.name}
+              key={index}
               onClick={() => handleColorSelect(color.name)}
               className="w-[15px] h-[9px] cursor-pointer border"
               style={{

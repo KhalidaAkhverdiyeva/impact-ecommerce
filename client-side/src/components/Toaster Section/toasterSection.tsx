@@ -52,8 +52,8 @@ const ToasterSection = () => {
       <div className="relative">
         <ToasterTextContent />
         <div className="relative">
-          {imagesBlue.map((image) => (
-            <picture key={image.srcSet} className="w-full">
+          {imagesBlue.map((image, index) => (
+            <picture key={index} className="w-full">
               <source media="(min-width: 640px)" srcSet={image.tabletSrc} />
               <source media="(min-width: 1024px)" srcSet={image.srcSet} />
               <img

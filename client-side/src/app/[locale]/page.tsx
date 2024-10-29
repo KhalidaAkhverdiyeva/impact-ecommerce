@@ -1,45 +1,18 @@
-import { Header } from "@/components/Layout/Header/header";
+import FloatingTextSection from "@/components/Marquee Text/floatingTexts";
+import HeroSliderSection from "@/components/Hero Section/SliderSection";
+import ClickandCheckSection from "@/components/Click & Check Section/ClickAndCheckSection";
+import ExploreCollectionsSection from "@/components/Explore Collections Section/exploreCollectionsSection";
 import NewArrivalsSection from "@/components/New Arrivals Section/NewArrivalsSection";
-import dynamic from "next/dynamic";
-
-const FloatingTextSection = dynamic(
-  () => import("@/components/Marquee Text/floatingTexts")
-);
-const HeroSliderSection = dynamic(
-  () => import("@/components/Hero Section/SliderSection")
-);
-const ClickandCheckSection = dynamic(
-  () => import("@/components/Click & Check Section/ClickAndCheckSection")
-);
-const ExploreCollectionsSection = dynamic(
-  () =>
-    import("@/components/Explore Collections Section/exploreCollectionsSection")
-);
-const GrowingImgSection = dynamic(
-  () => import("@/components/Growing Img Section/growingImgSection")
-);
-const ShopifySection = dynamic(
-  () => import("@/components/Shopify Section/shopifySection")
-);
-const ReadOurStoriesSection = dynamic(
-  () => import("@/components/Read Our Stories Section/readOurStoriesSection")
-);
-const ImageRevealSlider = dynamic(
-  () => import("@/components/Remini Reveal Slider/imgRevealSlider")
-);
-const CompanyCountSection = dynamic(
-  () => import("@/components/Company Count Section/companyCountSection")
-);
-const HomeDesignerGridSection = dynamic(
-  () => import("@/components/Home Designer Grid Section/homeDesignerGrid")
-);
-const RichTextSection = dynamic(
-  () => import("@/components/Designers Rich Text Section/richTextSection")
-);
-const NewsletterCard = dynamic(
-  () => import("@/components/Newsletter Card/newsletterCard")
-);
-const Quote = dynamic(() => import("@/components/Designer Quote/quote"));
+import GrowingImgSection from "@/components/Growing Img Section/growingImgSection";
+import ShopifySection from "@/components/Shopify Section/shopifySection";
+import ReadOurStoriesSection from "@/components/Read Our Stories Section/readOurStoriesSection";
+import ImageRevealSlider from "@/components/Remini Reveal Slider/imgRevealSlider";
+import CompanyCountSection from "@/components/Company Count Section/companyCountSection";
+import HomeDesignerGridSection from "@/components/Home Designer Grid Section/homeDesignerGrid";
+import RichTextSection from "@/components/Designers Rich Text Section/richTextSection";
+import NewsletterCard from "@/components/Newsletter Card/newsletterCard";
+import { Header } from "@/components/Layout/Header/header";
+import Quote from "@/components/Designer Quote/quote";
 
 export default function Home() {
   return (
@@ -52,6 +25,7 @@ export default function Home() {
           text="Good design is everyone's right."
           color="#708A5C"
         />
+
         <ClickandCheckSection />
         <ExploreCollectionsSection />
         <GrowingImgSection />

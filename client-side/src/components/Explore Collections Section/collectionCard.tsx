@@ -41,9 +41,9 @@ const CollectionCard = () => {
 
   return (
     <div className="flex gap-[20px] px-[20px] md:px-[32px] lg:px-[48px] ">
-      {collectionImages.map((image) => (
+      {collectionImages.map((image, index) => (
         <div
-          key={image.mobileImg}
+          key={index}
           className=" p-[20px] bg-[#F1F1F1]  overflow-hidden min-w-[200px]"
         >
           <picture>
