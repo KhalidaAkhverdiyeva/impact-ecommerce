@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
+import { Link } from "@/i18n/routing";
 import { Product } from "@/types/productCardTypes";
-import React, { FC, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { IoMdStar } from "react-icons/io";
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
@@ -25,7 +27,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const hoverImage = colorVariants[0]?.hoverImage || "";
 
   return (
-    <div className="w-[100%]">
+    <div className="w-[100%]" key={product.id}>
       <div className="relative mb-6">
         <div className="absolute top-[10px] left-[10px] z-[40] text-[12px] flex flex-col">
           {isNewProduct && (
@@ -39,35 +41,38 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
             </span>
           )}
         </div>
-        <div
-          className="relative"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <img
-            src={mainImage}
-            alt={title}
-            className={`transition-opacity duration-500 w-full h-full ${
-              isHovered ? "opacity-0" : "opacity-100"
-            }`}
-          />
-          <img
-            src={hoverImage}
-            alt={`${title} Hover`}
-            className={`transition-opacity duration-500 absolute w-full h-full inset-0 ${
-              isHovered ? "opacity-100" : "opacity-0"
-            }`}
-          />
+        <Link href={`/products/${product.title}`} className="cursor-pointer">
           <div
-            className={`absolute transition-all duration-300 ease-in-out ${
-              isHovered ? "bottom-[15px] opacity-100" : "bottom-[0] opacity-0"
-            } right-[15px] flex justify-center`}
+            className="relative"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
           >
-            <div className="bg-[#272727] text-white text-center py-[10px] px-[10px] text-[18px] w-[130px] cursor-pointer font-[800]">
-              + Quick add
+            <img
+              src={mainImage}
+              alt={title}
+              className={`transition-opacity duration-500 w-full h-full ${
+                isHovered ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <img
+              src={hoverImage}
+              alt={`${title} Hover`}
+              className={`transition-opacity duration-500 absolute w-full h-full inset-0 ${
+                isHovered ? "opacity-100" : "opacity-0"
+              }`}
+            />
+            <div
+              className={`absolute transition-all duration-300 ease-in-out ${
+                isHovered ? "bottom-[15px] opacity-100" : "bottom-[0] opacity-0"
+              } right-[15px] flex justify-center`}
+            >
+              <div className="bg-[#272727] text-white text-center py-[10px] px-[10px] text-[18px] w-[130px] cursor-pointer font-[800]">
+                + Quick add
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
+
         <div className="py-[30px]">
           <div className="flex justify-between">
             <span className="text-[11px] text-[#272727B3]">{designer}</span>
@@ -97,7 +102,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           <div className="relative mt-[4px] h-1">
             <div
               className="absolute w-[15px] h-[2px] bg-black transition-all duration-300"
-              style={{ left: "0px" }} // This can be adjusted based on selected color
+              style={{ left: "0px" }}
             ></div>
           </div>
         </div>

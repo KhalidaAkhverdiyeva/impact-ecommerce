@@ -1,12 +1,15 @@
-import React from "react";
+import React, { FC } from "react";
+interface richTextProps {
+  title: string;
+}
 
-const RichTextSection = () => {
+const RichTextSection: FC<richTextProps> = ({ title }) => {
   return (
     <section className="bg-white py-[50px] ">
       <div className="max-w-[1600px] mx-auto flex flex-col gap-[10px] md:gap-[20px] px-[20px] md:px-[32px] lg:px-[48px] text-center">
         <p className="font-[800] lg:text-[18px] text-[#272727]">Designers</p>
         <h3 className="text-[42px] md:text-[48px] lg:text-[62px] py-[10px] leading-[1] font-[800] text-[#272727]">
-          From all over the world
+          {title}
         </h3>
         <div className="mx-auto">
           <p className=" max-w-[750px] text-[#272727] leading-[1.3] ">

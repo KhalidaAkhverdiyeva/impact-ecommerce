@@ -1,16 +1,10 @@
 "use client";
-import React, { useState } from "react";
-import ProductCard from "../Product Card/productCard";
+import React from "react";
 import SortBy from "./sortBy";
 import FilterAccordion from "./filterAccordion";
 import ProductGrid from "../Product Card/productGrid";
 
 const FilterSection = () => {
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-
-  const toggleFilter = () => {
-    setIsFilterOpen(!isFilterOpen);
-  };
   return (
     <div className="max-w-[1600px] mx-auto py-[50px] px-[20px] md:px-[32px] lg:px-[48px]">
       <div className="mb-[30px] flex justify-between">

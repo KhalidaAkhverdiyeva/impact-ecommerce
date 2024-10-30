@@ -6,6 +6,7 @@ export interface ColorVariant {
 }
 
 export interface Product {
+  id: string;
   title: string;
   designer: string;
   productType: string;

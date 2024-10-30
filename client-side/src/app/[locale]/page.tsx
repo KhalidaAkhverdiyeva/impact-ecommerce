@@ -25,13 +25,12 @@ export default function Home() {
           text="Good design is everyone's right."
           color="#708A5C"
         />
-
         <ClickandCheckSection />
         <ExploreCollectionsSection />
         <GrowingImgSection />
         <Quote bgColor="#708A5C" />
         <NewsletterCard />
-        <RichTextSection />
+        <RichTextSection title="From all over the world" />
         <HomeDesignerGridSection />
         <CompanyCountSection />
         <section className="bg-white py-[50px] ">

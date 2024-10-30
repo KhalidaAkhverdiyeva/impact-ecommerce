@@ -7,7 +7,7 @@ const { addProduct, getProduct, deleteProduct, getProductByTitle, editProduct, g
 router.post('/add', addProduct);
 router.get('/all', getProduct);
 router.delete('/delete/:id', deleteProduct);
-// router.get('/:title', getProductByTitle);
+router.get('/:title', getProductByTitle);
 router.put('/:id', editProduct);
 // router.post('/getProductsByIds', getProductsByIds);
 

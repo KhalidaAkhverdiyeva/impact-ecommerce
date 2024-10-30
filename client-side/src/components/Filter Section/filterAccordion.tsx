@@ -7,7 +7,6 @@ const FilterAccordion = () => {
   const [isDesignerOpen, setIsDesignerOpen] = useState(false);
   const [isColorOpen, setIsColorOpen] = useState(false);
   const [isPriceOpen, setIsPriceOpen] = useState(false);
-  const [isBrandOpen, setIsBrandOpen] = useState(false);
 
   return (
     <div className="w-[300px] mx-auto text-[#272727]">

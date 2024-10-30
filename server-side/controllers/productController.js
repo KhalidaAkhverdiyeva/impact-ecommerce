@@ -203,6 +203,7 @@ const editProduct = async (req, res) => {
             return res.status(404).json({ msg: 'Product not found' });
         }
 
+        // Update the product fields if they exist in the request body
         if (title) product.title = title;
         if (designer) product.designer = designer;
         if (productType) product.productType = productType;
@@ -221,6 +222,7 @@ const editProduct = async (req, res) => {
         if (descriptionTitle) product.descriptionTitle = descriptionTitle || null;
         if (descriptionText) product.descriptionText = descriptionText || null;
 
+        // Save the updated product
         await product.save();
         res.status(200).json({ msg: 'Product updated successfully', product });
     } catch (err) {
