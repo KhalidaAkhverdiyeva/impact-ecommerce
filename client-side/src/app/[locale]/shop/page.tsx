@@ -25,7 +25,7 @@ const OfficePage = () => {
         <div className="absolute inset-0 flex items-center  bg-black bg-opacity-10">
           <div className="flex flex-col w-[1600px] mx-auto px-[20px] md:px-[32px] lg:px-[48px]">
             <h2 className="text-white font-[800] text-[40px] md:text-[48px] lg:text-[68px] ">
-              Office
+              New Arivals
             </h2>
             <p className="text-white">
               As everyone heads back to work, whether that be into the office or

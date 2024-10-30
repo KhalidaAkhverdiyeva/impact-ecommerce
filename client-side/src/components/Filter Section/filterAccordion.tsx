@@ -87,35 +87,6 @@ const FilterAccordion = () => {
           </div>
         )}
       </div>
-
-      {/* Brand Filter */}
-      <div className="py-[20px] border-t-[1px] pr-[10px]">
-        <div
-          className="flex justify-between cursor-pointer"
-          onClick={() => setIsBrandOpen(!isBrandOpen)}
-        >
-          <div className="font-[700] text-[18px]">Brand</div>
-          <div className="bg-[#E9E9E9] rounded-full w-[24px] h-[24px] flex justify-center items-center">
-            <IoChevronDownOutline />
-          </div>
-        </div>
-        {isBrandOpen && (
-          <div className="mt-[10px] ml-[20px] space-y-2">
-            <label>
-              <input type="checkbox" className="mr-2" />
-              Brand 1
-            </label>
-            <label>
-              <input type="checkbox" className="mr-2" />
-              Brand 2
-            </label>
-            <label>
-              <input type="checkbox" className="mr-2" />
-              Brand 3
-            </label>
-          </div>
-        )}
-      </div>
     </div>
   );
 };

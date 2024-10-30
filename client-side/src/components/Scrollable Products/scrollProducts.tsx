@@ -1,6 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
-import DesignerCard from "../DesignerCard/designerCard";
+import React, { useEffect, useRef, useState } from "react";
 import ProductCard from "../Product Card/productCard";
 
 interface ScrollableProductsProps {
@@ -11,7 +10,18 @@ const ScrollableProducts: React.FC<ScrollableProductsProps> = ({
   setScrollProgress,
 }) => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
+  const [products, setProducts] = useState<any[]>([]); // State to hold product data
   const totalCards = 8; // Total number of cards
+
+  const fetchProducts = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/api/products/all");
+      const data = await response.json();
+      setProducts(data.products); // Assuming `data` is an array of products
+    } catch (error) {
+      console.error("Failed to fetch products:", error);
+    }
+  };
 
   const handleScroll = () => {
     if (scrollRef.current) {
@@ -42,6 +52,8 @@ const ScrollableProducts: React.FC<ScrollableProductsProps> = ({
   };
 
   useEffect(() => {
+    fetchProducts(); // Fetch products on component mount
+
     const refCurrent = scrollRef.current;
     if (refCurrent) {
       refCurrent.addEventListener("scroll", handleScroll);
@@ -62,27 +74,11 @@ const ScrollableProducts: React.FC<ScrollableProductsProps> = ({
         ref={scrollRef}
       >
         <div className="flex gap-[20px] relative overflow-visible">
-          <div className="flex-1 min-w-[300px]">
-            <ProductCard />
-          </div>
-          <div className="flex-1 min-w-[300px]">
-            <ProductCard />
-          </div>
-          <div className="flex-1 min-w-[300px]">
-            <ProductCard />
-          </div>
-          <div className="flex-1 min-w-[300px]">
-            <ProductCard />
-          </div>
-
-          {/* <DesignerCard />
-          <DesignerCard />
-          <DesignerCard />
-          <DesignerCard />
-          <DesignerCard />
-          <DesignerCard />
-          <DesignerCard />
-          <DesignerCard /> */}
+          {products.map((product) => (
+            <div key={product.id} className="flex-1 min-w-[300px]">
+              <ProductCard product={product} />
+            </div>
+          ))}
         </div>
       </div>
     </div>

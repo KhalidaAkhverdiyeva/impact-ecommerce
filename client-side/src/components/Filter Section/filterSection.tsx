@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import ProductCard from "../Product Card/productCard";
 import SortBy from "./sortBy";
 import FilterAccordion from "./filterAccordion";
+import ProductGrid from "../Product Card/productGrid";
 
 const FilterSection = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -47,18 +48,8 @@ const FilterSection = () => {
         <SortBy />
       </div>
       <div className="flex gap-[40px]">
-        {/* Filter Accordion */}
-
         <FilterAccordion />
-        {/* Product Cards */}
-        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[25px]">
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-        </div>
+        <ProductGrid />
       </div>
     </div>
   );

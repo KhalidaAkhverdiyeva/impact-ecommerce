@@ -56,10 +56,12 @@ export const Header = () => {
             <IoMenu className="text-[30px]" />
           </div>
           <ul className="text-[18px] font-[700] hidden lg:flex lg:gap-[30px]">
-            <li className="flex justify-center items-center gap-[10px] cursor-pointer  hover:text-[#D4D7D6] transition-colors duration-500">
-              Shop
-              <FaAngleDown />
-            </li>
+            <Link href="/shop">
+              <li className="flex justify-center items-center gap-[10px] cursor-pointer  hover:text-[#D4D7D6] transition-colors duration-500">
+                Shop
+              </li>
+            </Link>
+
             <li className="flex justify-center items-center gap-[10px] cursor-pointer  hover:text-[#D4D7D6] transition-colors duration-500">
               Designers <FaAngleDown />
             </li>
@@ -73,6 +75,9 @@ export const Header = () => {
                 Blog
               </li>
             </Link>
+            <li className="flex justify-center items-center gap-[10px] cursor-pointer  hover:text-[#D4D7D6] transition-colors duration-500">
+              Features <FaAngleDown />
+            </li>
           </ul>
 
           <div className="block md:hidden">
@@ -158,13 +163,16 @@ export const HeaderWhite = () => {
           </div>
           <ul className="text-[17px] font-[700] hidden lg:flex lg:gap-[30px]">
             <li className="flex justify-center items-center gap-[10px] cursor-pointer hover:text-[#676767]">
-              Shop <FaAngleDown />
+              Shop
             </li>
             <li className="flex justify-center items-center gap-[10px] cursor-pointer hover:text-[#676767]">
               Designers <FaAngleDown />
             </li>
             <li className="cursor-pointer hover:text-[#676767]">About</li>
             <li className="cursor-pointer hover:text-[#676767]">Blog</li>
+            <li className="flex justify-center items-center gap-[10px] cursor-pointer hover:text-[#676767]">
+              Features <FaAngleDown />
+            </li>
           </ul>
 
           <div className="block md:hidden">

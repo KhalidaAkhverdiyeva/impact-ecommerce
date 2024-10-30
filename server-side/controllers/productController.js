@@ -100,49 +100,51 @@ const getProductsByIds = async (req, res) => {
 };
 
 const addProduct = async (req, res) => {
+    console.log('Request Body:', req.body);
     const {
         title,
-        name,
-        collectionName,
-        newPrice,
-        oldPrice,
-        smallCardImage,
-        smallCardHoverImage,
-        color,
-        isNewProduct,
+        designer,
+        productType,
+        colorVariants,
+        dimensions,
         material,
-        size,
-        availability,
-        tags,
-        detailImages,
-        reviews,
-        sold,
-        soldOut,
+        colors,
+        currency,
+        price,
+        oldPrice,
+        discountPercent,
+        rating,
+        isNewProduct,
+        isSoldOut,
+        availableUnits,
+        descriptionTitle,
+        descriptionText,
     } = req.body;
 
-    if (!title || !name || !collectionName || !newPrice || !smallCardImage || !smallCardHoverImage || !color || !size || typeof isNewProduct === 'undefined') {
+
+    if (!title || !designer || !productType || !colorVariants || !price || !currency) {
         return res.status(400).json({ msg: 'Please fill in all required fields' });
     }
 
     try {
         const product = new Product({
             title,
-            name,
-            collectionName,
-            newPrice,
-            oldPrice: oldPrice || null,
-            smallCardImage,
-            smallCardHoverImage,
-            color,
+            designer,
+            productType,
+            colorVariants,
+            dimensions: dimensions || null,
             material: material || null,
-            size,
-            availability: availability || 'in stock',
-            tags: tags || [],
-            detailImages: detailImages || [],
-            reviews: reviews || 0,
-            sold: sold || 0,
-            soldOut: soldOut || false,
+            colors: colors || null,
+            currency,
+            price,
+            oldPrice: oldPrice || null,
+            discountPercent: discountPercent || null,
+            rating: rating || 0,
             isNewProduct: isNewProduct || false,
+            isSoldOut: isSoldOut || false,
+            availableUnits: availableUnits || 0,
+            descriptionTitle: descriptionTitle || null,
+            descriptionText: descriptionText || null,
         });
 
         await product.save();
@@ -176,50 +178,48 @@ const editProduct = async (req, res) => {
 
     const {
         title,
-        name,
-        collectionName,
-        newPrice,
-        oldPrice,
-        smallCardImage,
-        smallCardHoverImage,
-        color,
-        isNewProduct,
+        designer,
+        productType,
+        colorVariants,
+        dimensions,
         material,
-        size,
-        availability,
-        tags,
-        detailImages,
-        reviews,
-        sold,
-        soldOut,
+        colors,
+        currency,
+        price,
+        oldPrice,
+        discountPercent,
+        rating,
+        isNewProduct,
+        isSoldOut,
+        availableUnits,
+        descriptionTitle,
+        descriptionText,
     } = req.body;
 
     try {
-
         const product = await Product.findById(id);
-
 
         if (!product) {
             return res.status(404).json({ msg: 'Product not found' });
         }
 
         if (title) product.title = title;
-        if (name) product.name = name;
-        if (collectionName) product.collectionName = collectionName;
-        if (newPrice !== undefined) product.newPrice = newPrice;
-        if (oldPrice !== undefined) product.oldPrice = oldPrice || null;
-        if (smallCardImage) product.smallCardImage = smallCardImage;
-        if (smallCardHoverImage) product.smallCardHoverImage = smallCardHoverImage;
-        if (color) product.color = color;
+        if (designer) product.designer = designer;
+        if (productType) product.productType = productType;
+        if (colorVariants) product.colorVariants = colorVariants;
+        if (dimensions !== undefined) product.dimensions = dimensions || null;
         if (material) product.material = material || null;
-        if (size) product.size = size;
-        if (availability) product.availability = availability;
-        if (tags) product.tags = tags || [];
-        if (detailImages) product.detailImages = detailImages || [];
-        if (reviews !== undefined) product.reviews = reviews;
-        if (sold !== undefined) product.sold = sold;
-        if (soldOut !== undefined) product.soldOut = soldOut;
-        if (isNewProduct !== undefined) product.isNewProduct = isNewProduct === 'true';
+        if (colors) product.colors = colors || null;
+        if (currency) product.currency = currency;
+        if (price !== undefined) product.price = price;
+        if (oldPrice !== undefined) product.oldPrice = oldPrice || null;
+        if (discountPercent !== undefined) product.discountPercent = discountPercent || null;
+        if (rating !== undefined) product.rating = rating || 0;
+        if (isNewProduct !== undefined) product.isNewProduct = isNewProduct;
+        if (isSoldOut !== undefined) product.isSoldOut = isSoldOut;
+        if (availableUnits !== undefined) product.availableUnits = availableUnits || 0;
+        if (descriptionTitle) product.descriptionTitle = descriptionTitle || null;
+        if (descriptionText) product.descriptionText = descriptionText || null;
 
         await product.save();
         res.status(200).json({ msg: 'Product updated successfully', product });
@@ -228,5 +228,6 @@ const editProduct = async (req, res) => {
         res.status(500).json({ msg: 'Server error', err });
     }
 };
+
 
 module.exports = { getProduct, addProduct, deleteProduct, getProductByTitle, editProduct, getProductsByIds };
