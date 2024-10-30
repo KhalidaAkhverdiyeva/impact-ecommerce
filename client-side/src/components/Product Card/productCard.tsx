@@ -1,16 +1,27 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
+import { useColor } from "@/contexts/colorContext";
 import { Link } from "@/i18n/routing";
 import { Product } from "@/types/productCardTypes";
+import Image from "next/image";
 import React, { useState } from "react";
 import { IoMdStar } from "react-icons/io";
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
-  const [selectedColor, setSelectedColor] = useState("purple");
+  const { selectedColor, setSelectedColor } = useColor();
+  const [selectedColorIndex, setSelectedColorIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
-  const handleColorSelect = (color: string) => {
+  const selectedVariant =
+    product.colorVariants.find((variant) => variant.color === selectedColor) ||
+    product.colorVariants[0];
+
+  const mainImage = selectedVariant?.mainImage || "";
+  const hoverImage = selectedVariant?.hoverImage || "";
+
+  const handleColorSelect = (color: string, index: number) => {
     setSelectedColor(color);
+    setSelectedColorIndex(index);
   };
 
   const {
@@ -22,9 +33,6 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
     isNewProduct,
     isSoldOut,
   } = product;
-
-  const mainImage = colorVariants[0]?.mainImage || "";
-  const hoverImage = colorVariants[0]?.hoverImage || "";
 
   return (
     <div className="w-[100%]" key={product.id}>
@@ -47,16 +55,20 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            <img
+            <Image
               src={mainImage}
               alt={title}
+              width={1200}
+              height={1200}
               className={`transition-opacity duration-500 w-full h-full ${
                 isHovered ? "opacity-0" : "opacity-100"
               }`}
             />
-            <img
+            <Image
               src={hoverImage}
               alt={`${title} Hover`}
+              width={1200}
+              height={1200}
               className={`transition-opacity duration-500 absolute w-full h-full inset-0 ${
                 isHovered ? "opacity-100" : "opacity-0"
               }`}
@@ -90,11 +102,9 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
             {colorVariants.map((variant, index) => (
               <div
                 key={index}
-                onClick={() => handleColorSelect(variant.color)}
+                onClick={() => handleColorSelect(variant.color, index)}
                 className="w-[15px] h-[9px] cursor-pointer border"
-                style={{
-                  backgroundColor: variant.color,
-                }}
+                style={{ backgroundColor: variant.color }}
               ></div>
             ))}
           </div>
@@ -102,7 +112,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           <div className="relative mt-[4px] h-1">
             <div
               className="absolute w-[15px] h-[2px] bg-black transition-all duration-300"
-              style={{ left: "0px" }}
+              style={{ left: `${selectedColorIndex * 23}px` }}
             ></div>
           </div>
         </div>

@@ -6,7 +6,7 @@ import FloatingTextSection from "@/components/Marquee Text/floatingTexts";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
 import React from "react";
 
-const OfficePage = () => {
+const ShopPage = () => {
   return (
     <div className="relative">
       <Header />
@@ -79,4 +79,4 @@ const OfficePage = () => {
   );
 };
 
-export default OfficePage;
+export default ShopPage;

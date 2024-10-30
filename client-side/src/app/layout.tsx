@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { Jost } from "next/font/google";
 import Footer from "@/components/Layout/Footer/footer";
 import Banner from "@/components/Layout/Banner/banner";
+import { ColorProvider } from "@/contexts/colorContext";
 
 const inter = Inter({ subsets: ["latin"] });
 const jost = Jost({ subsets: ["latin"] });
@@ -24,7 +25,7 @@ export default function RootLayout({
     <html lang={locale}>
       <body className={`${inter.className} ${jost.className} antialiased`}>
         <Banner />
-        {children}
+        <ColorProvider>{children}</ColorProvider>
         <Footer />
       </body>
     </html>
