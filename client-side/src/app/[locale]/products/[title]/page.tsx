@@ -8,8 +8,10 @@ import { HeaderWhite } from "@/components/Layout/Header/header";
 import FloatingTextSection from "@/components/Marquee Text/floatingTexts";
 import ProductAboutSection from "@/components/Product About Section/productAboutSection";
 import ProductDetailSwiper from "@/components/Product Detail Swiper/productDetailSwiper";
+import ProductImageGrid from "@/components/Product Image Grid/productImageGrid";
 import QuantityBlock from "@/components/Quantity Block/quantityBlock";
 import Return from "@/components/Return/return";
+import SearchBetterButton from "@/components/Seach Better Button/searchBetterButton";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
 import ProductDetailSkeleton from "@/components/Skeletons/Product Page Skeleton/productPageSkeleton";
 import Stock from "@/components/Stock/stock";
@@ -77,20 +79,10 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
     <div>
       <HeaderWhite />
       <div className="max-w-[1600px] mx-auto lg:px-[48px] lg:pt-[50px]">
-        <div className="flex flex-col lg:flex-row gap-[90px]">
-          <div className="flex-[60%] overflow-hidden">
-            <div className="hidden lg:grid grid-cols-2 gap-[25px]">
-              {gatheredImages.map((image, index) => (
-                <Image
-                  key={index}
-                  src={image}
-                  alt={`Image ${index + 1}`}
-                  className="w-full h-full object-cover"
-                  width={1200}
-                  height={1200}
-                />
-              ))}
-            </div>
+        <div className="flex flex-col lg:flex-row gap-[40px]">
+          <div className="flex-[60%] overflow-hidden ">
+            <ProductImageGrid gatheredImages={gatheredImages} />
+
             <div className="lg:hidden">
               <ProductDetailSwiper
                 product={product}
