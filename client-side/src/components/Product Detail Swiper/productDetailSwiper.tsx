@@ -1,4 +1,3 @@
-// components/MySwiper.js
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -24,7 +23,6 @@ const ProductDetailSwiper: React.FC<ProductDetailSwiperProps> = ({
     ...variant.detailImages,
   ];
 
-  console.log(variantIndex, "fromSwiper");
   return (
     <Swiper
       modules={[Pagination]}

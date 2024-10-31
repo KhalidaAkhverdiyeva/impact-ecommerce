@@ -11,7 +11,9 @@ import ProductDetailSwiper from "@/components/Product Detail Swiper/productDetai
 import QuantityBlock from "@/components/Quantity Block/quantityBlock";
 import Return from "@/components/Return/return";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
+import ProductDetailSkeleton from "@/components/Skeletons/Product Page Skeleton/productPageSkeleton";
 import Stock from "@/components/Stock/stock";
+import { useColor } from "@/contexts/colorContext";
 import { ProductParams } from "@/types/paramsType";
 import { Product } from "@/types/productCardTypes";
 import Image from "next/image";
@@ -22,21 +24,19 @@ interface ProductDetailPageProps {
 }
 
 const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
+  const { selectedColor, setSelectedColor } = useColor();
   const [product, setProduct] = useState<Product>();
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [index, setIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const currentUrl = window.location.href;
-    console.log(currentUrl, "current URL");
     const url = new URL(currentUrl);
     const searchParams = new URLSearchParams(url.search);
     const indexFromURL = searchParams.get("index");
     setIndex(indexFromURL ? parseInt(indexFromURL, 10) : null);
-    console.log("Extracted Index:", indexFromURL);
   }, []);
 
-  console.log(selectedVariantIndex, "annnddd", index);
   useEffect(() => {
     async function fetchProduct() {
       const res = await fetch(
@@ -55,11 +55,11 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
     }
   }, [params.title]);
 
-  if (!product) return <p>Loading...</p>;
+  if (!product) return <ProductDetailSkeleton />;
 
-  const selectedVariant = product.colorVariants[selectedVariantIndex];
+  const selectedVariant = product.colorVariants[index ?? 0];
 
-  const firstColorVariant = product.colorVariants?.[0];
+  const firstColorVariant = product.colorVariants?.[index ?? 0];
   const colorHex = firstColorVariant ? firstColorVariant.color : "#272727";
 
   const gatheredImages = [
@@ -67,8 +67,10 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
     selectedVariant.hoverImage,
     ...selectedVariant.detailImages,
   ];
-  const handleColorSelect = (index: number) => {
+  const handleColorSelect = (color: string, index: number) => {
+    setSelectedColor(color);
     setSelectedVariantIndex(index);
+    setIndex(index);
   };
 
   return (
@@ -76,8 +78,8 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
       <HeaderWhite />
       <div className="max-w-[1600px] mx-auto lg:px-[48px] lg:pt-[50px]">
         <div className="flex flex-col lg:flex-row gap-[90px]">
-          <div className="flex-[60%]">
-            <div className="hidden md:grid grid-cols-2 gap-[25px]">
+          <div className="flex-[60%] overflow-hidden">
+            <div className="hidden lg:grid grid-cols-2 gap-[25px]">
               {gatheredImages.map((image, index) => (
                 <Image
                   key={index}
@@ -96,15 +98,19 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
               />
             </div>
           </div>
-          <div className="flex-[40%] px-[20px] md:px-[32px] lg:px-[0px]">
-            <p className="text-[#8a8989]">{product.designer}</p>
-            <h1 className="text-[#272727] font-[800] text-[36px]">
+          <div className="flex-[40%] sticky top-[110px] h-[110vh]  px-[20px] md:px-[32px] lg:px-[0px]">
+            <p className="text-[#8a8989] md:text-[18px] md:pb-[10px]">
+              {product.designer}
+            </p>
+            <h1 className="text-[#272727] font-[800] text-[36px] md:text-[42px] lg:text-[50px]">
               {product.title}
             </h1>
-            <div className="flex justify-between text-[#272727] pb-[15px] border-b-[#e4e4e4] border-b-solid border-b-[1px]">
+            <div className="flex justify-between text-[#272727] pb-[15px] md:pt-[15px] border-b-[#e4e4e4] border-b-solid border-b-[1px]">
               <p className="text-[20px]">${product.price.toFixed(2)}</p>
-              <div className="flex items-center gap-[5px] ">
-                <span className="text-[14px]"> {product.rating}</span>
+              <div className="flex items-center gap-[5px] md:mt-[4px] ">
+                <div className="text-[14px] md:text-[18px]">
+                  {product.rating}
+                </div>
 
                 <svg
                   role="presentation"
@@ -112,6 +118,7 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
                   focusable="false"
                   width="12"
                   height="12"
+                  className="w-[20px] h-[20px]"
                   viewBox="0 0 15 15"
                 >
                   <path
@@ -130,7 +137,7 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
                 {product.colorVariants.map((variant, index) => (
                   <div
                     key={index}
-                    onClick={() => handleColorSelect(index)}
+                    onClick={() => handleColorSelect(variant.color, index)}
                     className="w-[40px] h-[16px] cursor-pointer border"
                     style={{ backgroundColor: variant.color }}
                   ></div>
@@ -140,13 +147,13 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
               <div className="relative mt-[4px] h-1">
                 <div
                   className="absolute w-[40px] h-[2px] bg-black transition-all duration-300"
-                  // style={{ left: `${selectedColorIndex * 23}px` }}
+                  style={{ left: `${(index ?? 0) * 47}px` }}
                 ></div>
               </div>
             </div>
             <QuantityBlock />
             <Stock product={product} />
-            <div className="flex flex-col gap-[10px] py-[15px]">
+            <div className="flex flex-col md:flex-row gap-[10px] py-[15px]">
               <button className="py-[16px] px-[32px] bg-[#3C619E] text-white font-[700] w-[100%]">
                 Add to cart
               </button>
@@ -174,7 +181,7 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
         color={colorHex}
       />
 
-      <div className=" h-[560px] lg:h-[1260px]  relative overflow-hidden">
+      <div className=" h-[560px] lg:h-[960px]  relative overflow-hidden">
         <picture className="absolute inset-0 w-full h-full">
           <source
             media="(min-width: 768px)"

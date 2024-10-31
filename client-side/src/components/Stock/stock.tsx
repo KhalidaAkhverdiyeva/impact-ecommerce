@@ -5,7 +5,7 @@ const Stock: React.FC<{ product: Product }> = ({ product }) => {
   return (
     <>
       {product.availableUnits < 10 ? (
-        <div className="flex items-center gap-[5px] text-[#AA2826] text-[14px] py-[10px]">
+        <div className="flex items-center gap-[5px] text-[#AA2826] text-[14px] md:text-[18px] py-[10px]">
           <svg
             role="presentation"
             focusable="false"
@@ -26,7 +26,7 @@ const Stock: React.FC<{ product: Product }> = ({ product }) => {
           {product.availableUnits > 1 ? "s" : ""} left.
         </div>
       ) : (
-        <div className="flex items-center gap-[5px] text-[#708A5C] text-[14px] py-[10px]">
+        <div className="flex items-center gap-[5px] text-[#708A5C] text-[14px] md:text-[18px] py-[10px]">
           <svg
             role="presentation"
             focusable="false"
