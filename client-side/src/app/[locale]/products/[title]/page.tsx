@@ -4,11 +4,14 @@ import RichTextSection from "@/components/Designers Rich Text Section/richTextSe
 import ExploreCollectionsSections from "@/components/Explore Collections Section/exploreCollectionsSection";
 import Accordion from "@/components/FAQ Accardion/accardion";
 import HomeDesignerGridSection from "@/components/Home Designer Grid Section/homeDesignerGrid";
-import ImageSlider from "@/components/Image Slider/imageSlider";
 import { HeaderWhite } from "@/components/Layout/Header/header";
 import FloatingTextSection from "@/components/Marquee Text/floatingTexts";
 import ProductAboutSection from "@/components/Product About Section/productAboutSection";
+import ProductDetailSwiper from "@/components/Product Detail Swiper/productDetailSwiper";
+import QuantityBlock from "@/components/Quantity Block/quantityBlock";
+import Return from "@/components/Return/return";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
+import Stock from "@/components/Stock/stock";
 import { ProductParams } from "@/types/paramsType";
 import { Product } from "@/types/productCardTypes";
 import Image from "next/image";
@@ -21,7 +24,19 @@ interface ProductDetailPageProps {
 const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
   const [product, setProduct] = useState<Product>();
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
+  const [index, setIndex] = useState<number | null>(null);
 
+  useEffect(() => {
+    const currentUrl = window.location.href;
+    console.log(currentUrl, "current URL");
+    const url = new URL(currentUrl);
+    const searchParams = new URLSearchParams(url.search);
+    const indexFromURL = searchParams.get("index");
+    setIndex(indexFromURL ? parseInt(indexFromURL, 10) : null);
+    console.log("Extracted Index:", indexFromURL);
+  }, []);
+
+  console.log(selectedVariantIndex, "annnddd", index);
   useEffect(() => {
     async function fetchProduct() {
       const res = await fetch(
@@ -52,11 +67,14 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
     selectedVariant.hoverImage,
     ...selectedVariant.detailImages,
   ];
+  const handleColorSelect = (index: number) => {
+    setSelectedVariantIndex(index);
+  };
 
   return (
     <div>
       <HeaderWhite />
-      <div className="max-w-[1600px] mx-auto lg:px-[48px] py-[50px]">
+      <div className="max-w-[1600px] mx-auto lg:px-[48px] lg:pt-[50px]">
         <div className="flex flex-col lg:flex-row gap-[90px]">
           <div className="flex-[60%]">
             <div className="hidden md:grid grid-cols-2 gap-[25px]">
@@ -72,7 +90,10 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
               ))}
             </div>
             <div className="lg:hidden">
-              <ImageSlider />
+              <ProductDetailSwiper
+                product={product}
+                variantIndex={index ?? 0}
+              />
             </div>
           </div>
           <div className="flex-[40%] px-[20px] md:px-[32px] lg:px-[0px]">
@@ -105,6 +126,44 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
                 <span className="text-[#8d8c8c] pr-[5px]">Colors:</span>
                 {product.colors}
               </p>
+              <div className="flex gap-2 mt-4">
+                {product.colorVariants.map((variant, index) => (
+                  <div
+                    key={index}
+                    onClick={() => handleColorSelect(index)}
+                    className="w-[40px] h-[16px] cursor-pointer border"
+                    style={{ backgroundColor: variant.color }}
+                  ></div>
+                ))}
+              </div>
+
+              <div className="relative mt-[4px] h-1">
+                <div
+                  className="absolute w-[40px] h-[2px] bg-black transition-all duration-300"
+                  // style={{ left: `${selectedColorIndex * 23}px` }}
+                ></div>
+              </div>
+            </div>
+            <QuantityBlock />
+            <Stock product={product} />
+            <div className="flex flex-col gap-[10px] py-[15px]">
+              <button className="py-[16px] px-[32px] bg-[#3C619E] text-white font-[700] w-[100%]">
+                Add to cart
+              </button>
+              <button className="bg-[#272727] font-[800] w-[100%] text-white px-[32px] py-[16px]">
+                Buy it now
+              </button>
+            </div>
+            <Return />
+            <div className="mt-[30px] mx-[-20px]">
+              <Accordion
+                title="Shipping & Returns"
+                content="We are committed to bring our products to everyone in the world. Our service delivers to most countries in the world and is dedicated to meeting a variety of shipping needs. Shipping is free for all orders over $100."
+              />
+              <Accordion
+                title="Warranty"
+                content="Every product is backed with a warranty. From design to manufacturing, delivery to service, we are committed to quality. We honor a 1-year warranty on all products. Brand-specific warranties may extend to longer periods."
+              />
             </div>
           </div>
         </div>

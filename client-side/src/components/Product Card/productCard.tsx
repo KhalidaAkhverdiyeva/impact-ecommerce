@@ -49,7 +49,10 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
             </span>
           )}
         </div>
-        <Link href={`/products/${product.title}`} className="cursor-pointer">
+        <Link
+          href={`/products/${product.title}?index=${selectedColorIndex}`}
+          className="cursor-pointer"
+        >
           <div
             className="relative"
             onMouseEnter={() => setIsHovered(true)}
