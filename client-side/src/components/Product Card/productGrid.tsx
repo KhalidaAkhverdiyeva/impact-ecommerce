@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Product } from "@/types/productCardTypes";
 import ProductCard from "./productCard";
+import ProductCardSkeletons from "../Skeletons/Product Card Skeleton/productCardSkeleton";
 
 interface ProductResponse {
   products: Product[];
@@ -33,7 +34,7 @@ const ProductGrid: React.FC = () => {
     fetchProducts();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <ProductCardSkeletons />;
   if (error) return <div>Error: {error}</div>;
 
   return (

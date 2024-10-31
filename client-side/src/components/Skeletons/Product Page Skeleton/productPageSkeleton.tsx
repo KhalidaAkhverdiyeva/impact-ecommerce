@@ -2,9 +2,8 @@ import React from "react";
 
 const ProductDetailSkeleton = () => {
   return (
-    <div className="max-w-[1600px] mx-auto lg:px-[48px] lg:pt-[50px]">
+    <div className="max-w-[1600px] mx-auto lg:px-[48px] lg:pt-[50px] mt-[100px]">
       <div className="flex flex-col lg:flex-row gap-[90px]">
-        {/* Left Side - Image Section */}
         <div className="flex-[60%] overflow-hidden">
           <div className="hidden lg:grid grid-cols-2 gap-[25px]">
             {Array.from({ length: 4 }).map((_, index) => (
@@ -19,7 +18,6 @@ const ProductDetailSkeleton = () => {
           </div>
         </div>
 
-        {/* Right Side - Product Details */}
         <div className="flex-[40%] sticky top-[110px] h-[110vh] px-[20px] md:px-[32px] lg:px-[0px]">
           <div className="animate-pulse bg-gray-300 rounded w-[100px] h-[20px] mb-4"></div>
           <div className="animate-pulse bg-gray-300 rounded w-full h-[40px] mb-4"></div>
