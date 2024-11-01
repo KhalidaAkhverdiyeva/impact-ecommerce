@@ -35,7 +35,7 @@ const Modal: React.FC<ModalProps> = ({
           <path
             d="m22.344 22.343 11.313 11.314m-11.313 0 11.313-11.313"
             stroke="#252627"
-            stroke-width="2"
+            strokeWidth="2"
           ></path>
         </svg>
       </button>
