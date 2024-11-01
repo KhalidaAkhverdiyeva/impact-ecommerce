@@ -1,6 +1,7 @@
 import React from "react";
 import { LuChevronRight } from "react-icons/lu";
 import CollectionCard from "./collectionCard";
+import { Link } from "@/i18n/routing";
 
 const ExploreCollectionsSections = () => {
   return (
@@ -10,14 +11,17 @@ const ExploreCollectionsSections = () => {
           <h3 className="text-[#272727] text-[32px] font-[800] md:text-[44px] lg:text-[50px]">
             Explore the collections
           </h3>
-          <div className="flex gap-[12px]">
-            <p className="text-[14px] md:text-[16px] text-[#272727]">
-              View all
-            </p>
-            <button className="bg-[#E9E9E9] rounded-full w-[24px] h-[24px] flex justify-center items-center">
-              <LuChevronRight size={14} />
-            </button>
-          </div>
+
+          <Link href="/collections">
+            <div className="flex gap-[12px]">
+              <p className="text-[14px] md:text-[16px] text-[#272727]">
+                View all
+              </p>
+              <button className="bg-[#E9E9E9] rounded-full w-[24px] h-[24px] flex justify-center items-center">
+                <LuChevronRight size={14} />
+              </button>
+            </div>
+          </Link>
         </div>
       </div>
       <div className=" mx-auto max-w-[1600px]">

@@ -70,7 +70,7 @@ export const Header = () => {
                 About
               </li>
             </Link>
-            <Link href="/news">
+            <Link href="/blog">
               <li className="cursor-pointer  hover:text-[#D4D7D6] transition-colors duration-500">
                 Blog
               </li>
@@ -168,8 +168,13 @@ export const HeaderWhite = () => {
             <li className="flex justify-center items-center gap-[10px] cursor-pointer hover:text-[#676767]">
               Designers <FaAngleDown />
             </li>
-            <li className="cursor-pointer hover:text-[#676767]">About</li>
-            <li className="cursor-pointer hover:text-[#676767]">Blog</li>
+            <Link href="/about">
+              <li className="cursor-pointer hover:text-[#676767]">About</li>
+            </Link>
+            <Link href="/blog">
+              <li className="cursor-pointer hover:text-[#676767]">Blog</li>
+            </Link>
+
             <li className="flex justify-center items-center gap-[10px] cursor-pointer hover:text-[#676767]">
               Features <FaAngleDown />
             </li>

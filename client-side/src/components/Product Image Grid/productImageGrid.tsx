@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import SearchBetterButton from "../Seach Better Button/searchBetterButton";
-import Modal from "../Modal/modal";
+import Modal from "../Image Display Modal/modal";
 
-const ProductImageGrid = ({ gatheredImages }) => {
+interface ProductImageGridProps {
+  gatheredImages: string[];
+}
+
+const ProductImageGrid: React.FC<ProductImageGridProps> = ({
+  gatheredImages,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const openModal = (index) => {
+  const openModal = (index: number) => {
     setCurrentImageIndex(index);
     setIsModalOpen(true);
   };

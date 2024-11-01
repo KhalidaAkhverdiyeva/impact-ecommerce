@@ -18,24 +18,24 @@ const CollectionCard = () => {
     },
     {
       mobileImg:
-        "https://impact-theme-home.myshopify.com/cdn/shop/files/links-kitchen.jpg?v=1653309043&width=300",
+        "https://impact-theme-home.myshopify.com/cdn/shop/files/links-office.jpg?v=1653309091&width=300",
       webImg:
-        "https://impact-theme-home.myshopify.com/cdn/shop/files/links-kitchen.jpg?v=1653309043&width=600",
-      title: "Kitchen",
+        "https://impact-theme-home.myshopify.com/cdn/shop/files/links-office.jpg?v=1653309091&width=600",
+      title: "Office",
     },
     {
       mobileImg:
-        "https://impact-theme-home.myshopify.com/cdn/shop/files/links-decoration.jpg?v=1653309079&width=300",
+        "https://impact-theme-home.myshopify.com/cdn/shop/files/links-lighting.jpg?v=1653309101&width=300",
       webImg:
-        "https://impact-theme-home.myshopify.com/cdn/shop/files/links-decoration.jpg?v=1653309079&width=600",
-      title: "Decoration",
+        "https://impact-theme-home.myshopify.com/cdn/shop/files/links-lighting.jpg?v=1653309101&width=600",
+      title: "Lighting",
     },
     {
       mobileImg:
-        "https://impact-theme-home.myshopify.com/cdn/shop/files/links-kitchen.jpg?v=1653309043&width=300",
+        "https://impact-theme-home.myshopify.com/cdn/shop/files/links-books.jpg?v=1653309107&width=300",
       webImg:
-        "https://impact-theme-home.myshopify.com/cdn/shop/files/links-kitchen.jpg?v=1653309043&width=600",
-      title: "Kitchen",
+        "https://impact-theme-home.myshopify.com/cdn/shop/files/links-books.jpg?v=1653309107&width=600",
+      title: "Books",
     },
   ];
 

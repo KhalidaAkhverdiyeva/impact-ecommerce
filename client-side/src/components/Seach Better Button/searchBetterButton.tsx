@@ -1,8 +1,15 @@
 import React from "react";
 
-const SearchBetterButton = () => {
+interface SearchBetterButtonProps {
+  onClick: () => void;
+}
+
+const SearchBetterButton: React.FC<SearchBetterButtonProps> = ({ onClick }) => {
   return (
-    <div className="absolute bottom-[30px] cursor-pointer right-[30px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-75 group-hover:scale-110">
+    <div
+      onClick={onClick}
+      className="absolute bottom-[30px] cursor-pointer right-[30px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-75 group-hover:scale-110"
+    >
       <div className="bg-white p-[15px] rounded-full shadow-lg flex items-center justify-center transition-transform duration-300">
         <svg
           role="presentation"
