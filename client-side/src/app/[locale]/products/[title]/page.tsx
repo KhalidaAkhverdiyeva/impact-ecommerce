@@ -11,14 +11,12 @@ import ProductDetailSwiper from "@/components/Product Detail Swiper/productDetai
 import ProductImageGrid from "@/components/Product Image Grid/productImageGrid";
 import QuantityBlock from "@/components/Quantity Block/quantityBlock";
 import Return from "@/components/Return/return";
-import SearchBetterButton from "@/components/Seach Better Button/searchBetterButton";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
 import ProductDetailSkeleton from "@/components/Skeletons/Product Page Skeleton/productPageSkeleton";
 import Stock from "@/components/Stock/stock";
 import { useColor } from "@/contexts/colorContext";
 import { ProductParams } from "@/types/paramsType";
 import { Product } from "@/types/productCardTypes";
-import Image from "next/image";
 import { FC, useEffect, useState } from "react";
 
 interface ProductDetailPageProps {
