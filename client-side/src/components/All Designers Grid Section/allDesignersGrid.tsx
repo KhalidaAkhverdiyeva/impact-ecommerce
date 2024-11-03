@@ -1,11 +1,10 @@
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import React from "react";
 
 const AllDesignersGridSection = () => {
   return (
     <section className="max-w-[1600px] mx-auto py-[10px]">
       <div className="flex flex-col gap-[10px] lg:gap-6 px-[20px] md:px-[32px] lg:px-[48px]">
-        {/* First row */}
         <div className="flex flex-col md:flex-row gap-[10px] lg:gap-6">
           <div className="flex-1 w-[100%] md:w-[50%] relative">
             <video
@@ -86,7 +85,6 @@ const AllDesignersGridSection = () => {
             </div>
           </div>
         </div>
-        {/* Second row */}
         <div className="flex flex-col md:flex-row gap-[10px] lg:gap-6 w-full">
           <div className="flex gap-[10px] lg:gap-6 w-full">
             <Link
