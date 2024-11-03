@@ -171,13 +171,14 @@ export const Header = ({ transparent = true }) => {
             >
               <IoSearch className="text-[24px] mx-[10px]" />
             </div>
-            <div
+            <Link
+              href="/login"
               className={`hidden md:block cursor-pointer ${
                 isDropdownOpen ? "hover:text-[#403f3f]" : "hover:text-[#D4D7D6]"
               }`}
             >
               <AiOutlineUser className="text-[24px] mx-[10px]" />
-            </div>
+            </Link>
             <div
               className={`cursor-pointer ${
                 isDropdownOpen ? "hover:text-[#403f3f]" : "hover:text-[#D4D7D6]"
