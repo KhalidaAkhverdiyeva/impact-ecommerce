@@ -72,7 +72,7 @@ const LanguageSelector: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative" ref={dropdownRef}>
+    <div className="relative z-50" ref={dropdownRef}>
       <div
         className="hidden  lg:flex lg:items-center lg:gap-[10px] text-[17px] font-[700] mx-[10px] cursor-pointer"
         onClick={toggleDropdown}
