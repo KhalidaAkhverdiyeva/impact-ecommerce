@@ -60,7 +60,7 @@ const BlogPageHero = () => {
         </div>
 
         <div className="absolute bottom-0 w-full">
-          <div className="flex gap-[15px] md:justify-center overflow-x-auto px-[20px]">
+          <div className="flex gap-[15px] md:justify-center overflow-x-auto no-scrollbar px-[20px]">
             {sections.map((section) => (
               <button
                 key={section}

@@ -1,6 +1,6 @@
 import BlueVibezz from "@/components/Blue Vibes Section/blueVibezz";
 import JustImgSection from "@/components/Just Image Section/justImgSection";
-import { HeaderWhite } from "@/components/Layout/Header/header";
+import { Header } from "@/components/Layout/Header/header";
 import FloatingTextSection from "@/components/Marquee Text/floatingTexts";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
 import ToasterSection from "@/components/Toaster Section/toasterSection";
@@ -9,7 +9,7 @@ import React from "react";
 const SowdenCollectionPage = () => {
   return (
     <div>
-      <HeaderWhite />
+      <Header transparent={false} />
       <div className="max-w-[1600px] mx-auto py-[50px] px-[20px] md:px-[32px] lg:px-[48px]">
         <div className="flex flex-col gap-[15px] lg:gap-[25px] items-center">
           <h1 className="text-[#C6E6F3] font-[900] text-[60px] md:text-[106px] lg:text-[216px] leading-[1]">
@@ -70,7 +70,7 @@ const SowdenCollectionPage = () => {
         color="#92BEE5"
       />
       <div className="max-w-[1600px] mx-auto py-[50px]">
-        <div className="flex gap-[20px] overflow-x-auto lg:overflow-visible px-[20px] md:px-[32px] lg:px-[48px]">
+        <div className="flex gap-[20px] overflow-x-auto no-scrollbar lg:overflow-visible px-[20px] md:px-[32px] lg:px-[48px]">
           <div className="flex-shrink-0 w-[80%] md:w-[40%] lg:flex-1 lg:w-auto relative">
             <img
               src="https://impact-theme-home.myshopify.com/cdn/shop/files/enamel_a84eeca5-1f2a-46f8-8dc8-b8224c2451fd.jpg?v=1659338939&width=1000"

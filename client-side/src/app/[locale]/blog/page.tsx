@@ -5,6 +5,7 @@ import FloatingTextSection from "@/components/Marquee Text/floatingTexts";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
 import { Link } from "@/i18n/routing";
 import React from "react";
+import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 const BlogPage = () => {
   return (
@@ -97,6 +98,25 @@ const BlogPage = () => {
           <BlogCard imgSrc="https://impact-theme-home.myshopify.com/cdn/shop/articles/Sowden_Bottle_blue_Frotte_Stripe_warm_yellow_3.jpg?v=1658931231&width=1000" />
           <BlogCard imgSrc="https://impact-theme-home.myshopify.com/cdn/shop/articles/Facade_family_Salt_and_Pepper_M_yellow_Fleck_Stirring_Spoon_grey_Kitchen_Tongs_1.jpg?v=1658998470&width=1000" />
           <BlogCard imgSrc="https://impact-theme-home.myshopify.com/cdn/shop/articles/Palissade_Lounge_Chair_Low_Palissade_Lounge_Sofa_Palissade_Ottoman_olive_1.jpg?v=1659018161&width=2000" />
+        </div>
+        <div className=" flex justify-center items-center  bg-white mt-[20px] mb-[70px]">
+          <div className="border-solid border-[1px] border-[#e0dede]  flex justify-center items-center">
+            <button
+              // onClick={onPrev}
+              // disabled={currentIndex === 0}
+              className=" text-gray-700 p-[20px] flex justify-center items-center"
+            >
+              <GrFormPrevious />
+            </button>
+            <span className="px-[12px] py-[8px]">1/2</span>
+            <button
+              // onClick={onNext}
+              // disabled={currentIndex === totalImages - 1}
+              className=" text-gray-700 p-[20px] flex justify-center items-center"
+            >
+              <GrFormNext />
+            </button>
+          </div>
         </div>
       </div>
 

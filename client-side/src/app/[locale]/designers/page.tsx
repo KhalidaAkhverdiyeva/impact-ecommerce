@@ -1,5 +1,5 @@
 import AllDesignersGridSection from "@/components/All Designers Grid Section/allDesignersGrid";
-import { HeaderWhite } from "@/components/Layout/Header/header";
+import { Header } from "@/components/Layout/Header/header";
 import NewsletterCard from "@/components/Newsletter Card/newsletterCard";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
 import React from "react";
@@ -7,7 +7,7 @@ import React from "react";
 const DesignersPage = () => {
   return (
     <div>
-      <HeaderWhite />
+      <Header transparent={false} />
       <div className="max-w-[1600px] mx-auto py-[50px] px-[20px] md:px-[32px] lg:px-[48px]">
         <div className="flex flex-col gap-[15px] lg:gap-[25px] items-center">
           <h1 className="text-[#C6E6F3] font-[900] text-[60px] md:text-[106px] lg:text-[216px] leading-[1]">

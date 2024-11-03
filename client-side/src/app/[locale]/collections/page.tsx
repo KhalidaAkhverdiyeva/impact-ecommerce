@@ -1,5 +1,5 @@
 import CollectionCard from "@/components/Collection Card/collectionCard";
-import { HeaderWhite } from "@/components/Layout/Header/header";
+import { Header } from "@/components/Layout/Header/header";
 import FloatingTextSection from "@/components/Marquee Text/floatingTexts";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
 import Image from "next/image";
@@ -8,7 +8,7 @@ import React from "react";
 const CollectionsPage = () => {
   return (
     <div>
-      <HeaderWhite />
+      <Header transparent={false} />
       <section className="max-w-[1600px] mx-auto">
         <div className="px-[20px] py-[48px] md:px-[32px] lg:px-[48px] text-center">
           <span

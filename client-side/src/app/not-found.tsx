@@ -1,10 +1,10 @@
-import { HeaderWhite } from "@/components/Layout/Header/header";
+import { Header } from "@/components/Layout/Header/header";
 import React from "react";
 
 const NotFound = () => {
   return (
     <div>
-      <HeaderWhite />
+      <Header transparent={false} />
       <div className="flex justify-center max-w-[1600px] mx-auto">
         <div className=" relative">
           <div className=" text-[210px] lg:text-[400px] font-[800] text-[#E9E9E9] relative">

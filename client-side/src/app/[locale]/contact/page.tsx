@@ -1,4 +1,4 @@
-import { HeaderWhite } from "@/components/Layout/Header/header";
+import { Header } from "@/components/Layout/Header/header";
 import MessageForm from "@/components/Message Form/messageForm";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
 import React from "react";
@@ -6,7 +6,7 @@ import React from "react";
 const ContactPage = () => {
   return (
     <div className="relative ">
-      <HeaderWhite />
+      <Header transparent={false} />
       <div className=" h-[560px] pt-[66px] relative overflow-hidden">
         <picture className="absolute inset-0 w-full h-full">
           <source

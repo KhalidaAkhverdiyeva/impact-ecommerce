@@ -4,7 +4,7 @@ import RichTextSection from "@/components/Designers Rich Text Section/richTextSe
 import ExploreCollectionsSections from "@/components/Explore Collections Section/exploreCollectionsSection";
 import Accordion from "@/components/FAQ Accardion/accardion";
 import HomeDesignerGridSection from "@/components/Home Designer Grid Section/homeDesignerGrid";
-import { HeaderWhite } from "@/components/Layout/Header/header";
+import { Header } from "@/components/Layout/Header/header";
 import FloatingTextSection from "@/components/Marquee Text/floatingTexts";
 import ProductAboutSection from "@/components/Product About Section/productAboutSection";
 import ProductDetailSwiper from "@/components/Product Detail Swiper/productDetailSwiper";
@@ -75,7 +75,7 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
 
   return (
     <div>
-      <HeaderWhite />
+      <Header transparent={false} />
       <div className="max-w-[1600px] mx-auto lg:px-[48px] lg:pt-[50px]">
         <div className="flex flex-col lg:flex-row gap-[40px]">
           <div className="flex-[60%] overflow-hidden ">

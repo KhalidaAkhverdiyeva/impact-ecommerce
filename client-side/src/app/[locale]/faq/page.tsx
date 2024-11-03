@@ -1,5 +1,5 @@
 import Accordion from "@/components/FAQ Accardion/accardion";
-import { HeaderWhite } from "@/components/Layout/Header/header";
+import { Header } from "@/components/Layout/Header/header";
 import MessageForm from "@/components/Message Form/messageForm";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
 import React from "react";
@@ -7,7 +7,7 @@ import React from "react";
 const FAQPage = () => {
   return (
     <div>
-      <HeaderWhite />
+      <Header transparent={false} />
       <div className=" h-[560px] pt-[66px] relative overflow-hidden">
         <img
           src="https://impact-theme-home.myshopify.com/cdn/shop/files/faq.jpg?v=1658917308&width=3200"

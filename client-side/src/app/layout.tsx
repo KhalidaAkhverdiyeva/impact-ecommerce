@@ -5,6 +5,7 @@ import { Jost } from "next/font/google";
 import Footer from "@/components/Layout/Footer/footer";
 import Banner from "@/components/Layout/Banner/banner";
 import { ColorProvider } from "@/contexts/colorContext";
+import { Header } from "@/components/Layout/Header/header";
 
 const inter = Inter({ subsets: ["latin"] });
 const jost = Jost({ subsets: ["latin"] });

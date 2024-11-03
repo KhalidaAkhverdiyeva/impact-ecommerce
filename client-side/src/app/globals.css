@@ -101,3 +101,11 @@
 .animate-slide-down {
   animation: slide-down 0.3s ease-out;
 }
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
