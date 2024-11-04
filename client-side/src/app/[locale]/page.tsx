@@ -3,7 +3,7 @@ import HeroSliderSection from "@/components/Hero Section/SliderSection";
 import ClickandCheckSection from "@/components/Click & Check Section/ClickAndCheckSection";
 import ExploreCollectionsSection from "@/components/Explore Collections Section/exploreCollectionsSection";
 import NewArrivalsSection from "@/components/New Arrivals Section/NewArrivalsSection";
-import GrowingImgSection from "@/components/Growing Img Section/growingImgSection";
+// import GrowingImgSection from "@/components/Growing Img Section/growingImgSection";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
 import ReadOurStoriesSection from "@/components/Read Our Stories Section/readOurStoriesSection";
 import ImageRevealSlider from "@/components/Remini Reveal Slider/imgRevealSlider";
@@ -13,6 +13,8 @@ import RichTextSection from "@/components/Designers Rich Text Section/richTextSe
 import NewsletterCard from "@/components/Newsletter Card/newsletterCard";
 import { Header } from "@/components/Layout/Header/header";
 import Quote from "@/components/Designer Quote/quote";
+import ImageGallery from "@/components/Image Card Gallery Section/page";
+import ShopTheRoomSection from "@/components/Shop The Room Section/shopTheRoomSection";
 
 export default function Home() {
   return (
@@ -27,8 +29,10 @@ export default function Home() {
         />
         <ClickandCheckSection />
         <ExploreCollectionsSection />
-        <GrowingImgSection />
+        {/* <GrowingImgSection /> */}
+        <ImageGallery />
         <Quote bgColor="#708A5C" />
+        <ShopTheRoomSection />
         <NewsletterCard />
         <RichTextSection title="From all over the world" />
         <HomeDesignerGridSection />

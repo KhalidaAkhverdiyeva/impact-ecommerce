@@ -1,83 +1,63 @@
-"use client";
-import React, { useEffect, useState, useRef } from "react";
+// "use client"; // Ensure you're using the 'use client' directive in Next.js
+// import React, { useEffect, useRef } from "react";
+// import { gsap } from "gsap";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const GrowingImgSection: React.FC = () => {
-  const [clipPath, setClipPath] = useState("inset(40% 30%)"); // Initial small section
-  const sectionRef = useRef<HTMLDivElement | null>(null);
-  const [isInView, setIsInView] = useState(false);
-  const [scrollable, setScrollable] = useState(true); // State to manage scrollability
+// const GrowingImgSection: React.FC = () => {
+//   const sectionRef = useRef<HTMLDivElement | null>(null);
+//   const growingDivRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!isInView || !scrollable) return;
+//   useEffect(() => {
+//     gsap.registerPlugin(ScrollTrigger);
 
-      // Calculate the inset values based on the scroll position within the section
-      const sectionTop = sectionRef.current?.offsetTop || 0;
-      const sectionHeight = sectionRef.current?.offsetHeight || 1;
-      const scrollY = window.scrollY + window.innerHeight; // Adjusting scrollY for better accuracy
+//     const section = sectionRef.current;
+//     const growingDiv = growingDivRef.current;
 
-      // Calculate how far the user has scrolled within the section
-      const progress = Math.min(
-        Math.max((scrollY - sectionTop) / sectionHeight, 0),
-        1
-      );
+//     if (!section || !growingDiv) return;
 
-      // Adjust the inset values from 40% to 0% as the user scrolls within the section
-      const insetValue = 40 - progress * 40;
-      setClipPath(`inset(${insetValue}% ${insetValue / 1.5}%)`);
+//     // Set initial position and size of the div
+//     gsap.set(growingDiv, {
+//       width: "200px", // Initial width
+//       height: "200px", // Initial height
+//       xPercent: -50,
+//       yPercent: -50,
+//       top: "50%",
+//       left: "50%",
+//     });
 
-      // Stop being scrollable once the image is fully revealed
-      if (progress >= 1) {
-        setScrollable(false); // Disable scroll in this section
-      }
-    };
+//     // Create a timeline for the div's growth animation
+//     gsap
+//       .timeline({
+//         scrollTrigger: {
+//           trigger: section,
+//           start: "top center", // Start when the top of the section hits the center of the viewport
+//           end: "bottom top", // End when the bottom of the section hits the top of the viewport
+//           scrub: 1.5,
+//           pin: section,
+//           pinSpacing: true,
+//           invalidateOnRefresh: true,
+//         },
+//       })
+//       .to(growingDiv, {
+//         width: "100vw",
+//         height: "100vh",
+//         ease: "power3.inOut",
+//       });
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsInView(entry.isIntersecting);
-        });
-      },
-      { threshold: 0.05 } // Trigger when 5% of the section is visible
-    );
+//     // Clean up ScrollTrigger instances on component unmount
+//     return () => {
+//       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+//     };
+//   }, []);
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
+//   return (
+//     <section
+//       ref={sectionRef}
+//       className="sticky top-[100px] h-[100vh] flex items-center justify-center overflow-hidden"
+//     >
+//       <div ref={growingDivRef} className="bg-orange-600 absolute"></div>
+//     </section>
+//   );
+// };
 
-    // Attach scroll event listener
-    window.addEventListener("scroll", handleScroll);
-
-    // Cleanup function to remove event listener and observer
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, [isInView, scrollable]);
-
-  return (
-    <div
-      className="z-[-1] my-[50px] sticky top-0 "
-      style={{ height: "100vh", overflowY: "scroll" }}
-    >
-      <div
-        ref={sectionRef}
-        className="flex justify-center items-center h-screen"
-        style={{ overflowY: scrollable ? "hidden" : "hidden" }} // Keep inner overflow hidden
-      >
-        <div
-          className="relative w-full h-full bg-cover bg-center transition-all duration-300 ease-out"
-          style={{
-            backgroundImage:
-              "url('https://impact-theme-home.myshopify.com/cdn/shop/files/Palissade_Chair_Palissade_Cone_Table_PC_Portable_olive.jpg?v=1653309441&width=3200')",
-            clipPath: clipPath,
-          }}
-        />
-      </div>
-    </div>
-  );
-};
-
-export default GrowingImgSection;
+// export default GrowingImgSection;

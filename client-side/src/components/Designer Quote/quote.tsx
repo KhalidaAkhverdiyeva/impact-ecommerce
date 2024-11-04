@@ -42,68 +42,70 @@ const Quote: React.FC<QuoteProps> = ({ bgColor }) => {
   };
 
   return (
-    <section className="py-[20px] max-w-[1600px] mx-auto  bg-white ">
-      <div
-        className="text-white py-[20px] md:py-[40px] lg:py-[60px] md:mx-[32px] lg:mx-[48px]"
-        style={{ backgroundColor: bgColor }}
-      >
-        <div className="flex flex-col gap-[10px] max-w-[1310px] mx-auto">
-          <div className="relative">
-            <img
-              src="data:image/svg+xml,%3Csvg width='86' height='55' viewBox='0 0 86 55' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M71.3163 54.6H42.5163L60.3163 0.400024H85.5163L71.3163 54.6ZM29.3163 54.6H0.716309L18.9163 0.400024H44.1163L29.3163 54.6Z' fill='rgba(233, 233, 233, 0.3)'/%3E%3C/svg%3E%0A"
-              alt="quote"
-              className="absolute top-[0px] md:top-[15px] lg:left-[77px] left-[10px]  md:left-[50px] w-[51px] h-[37px] md:w-[70px] md:h-[45px]"
-            />
-            <blockquote
-              className={`text-[26px] p-[20px] md:text-[36px] md:px-[70px] md:py-[40px] lg:text-[44px] relative font-[800] leading-[1.1] text-center transition-opacity duration-300 ease-in-out ${
-                isFadingOut ? "opacity-0" : "opacity-100"
-              }`}
-            >
-              {quotes[currentQuoteIndex].text}
-            </blockquote>
-          </div>
-          <div className="flex flex-col items-center gap-[10px] justify-center">
-            <div className="rounded-full w-[70px] h-[70px] overflow-hidden transition-opacity duration-300">
+    <section className=" bg-white ">
+      <div className="py-[20px] max-w-[1600px] mx-auto ">
+        <div
+          className="text-white py-[20px] md:py-[40px] lg:py-[60px] md:mx-[32px] lg:mx-[48px]"
+          style={{ backgroundColor: bgColor }}
+        >
+          <div className="flex flex-col gap-[10px] max-w-[1310px] mx-auto">
+            <div className="relative">
               <img
-                src={quotes[currentQuoteIndex].image}
-                alt={quotes[currentQuoteIndex].author}
-                className={`w-full h-full rounded-full transition-opacity duration-300 ease-in-out ${
+                src="data:image/svg+xml,%3Csvg width='86' height='55' viewBox='0 0 86 55' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M71.3163 54.6H42.5163L60.3163 0.400024H85.5163L71.3163 54.6ZM29.3163 54.6H0.716309L18.9163 0.400024H44.1163L29.3163 54.6Z' fill='rgba(233, 233, 233, 0.3)'/%3E%3C/svg%3E%0A"
+                alt="quote"
+                className="absolute top-[0px] md:top-[15px] lg:left-[77px] left-[10px]  md:left-[50px] w-[51px] h-[37px] md:w-[70px] md:h-[45px]"
+              />
+              <blockquote
+                className={`text-[26px] p-[20px] md:text-[36px] md:px-[70px] md:py-[40px] lg:text-[44px] relative font-[800] leading-[1.1] text-center transition-opacity duration-300 ease-in-out ${
                   isFadingOut ? "opacity-0" : "opacity-100"
                 }`}
-              />
+              >
+                {quotes[currentQuoteIndex].text}
+              </blockquote>
             </div>
-            <p className="text-white text-[14px] text-center md:text-[16px]">
-              {quotes[currentQuoteIndex].author}
-            </p>
+            <div className="flex flex-col items-center gap-[10px] justify-center">
+              <div className="rounded-full w-[70px] h-[70px] overflow-hidden transition-opacity duration-300">
+                <img
+                  src={quotes[currentQuoteIndex].image}
+                  alt={quotes[currentQuoteIndex].author}
+                  className={`w-full h-full rounded-full transition-opacity duration-300 ease-in-out ${
+                    isFadingOut ? "opacity-0" : "opacity-100"
+                  }`}
+                />
+              </div>
+              <p className="text-white text-[14px] text-center md:text-[16px]">
+                {quotes[currentQuoteIndex].author}
+              </p>
+            </div>
           </div>
-        </div>
 
-        {/* Navigation Buttons */}
-        <div className="flex justify-center items-center gap-[20px] mt-4 max-w-[900px] mx-auto">
-          <button
-            onClick={prevQuote}
-            className="py-2 px-4 border-[1px] border-[#9CA3AF] w-[48px] h-[48px] rounded-full"
-          >
-            <GrFormPrevious />
-          </button>
-          {/* Dots Navigation */}
-          <div className="flex justify-center mt-2">
-            {quotes.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => changeQuote(index)}
-                className={`h-2 w-2 rounded-full mx-1 transition-all duration-300 ${
-                  index === currentQuoteIndex ? "bg-white" : "bg-gray-400"
-                }`}
-              ></button>
-            ))}
+          {/* Navigation Buttons */}
+          <div className="flex justify-center items-center gap-[20px] mt-4 max-w-[900px] mx-auto">
+            <button
+              onClick={prevQuote}
+              className="py-2 px-4 border-[1px] border-[#9CA3AF] w-[48px] h-[48px] rounded-full"
+            >
+              <GrFormPrevious />
+            </button>
+            {/* Dots Navigation */}
+            <div className="flex justify-center mt-2">
+              {quotes.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => changeQuote(index)}
+                  className={`h-2 w-2 rounded-full mx-1 transition-all duration-300 ${
+                    index === currentQuoteIndex ? "bg-white" : "bg-gray-400"
+                  }`}
+                ></button>
+              ))}
+            </div>
+            <button
+              onClick={nextQuote}
+              className="py-2 px-4 border-[1px] border-[#9CA3AF] w-[48px] h-[48px] rounded-full"
+            >
+              <GrFormNext />
+            </button>
           </div>
-          <button
-            onClick={nextQuote}
-            className="py-2 px-4 border-[1px] border-[#9CA3AF] w-[48px] h-[48px] rounded-full"
-          >
-            <GrFormNext />
-          </button>
         </div>
       </div>
     </section>

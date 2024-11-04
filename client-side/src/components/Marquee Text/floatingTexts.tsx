@@ -10,7 +10,7 @@ const FloatingTextSection: React.FC<FloatingTextSectionProps> = ({
   color,
 }) => {
   return (
-    <div className="overflow-hidden whitespace-nowrap py-[20px]">
+    <div className="overflow-hidden whitespace-nowrap py-[20px] bg-white">
       <div
         className="inline-block animate-marquee whitespace-nowrap text-[80px] md:text-[150px] font-[900] "
         style={{ color }}

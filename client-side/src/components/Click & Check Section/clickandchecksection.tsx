@@ -49,7 +49,7 @@ const ClickandCheckSection: React.FC = () => {
   };
 
   return (
-    <div className="py-[50px]">
+    <div className="py-[50px] bg-white">
       <div className="relative">
         <TextContent />
         <div className="relative">
