@@ -1,48 +1,89 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
 const ShopTheRoomSection = () => {
+  const products = [
+    {
+      image:
+        "https://impact-theme-home.myshopify.com/cdn/shop/products/507906.jpg?v=1653058051&width=600",
+    },
+    {
+      image:
+        "https://impact-theme-home.myshopify.com/cdn/shop/products/508044_Bottoms_Up_Vase_L_navy_blue.jpg?v=1653058200&width=1400",
+    },
+  ];
+
+  const [selectedProduct, setSelectedProduct] = useState(products[0].image);
+  const [activeBtn, setActiveBtn] = useState(0);
+
+  const handleButtonClick = (index: number, productImage: string) => {
+    setSelectedProduct(productImage);
+    setActiveBtn(index);
+  };
+
   return (
     <section className="bg-white">
-      <div className="max-w-[1600px] mx-auto px-[20px] md:px-[32px] lg:px-[48px] ">
+      <div className="max-w-[1600px] mx-auto px-[20px] md:px-[32px] lg:px-[48px]">
         <div className="flex flex-col gap-[20px]">
           <h1 className="text-[32px] md:text-[40px] lg:text-[48px] font-[800] text-[#272727]">
             Shop the room
           </h1>
-          <div className="relative flex flex-col  md:flex-row">
+          <div className="relative flex flex-col md:flex-row">
             <div className="w-[100%] md:w-[50%] relative">
               <img
                 src="https://impact-theme-home.myshopify.com/cdn/shop/files/Pandarine_3_Seater_reclining_armrest_Lint_beige_oiled_oak_legs_Plica_Sprinkle_cream_Shaggy_Rug_cream.jpg?v=1656505302&width=1000"
                 alt="Living Room"
                 className="w-full h-auto"
               />
-              {/* Button 1 with Heartbeat Effect */}
-              <div className="absolute" style={{ top: "47%", left: "12%" }}>
-                <div className="relative w-[42px] h-[42px] flex justify-center items-center">
-                  <div className="absolute inset-0 bg-white rounded-full opacity-20 animate-heartbeat"></div>
+              {/* Button 1 */}
+              <div
+                className="absolute cursor-pointer"
+                style={{ top: "47%", left: "12%" }}
+                onClick={() => handleButtonClick(1, products[1].image)}
+              >
+                <div
+                  className={`relative flex justify-center transition-all duration-300 ease-in-out items-center ${
+                    activeBtn === 1 ? "w-[52px] h-[52px]" : "w-[32px] h-[32px]"
+                  }`}
+                >
+                  <div className="absolute inset-0 bg-white transition-all duration-300 ease-in-out rounded-full opacity-20 animate-heartbeat"></div>
                   <button
-                    className="relative bg-white rounded-full w-[13px] h-[13px] flex justify-center items-center shadow-md"
-                    onClick={() => alert("Button 1 clicked")}
+                    className={`relative bg-white transition-all duration-300 ease-in-out rounded-full ${
+                      activeBtn === 1
+                        ? "w-[14px] h-[14px]"
+                        : "w-[10px] h-[10px]"
+                    } flex justify-center items-center shadow-md`}
                   ></button>
                 </div>
               </div>
-              {/* Button 2 with Heartbeat Effect */}
-              <div className="absolute" style={{ top: "40%", left: "74%" }}>
-                <div className="relative w-[42px] h-[42px] flex justify-center items-center">
-                  <div className="absolute inset-0 bg-white rounded-full opacity-20 animate-heartbeat"></div>
+              {/* Button 2 */}
+              <div
+                className="absolute cursor-pointer"
+                style={{ top: "40%", left: "74%" }}
+                onClick={() => handleButtonClick(0, products[0].image)}
+              >
+                <div
+                  className={`relative flex justify-center transition-all duration-300 ease-in-out items-center ${
+                    activeBtn === 0 ? "w-[52px] h-[52px]" : "w-[32px] h-[32px]"
+                  }`}
+                >
+                  <div className="absolute inset-0 bg-white transition-all duration-300 ease-in-out rounded-full opacity-20 animate-heartbeat"></div>
                   <button
-                    className="relative bg-white rounded-full w-[13px] h-[13px] flex justify-center items-center shadow-md"
-                    onClick={() => alert("Button 2 clicked")}
+                    className={`relative bg-white transition-all duration-300 ease-in-out rounded-full ${
+                      activeBtn === 0
+                        ? "w-[14px] h-[14px]"
+                        : "w-[10px] h-[10px]"
+                    } flex justify-center items-center transition-all duration-300 ease-in-out shadow-md`}
                   ></button>
                 </div>
               </div>
             </div>
 
-            <div className="w-[100%] md:w-[50%] flex justify-center ">
+            <div className="w-[100%] md:w-[50%] flex justify-center">
               <img
-                src="https://impact-theme-home.myshopify.com/cdn/shop/products/507906.jpg?v=1653058051&width=600"
-                alt=""
-                className="max-w-[480px]"
+                src={selectedProduct}
+                alt="Selected Product"
+                className="w-[200px] lg:w-[480px]s"
               />
             </div>
           </div>
