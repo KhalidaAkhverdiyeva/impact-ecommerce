@@ -1,56 +1,57 @@
 "use client";
 import { Header } from "@/components/Layout/Header/header";
-import ShopifySection from "@/components/Shopify Section/shopifySection";
-import { Link } from "@/i18n/routing";
-import React, { useState } from "react";
+import { Link, useRouter } from "@/i18n/routing";
+import React, { useEffect, useState } from "react";
 import { FaEye } from "react-icons/fa6";
 import { TbEyeClosed } from "react-icons/tb";
 
 const LoginPage = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  //   const { setUserId } = useUser();
-  //   const router = useRouter();
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("userId");
+    console.log("Retrieved userId token:", token);
+    if (token) {
+      router.push("/account");
+    }
+  }, [router]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  //   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //     e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-  //     try {
-  //       const response = await fetch("http://localhost:3001/api/auth/login", {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({ username, password }),
-  //         credentials: "include",
-  //       });
+    try {
+      const response = await fetch("http://localhost:3001/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+        credentials: "include",
+      });
 
-  //       if (response.ok) {
-  //         const data = await response.json();
-  //         const { userId } = data;
-  //         console.log(userId, "User id from response");
-  //         localStorage.setItem("userId", userId);
-  //         setUserId(userId);
+      if (response.ok) {
+        const data = await response.json();
+        const { userId } = data;
 
-  //         router.push("/");
-  //       } else {
-  //         console.error("Login failed:", response.statusText);
-  //         alert("Login failed");
-  //       }
-  //     } catch (error) {
-  //       console.error("An error occurred:", error);
-  //       alert("An error occurred. Please try again.");
-  //     }
-  //   };
+        localStorage.setItem("userId", userId);
 
-  //   const handleCreateAccount = () => {
-  //     router.push("/register");
-  //   };
+        router.push("/account");
+      } else {
+        console.error("Login failed:", response.statusText);
+        alert("Login failed");
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+      alert("An error occurred. Please try again.");
+    }
+  };
 
   return (
     <div>
@@ -61,16 +62,16 @@ const LoginPage = () => {
             Login
           </h2>
           <form
-            // onSubmit={handleSubmit}
+            onSubmit={handleSubmit}
             className="w-full px-[20px] pt-[40px] pb-[10px] max-w-[450px]  bg-[#F4F4F4]"
           >
             <div className="mb-[30px]">
               <input
                 type="email"
                 id="email"
-                value={username}
+                value={email}
                 placeholder="E-mail"
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
                 className="block text-[16px] w-full px-[20px] py-[15px] border bg-transparent border-[#cbc9c9] placeholder-[#B2B2B2]  focus:outline-none focus:ring-0 focus:border-black transition-colors duration-300 ease-in-out"
                 required
               />
@@ -118,7 +119,6 @@ const LoginPage = () => {
           </div>
         </div>
       </div>
-      {/* <ShopifySection /> */}
     </div>
   );
 };
