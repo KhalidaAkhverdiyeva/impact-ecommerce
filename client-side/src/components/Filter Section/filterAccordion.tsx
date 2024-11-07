@@ -9,7 +9,6 @@ const FilterAccordion = () => {
 
   return (
     <div className="hidden lg:block w-[300px] mx-auto text-[#272727]">
-      {/* In Stock Filter */}
       <div className="flex justify-between py-[20px] border-t-[1px]">
         <div className="font-[700] text-[18px]">In stock only</div>
         <CustomSwitch />
@@ -27,19 +26,19 @@ const FilterAccordion = () => {
           </div>
         </div>
         {isDesignerOpen && (
-          <div className="mt-[10px] ml-[20px] space-y-2">
-            <label>
-              <input type="checkbox" className="mr-2" />
-              Designer 1
-            </label>
-            <label>
-              <input type="checkbox" className="mr-2" />
-              Designer 2
-            </label>
-            <label>
-              <input type="checkbox" className="mr-2" />
-              Designer 3
-            </label>
+          <div className="mt-[10px] space-y-2 text-[#7a7979]">
+            {[
+              "Andreas Engesvik",
+              "Pierre Charpin",
+              "George Sowden",
+              "Thomas Bentzen",
+              "Phanta",
+            ].map((designer) => (
+              <label key={designer} className="flex items-center capitalize">
+                <input type="checkbox" className="mr-2 custom-checkbox" />
+                {designer}
+              </label>
+            ))}
           </div>
         )}
       </div>
