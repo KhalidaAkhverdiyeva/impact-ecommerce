@@ -6,14 +6,13 @@ const getProduct = async (req, res) => {
             page = 1,
             limit = 15,
             search,
-            collectionName,
+            designer,
+            productType,
             color,
-            size,
-            material,
-            availability,
-            isNewProduct,
+            inStock,
             minPrice,
-            maxPrice
+            maxPrice,
+            isNewProduct
         } = req.query;
 
         const filter = {};
@@ -21,41 +20,39 @@ const getProduct = async (req, res) => {
         if (search) {
             filter.title = { $regex: search, $options: 'i' };
         }
-        if (collectionName) {
-            filter.collectionName = collectionName;
+
+        if (designer) {
+            filter.designer = designer;
         }
+
+        if (productType) {
+            filter.productType = productType;
+        }
+
         if (color) {
-            filter.color = color;
+            filter['colorVariants.color'] = color;
         }
-        if (size) {
-            filter.size = size;
+
+        if (inStock) {
+            filter.isSoldOut = inStock === 'false';
         }
-        if (material) {
-            filter.material = material;
+
+        if (minPrice || maxPrice) {
+            filter.price = {};
+            if (minPrice) filter.price.$gte = Number(minPrice);
+            if (maxPrice) filter.price.$lte = Number(maxPrice);
         }
-        if (availability) {
-            filter.availability = availability;
-        }
+
         if (isNewProduct) {
             filter.isNewProduct = isNewProduct === 'true';
-        }
-        if (minPrice || maxPrice) {
-            filter.newPrice = {};
-            if (minPrice) {
-                filter.newPrice.$gte = Number(minPrice);
-            }
-            if (maxPrice) {
-                filter.newPrice.$lte = Number(maxPrice);
-            }
         }
 
         const products = await Product.find(filter)
             .skip((page - 1) * limit)
-            .limit(Number(limit));
-
+            .limit(Number(limit))
+            .sort({ price: 1, designer: 1, 'colorVariants.color': 1 });
 
         const totalCount = await Product.countDocuments(filter);
-
 
         res.status(200).json({ totalCount, page: Number(page), limit: Number(limit), products });
     } catch (err) {
@@ -233,3 +230,6 @@ const editProduct = async (req, res) => {
 
 
 module.exports = { getProduct, addProduct, deleteProduct, getProductByTitle, editProduct, getProductsByIds };
+
+
+//  All!Eyeson@2021#

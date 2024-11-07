@@ -1,4 +1,4 @@
-import BlogCard from "@/components/Blog Card/blogCard";
+// import BlogCard from "@/components/Blog Card/blogCard";
 import ExploreCollectionsSections from "@/components/Explore Collections Section/exploreCollectionsSection";
 import FilterSection from "@/components/Filter Section/filterSection";
 import { Header } from "@/components/Layout/Header/header";

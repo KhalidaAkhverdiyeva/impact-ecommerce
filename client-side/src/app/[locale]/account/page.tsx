@@ -1,30 +1,58 @@
 "use client";
 import { Header } from "@/components/Layout/Header/header";
 import { useRouter } from "@/i18n/routing";
-import React from "react";
-
-interface UserDetails {
-  name: string;
-  email: string;
-  phone: string;
-  address: string;
-  orderHistory: string[];
-}
+import React, { useEffect, useState } from "react";
 
 const Accountant: React.FC = () => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  const user: UserDetails = {
-    name: "John Smith",
-    email: "john.smith@example.com",
-    phone: "+1 234 567 8901",
-    address: "123 Main Street, Springfield, IL 62704",
-    orderHistory: [
-      "Order #12345 - Status: Delivered",
-      "Order #12346 - Status: Shipped",
-      "Order #12347 - Status: Pending",
-    ],
-  };
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+
+    if (!userId) {
+      router.push("/login");
+      return;
+    }
+
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3001/api/users/${userId}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          setUser(data);
+        } else {
+          console.error("Failed to fetch user data");
+          alert("Failed to load user data.");
+        }
+      } catch (error) {
+        console.error("An error occurred while fetching user data:", error);
+        alert("An error occurred while fetching your data.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserData();
+  }, [router]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!user) {
+    return <div>No user data available</div>;
+  }
 
   const handleLogout = () => {
     localStorage.removeItem("userId");

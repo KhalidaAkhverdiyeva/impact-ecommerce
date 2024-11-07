@@ -13,7 +13,6 @@ const LoginPage = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("userId");
-    console.log("Retrieved userId token:", token);
     if (token) {
       router.push("/account");
     }
