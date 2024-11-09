@@ -16,9 +16,11 @@ export interface Product {
   colors: string;
   currency: string;
   price: number;
+  oldPrice: number;
   rating: number;
   isNewProduct: boolean;
   isSoldOut: boolean;
+  discountPercent: number;
   availableUnits: number;
   descriptionTitle: string;
   descriptionText: string;

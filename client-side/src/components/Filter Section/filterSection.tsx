@@ -1,14 +1,78 @@
 "use client";
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import SortBy from "./sortBy";
 import FilterAccordion from "./filterAccordion";
 import ProductGrid from "../Product Card/productGrid";
+import { Product } from "@/types/productCardTypes";
+import { IoCloseOutline } from "react-icons/io5";
 
 const FilterSection = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const [color, setColor] = useState<string | null>(null);
+  const [designer, setDesigner] = useState<string | null>(null);
+  const [type, setType] = useState<string | null>(null);
+  const [minPrice, setMinPrice] = useState<number>(0);
+  const [maxPrice, setMaxPrice] = useState<number>(1500);
+  const [inStock, setInStock] = useState<boolean | null>(null);
+
+  const fetchProducts = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const queryParams = new URLSearchParams({
+        page: "1",
+        limit: "9",
+        color: color || "",
+        designer: designer || "",
+        productType: type || "",
+        minPrice: minPrice.toString(),
+        maxPrice: maxPrice.toString(),
+      });
+
+      if (inStock !== null) {
+        queryParams.append("inStock", inStock.toString());
+      }
+
+      const response = await fetch(
+        `http://localhost:3001/api/products/all?${queryParams.toString()}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      setProducts(data.products);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }, [color, designer, inStock, maxPrice, minPrice, type]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [color, designer, type, minPrice, maxPrice, inStock, fetchProducts]);
+
+  const activeFilters = [
+    color && `Color: ${color}`,
+    designer && `Designer: ${designer}`,
+    type && `Type: ${type}`,
+    inStock !== null && `In Stock: ${inStock ? "Yes" : "No"}`,
+  ].filter(Boolean);
+
   return (
     <div className="max-w-[1600px] mx-auto py-[50px] px-[20px] md:px-[32px] lg:px-[48px]">
       <div className="mb-[30px] flex justify-between">
-        <div className="flex items-center gap-[10px]">
+        <div className="flex items-center gap-[10px] w-[22%]">
           <svg
             role="presentation"
             fill="none"
@@ -39,11 +103,53 @@ const FilterSection = () => {
           </svg>
           Filters
         </div>
-        <SortBy />
+        <div
+          className={`flex ${
+            activeFilters.length > 0 ? "justify-between" : "justify-end"
+          } w-[77%]`}
+        >
+          {activeFilters.length > 0 && (
+            <div className="bg-[#E9E9E9] px-[10px] py-[5px] flex items-center gap-[5px]">
+              {activeFilters.map((filter, index) => (
+                <div key={index} className="flex items-center gap-[5px]">
+                  <span>{filter}</span>
+                  <IoCloseOutline
+                    className="cursor-pointer"
+                    onClick={() => {
+                      if ((filter as string).includes("Color")) setColor(null);
+                      if ((filter as string).includes("Designer"))
+                        setDesigner(null);
+                      if ((filter as string).includes("Type")) setType(null);
+                      if ((filter as string).includes("In Stock"))
+                        setInStock(null);
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div>
+            <SortBy />
+          </div>
+        </div>
       </div>
       <div className="flex gap-[40px]">
-        <FilterAccordion />
-        <ProductGrid />
+        <FilterAccordion
+          setColor={setColor}
+          setDesigner={setDesigner}
+          setType={setType}
+          setMinPrice={setMinPrice}
+          setMaxPrice={setMaxPrice}
+          setInStock={setInStock}
+          currentColor={color}
+          currentDesigner={designer}
+          currentType={type}
+          currentMinPrice={minPrice}
+          currentMaxPrice={maxPrice}
+          currentInStock={inStock}
+        />
+        <ProductGrid products={products} loading={loading} error={error} />
       </div>
     </div>
   );

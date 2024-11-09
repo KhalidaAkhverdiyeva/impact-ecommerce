@@ -34,6 +34,15 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
     isSoldOut,
   } = product;
 
+  const calculateDiscount = (price: number, oldPrice: number) => {
+    if (oldPrice && oldPrice > price) {
+      return Math.round(((oldPrice - price) / oldPrice) * 100);
+    }
+    return 0;
+  };
+
+  const discountPercent = calculateDiscount(product.price, product.oldPrice);
+
   return (
     <div className="w-[100%]" key={product.id}>
       <div className="relative mb-6">
@@ -46,6 +55,11 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           {isSoldOut && (
             <span className="bg-[#BEBDB9] w-[65px] py-[2px] font-[700] text-center mb-[10px]">
               Sold Out
+            </span>
+          )}
+          {discountPercent > 0 && (
+            <span className="bg-[#ec6146] text-[white] w-[65px] py-[2px] font-[700] text-center mb-[10px]">
+              Save {discountPercent}%
             </span>
           )}
         </div>

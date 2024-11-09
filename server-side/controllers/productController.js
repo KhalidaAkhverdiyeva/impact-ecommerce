@@ -4,7 +4,7 @@ const getProduct = async (req, res) => {
     try {
         const {
             page = 1,
-            limit = 15,
+            limit = 9,
             search,
             designer,
             productType,

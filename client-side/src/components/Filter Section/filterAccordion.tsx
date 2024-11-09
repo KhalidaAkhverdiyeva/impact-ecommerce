@@ -3,11 +3,42 @@ import { IoChevronDownOutline } from "react-icons/io5";
 import CustomSwitch from "./customSwitch";
 import { Tooltip } from "@mui/material";
 
-const FilterAccordion = () => {
+interface AccordionFilterProps {
+  setColor: (color: string | null) => void;
+  setDesigner: (designer: string | null) => void;
+  setType: (type: string | null) => void;
+  setMinPrice: (price: number) => void;
+  setMaxPrice: (price: number) => void;
+  setInStock: (inStock: boolean) => void;
+  currentColor: string | null;
+  currentDesigner: string | null;
+  currentType: string | null;
+  currentMinPrice: number;
+  currentMaxPrice: number;
+  currentInStock: boolean;
+}
+
+const FilterAccordion: React.FC<AccordionFilterProps> = ({
+  setColor,
+  setDesigner,
+  setType,
+  // setMinPrice,
+  // setMaxPrice,
+  setInStock,
+  // currentColor,
+  // inStock,
+  currentDesigner,
+  currentType,
+  currentMinPrice,
+  currentMaxPrice,
+  currentInStock,
+}) => {
   const [isDesignerOpen, setIsDesignerOpen] = useState(false);
   const [isColorOpen, setIsColorOpen] = useState(false);
   const [isPriceOpen, setIsPriceOpen] = useState(false);
   const [isTypeOpen, setIsTypeOpen] = useState(false);
+  const [isInStock, setIsInStock] = useState(currentInStock);
+  const [price, setPrice] = useState([currentMinPrice, currentMaxPrice]);
 
   const colorOptions = [
     { color: "#9B503D", name: "Brown" },
@@ -17,9 +48,16 @@ const FilterAccordion = () => {
 
   return (
     <div className="hidden lg:block w-[300px] mx-auto text-[#272727]">
+      {/* In Stock Filter */}
       <div className="flex justify-between py-[20px] border-t-[1px]">
         <div className="font-[700] text-[18px]">In stock only</div>
-        <CustomSwitch />
+        <CustomSwitch
+          onChange={() => {
+            setIsInStock(!isInStock);
+            setInStock(!isInStock);
+          }}
+          checked={isInStock}
+        />
       </div>
 
       {/* Designer Filter */}
@@ -38,18 +76,19 @@ const FilterAccordion = () => {
             isDesignerOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          {[
-            "Andreas Engesvik",
-            "Pierre Charpin",
-            "George Sowden",
-            "Thomas Bentzen",
-            "Phanta",
-          ].map((designer) => (
-            <label key={designer} className="flex items-center capitalize">
-              <input type="checkbox" className="mr-2 custom-checkbox" />
-              {designer}
-            </label>
-          ))}
+          {["Andreas Engesvik", "Pierre Charpin", "George Sowden"].map(
+            (designer) => (
+              <label key={designer} className="flex items-center capitalize">
+                <input
+                  type="checkbox"
+                  className="mr-2 custom-checkbox"
+                  onChange={() => setDesigner(designer)}
+                  checked={currentDesigner === designer}
+                />
+                {designer}
+              </label>
+            )
+          )}
         </div>
       </div>
 
@@ -74,7 +113,7 @@ const FilterAccordion = () => {
               <div
                 className={`w-[40px] h-[16px] cursor-pointer`}
                 style={{ backgroundColor: color }}
-                onClick={() => console.log(`${name} color clicked`)}
+                onClick={() => setColor(color)}
               />
             </Tooltip>
           ))}
@@ -97,14 +136,17 @@ const FilterAccordion = () => {
             isTypeOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          {["Office", "Decoration", "Product type", "Lighting", "Books"].map(
-            (type) => (
-              <label key={type} className="flex items-center capitalize">
-                <input type="checkbox" className="mr-2 custom-checkbox" />
-                {type}
-              </label>
-            )
-          )}
+          {["Office", "Decoration", "Lighting"].map((type) => (
+            <label key={type} className="flex items-center capitalize">
+              <input
+                type="checkbox"
+                className="mr-2 custom-checkbox"
+                onChange={() => setType(type)}
+                checked={currentType === type}
+              />
+              {type}
+            </label>
+          ))}
         </div>
       </div>
 
@@ -126,10 +168,17 @@ const FilterAccordion = () => {
         >
           {isPriceOpen && (
             <>
-              <input type="range" min="0" max="1000" className="w-full" />
+              <input
+                type="range"
+                min="0"
+                max="1000"
+                value={price[1]}
+                onChange={(e) => setPrice([price[0], Number(e.target.value)])}
+                className="w-full"
+              />
               <div className="flex justify-between text-sm mt-2">
                 <span>$0</span>
-                <span>$1000</span>
+                <span>${price[1]}</span>
               </div>
             </>
           )}

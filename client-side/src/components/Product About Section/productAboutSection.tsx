@@ -8,7 +8,7 @@ const ProductAboutSection: React.FC<{ product: Product }> = ({ product }) => {
         <div className="flex lg:flex-[45%] flex-col  text-[#272727] px-[20px] md:px-[32px] lg:px-[48px]">
           <p className="font-[800] md:text-[18px]">About</p>
           <h4 className="my-[20px] md:my-[26px] text-[34px]  md:text-[40px] lg:text-[50px] font-[800] leading-[1]">
-            The power of the stripes
+            {product.descriptionTitle}
           </h4>
           <p className=" text-[#3e3d3d] text-[14px] md:text-[18px] ">
             Vertical opaque and clear stripes create a subtle color variance in
