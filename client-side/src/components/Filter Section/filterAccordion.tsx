@@ -47,7 +47,7 @@ const FilterAccordion: React.FC<AccordionFilterProps> = ({
   ];
 
   return (
-    <div className="hidden lg:block w-[300px] mx-auto text-[#272727]">
+    <div className="hidden lg:block  w-[300px]  text-[#272727]">
       {/* In Stock Filter */}
       <div className="flex justify-between py-[20px] border-t-[1px]">
         <div className="font-[700] text-[18px]">In stock only</div>

@@ -18,14 +18,18 @@ const FilterSection = () => {
   const [maxPrice, setMaxPrice] = useState<number>(1500);
   const [inStock, setInStock] = useState<boolean>(true);
 
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const itemsPerPage = 9;
+
   const fetchProducts = useCallback(async () => {
     setLoading(true);
     setError(null);
 
     try {
       const queryParams = new URLSearchParams({
-        page: "1",
-        limit: "9",
+        page: currentPage.toString(),
+        limit: itemsPerPage.toString(),
         color: color || "",
         designer: designer || "",
         productType: type || "",
@@ -43,13 +47,17 @@ const FilterSection = () => {
       }
 
       const data = await response.json();
+
+      const totalPages = Math.ceil(data.totalCount / itemsPerPage);
+
       setProducts(data.products);
+      setTotalPages(totalPages);
     } catch (err: any) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
-  }, [color, designer, inStock, maxPrice, minPrice, type]);
+  }, [color, designer, inStock, maxPrice, minPrice, type, currentPage]);
 
   useEffect(() => {
     fetchProducts();
@@ -57,13 +65,22 @@ const FilterSection = () => {
 
   useEffect(() => {
     fetchProducts();
-  }, [color, designer, type, minPrice, maxPrice, inStock, fetchProducts]);
+  }, [
+    color,
+    designer,
+    type,
+    minPrice,
+    maxPrice,
+    inStock,
+    fetchProducts,
+    currentPage,
+  ]);
 
   const activeFilters = [
-    color && `Color: ${color}`,
-    designer && `Designer: ${designer}`,
-    type && `Type: ${type}`,
-    inStock === false && `In Stock: No`,
+    color && ` ${color}`,
+    designer && `${designer}`,
+    type && ` ${type}`,
+    inStock === false && `Not in Stock`,
   ].filter(Boolean);
 
   return (
@@ -113,10 +130,10 @@ const FilterSection = () => {
                   <IoCloseOutline
                     className="cursor-pointer"
                     onClick={() => {
-                      if ((filter as string).includes("Color")) setColor(null);
-                      if ((filter as string).includes("Designer"))
-                        setDesigner(null);
-                      if ((filter as string).includes("Type")) setType(null);
+                      if (filter.includes(color)) setColor(null);
+                      if (filter.includes(designer)) setDesigner(null);
+                      if (filter.includes(type)) setType(null);
+                      if (filter.includes("Not in Stock")) setInStock(true);
                     }}
                   />
                 </div>
@@ -144,7 +161,14 @@ const FilterSection = () => {
           currentMaxPrice={maxPrice}
           currentInStock={inStock}
         />
-        <ProductGrid products={products} loading={loading} error={error} />
+        <ProductGrid
+          products={products}
+          loading={loading}
+          error={error}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
     </div>
   );
