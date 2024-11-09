@@ -16,7 +16,7 @@ const FilterSection = () => {
   const [type, setType] = useState<string | null>(null);
   const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number>(1500);
-  const [inStock, setInStock] = useState<boolean | null>(null);
+  const [inStock, setInStock] = useState<boolean>(true);
 
   const fetchProducts = useCallback(async () => {
     setLoading(true);
@@ -31,11 +31,8 @@ const FilterSection = () => {
         productType: type || "",
         minPrice: minPrice.toString(),
         maxPrice: maxPrice.toString(),
+        inStock: inStock.toString(),
       });
-
-      if (inStock !== null) {
-        queryParams.append("inStock", inStock.toString());
-      }
 
       const response = await fetch(
         `http://localhost:3001/api/products/all?${queryParams.toString()}`
@@ -66,7 +63,7 @@ const FilterSection = () => {
     color && `Color: ${color}`,
     designer && `Designer: ${designer}`,
     type && `Type: ${type}`,
-    inStock !== null && `In Stock: ${inStock ? "Yes" : "No"}`,
+    inStock === false && `In Stock: No`,
   ].filter(Boolean);
 
   return (
@@ -120,8 +117,6 @@ const FilterSection = () => {
                       if ((filter as string).includes("Designer"))
                         setDesigner(null);
                       if ((filter as string).includes("Type")) setType(null);
-                      if ((filter as string).includes("In Stock"))
-                        setInStock(null);
                     }}
                   />
                 </div>
