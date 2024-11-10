@@ -47,24 +47,26 @@ const ProductGrid: React.FC<ProductGridProps> = ({
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
-      <div className="flex justify-between items-center mt-6">
-        <button
-          onClick={handlePrev}
-          disabled={currentPage === 1}
-          className="text-[#4f4f4f] disabled:text-gray-300"
-        >
-          <GrFormPrevious />
-        </button>
-        <div>
-          Page {currentPage} of {totalPages}
+      <div className="flex justify-center items-center mt-6 w-[100%]">
+        <div className="flex justify-center py-[10px] gap-[20px] w-[200px] border-solid border-[1px] border-[#e3e2e2]">
+          <button
+            onClick={handlePrev}
+            disabled={currentPage === 1}
+            className="text-[#4f4f4f] disabled:text-gray-300 "
+          >
+            <GrFormPrevious />
+          </button>
+          <div>
+            {currentPage} / {totalPages}
+          </div>
+          <button
+            onClick={handleNext}
+            disabled={currentPage === totalPages}
+            className="text-[#4f4f4f] disabled:text-gray-300"
+          >
+            <GrFormNext />
+          </button>
         </div>
-        <button
-          onClick={handleNext}
-          disabled={currentPage === totalPages}
-          className="text-[#4f4f4f] disabled:text-gray-300"
-        >
-          <GrFormNext />
-        </button>
       </div>
     </div>
   );

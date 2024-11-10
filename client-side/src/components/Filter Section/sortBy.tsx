@@ -1,11 +1,21 @@
+"use client";
 import React, { useState } from "react";
 import { IoChevronDownOutline } from "react-icons/io5";
 
-const SortBy: React.FC = () => {
+interface SortByProps {
+  setSortOption: (sortOption: string) => void;
+}
+
+const SortBy: React.FC<SortByProps> = ({ setSortOption }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleSortChange = (option: string) => {
+    setSortOption(option);
+    setIsDropdownOpen(false); // Close the dropdown after selection
   };
 
   return (
@@ -17,20 +27,32 @@ const SortBy: React.FC = () => {
           <IoChevronDownOutline />
         </div>
       </div>
-      {/* Dropdown content */}
       {isDropdownOpen && (
         <div className="absolute top-[30px] left-0 bg-white shadow-lg rounded-md p-[10px] w-[150px]">
           <ul className="flex flex-col gap-[5px]">
-            <li className="hover:bg-gray-100 p-[5px] rounded-md">Featured</li>
-            <li className="hover:bg-gray-100 p-[5px] rounded-md">
+            <li
+              className="hover:bg-gray-100 p-[5px] rounded-md"
+              onClick={() => handleSortChange("Alphabetically")}
+            >
+              Alphabetically
+            </li>
+            <li
+              className="hover:bg-gray-100 p-[5px] rounded-md"
+              onClick={() => handleSortChange("Price: Low to High")}
+            >
               Price: Low to High
             </li>
-            <li className="hover:bg-gray-100 p-[5px] rounded-md">
+            <li
+              className="hover:bg-gray-100 p-[5px] rounded-md"
+              onClick={() => handleSortChange("Price: High to Low")}
+            >
               Price: High to Low
             </li>
-            <li className="hover:bg-gray-100 p-[5px] rounded-md">Newest</li>
-            <li className="hover:bg-gray-100 p-[5px] rounded-md">
-              Best Sellers
+            <li
+              className="hover:bg-gray-100 p-[5px] rounded-md"
+              onClick={() => handleSortChange("Newest")}
+            >
+              Newest
             </li>
           </ul>
         </div>
