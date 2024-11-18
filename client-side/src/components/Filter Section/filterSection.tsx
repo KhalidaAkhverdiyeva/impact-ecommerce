@@ -8,6 +8,7 @@ import { IoCloseOutline } from "react-icons/io5";
 
 const FilterSection = () => {
   const [products, setProducts] = useState<Product[]>([]);
+
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -68,7 +69,7 @@ const FilterSection = () => {
     minPrice,
     type,
     currentPage,
-    sortOption, // Include sortOption in dependency array
+    sortOption,
   ]);
 
   useEffect(() => {

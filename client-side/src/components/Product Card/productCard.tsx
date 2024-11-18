@@ -8,6 +8,7 @@ import { IoMdStar } from "react-icons/io";
 import AddToCartSidebar from "../Add to Card Sidebar/addToCartSidebar";
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
+  console.log(product, "from product card");
   const { selectedColor, setSelectedColor } = useColor();
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -138,7 +139,11 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           ></div>
         </div>
       </div>
-      <AddToCartSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+      <AddToCartSidebar
+        isAddToCartOpen={isOpen}
+        setIsAddCartOpen={setIsOpen}
+        product={product}
+      />
     </div>
   );
 };

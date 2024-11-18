@@ -4,6 +4,7 @@ const cors = require("cors")
 const connectDB = require("./db/dbserver");
 const productRoutes = require("./routes/product");
 const authRoutes = require("./routes/auth")
+const userRoutes = require("./routes/user");
 
 dotenv.config();
 
@@ -25,6 +26,8 @@ app.use(cors({
 connectDB(url);
 
 app.use("/api/products", productRoutes);
-app.use("/api/auth", authRoutes)
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
