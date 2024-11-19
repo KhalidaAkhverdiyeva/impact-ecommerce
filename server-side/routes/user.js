@@ -81,14 +81,14 @@ router.put("/:userId/cart/:cartItemId", async (req, res) => {
     const { quantity } = req.body;
 
     try {
-        // Find the user
+
         const user = await User.findById(userId);
 
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
 
-        // Find the cart item and update the quantity
+
         const cartItem = user.cart.id(cartItemId);
 
         if (!cartItem) {
@@ -110,14 +110,12 @@ router.delete("/:userId/cart/:cartItemId", async (req, res) => {
     const { userId, cartItemId } = req.params;
 
     try {
-        // Find the user
         const user = await User.findById(userId);
 
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
 
-        // Remove the cart item
         user.cart.id(cartItemId).remove();
         await user.save();
 

@@ -3,9 +3,11 @@ export interface ColorVariant {
   mainImage: string;
   hoverImage: string;
   detailImages: string[];
+  _id: string;
 }
 
 export interface Product {
+  _id: string;
   id: string;
   title: string;
   designer: string;

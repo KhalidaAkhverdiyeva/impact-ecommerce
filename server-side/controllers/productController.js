@@ -79,20 +79,26 @@ const getProductByTitle = async (req, res) => {
     }
 };
 
-const getProductsByIds = async (req, res) => {
-    const { productIds } = req.body;
-
+const getProductById = async (req, res) => {
     try {
+        const { id } = req.params;  // Get the product ID from the URL parameter
 
-        const products = await Product.find({ _id: { $in: productIds } });
-
-        if (!products || products.length === 0) {
-            return res.status(404).json({ message: 'No products found' });
+        // Validate the ID format
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ msg: 'Invalid product ID format' });
         }
 
-        return res.status(200).json({ products });
-    } catch (error) {
-        return res.status(500).json({ message: 'Error fetching products', error });
+        // Find the product by ID
+        const product = await Product.findById(id);
+
+        if (!product) {
+            return res.status(404).json({ msg: 'Product not found' });
+        }
+
+        res.status(200).json({ product });
+    } catch (err) {
+        console.error('Error in getProductById route:', err);
+        res.status(500).json({ msg: 'Server error', err });
     }
 };
 
@@ -229,7 +235,6 @@ const editProduct = async (req, res) => {
 };
 
 
-module.exports = { getProduct, addProduct, deleteProduct, getProductByTitle, editProduct, getProductsByIds };
+module.exports = { getProduct, addProduct, deleteProduct, getProductByTitle, editProduct, getProductById };
 
 
-//  All!Eyeson@2021#
