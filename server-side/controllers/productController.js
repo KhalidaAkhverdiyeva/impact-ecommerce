@@ -1,4 +1,6 @@
 const Product = require('../models/product');
+const mongoose = require('mongoose');
+
 
 const getProduct = async (req, res) => {
     try {
@@ -81,14 +83,14 @@ const getProductByTitle = async (req, res) => {
 
 const getProductById = async (req, res) => {
     try {
-        const { id } = req.params;  // Get the product ID from the URL parameter
+        const { id } = req.params;
 
-        // Validate the ID format
+
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(400).json({ msg: 'Invalid product ID format' });
         }
 
-        // Find the product by ID
+
         const product = await Product.findById(id);
 
         if (!product) {
