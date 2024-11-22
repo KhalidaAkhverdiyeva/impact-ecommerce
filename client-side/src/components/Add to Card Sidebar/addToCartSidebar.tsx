@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import SmallProductCards from "./smallProductCards";
 import { useRouter } from "@/i18n/routing";
@@ -16,53 +15,23 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
   const [overlayVisible, setOverlayVisible] = useState<boolean>(false);
   const [textVisible, setTextVisible] = useState<boolean>(false);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [userCartItems, setUserCartItems] = useState<CartItem[]>([]);
-  console.log(userCartItems, "from state itself");
+  const [isCartFetched, setIsCartFetched] = useState<boolean>(false);
 
   const router = useRouter();
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
-    setIsLoggedIn(!!userId);
-
     if (userId) {
-      fetchCartItems(userId);
-    }
-  }, [userCartItems]);
-
-  const fetchCartItems = async (userId: string) => {
-    try {
-      const response = await fetch(
-        `http://localhost:3001/api/users/${userId}/cart`
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch cart items");
+      setIsLoggedIn(true);
+      if (!isCartFetched) {
+        fetchCartData(userId);
       }
-
-      const cartItems = await response.json();
-
-      // Fetch detailed product data for each cart item
-      const enrichedCartItems = await Promise.all(
-        cartItems.map(async (item: CartItem) => {
-          const productResponse = await fetch(
-            `http://localhost:3001/api/products/${item.productId}`
-          );
-          if (!productResponse.ok) {
-            throw new Error("Failed to fetch product details");
-          }
-          const product = await productResponse.json();
-          return { ...item, ...product };
-        })
-      );
-
-      console.log("Enriched cart items:", enrichedCartItems);
-      setUserCartItems(enrichedCartItems);
-    } catch (error) {
-      console.error("Error fetching cart items:", error);
+    } else {
+      setIsLoggedIn(false);
     }
-  };
 
-  useEffect(() => {
     if (isAddToCartOpen) {
       setOverlayVisible(true);
       setTimeout(() => {
@@ -74,7 +43,33 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
         setOverlayVisible(false);
       }, 300);
     }
-  }, [isAddToCartOpen]);
+  }, [isAddToCartOpen, isLoggedIn, isCartFetched]);
+
+  const removeProductFromCart = (productId: string) => {
+    setUserCartItems((prevItems) =>
+      prevItems.filter((item) => item.productId !== productId)
+    );
+  };
+  const fetchCartData = async (userId: string) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/users/${userId}/cart`
+      );
+      const data = await response.json();
+
+      if (response.ok) {
+        setUserCartItems(data);
+        setIsCartFetched(true);
+      } else {
+        setUserCartItems([]);
+      }
+    } catch (error) {
+      console.error("Error fetching cart data:", error);
+      setUserCartItems([]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const closeSidebar = () => {
     setTextVisible(false);
@@ -124,16 +119,39 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
               <div className="border-b-solid border-b-[4px] pb-[10px] border-b-[#272727]">
                 <p>You are eligible for free shipping</p>
               </div>
+              <div className="h-[350px] overflow-y-auto">
+                {loading ? (
+                  <p>Loading cart items...</p>
+                ) : userCartItems.length > 0 ? (
+                  userCartItems.map((cartItem) => (
+                    <SmallProductCards
+                      key={cartItem._id}
+                      productId={cartItem.productId}
+                      colorId={cartItem.colorId}
+                      quantity={cartItem.quantity}
+                      removeProductFromCart={removeProductFromCart}
+                    />
+                  ))
+                ) : (
+                  <p className="text-center text-[#7e7e7e]">
+                    Your cart is empty.
+                  </p>
+                )}
+              </div>
+              <div className="flex justify-between">
+                <h3>Total</h3>
+                <p>price</p>
+              </div>
+              <p>Tax included and shipping calculated at checkout</p>
 
-              {userCartItems.length > 0 ? (
-                userCartItems.map((item) => (
-                  <SmallProductCards key={item._id} product={item} />
-                ))
-              ) : (
-                <p className="text-center text-[#7e7e7e]">
-                  Your cart is empty.
-                </p>
-              )}
+              <div className="flex flex-col md:flex-row gap-[10px] py-[15px]">
+                <button className="py-[16px] px-[32px] bg-[#3C619E] text-white font-[700] w-[100%]">
+                  Add to cart
+                </button>
+                <button className="bg-[#272727] font-[800] w-[100%] text-white px-[32px] py-[16px]">
+                  Buy it now
+                </button>
+              </div>
             </>
           ) : (
             <div className="flex flex-col items-center gap-[20px] text-center">

@@ -13,7 +13,7 @@ import RichTextSection from "@/components/Designers Rich Text Section/richTextSe
 import NewsletterCard from "@/components/Newsletter Card/newsletterCard";
 import { Header } from "@/components/Layout/Header/header";
 import Quote from "@/components/Designer Quote/quote";
-import ImageGallery from "@/components/Image Card Gallery Section/page";
+// import ImageGallery from "@/components/Image Card Gallery Section/page";
 import ShopTheRoomSection from "@/components/Shop The Room Section/shopTheRoomSection";
 
 export default function Home() {
@@ -30,7 +30,7 @@ export default function Home() {
         <ClickandCheckSection />
         <ExploreCollectionsSection />
         {/* <GrowingImgSection /> */}
-        <ImageGallery />
+        {/* <ImageGallery /> */}
         <Quote bgColor="#708A5C" />
         <ShopTheRoomSection />
         <NewsletterCard />

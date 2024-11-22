@@ -116,10 +116,10 @@ router.delete("/:userId/cart/:cartItemId", async (req, res) => {
             return res.status(404).json({ message: "User not found" });
         }
 
-        user.cart.id(cartItemId).remove();
-        await user.save();
+        user.cart.id(cartItemId).remove(); // Remove the item with the given cartItemId
+        await user.save(); // Save the updated user (cart is modified)
 
-        res.json(user.cart);
+        res.json(user.cart); // Send back the updated cart
     } catch (error) {
         console.error("Error removing cart item:", error);
         res.status(500).json({ message: "Server error" });

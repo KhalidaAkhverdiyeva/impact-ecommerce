@@ -48,7 +48,6 @@ const AuthRegister = async (req, res) => {
     }
 };
 
-
 const AuthLogin = async (req, res) => {
     const { email, password } = req.body;
 
@@ -80,8 +79,6 @@ const AuthLogin = async (req, res) => {
         res.status(500).json({ msg: 'Server error', err });
     }
 }
-
-
 
 const ForgotPassword = async (req, res) => {
     const { email } = req.body;
@@ -126,6 +123,7 @@ const ForgotPassword = async (req, res) => {
         res.status(500).json({ msg: 'Server error', err });
     }
 }
+
 const resetPassword = async (req, res) => {
     const { token } = req.params;
     const { password } = req.body;

@@ -47,8 +47,8 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const openSidebar = async (e: { stopPropagation: () => void }) => {
     e.stopPropagation();
     const selectedColorId = product.colorVariants[selectedColorIndex]._id;
-    await addProductToCart(product._id, selectedColorId); // Add product to the cart
-    setIsOpen(true); // Open the sidebar
+    await addProductToCart(product._id, selectedColorId);
+    setIsOpen(true);
   };
 
   const handleColorSelect = (color: string, index: number) => {
