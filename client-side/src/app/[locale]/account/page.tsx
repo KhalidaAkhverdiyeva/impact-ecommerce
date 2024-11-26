@@ -3,8 +3,14 @@ import { Header } from "@/components/Layout/Header/header";
 import { useRouter } from "@/i18n/routing";
 import React, { useEffect, useState } from "react";
 
+interface User {
+  name: string;
+  email: string;
+  phone: string;
+}
+
 const Accountant: React.FC = () => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
@@ -29,7 +35,7 @@ const Accountant: React.FC = () => {
         );
 
         if (response.ok) {
-          const data = await response.json();
+          const data: User = await response.json(); // Assert that the response conforms to the User type
           setUser(data);
         } else {
           console.error("Failed to fetch user data");
@@ -72,7 +78,7 @@ const Accountant: React.FC = () => {
           </button>
         </div>
 
-        <div className=" mt-10 bg-white my-[50px] p-6 border">
+        <div className="mt-10 bg-white my-[50px] p-6 border">
           <h1 className="text-2xl font-bold text-[#272727] mb-4">Profile</h1>
           <div className="space-y-3">
             <div>
