@@ -6,6 +6,16 @@ interface SmallProductCardsProps {
   productId: string;
   removeProductFromCart: (productId: string) => void;
 }
+interface SmallCardData {
+  title: string;
+  price: number;
+  colors: string;
+  colorVariants: ColorVariant[];
+}
+
+interface ColorVariant {
+  mainImage?: string;
+}
 
 const SmallProductCards: React.FC<SmallProductCardsProps> = ({
   // colorId,
@@ -13,7 +23,9 @@ const SmallProductCards: React.FC<SmallProductCardsProps> = ({
   productId,
   removeProductFromCart,
 }) => {
-  const [smallCardData, setSmallCardData] = useState<any>(null);
+  const [smallCardData, setSmallCardData] = useState<SmallCardData | null>(
+    null
+  );
 
   useEffect(() => {
     const fetchProductwithIds = async () => {
