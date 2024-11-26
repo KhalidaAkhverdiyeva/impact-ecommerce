@@ -8,7 +8,7 @@ interface SmallProductCardsProps {
 }
 
 const SmallProductCards: React.FC<SmallProductCardsProps> = ({
-  colorId,
+  // colorId,
   quantity,
   productId,
   removeProductFromCart,
