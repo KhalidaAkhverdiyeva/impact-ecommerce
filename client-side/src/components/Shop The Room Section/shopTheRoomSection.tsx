@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React, { useState } from "react";
 
 const ShopTheRoomSection = () => {
@@ -80,10 +81,12 @@ const ShopTheRoomSection = () => {
             </div>
 
             <div className="w-[100%] md:w-[50%] flex justify-center">
-              <img
+              <Image
                 src={selectedProduct}
                 alt="Selected Product"
-                className="w-[200px] lg:w-[480px]s"
+                className="w-[500px] "
+                width={600}
+                height={600}
               />
             </div>
           </div>

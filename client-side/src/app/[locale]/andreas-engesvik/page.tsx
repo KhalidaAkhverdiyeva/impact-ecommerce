@@ -45,7 +45,7 @@ const AndreasEngesvik = () => {
       />
       <FloatingTextSection text="Meet our designers" color="#C4D9CB" />
       <div className="pb-[50px]">
-        <RichTextSection />
+        <RichTextSection title="From all over the world" />
       </div>
       <HomeDesignerGridSection />
       <ShopifySection />
