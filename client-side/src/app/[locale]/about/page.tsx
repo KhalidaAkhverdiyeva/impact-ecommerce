@@ -23,10 +23,12 @@ const AboutPage = () => {
             media="(min-width: 768px)"
             srcSet="https://impact-theme-home.myshopify.com/cdn/shop/files/HAY_MetteandRolf_Portrait.jpg?v=1656685244&width=1600"
           />
-          <img
+          <Image
             src="https://impact-theme-home.myshopify.com/cdn/shop/files/HAY_MetteandRolf_Portrait_mobile.jpg?v=1656685248&width=800"
             alt="thomas"
             className="w-full h-full object-cover"
+            width={600}
+            height={600}
           />
         </picture>
         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-10">
@@ -83,22 +85,28 @@ const AboutPage = () => {
         <div className=" flex flex-col lg:items-center lg:flex-row gap-[36px] lg:gap-[100px] px-[20px] md:px-[32px]  lg:px-[48px] ">
           <div className="flex  lg:w-[55%]">
             <div className="w-[45%]">
-              <img
+              <Image
                 src="https://impact-theme-home.myshopify.com/cdn/shop/files/about2.jpg?v=1659108534&width=1000"
                 alt=""
                 className="-rotate-3"
+                width={700}
+                height={700}
               />
-              <img
+              <Image
                 src="https://impact-theme-home.myshopify.com/cdn/shop/files/about3.jpg?v=1659108549&width=1000"
                 alt=""
                 className="rotate-3 z-10"
+                width={700}
+                height={700}
               />
             </div>
             <div className="pt-[40px] w-[55%]">
-              <img
+              <Image
                 src="https://impact-theme-home.myshopify.com/cdn/shop/files/about1.jpg?v=1659108517&width=1000"
                 alt=""
                 className="rotate-3"
+                width={700}
+                height={700}
               />
             </div>
           </div>
