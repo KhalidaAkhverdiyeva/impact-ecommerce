@@ -2,11 +2,11 @@
 "use client";
 import { useColor } from "@/contexts/colorContext";
 import { Link } from "@/i18n/routing";
-import { Product } from "@/types/productCardTypes";
 import Image from "next/image";
 import React, { useState } from "react";
 import { IoMdStar } from "react-icons/io";
 import AddToCartSidebar from "../Add to Card Sidebar/addToCartSidebar";
+import { Product } from "@/types";
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const { selectedColor, setSelectedColor } = useColor();

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { slides } from "@/static/SliderData";
 import SliderControllerButton from "./SliderControllerButton";
 import Image from "next/image";
+import { Link } from "@/i18n/routing";
 
 const HeroSliderSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -93,9 +94,11 @@ const HeroSliderSection = () => {
                     )
                   )}
                 </div>
-                <button className="text-[#272727] cursor-pointer text-[14px] font-[800] mt-[24px] bg-white py-[16px] px-[32px]">
-                  {slide.button}
-                </button>
+                <Link href="/shop">
+                  <button className="text-[#272727] cursor-pointer text-[14px] font-[800] mt-[24px] bg-white py-[16px] px-[32px]">
+                    {slide.button}
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

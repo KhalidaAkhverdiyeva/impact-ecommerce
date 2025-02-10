@@ -1,4 +1,4 @@
-import { SliderControllerButtonProps } from "@/types/SliderButtonTypes";
+import { SliderControllerButtonProps } from "@/types";
 import React from "react";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 

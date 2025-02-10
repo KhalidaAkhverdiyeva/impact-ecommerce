@@ -1,10 +1,10 @@
+"use client";
 import FloatingTextSection from "@/components/Marquee Text/floatingTexts";
 import HeroSliderSection from "@/components/Hero Section/SliderSection";
 import ClickAndCheckSection from "@/components/Click & Check Section/clickandchecksection";
 import ExploreCollectionsSection from "@/components/Explore Collections Section/exploreCollectionsSection";
-import NewArrivalsSection from "@/components/New Arrivals Section/newArrivalsSection";
-// import GrowingImgSection from "@/components/Growing Img Section/growingImgSection";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
+
 import ReadOurStoriesSection from "@/components/Read Our Stories Section/readOurStoriesSection";
 import ImageRevealSlider from "@/components/Remini Reveal Slider/imgRevealSlider";
 import CompanyCountSection from "@/components/Company Count Section/companyCountSection";
@@ -13,25 +13,54 @@ import RichTextSection from "@/components/Designers Rich Text Section/richTextSe
 import NewsletterCard from "@/components/Newsletter Card/newsletterCard";
 import { Header } from "@/components/Layout/Header/header";
 import Quote from "@/components/Designer Quote/quote";
-// import ImageGallery from "@/components/Image Card Gallery Section/page";
 import ShopTheRoomSection from "@/components/Shop The Room Section/shopTheRoomSection";
 import Image from "next/image";
+import { useState } from "react";
+import ScrollableProducts from "@/components/Scrollable Products/scrollProducts";
+import { FaAngleRight } from "react-icons/fa";
+import { Link } from "@/i18n/routing";
 
 export default function Home() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [scrollProgress, setScrollProgress] = useState<number>(0);
+
   return (
     <div>
       <div className="relative">
         <Header />
         <HeroSliderSection />
-        <NewArrivalsSection />
+        <section className="flex flex-col items-center justify-center">
+          <div className="py-[48px] px-[20px] md:py-[64px] md:px-[32px] lg:px-[48px] max-w-[1600px] w-full">
+            <h3 className="text-[32px] text-[#272727] md:text-[40px] lg:text-[48px] font-[800]">
+              New arrivals
+            </h3>
+            <div className="flex flex-col lg:flex-row justify-between">
+              <p className="pt-[15px] text-[#303030] text-[14px] md:text-[16px] lg:max-w-[700px] font-[400] pb-[20px]">
+                We are inspired by the realities of life today, in which
+                traditional divides between personal and professional space are
+                more fluid.
+              </p>
+              <Link
+                href="/shop"
+                className="text-[#484848] flex gap-[5px] items-center"
+              >
+                <p>View all</p>
+                <button className="bg-[#E9E9E9] p-[6px] rounded-full flex justify-center items-center">
+                  <FaAngleRight size={14} />
+                </button>
+              </Link>
+            </div>
+          </div>
+          <div className="w-full overflow-x-hidden mx-auto max-w-[1600px]">
+            <ScrollableProducts setScrollProgress={setScrollProgress} />
+          </div>
+        </section>
         <FloatingTextSection
           text="Good design is everyone's right."
           color="#708A5C"
         />
         <ClickAndCheckSection />
         <ExploreCollectionsSection />
-        {/* <GrowingImgSection /> */}
-        {/* <ImageGallery /> */}
         <Quote bgColor="#708A5C" />
         <ShopTheRoomSection />
         <NewsletterCard />
