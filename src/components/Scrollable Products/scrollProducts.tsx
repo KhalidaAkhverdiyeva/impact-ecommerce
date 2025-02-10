@@ -23,7 +23,7 @@ const ScrollableProducts: React.FC<ScrollableProductsProps> = ({
       const data = await response.json();
       setProducts(data.products);
     } catch (error) {
-      alert("Failed to fetch products:");
+      alert("Failed to fetch products:huahahahahahah");
     }
   };
 
