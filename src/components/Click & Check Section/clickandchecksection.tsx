@@ -6,6 +6,7 @@ import WebInfoModal from "./WebInfoModal";
 import PlusButtons from "./PlusButtons";
 import TextContent from "./TextContent";
 import { imagesHome } from "@/static/ImagesData";
+import Image from "next/image";
 
 const ClickandCheckSection: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -57,10 +58,12 @@ const ClickandCheckSection: React.FC = () => {
             <picture key={index} className="w-full">
               <source media="(min-width: 640px)" srcSet={image.tabletSrc} />
               <source media="(min-width: 1024px)" srcSet={image.srcSet} />
-              <img
+              <Image
                 src={image.mobileSrc}
                 alt="lamp img"
-                className="w-full h-full object-cover"
+                width={800}
+                height={533}
+                className="object-cover w-full h-full"
               />
             </picture>
           ))}

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface ColoredShopCardProps {
   title: string;
@@ -26,10 +27,12 @@ const ColoredShopCard: React.FC<ColoredShopCardProps> = ({
           <picture>
             <source media="(min-width: 1024px)" srcSet={imageUrls.large} />
             <source media="(min-width: 768px)" srcSet={imageUrls.medium} />
-            <img
-              src={imageUrls.small}
+            <Image
+              src={imageUrls.small} // Dynamic source from `imageUrls.small`
               alt="Product Image"
-              className="w-full h-auto object-cover"
+              width={800} // Set the width of the image based on your layout
+              height={533} // Adjust the height based on the aspect ratio
+              className="object-cover w-full h-auto"
             />
           </picture>
         </div>

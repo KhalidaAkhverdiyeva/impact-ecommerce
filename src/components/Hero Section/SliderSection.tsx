@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { slides } from "@/static/SliderData";
 import SliderControllerButton from "./SliderControllerButton";
+import Image from "next/image";
 
 const HeroSliderSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -51,10 +52,12 @@ const HeroSliderSection = () => {
           >
             <picture>
               <source media="(min-width: 690px)" srcSet={slide.srcSet} />
-              <img
+              <Image
                 src={slide.mobileSrc}
                 alt="home decor"
-                className="w-full h-full object-cover"
+                width={800}
+                height={533}
+                className="object-cover w-full h-full"
               />
             </picture>
             <div className="absolute inset-0 bg-black bg-opacity-10 z-10" />

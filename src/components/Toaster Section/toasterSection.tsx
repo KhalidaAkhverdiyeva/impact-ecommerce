@@ -6,6 +6,7 @@ import ToasterTextContent from "./toasterTextContent";
 import ToasterPlusButtons from "./toasterButtons";
 import ToasterModal from "./toasterInfo";
 import ToasterWebInfo from "./toasterWebInfo";
+import Image from "next/image";
 
 const ToasterSection = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,10 +57,12 @@ const ToasterSection = () => {
             <picture key={index} className="w-full">
               <source media="(min-width: 640px)" srcSet={image.tabletSrc} />
               <source media="(min-width: 1024px)" srcSet={image.srcSet} />
-              <img
-                src={image.mobileSrc}
-                alt="lamp img"
-                className="w-full h-full object-cover"
+              <Image
+                src={image.mobileSrc} // Dynamic source from `image.mobileSrc`
+                alt="lamp img" // Static alt text or dynamic if needed
+                width={800} // Set the width of the image based on your layout
+                height={533} // Adjust the height according to the aspect ratio
+                className="object-cover w-full h-full"
               />
             </picture>
           ))}

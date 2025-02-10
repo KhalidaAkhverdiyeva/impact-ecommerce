@@ -2,6 +2,7 @@ import { Header } from "@/components/Layout/Header/header";
 import MessageForm from "@/components/Message Form/messageForm";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
 import React from "react";
+import Image from "next/image";
 
 const ContactPage = () => {
   return (
@@ -13,10 +14,12 @@ const ContactPage = () => {
             media="(min-width: 768px)"
             srcSet="https://impact-theme-home.myshopify.com/cdn/shop/files/contact_59ff1b68-5bdb-4f37-a49a-d5c90d752229.jpg?v=1658915384&width=2800"
           />
-          <img
+          <Image
             src="https://impact-theme-home.myshopify.com/cdn/shop/files/contact_mobile_cb11b921-e851-486f-8c06-3ae5fcb651c0.jpg?v=1658915395&width=800"
             alt="contact"
-            className="w-full h-full object-cover"
+            width={800} // Set the width for the image
+            height={533} // Set the height based on the aspect ratio
+            className="object-cover w-full h-full"
           />
         </picture>
         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-25">

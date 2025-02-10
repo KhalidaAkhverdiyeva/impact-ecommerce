@@ -15,6 +15,7 @@ import { Header } from "@/components/Layout/Header/header";
 import Quote from "@/components/Designer Quote/quote";
 // import ImageGallery from "@/components/Image Card Gallery Section/page";
 import ShopTheRoomSection from "@/components/Shop The Room Section/shopTheRoomSection";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -43,10 +44,12 @@ export default function Home() {
               media="(min-width: 640px)"
               srcSet="https://impact-theme-home.myshopify.com/cdn/shop/files/Enamel-family-05.jpg?v=1653311262&width=2000"
             />
-            <img
+            <Image
               src="https://impact-theme-home.myshopify.com/cdn/shop/files/Enamel-family-05_mobile_715d0c91-0660-4a0a-bd19-e830511d6828.jpg?v=1663056832&width=800"
               alt="lamp img"
-              className="w-full h-full object-cover"
+              width={800}
+              height={533}
+              className="object-cover w-full h-full"
             />
           </picture>
         </section>

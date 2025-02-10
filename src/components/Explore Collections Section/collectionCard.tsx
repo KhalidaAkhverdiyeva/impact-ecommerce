@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const CollectionCard = () => {
   const collectionImages = [
@@ -48,10 +49,12 @@ const CollectionCard = () => {
         >
           <picture>
             <source media="(min-width: 768px)" srcSet={image.webImg} />
-            <img
+            <Image
               src={image.mobileImg}
               alt={image.title}
-              className="w-full h-auto object-cover"
+              width={800}
+              height={533}
+              className="object-cover w-full h-auto"
             />
           </picture>
           <div className="text-center">

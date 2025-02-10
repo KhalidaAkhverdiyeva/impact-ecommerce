@@ -6,6 +6,7 @@ import { Header } from "@/components/Layout/Header/header";
 import FloatingTextSection from "@/components/Marquee Text/floatingTexts";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
 import React from "react";
+import Image from "next/image";
 
 const ThomasBentzen = () => {
   return (
@@ -17,10 +18,12 @@ const ThomasBentzen = () => {
             media="(min-width: 768px)"
             srcSet="https://impact-theme-home.myshopify.com/cdn/shop/files/thomas-bentzen-hero.jpg?v=1656412386&width=1600"
           />
-          <img
+          <Image
             src="https://impact-theme-home.myshopify.com/cdn/shop/files/thomas-bentzen-hero-mobile.jpg?v=1656412390&width=800"
             alt="thomas"
-            className="w-full h-full object-cover"
+            width={800} // Set the width of the image
+            height={533} // Adjust the height based on the aspect ratio
+            className="object-cover w-full h-full"
           />
         </picture>
         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-10">
