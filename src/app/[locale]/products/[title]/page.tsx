@@ -43,7 +43,7 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
     async function fetchProduct() {
       try {
         const res = await fetch(
-          `http://localhost:3001/api/products/${params.title}`
+          `https://impact-server-side-production.up.railway.app/api/products/${params.title}`
         );
         if (res.ok) {
           const data = await res.json();

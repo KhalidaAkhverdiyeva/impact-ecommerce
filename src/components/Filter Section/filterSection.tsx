@@ -60,7 +60,7 @@ const FilterSection: React.FC<FilterSectionProps> = ({
       });
 
       const response = await fetch(
-        `http://localhost:3001/api/products/all?${queryParams.toString()}`
+        `https://impact-server-side-production.up.railway.app/api/products/all?${queryParams.toString()}`
       );
 
       if (!response.ok) {

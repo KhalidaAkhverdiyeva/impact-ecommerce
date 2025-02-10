@@ -34,7 +34,7 @@ const SmallProductCards: React.FC<SmallProductCardsProps> = ({
     const fetchProductwithIds = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3001/api/products/all/${productId}`
+          `https://impact-server-side-production.up.railway.app/api/products/all/${productId}`
         );
         if (response.ok) {
           const data = await response.json();
@@ -59,7 +59,7 @@ const SmallProductCards: React.FC<SmallProductCardsProps> = ({
 
     try {
       const response = await fetch(
-        `http://localhost:3001/api/users/${userId}/cart/${productId}`,
+        `https://impact-server-side-production.up.railway.app/api/users/${userId}/cart/${productId}`,
         {
           method: "DELETE",
         }
