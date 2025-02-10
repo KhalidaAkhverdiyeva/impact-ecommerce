@@ -1,5 +1,4 @@
 import { Header } from "@/components/Layout/Header/header";
-import React from "react";
 
 const NotFound = () => {
   return (
