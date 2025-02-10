@@ -17,7 +17,9 @@ const ScrollableProducts: React.FC<ScrollableProductsProps> = ({
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch("http://localhost:3001/api/products/all");
+      const response = await fetch(
+        "https://impact-server-side-production.up.railway.app/api/products/all"
+      );
       const data = await response.json();
       setProducts(data.products);
     } catch (error) {
