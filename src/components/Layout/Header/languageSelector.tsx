@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { Language } from "@/types/languageTypes";
 
@@ -10,20 +10,23 @@ const LanguageSelector: React.FC = () => {
     null
   );
 
-  const languages: Language[] = [
-    {
-      flag: "/images/flags/united-states.png",
-      country: "United States",
-      currency: "USD ",
-      locale: "en",
-    },
-    {
-      flag: "/images/flags/france.png",
-      country: "France",
-      currency: "EUR",
-      locale: "fr",
-    },
-  ];
+  const languages = useMemo(
+    () => [
+      {
+        flag: "/images/flags/united-states.png",
+        country: "United States",
+        currency: "USD ",
+        locale: "en",
+      },
+      {
+        flag: "/images/flags/france.png",
+        country: "France",
+        currency: "EUR",
+        locale: "fr",
+      },
+    ],
+    []
+  );
 
   const router = useRouter();
   const dropdownRef = useRef<HTMLDivElement | null>(null);
@@ -36,7 +39,7 @@ const LanguageSelector: React.FC = () => {
     const initialLanguage =
       languages.find((lang) => lang.locale === currentLocale) || languages[0];
     setSelectedLanguage(initialLanguage);
-  }, []);
+  }, [languages]);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import ProductCard from "../Product Card/productCard";
 import { Product } from "@/types/productCardTypes";
 
@@ -25,27 +25,23 @@ const ScrollableProducts: React.FC<ScrollableProductsProps> = ({
     }
   };
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     if (scrollRef.current) {
       const scrollLeft = scrollRef.current.scrollLeft;
       const scrollWidth = scrollRef.current.scrollWidth;
       const clientWidth = scrollRef.current.clientWidth;
 
       const cardWidth = scrollWidth / totalCards;
-
       const visibleCards = clientWidth / cardWidth;
-
       const adjustedScrollWidth = scrollWidth - clientWidth;
-
       const initialOffset = (visibleCards / totalCards) * 100;
-
       const progress =
         initialOffset +
         (scrollLeft / adjustedScrollWidth) * (100 - initialOffset);
 
       setScrollProgress(Math.min(progress, 100));
     }
-  };
+  }, [setScrollProgress, totalCards]);
 
   useEffect(() => {
     fetchProducts();
@@ -60,7 +56,7 @@ const ScrollableProducts: React.FC<ScrollableProductsProps> = ({
         refCurrent.removeEventListener("scroll", handleScroll);
       }
     };
-  }, []);
+  }, [handleScroll]);
 
   return (
     <div className="w-full">

@@ -19,13 +19,14 @@ const CompanyCountSection = () => {
       { threshold: 0.5 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const currentRef = sectionRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
@@ -35,6 +36,7 @@ const CompanyCountSection = () => {
       const animation = animate(count, 2002, {
         duration: 2,
       });
+      return animation.stop;
     }
   }, [isInView, count]);
 

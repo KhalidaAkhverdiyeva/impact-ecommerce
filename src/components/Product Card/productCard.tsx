@@ -16,10 +16,10 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
 
   const addProductToCart = async (productId: string, colorId: string) => {
     const userId = localStorage.getItem("userId");
-    if (!userId) {
-      alert("Please log in to add items to your cart.");
-      return;
-    }
+    // if (!userId) {
+    //   alert("Please log in to add items to your cart.");
+    //   return;
+    // }
 
     try {
       const response = await fetch(
@@ -45,6 +45,15 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
 
   const openSidebar = async (e: { stopPropagation: () => void }) => {
     e.stopPropagation();
+    const userId = localStorage.getItem("userId");
+
+    if (!userId) {
+      // If user is not logged in, just open sidebar without adding to cart
+      setIsOpen(true);
+      return;
+    }
+
+    // If user is logged in, proceed with adding to cart
     const selectedColorId = product.colorVariants[selectedColorIndex]._id;
     await addProductToCart(product._id, selectedColorId);
     setIsOpen(true);

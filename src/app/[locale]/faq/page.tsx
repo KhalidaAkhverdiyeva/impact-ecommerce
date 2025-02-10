@@ -37,10 +37,10 @@ const FAQPage = () => {
               title="Do you charge sales tax?"
               content="Please know, your order(s) will be taxed unless valid tax exemption documentation has been received prior to order placement. Please visit your local store or contact us for additional questions or support."
             />
-            
+
             <Accordion
               title="How is my order payment processed?"
-              content="When you place an order, we contact the issuing bank to confirm the validity of the payment method. Your bank reserves the funds until the transaction processes or the authorization expires, but this isn't an actual charge. Some banks call authorizations "pending" or "processing" charges. For more information on specific policies regarding authorizations, contact the issuing bank."
+              content="When you place an order, we contact the issuing bank to confirm the validity of the payment method. Your bank reserves the funds until the transaction processes or the authorization expires, but this isn't an actual charge. Some banks call authorizations 'pending' or 'processing' charges. For more information on specific policies regarding authorizations, contact the issuing bank."
             />
             <Accordion
               isLast
