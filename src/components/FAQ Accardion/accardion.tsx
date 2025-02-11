@@ -1,5 +1,5 @@
 "use client";
-import { AccordionProps } from "@/types/accordionTypes";
+import { AccordionProps } from "@/types";
 import { useState, useRef, useEffect } from "react";
 
 const Accordion: React.FC<AccordionProps> = ({ title, content, isLast }) => {

@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import { ModalInfo } from "@/types/infoModalTypes";
 import InfoModal from "./InfoModal";
 import WebInfoModal from "./WebInfoModal";
 import PlusButtons from "./PlusButtons";
 import TextContent from "./TextContent";
 import { imagesHome } from "@/static/ImagesData";
 import Image from "next/image";
+import { ModalInfo } from "@/types";
 
 const ClickandCheckSection: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);

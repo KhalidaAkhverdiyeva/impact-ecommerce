@@ -1,4 +1,4 @@
-import { ControlButtonsProps } from "@/types/controlButtonTypes";
+import { ControlButtonsProps } from "@/types";
 import React from "react";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 

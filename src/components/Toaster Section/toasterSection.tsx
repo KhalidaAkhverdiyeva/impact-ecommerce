@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import { imagesBlue } from "@/static/ImagesData";
-import { ModalInfo } from "@/types/infoModalTypes";
 import ToasterTextContent from "./toasterTextContent";
 import ToasterPlusButtons from "./toasterButtons";
 import ToasterModal from "./toasterInfo";
 import ToasterWebInfo from "./toasterWebInfo";
 import Image from "next/image";
+import { ModalInfo } from "@/types";
 
 const ToasterSection = () => {
   const [isOpen, setIsOpen] = useState(false);

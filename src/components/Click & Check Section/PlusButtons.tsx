@@ -1,11 +1,7 @@
 import React from "react";
-import { ModalInfo } from "@/types/infoModalTypes";
 import { FaPlus } from "react-icons/fa6";
 import { sampleModalInfo } from "@/static/PlusButtonsData";
-
-interface PlusButtonsProps {
-  toggleBottomDiv: (modalInfo: ModalInfo, buttonId: string) => void;
-}
+import { ModalInfo, PlusButtonsProps } from "@/types";
 
 const PlusButtons: React.FC<PlusButtonsProps> = ({ toggleBottomDiv }) => {
   const handleClick = (info: ModalInfo, buttonId: string) => {

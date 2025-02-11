@@ -2,13 +2,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
-import { Product } from "@/types/productCardTypes";
 import Image from "next/image";
-
-interface ProductDetailSwiperProps {
-  product: Product;
-  variantIndex: number;
-}
+import { ProductDetailSwiperProps } from "@/types";
 
 const ProductDetailSwiper: React.FC<ProductDetailSwiperProps> = ({
   product,

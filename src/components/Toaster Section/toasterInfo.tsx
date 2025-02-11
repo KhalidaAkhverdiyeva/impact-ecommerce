@@ -1,5 +1,5 @@
 "use client";
-import { InfoModalProps } from "@/types/infoModalTypes";
+import { InfoModalProps } from "@/types";
 import React from "react";
 import { IoClose } from "react-icons/io5";
 

@@ -1,8 +1,8 @@
-import { InfoModalProps } from "@/types/infoModalTypes";
+import { WebInfoModalProps } from "@/types";
 import Image from "next/image";
 import React, { useRef, useEffect } from "react";
 
-const WebInfoModal: React.FC<InfoModalProps> = ({
+const WebInfoModal: React.FC<WebInfoModalProps> = ({
   modalInfo,
   closeBottomDiv,
   top = "0px",

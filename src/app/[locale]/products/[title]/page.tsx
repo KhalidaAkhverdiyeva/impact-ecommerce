@@ -15,14 +15,9 @@ import ShopifySection from "@/components/Shopify Section/shopifySection";
 import ProductDetailSkeleton from "@/components/Skeletons/Product Page Skeleton/productPageSkeleton";
 import Stock from "@/components/Stock/stock";
 import { useColor } from "@/contexts/colorContext";
-import { ProductParams } from "@/types/paramsType";
-import { Product } from "@/types/productCardTypes";
 import { FC, useEffect, useState } from "react";
 import Image from "next/image";
-
-interface ProductDetailPageProps {
-  params: ProductParams;
-}
+import { Product, ProductDetailPageProps } from "@/types";
 
 const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
   const { selectedColor, setSelectedColor } = useColor();

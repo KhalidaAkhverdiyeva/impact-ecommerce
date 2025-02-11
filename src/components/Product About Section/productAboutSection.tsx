@@ -1,4 +1,4 @@
-import { Product } from "@/types/productCardTypes";
+import { Product } from "@/types";
 import React from "react";
 
 const ProductAboutSection: React.FC<{ product: Product }> = ({ product }) => {

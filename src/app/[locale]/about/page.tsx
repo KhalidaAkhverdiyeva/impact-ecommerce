@@ -14,6 +14,8 @@ import { FaAngleRight } from "react-icons/fa6";
 
 const AboutPage = () => {
   const [scrollProgress, setScrollProgress] = useState<number>(0);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
   return (
     <div className="relative">
       <Header />
@@ -150,7 +152,11 @@ const AboutPage = () => {
         </div>
         <div className=" w-full overflow-x-hidden mx-auto max-w-[1600px]">
           <ScrollableProducts setScrollProgress={setScrollProgress} />
-          <ProgressBarContainer scrollProgress={scrollProgress} />
+          <ProgressBarContainer
+            canScrollLeft={canScrollLeft}
+            canScrollRight={canScrollRight}
+            scrollProgress={scrollProgress}
+          />
         </div>
       </section>
       <FloatingTextSection text="9 stores around the world" color="#363D88" />

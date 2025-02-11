@@ -1,11 +1,8 @@
 import React from "react";
-import { ModalInfo } from "@/types/infoModalTypes";
 import { FaPlus } from "react-icons/fa6";
 import { toasterModalInfo } from "@/static/PlusButtonsData";
+import { ModalInfo, ToasterPlusButtonsProps } from "@/types";
 
-interface ToasterPlusButtonsProps {
-  toggleBottomDiv: (modalInfo: ModalInfo, buttonId: string) => void;
-}
 
 const ToasterPlusButtons: React.FC<ToasterPlusButtonsProps> = ({
   toggleBottomDiv,

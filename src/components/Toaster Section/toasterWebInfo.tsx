@@ -1,4 +1,4 @@
-import { InfoModalProps } from "@/types/infoModalTypes";
+import { InfoModalProps } from "@/types";
 import React, { useRef, useEffect } from "react";
 
 const ToasterWebInfo: React.FC<InfoModalProps> = ({

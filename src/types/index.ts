@@ -105,6 +105,32 @@ export interface ControlButtonsProps {
     setType: (type: string | null) => void;
     setInStock: (inStock: boolean) => void;
   }
+
+  export interface ProductDetailPageProps {
+    params: ProductParams;
+  }
+  export interface PlusButtonsProps {
+    toggleBottomDiv: (modalInfo: ModalInfo, buttonId: string) => void;
+  }
+  
+
+  export interface ProductGridProps {
+    products: Product[];
+    loading: boolean;
+    error: string | null;
+    currentPage: number;
+    totalPages: number;
+    setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  }
+
+  export interface ProductDetailSwiperProps {
+    product: Product;
+    variantIndex: number;
+  }
+
+  export interface ToasterPlusButtonsProps {
+    toggleBottomDiv: (modalInfo: ModalInfo, buttonId: string) => void;
+  }
   
   
   

@@ -1,17 +1,8 @@
 import React from "react";
-import { Product } from "@/types/productCardTypes";
 import ProductCard from "./productCard";
 import ProductCardSkeletons from "../Skeletons/Product Card Skeleton/productCardSkeleton";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-
-interface ProductGridProps {
-  products: Product[];
-  loading: boolean;
-  error: string | null;
-  currentPage: number;
-  totalPages: number;
-  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-}
+import { ProductGridProps } from "@/types";
 
 const ProductGrid: React.FC<ProductGridProps> = ({
   products,
