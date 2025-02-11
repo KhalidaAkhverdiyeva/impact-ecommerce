@@ -94,6 +94,17 @@ export interface ControlButtonsProps {
     goToNextSlide: () => void;
   }
   
+
+ export interface FilterSectionProps {
+    filter: string | null;
+    color: string | null;
+    designer: string | null;
+    type: string | null;
+    setColor: (color: string | null) => void;
+    setDesigner: (designer: string | null) => void;
+    setType: (type: string | null) => void;
+    setInStock: (inStock: boolean) => void;
+  }
   
   
   

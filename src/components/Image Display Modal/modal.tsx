@@ -1,7 +1,7 @@
-import { ModalProps } from "@/types/modalTypes";
 import React from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import Image from "next/image";
+import { ModalProps } from "@/types";
 
 const Modal: React.FC<ModalProps> = ({
   image,

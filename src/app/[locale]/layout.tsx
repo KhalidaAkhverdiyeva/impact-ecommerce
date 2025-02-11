@@ -5,6 +5,7 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import LoadingSpinner from "@/components/Loading Spinner/loadingSpinner";
+import { CartProvider } from '@/contexts/cartContext';
 
 export default async function LocaleLayout({
   children,
@@ -21,7 +22,9 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages} locale={locale}>
-      <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
+      <CartProvider>
+        <Suspense fallback={<LoadingSpinner />}>{children}</Suspense>
+      </CartProvider>
     </NextIntlClientProvider>
   );
 }

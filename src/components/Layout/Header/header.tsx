@@ -11,12 +11,12 @@ import SearchSidebar from "@/components/Search Sidebar/searchSidebar";
 import { Link } from "@/i18n/routing";
 import DesignersDropdown from "./designersDropdown";
 import FeatureDropdown from "./featureDropdown";
-// import AddToCartSidebar from "@/components/Add to Card Sidebar/addToCartSidebar";
+import AddToCartSidebar from "@/components/Add to Card Sidebar/addToCartSidebar";
 
 export const Header = ({ transparent = true }) => {
   const [isSticky, setIsSticky] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  // const [isAddToCartOpen, setIsAddCartOpen] = useState(false);
+  const [isAddToCartOpen, setIsAddCartOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   const toggleDropdown = (dropdown: string) => {
@@ -180,7 +180,7 @@ export const Header = ({ transparent = true }) => {
               <AiOutlineUser className="text-[24px] mx-[10px]" />
             </Link>
             <div
-              // onClick={() => setIsAddCartOpen(true)}
+              onClick={() => setIsAddCartOpen(true)}
               className={`cursor-pointer ${
                 openDropdown ? "hover:text-[#403f3f]" : "hover:text-[#D4D7D6]"
               }`}
@@ -191,11 +191,10 @@ export const Header = ({ transparent = true }) => {
         </div>
 
         <SearchSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
-        {/* <AddToCartSidebar
+        <AddToCartSidebar
           isAddToCartOpen={isAddToCartOpen}
           setIsAddCartOpen={setIsAddCartOpen}
-          product={product}
-        /> */}
+        />
       </header>
     </>
   );

@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from "react";
 import SmallProductCards from "./smallProductCards";
-import { useRouter } from "@/i18n/routing";
-import { CartItem } from "@/types/cartItemsProps";
+import { Link, useRouter } from "@/i18n/routing";
+import { CartItem } from "@/types";
+import { useCart } from "@/contexts/cartContext";
 
 interface AddToCartSidebarProps {
   isAddToCartOpen: boolean;
@@ -19,6 +20,7 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
   const [loading, setLoading] = useState<boolean>(true);
   const [userCartItems, setUserCartItems] = useState<CartItem[]>([]);
   const [isCartFetched, setIsCartFetched] = useState<boolean>(false);
+  const { cartItems, removeFromCart } = useCart();
 
   const router = useRouter();
 
@@ -46,11 +48,6 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
     }
   }, [isAddToCartOpen, isLoggedIn, isCartFetched]);
 
-  const removeProductFromCart = (productId: string) => {
-    setUserCartItems((prevItems) =>
-      prevItems.filter((item) => item.productId !== productId)
-    );
-  };
   const fetchCartData = async (userId: string) => {
     try {
       const response = await fetch(
@@ -74,10 +71,6 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
   const closeSidebar = () => {
     setTextVisible(false);
     setTimeout(() => setIsAddCartOpen(false), 300);
-  };
-
-  const handleLoginRedirect = () => {
-    router.push("/login");
   };
 
   return (
@@ -106,7 +99,7 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
                 <h2 className="text-[24px] font-bold">Cart</h2>
                 <div className="bg-[#272727] w-[20px] h-[20px] flex justify-center items-center rounded-full">
                   <span className="text-white text-[14px]">
-                    {userCartItems.length}
+                    {cartItems.length}
                   </span>
                 </div>
                 <button
@@ -122,14 +115,13 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
               <div className="h-[350px] overflow-y-auto">
                 {loading ? (
                   <p>Loading cart items...</p>
-                ) : userCartItems.length > 0 ? (
-                  userCartItems.map((cartItem) => (
+                ) : cartItems.length > 0 ? (
+                  cartItems.map((cartItem) => (
                     <SmallProductCards
                       key={cartItem._id}
                       productId={cartItem.productId}
                       colorId={cartItem.colorId}
                       quantity={cartItem.quantity}
-                      removeProductFromCart={removeProductFromCart}
                     />
                   ))
                 ) : (
@@ -159,12 +151,12 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
               <p className="text-[#7e7e7e]">
                 Please log in to add products to your cart.
               </p>
-              <button
-                className="py-[16px] px-[32px] bg-[#272727] text-white font-[700] rounded-lg"
-                onClick={handleLoginRedirect}
-              >
-                Go to Login
-              </button>
+
+              <Link href="/login">
+                <button className="py-[16px] px-[32px] bg-[#272727] text-white font-[700] rounded-lg">
+                  Go to Login
+                </button>
+              </Link>
             </div>
           )}
         </div>

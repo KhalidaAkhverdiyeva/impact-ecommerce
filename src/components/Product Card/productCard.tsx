@@ -7,19 +7,17 @@ import React, { useState } from "react";
 import { IoMdStar } from "react-icons/io";
 import AddToCartSidebar from "../Add to Card Sidebar/addToCartSidebar";
 import { Product } from "@/types";
+import { useCart } from "@/contexts/cartContext";
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const { selectedColor, setSelectedColor } = useColor();
   const [selectedColorIndex, setSelectedColorIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const { addToCart } = useCart();
 
   const addProductToCart = async (productId: string, colorId: string) => {
     const userId = localStorage.getItem("userId");
-    // if (!userId) {
-    //   alert("Please log in to add items to your cart.");
-    //   return;
-    // }
 
     try {
       const response = await fetch(
@@ -38,6 +36,14 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       if (!response.ok) {
         throw new Error("Failed to add product to cart");
       }
+
+      // Add to local cart state immediately
+      addToCart({
+        productId,
+        colorId,
+        quantity: 1,
+        _id: Date.now().toString(), // temporary id
+      });
     } catch (error) {
       alert("Error adding product to cart:");
     }
@@ -48,7 +54,6 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
     const userId = localStorage.getItem("userId");
 
     if (!userId) {
-      // If user is not logged in, just open sidebar without adding to cart
       setIsOpen(true);
       return;
     }

@@ -3,22 +3,10 @@ import React, { useCallback, useEffect, useState } from "react";
 import SortBy from "./sortBy";
 import FilterAccordion from "./filterAccordion";
 import ProductGrid from "../Product Card/productGrid";
-import { Product } from "@/types/productCardTypes";
 import { IoCloseOutline } from "react-icons/io5";
-
-interface FilterSectionProps {
-  filter: string | null;
-  color: string | null;
-  designer: string | null;
-  type: string | null;
-  setColor: (color: string | null) => void;
-  setDesigner: (designer: string | null) => void;
-  setType: (type: string | null) => void;
-  setInStock: (inStock: boolean) => void;
-}
+import { FilterSectionProps, Product } from "@/types";
 
 const FilterSection: React.FC<FilterSectionProps> = ({
-  filter,
   color,
   designer,
   type,
@@ -40,14 +28,15 @@ const FilterSection: React.FC<FilterSectionProps> = ({
   const [totalPages, setTotalPages] = useState<number>(1);
   const itemsPerPage = 9;
 
-  const [sortOption, setSortOption] = useState<string>("Featured");
+  const [sortOption, setSortOption] = useState<string>("");
 
   const fetchProducts = useCallback(async () => {
     setLoading(true);
     setError(null);
 
     try {
-      const queryParams = new URLSearchParams({
+      // Create base query params without sort
+      const baseParams = {
         page: currentPage.toString(),
         limit: itemsPerPage.toString(),
         color: color || "",
@@ -56,8 +45,21 @@ const FilterSection: React.FC<FilterSectionProps> = ({
         minPrice: minPrice.toString(),
         maxPrice: maxPrice.toString(),
         inStock: inStock.toString(),
-        sort: sortOption,
-      });
+      };
+
+      // Only add sort parameter if a sort option is selected
+      const queryParams = new URLSearchParams(baseParams);
+
+      if (sortOption) {
+        switch (sortOption) {
+          case "Price, low to high":
+            queryParams.append("sort", "price:asc");
+            break;
+          case "Price, high to low":
+            queryParams.append("sort", "price:desc");
+            break;
+        }
+      }
 
       const response = await fetch(
         `https://impact-server-side-production.up.railway.app/api/products/all?${queryParams.toString()}`
@@ -68,11 +70,8 @@ const FilterSection: React.FC<FilterSectionProps> = ({
       }
 
       const data = await response.json();
-
-      const totalPages = Math.ceil(data.totalCount / itemsPerPage);
-
       setProducts(data.products);
-      setTotalPages(totalPages);
+      setTotalPages(Math.ceil(data.totalCount / itemsPerPage));
     } catch (err: unknown) {
       setError(
         err instanceof Error ? err.message : "An unknown error occurred"
@@ -95,6 +94,11 @@ const FilterSection: React.FC<FilterSectionProps> = ({
     fetchProducts();
   }, [fetchProducts]);
 
+  // Reset to first page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [color, designer, type, minPrice, maxPrice, inStock, sortOption]);
+
   const activeFilters = [
     color && ` ${color}`,
     designer && `${designer}`,
@@ -102,15 +106,23 @@ const FilterSection: React.FC<FilterSectionProps> = ({
     inStock === false && `Not in Stock`,
   ].filter(Boolean);
 
-  const handleClearFilters = () => {
-    if (filter && typeof filter === "string") {
-      if (color && filter.includes(color)) setColor(null);
-      if (designer && filter.includes(designer)) setDesigner(null);
-      if (type && filter.includes(type)) setType(null);
-      if (filter.includes("Not in Stock")) {
-        setInStockLocal(true);
-        setInStockProp(true);
-      }
+  const handleClearFilters = (filterToRemove: string) => {
+    // Remove color filter
+    if (filterToRemove.includes("#")) {
+      setColor(null);
+    }
+    // Remove designer filter
+    else if (designer && filterToRemove.includes(designer)) {
+      setDesigner(null);
+    }
+    // Remove type filter
+    else if (type && filterToRemove.includes(type)) {
+      setType(null);
+    }
+    // Remove in stock filter
+    else if (filterToRemove === "Not in Stock") {
+      setInStockLocal(true);
+      setInStockProp(true);
     }
   };
 
@@ -130,9 +142,7 @@ const FilterSection: React.FC<FilterSectionProps> = ({
                   <span>{filter}</span>
                   <IoCloseOutline
                     className="cursor-pointer"
-                    onClick={() => {
-                      handleClearFilters();
-                    }}
+                    onClick={() => filter && handleClearFilters(filter)}
                   />
                 </div>
               ))}
@@ -140,7 +150,7 @@ const FilterSection: React.FC<FilterSectionProps> = ({
           )}
 
           <div>
-            <SortBy setSortOption={setSortOption} />
+            <SortBy setSortOption={setSortOption} currentSort={sortOption} />
           </div>
         </div>
       </div>

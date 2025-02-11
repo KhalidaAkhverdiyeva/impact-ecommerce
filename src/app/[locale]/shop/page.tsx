@@ -88,28 +88,19 @@ const ShopPage = () => {
               <div className="flex gap-[12px] md:text-[14px] items-center">
                 <div className="flex gap-[10px]">
                   <svg
-                    role="presentation"
-                    fill="none"
-                    focusable="false"
-                    strokeWidth="1.5"
                     width="16"
                     height="16"
                     viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      d="M5.372 1v2.877M10.455 1v2.877"
+                      d="M5.33333 1.33334V3.33334M10.6667 1.33334V3.33334M2 6.00001H14M3.33333 2.66667H12.6667C13.403 2.66667 14 3.26363 14 4.00001V12.6667C14 13.403 13.403 14 12.6667 14H3.33333C2.59695 14 2 13.403 2 12.6667V4.00001C2 3.26363 2.59695 2.66667 3.33333 2.66667Z"
                       stroke="currentColor"
+                      strokeWidth="1.5"
                       strokeLinecap="round"
-                    ></path>
-                    <path
-                      d="M14.338 7.632H1.497l.179-4.57 6.164-.448 6.497.448v4.57Z"
-                      fill="currentColor"
-                      fillOpacity=".12"
-                    ></path>
-                    <path
-                      d="M1.224 12.073c.183 1.631 1.508 2.925 3.147 3.004a73.18 73.18 0 0 0 3.546.083c1.256 0 2.413-.028 3.546-.083 1.639-.079 2.964-1.374 3.146-3.004.124-1.099.225-2.224.225-3.37 0-1.147-.102-2.273-.225-3.371-.182-1.631-1.507-2.925-3.146-3.004a73.22 73.22 0 0 0-3.546-.083 73.22 73.22 0 0 0-3.546.083c-1.639.079-2.964 1.374-3.147 3.004C1.101 6.43 1 7.556 1 8.703c0 1.146.102 2.272.224 3.37ZM1.331 7.202h13.24"
-                      stroke="currentColor"
-                    ></path>
+                      strokeLinejoin="round"
+                    />
                   </svg>
                   <div className="text-[12px] md:text-[14px]">May 23, 2022</div>
                 </div>
