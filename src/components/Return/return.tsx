@@ -31,9 +31,13 @@ const Return = () => {
       </div>
       <div className="text-center">
         Not satisfied with your purchase?
-        <Link href="/contact" className="underline pl-[5px]">
+        <Link
+          aria-label="Contact"
+          href="/contact"
+          className="underline pl-[5px]"
+        >
           Contact us
-        </Link>{" "}
+        </Link>
         within 3 days after after you received your order.
       </div>
     </div>

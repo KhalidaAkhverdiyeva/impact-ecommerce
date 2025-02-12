@@ -61,27 +61,37 @@ const Footer = () => {
               <li className="font-[800] text-[18px] text-[#272727] mb-[4px]">
                 Designers
               </li>
-              <Link href="george-sowden">
+              <Link 
+              aria-label="George Sowden"
+              href="george-sowden">
                 <li className="text-[#797979] hover:underline cursor-pointer">
                   George Sowden
                 </li>
               </Link>
-              <Link href="clara-von-zweigbergk">
+              <Link  
+              aria-label="Clara von Zweigbergk"
+              href="clara-von-zweigbergk">
                 <li className="text-[#797979] hover:underline cursor-pointer">
                   Clara von Zweigbergk
                 </li>
               </Link>
-              <Link href="pierre-charpin">
+              <Link 
+              aria-label="Pierre Charpin" 
+              href="pierre-charpin">
                 <li className="text-[#797979] hover:underline cursor-pointer">
                   Pierre Charpin
                 </li>
               </Link>
-              <Link href="thomas-bentzen">
+              <Link 
+              aria-label="Thomas Bentzen"
+              href="thomas-bentzen">
                 <li className="text-[#797979] hover:underline cursor-pointer">
                   Thomas Bentzen
                 </li>
               </Link>
-              <Link href="/designers">
+              <Link 
+              aria-label="View all designers"
+              href="/designers">
                 <li className="text-[#797979] hover:underline cursor-pointer">
                   View all
                 </li>
@@ -91,17 +101,23 @@ const Footer = () => {
               <li className="font-[800] text-[18px] text-[#272727] mb-[4px]">
                 Impact
               </li>
-              <Link href="/about">
+              <Link 
+              aria-label="About"
+              href="/about">
                 <li className="text-[#797979] hover:underline cursor-pointer">
                   About
                 </li>
               </Link>
-              <Link href="/faq">
+              <Link 
+              aria-label="FAQ"
+              href="/faq">
                 <li className="text-[#797979] hover:underline cursor-pointer">
                   FAQ
                 </li>
               </Link>
-              <Link href="/contact">
+              <Link 
+              aria-label="Contact"
+              href="/contact">
                 <li className="text-[#797979] hover:underline cursor-pointer">
                   Contact
                 </li>

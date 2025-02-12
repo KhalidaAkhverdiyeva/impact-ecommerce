@@ -45,9 +45,9 @@ const RoadScrollSection = () => {
                 fade ? "opacity-0" : "opacity-100"
               }`}
             >
-              <h6 className="font-[800] text-center lg:text-left text-[18px] mb-[10px] lg:mb-[25px]">
+              <h2 className="font-[800] text-center lg:text-left text-[18px] mb-[10px] lg:mb-[25px]">
                 {sections[activeIndex].title}
-              </h6>
+              </h2>
               <p className="text-[32px] text-center lg:text-left lg:text-[50px] leading-[1] font-[800]">
                 {sections[activeIndex].description}
               </p>

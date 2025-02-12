@@ -94,7 +94,9 @@ const HeroSliderSection = () => {
                     )
                   )}
                 </div>
-                <Link href="/shop">
+                <Link  
+                aria-label="Shop"
+                href="/shop">
                   <button  
                   aria-label="Shop" 
                   className="text-[#272727] cursor-pointer text-[14px] font-[800] mt-[24px] bg-white py-[16px] px-[32px]">

@@ -123,7 +123,7 @@ const Signup = () => {
               </span>
             </div>
 
-            <button 
+            <button
               aria-label="Create account"
               type="submit"
               className="w-full mt-[20px] py-[15px] font-[700] px-[45px] hover:text-[#3C619E] border-solid border-[2px] border-transparent hover:border-[#3C619E] hover:border-[2px] hover:border-solid hover:bg-transparent bg-[#3C619E] text-[18px] text-white focus:outline-none transition-colors duration-300 ease-in-out"
@@ -134,6 +134,7 @@ const Signup = () => {
 
           <div className="flex flex-col gap-[20px] w-full px-[54px] pb-[50px]">
             <Link
+              aria-label="Login"
               href="/login"
               className="underline text-[14px] text-center text-[#969696]"
             >

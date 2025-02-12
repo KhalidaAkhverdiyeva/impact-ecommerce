@@ -84,6 +84,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
         onMouseLeave={() => setIsHovered(false)}
       >
         <Link
+          aria-label={product.title}
           href={`/products/${product.title}?index=${selectedColorIndex}`}
           className="cursor-pointer"
         >

@@ -149,7 +149,10 @@ const BlogPage = () => {
               <h2 className="text-white font-[800] text-[40px] md:text-[56px] lg:text-[70px] leading-[1] text-center max-w-[300px] md:max-w-[700px] lg:max-w-[800px]">
                 Inspired by architecture art & fashion
               </h2>
-              <Link href="/about">
+              <Link 
+               href="/about"
+               aria-label="Learn more"
+               >
                 <button 
                  aria-label="Learn more"
                  className="text-[18px] font-[700] mt-[10px] lg:py-[14px] py-[13px] px-[24px] lg:px-[32px] bg-white inline-block w-[160px] text-center ">

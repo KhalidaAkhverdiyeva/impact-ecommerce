@@ -12,7 +12,9 @@ const ExploreCollectionsSections = () => {
             Explore the collections
           </h3>
 
-          <Link href="/collections">
+          <Link 
+              aria-label="View all collections"
+           href="/collections">
             <div className="flex gap-[12px]">
               <p className="text-[14px] md:text-[16px] text-[#272727]">
                 View all

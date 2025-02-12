@@ -14,7 +14,9 @@ const FeatureDropdown = () => {
               Trending
             </li>
 
-            <Link href="/collections">
+            <Link 
+            aria-label="Collections"
+            href="/collections">
               <li
                 className="cursor-pointer relative group w-max opacity-0 animate-slideIn"
                 style={{ animationDelay: "50ms" }}
@@ -24,7 +26,9 @@ const FeatureDropdown = () => {
               </li>
             </Link>
 
-            <Link href="/sowden-collection">
+            <Link 
+            aria-label="Sowden Collections"
+            href="/sowden-collection" >
               <li
                 className="cursor-pointer relative group w-max opacity-0 animate-slideIn"
                 style={{ animationDelay: "100ms" }}
@@ -34,7 +38,9 @@ const FeatureDropdown = () => {
               </li>
             </Link>
 
-            <Link href="/andreas-engesvik">
+            <Link 
+            aria-label="Andreas Engesvik"
+            href="/andreas-engesvik">
               <li
                 className="cursor-pointer relative group w-max opacity-0 animate-slideIn"
                 style={{ animationDelay: "150ms" }}
@@ -44,7 +50,9 @@ const FeatureDropdown = () => {
               </li>
             </Link>
 
-            <Link href="/thomas-bentzen">
+            <Link 
+            aria-label="Thomas Bentzen"
+            href="/thomas-bentzen">
               <li
                 className="cursor-pointer relative group w-max opacity-0 animate-slideIn"
                 style={{ animationDelay: "200ms" }}
@@ -54,7 +62,9 @@ const FeatureDropdown = () => {
               </li>
             </Link>
 
-            <Link href="/phanta">
+            <Link 
+            aria-label="Phanta"
+            href="/phanta">
               <li
                 className="cursor-pointer relative group w-max opacity-0 animate-slideIn"
                 style={{ animationDelay: "250ms" }}

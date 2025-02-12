@@ -15,7 +15,9 @@ const DesignersDropdown = () => {
               Trending
             </li>
 
-            <Link href="/george-sowden">
+            <Link 
+            aria-label="George Sowden"
+            href="/george-sowden">
               <li
                 className="cursor-pointer relative group w-max opacity-0 animate-slideIn"
                 style={{ animationDelay: "50ms" }}
@@ -25,7 +27,9 @@ const DesignersDropdown = () => {
               </li>
             </Link>
 
-            <Link href="/pierre-charpin">
+            <Link 
+            aria-label="Pierre Charpin"
+            href="/pierre-charpin">
               <li
                 className="cursor-pointer relative group w-max opacity-0 animate-slideIn"
                 style={{ animationDelay: "100ms" }}
@@ -35,7 +39,9 @@ const DesignersDropdown = () => {
               </li>
             </Link>
 
-            <Link href="/andreas-engesvik">
+            <Link 
+            aria-label="Andreas Engesvik"
+            href="/andreas-engesvik">
               <li
                 className="cursor-pointer relative group w-max opacity-0 animate-slideIn"
                 style={{ animationDelay: "150ms" }}
@@ -45,7 +51,9 @@ const DesignersDropdown = () => {
               </li>
             </Link>
 
-            <Link href="/thomas-bentzen">
+            <Link 
+            aria-label="Thomas Bentzen"
+            href="/thomas-bentzen">
               <li
                 className="cursor-pointer relative group w-max opacity-0 animate-slideIn"
                 style={{ animationDelay: "200ms" }}
@@ -55,7 +63,9 @@ const DesignersDropdown = () => {
               </li>
             </Link>
 
-            <Link href="/phanta">
+            <Link 
+            aria-label="Phanta"
+            href="/phanta">
               <li
                 className="cursor-pointer relative group w-max opacity-0 animate-slideIn"
                 style={{ animationDelay: "250ms" }}
@@ -65,7 +75,9 @@ const DesignersDropdown = () => {
               </li>
             </Link>
 
-            <Link href="/designers">
+            <Link 
+            aria-label="All designers"
+            href="/designers">
               <li
                 className="cursor-pointer relative group w-max opacity-0 animate-slideIn"
                 style={{ animationDelay: "300ms" }}
@@ -78,6 +90,7 @@ const DesignersDropdown = () => {
 
           <div className="flex overflow-visible h-[100%] gap-[2px] w-[100%]">
             <Link
+            aria-label="Clara von Zweigberk"
               href="/clara-von-zweigberk "
               className="flex-1 h-[100%]  overflow-hidden relative cursor-pointer "
             >
@@ -94,6 +107,7 @@ const DesignersDropdown = () => {
             </Link>
 
             <Link
+            aria-label="Wang & Söderström"
               href="/wang-soderstrom"
               className="flex-1 h-[100%]  overflow-hidden relative cursor-pointer"
             >
@@ -109,6 +123,7 @@ const DesignersDropdown = () => {
               </span>
             </Link>
             <Link
+            aria-label="Pierre Charpin"
               href="/pierre-charpin"
               className="flex-1 h-[100%]  overflow-hidden relative cursor-pointer"
             >
@@ -118,6 +133,7 @@ const DesignersDropdown = () => {
                 width={1000}
                 height={1000} // Adjust height based on the aspect ratio of the image
                 className="w-full h-full object-cover block transition-all duration-500 ease-in-out relative hover:scale-105"
+                loading="lazy"
               />
               <span className="absolute bottom-[20px] left-[20px] text-[34px] font-[800] text-white  leading-[1]">
                 Pierre Charpin

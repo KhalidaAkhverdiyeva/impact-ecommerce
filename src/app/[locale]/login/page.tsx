@@ -97,7 +97,9 @@ const LoginPage = () => {
               </span>
             </div>
 
-            <Link href="/" className="underline text-[14px] text-[#969696] ">
+            <Link 
+              aria-label="Forgot password"
+             href="/" className="underline text-[14px] text-[#969696] ">
               Forgot your password?
             </Link>
             <button
@@ -110,7 +112,8 @@ const LoginPage = () => {
           </form>
 
           <div className="flex flex-col gap-[20px] w-full px-[54px] pb-[50px]">
-            <Link
+            <Link 
+              aria-label="Signup"
               href="/signup"
               className="underline text-[14px] text-center text-[#969696] "
             >

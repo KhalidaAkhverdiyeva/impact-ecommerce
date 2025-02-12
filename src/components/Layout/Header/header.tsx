@@ -63,7 +63,9 @@ export const Header = ({ transparent = true }) => {
               <IoMenu className="text-[30px]" />
             </div>
             <ul className="text-[18px] font-[700] hidden lg:flex lg:gap-[30px]">
-              <Link href="/shop">
+              <Link  
+              aria-label="Shop"
+              href="/shop">
                 <li
                   className={`cursor-pointer hover:text-[#D4D7D6] ${
                     openDropdown
@@ -87,7 +89,9 @@ export const Header = ({ transparent = true }) => {
                 {openDropdown === "designers" && <DesignersDropdown />}
               </div>
 
-              <Link href="/about">
+              <Link 
+              aria-label="About"
+              href="/about">
                 <li
                   className={`cursor-pointer hover:text-[#D4D7D6]  ${
                     openDropdown
@@ -98,7 +102,9 @@ export const Header = ({ transparent = true }) => {
                   About
                 </li>
               </Link>
-              <Link href="/blog">
+              <Link 
+              aria-label="Blog"
+              href="/blog">
                 <li
                   className={`cursor-pointer hover:text-[#D4D7D6]  ${
                     openDropdown
@@ -128,7 +134,9 @@ export const Header = ({ transparent = true }) => {
           </div>
 
           <div className="flex-1 flex justify-center">
-            <Link href="/">
+            <Link 
+            aria-label="Logo"
+            href="/">
               <Image
                 src={
                   !transparent || isSticky || openDropdown
@@ -144,7 +152,9 @@ export const Header = ({ transparent = true }) => {
           </div>
 
           <div className="flex-1 flex justify-end">
-            <Link href="/faq">
+            <Link 
+            aria-label="FAQ"
+            href="/faq">
               <div
                 className={`text-[17px] font-[700] mx-[10px] hidden lg:block cursor-pointer hover:text-[#D4D7D6]  ${
                   openDropdown ? "hover:text-[#403f3f]" : "hover:text-[#D4D7D6]"
@@ -153,7 +163,9 @@ export const Header = ({ transparent = true }) => {
                 FAQ
               </div>
             </Link>
-            <Link href="/contact">
+            <Link 
+            aria-label="Contact"
+            href="/contact">
               <div
                 className={`text-[17px] font-[700] mx-[10px] hidden lg:block cursor-pointer hover:text-[#D4D7D6]  ${
                   openDropdown ? "hover:text-[#403f3f]" : "hover:text-[#D4D7D6]"
@@ -172,6 +184,7 @@ export const Header = ({ transparent = true }) => {
               <IoSearch className="text-[24px] mx-[10px]" />
             </div>
             <Link
+            aria-label="Login"
               href="/login"
               className={`hidden md:block cursor-pointer ${
                 openDropdown ? "hover:text-[#403f3f]" : "hover:text-[#D4D7D6]"
