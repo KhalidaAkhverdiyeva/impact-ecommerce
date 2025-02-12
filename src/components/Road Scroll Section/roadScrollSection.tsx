@@ -34,9 +34,10 @@ const RoadScrollSection = () => {
               <Image
                 src={sections[activeIndex].imgSrc}
                 alt={sections[activeIndex].title}
-                width={800} // Adjust the width as needed
-                height={600} // Adjust the height as needed
+                width={800}
+                height={600}
                 className="transition-transform duration-300 transform"
+                loading="lazy"
               />
             </div>
             <div

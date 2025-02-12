@@ -4,7 +4,6 @@ import AboutNumbersSection from "@/components/About Numbers Section/aboutNumbers
 import Quote from "@/components/Designer Quote/quote";
 import { Header } from "@/components/Layout/Header/header";
 import FloatingTextSection from "@/components/Marquee Text/floatingTexts";
-import ProgressBarContainer from "@/components/New Arrivals Section/ProgressBarContainer";
 import RoadScrollSection from "@/components/Road Scroll Section/roadScrollSection";
 import ScrollableProducts from "@/components/Scrollable Products/scrollProducts";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
@@ -14,8 +13,6 @@ import { FaAngleRight } from "react-icons/fa6";
 
 const AboutPage = () => {
   const [scrollProgress, setScrollProgress] = useState<number>(0);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
   return (
     <div className="relative">
       <Header />
@@ -31,6 +28,7 @@ const AboutPage = () => {
             className="w-full h-full object-cover"
             width={600}
             height={600}
+            loading="lazy"
           />
         </picture>
         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-10">
@@ -67,6 +65,7 @@ const AboutPage = () => {
                 alt=""
                 width={32}
                 height={32}
+                loading="lazy"
               />
             </p>
             <h2 className="text-[40px] font-[900] lg:text-[60px] leading-[1]">
@@ -93,6 +92,7 @@ const AboutPage = () => {
                 className="-rotate-3"
                 width={700}
                 height={700}
+                loading="lazy"
               />
               <Image
                 src="https://impact-theme-home.myshopify.com/cdn/shop/files/about3.jpg?v=1659108549&width=1000"
@@ -100,6 +100,7 @@ const AboutPage = () => {
                 className="rotate-3 z-10"
                 width={700}
                 height={700}
+                loading="lazy"
               />
             </div>
             <div className="pt-[40px] w-[55%]">
@@ -109,6 +110,7 @@ const AboutPage = () => {
                 className="rotate-3"
                 width={700}
                 height={700}
+                loading="lazy"
               />
             </div>
           </div>
@@ -152,11 +154,6 @@ const AboutPage = () => {
         </div>
         <div className=" w-full overflow-x-hidden mx-auto max-w-[1600px]">
           <ScrollableProducts setScrollProgress={setScrollProgress} />
-          <ProgressBarContainer
-            canScrollLeft={canScrollLeft}
-            canScrollRight={canScrollRight}
-            scrollProgress={scrollProgress}
-          />
         </div>
       </section>
       <FloatingTextSection text="9 stores around the world" color="#363D88" />

@@ -79,6 +79,7 @@ export default function Home() {
               width={800}
               height={533}
               className="object-cover w-full h-full"
+              loading="lazy"
             />
           </picture>
         </section>
