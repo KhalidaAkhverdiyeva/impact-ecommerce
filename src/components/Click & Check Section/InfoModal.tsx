@@ -22,7 +22,8 @@ const InfoModal: React.FC<InfoModalProps> = ({
         }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <button
+        <button 
+          aria-label="Close"
           className="rounded-full mb-[12px] w-[48px] h-[48px] flex justify-center items-center bg-white text-[#272727] cursor-pointer"
           onClick={closeBottomDiv}
         >

@@ -19,7 +19,9 @@ const BlogCard: React.FC<BlogCardProps> = ({ imgSrc }) => {
           className="relative transition-transform duration-500 ease-in-out hover:scale-105"
         />
 
-        <button className="absolute top-[10px] text-[12px] left-[10px] text-white font-[700] bg-[#3C619E]  py-[3px] px-[8px]">
+        <button 
+        aria-label="Collection"
+        className="absolute top-[10px] text-[12px] left-[10px] text-white font-[700] bg-[#3C619E]  py-[3px] px-[8px]">
           Collection
         </button>
       </div>

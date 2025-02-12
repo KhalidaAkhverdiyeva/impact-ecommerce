@@ -51,6 +51,7 @@ const ShopTheRoomSection = () => {
                 >
                   <div className="absolute inset-0 bg-white transition-all duration-300 ease-in-out rounded-full opacity-20 animate-heartbeat"></div>
                   <button
+                    aria-label="Product 1"
                     className={`relative bg-white transition-all duration-300 ease-in-out rounded-full ${
                       activeBtn === 1
                         ? "w-[14px] h-[14px]"
@@ -72,6 +73,7 @@ const ShopTheRoomSection = () => {
                 >
                   <div className="absolute inset-0 bg-white transition-all duration-300 ease-in-out rounded-full opacity-20 animate-heartbeat"></div>
                   <button
+                    aria-label="Product 2"
                     className={`relative bg-white transition-all duration-300 ease-in-out rounded-full ${
                       activeBtn === 0
                         ? "w-[14px] h-[14px]"

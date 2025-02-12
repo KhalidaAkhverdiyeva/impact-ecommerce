@@ -21,7 +21,9 @@ const RichTextSection: FC<RichTextProps> = ({ title }) => {
             generation&apos;s best designers from all over the world to create
             high-quality products that would be available to a wide audience.
           </p>
-          <button className="border-[#272727] text-[#272727] border-[3px] font-[800] border-solid mt-[20px] py-[16px] px-[32px]">
+          <button 
+           aria-label="View designers"
+           className="border-[#272727] text-[#272727] border-[3px] font-[800] border-solid mt-[20px] py-[16px] px-[32px]">
             View designers
           </button>
         </div>

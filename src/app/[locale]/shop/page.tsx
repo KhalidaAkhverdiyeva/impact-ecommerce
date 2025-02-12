@@ -72,7 +72,9 @@ const ShopPage = () => {
 
             <div className="flex-[40%] bg-[#F8E39A] flex flex-col gap-[20px] p-[20px] md:p-[48px]">
               <div className="">
-                <button className="text-[16px] font-[700] bg-[#272727] bg-opacity-15 py-[6px] px-[20px]">
+                <button 
+                 aria-label="News"
+                 className="text-[16px] font-[700] bg-[#272727] bg-opacity-15 py-[6px] px-[20px]">
                   News
                 </button>
               </div>
@@ -160,7 +162,9 @@ const ShopPage = () => {
               <h2 className="text-white font-[800] text-[40px] md:text-[68px] lg:text-[80px] leading-[1] text-center max-w-[700px]">
                 We do high-quality products
               </h2>
-              <button className="text-[18px] font-[700] mt-[10px] lg:py-[14px] py-[13px] px-[24px] lg:px-[32px] bg-white inline-block w-[160px] text-center ">
+              <button 
+               aria-label="Learn more"
+               className="text-[18px] font-[700] mt-[10px] lg:py-[14px] py-[13px] px-[24px] lg:px-[32px] bg-white inline-block w-[160px] text-center ">
                 Learn more
               </button>
             </div>

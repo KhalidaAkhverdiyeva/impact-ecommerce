@@ -25,7 +25,9 @@ const BlogPage = () => {
 
           <div className="flex-[40%] bg-[#F8E39A] flex flex-col gap-[20px] p-[20px] md:p-[48px]">
             <div className="">
-              <button className="text-[16px] font-[700] bg-[#272727] bg-opacity-15 py-[6px] px-[20px]">
+              <button 
+              aria-label="News"
+               className="text-[16px] font-[700] bg-[#272727] bg-opacity-15 py-[6px] px-[20px]">
                 News
               </button>
             </div>
@@ -104,6 +106,7 @@ const BlogPage = () => {
         <div className=" flex justify-center items-center  bg-white mt-[20px] mb-[70px]">
           <div className="border-solid border-[1px] border-[#e0dede]  flex justify-center items-center">
             <button
+              aria-label="Previous"
               // onClick={onPrev}
               // disabled={currentIndex === 0}
               className=" text-gray-700 p-[20px] flex justify-center items-center"
@@ -112,6 +115,7 @@ const BlogPage = () => {
             </button>
             <span className="px-[12px] py-[8px]">1/2</span>
             <button
+              aria-label="Next"
               // onClick={onNext}
               // disabled={currentIndex === totalImages - 1}
               className=" text-gray-700 p-[20px] flex justify-center items-center"
@@ -146,7 +150,9 @@ const BlogPage = () => {
                 Inspired by architecture art & fashion
               </h2>
               <Link href="/about">
-                <button className="text-[18px] font-[700] mt-[10px] lg:py-[14px] py-[13px] px-[24px] lg:px-[32px] bg-white inline-block w-[160px] text-center ">
+                <button 
+                 aria-label="Learn more"
+                 className="text-[18px] font-[700] mt-[10px] lg:py-[14px] py-[13px] px-[24px] lg:px-[32px] bg-white inline-block w-[160px] text-center ">
                   Learn more
                 </button>
               </Link>

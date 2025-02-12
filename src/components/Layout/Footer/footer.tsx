@@ -28,7 +28,9 @@ const Footer = () => {
                   placeholder="Email"
                   className="bg-transparent placeholder:text-[16px] placeholder:text-[#797979] flex-grow outline-none"
                 />
-                <button className="bg-[#DDDDDD] rounded-full w-[40px] h-[40px] flex justify-center items-center hover:bg-[#cccccc] transition duration-300">
+                <button 
+                 aria-label="Submit"  
+                 className="bg-[#DDDDDD] rounded-full w-[40px] h-[40px] flex justify-center items-center hover:bg-[#cccccc] transition duration-300">
                   <LuChevronRight size={16} />
                 </button>
               </div>

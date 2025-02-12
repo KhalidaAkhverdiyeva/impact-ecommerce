@@ -17,7 +17,9 @@ const ExploreCollectionsSections = () => {
               <p className="text-[14px] md:text-[16px] text-[#272727]">
                 View all
               </p>
-              <button className="bg-[#E9E9E9] rounded-full w-[24px] h-[24px] flex justify-center items-center">
+              <button  
+              aria-label="View all"
+              className="bg-[#E9E9E9] rounded-full w-[24px] h-[24px] flex justify-center items-center">
                 <LuChevronRight size={14} />
               </button>
             </div>

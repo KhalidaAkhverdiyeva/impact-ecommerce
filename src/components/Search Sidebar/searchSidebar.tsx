@@ -44,6 +44,7 @@ const SearchSidebar: React.FC<SearchSidebarProps> = ({ isOpen, setIsOpen }) => {
         } overflow-hidden`}
       >
         <button
+          aria-label="Close search sidebar"
           className="absolute top-4 right-4 text-gray-600 text-2xl"
           onClick={closeSidebar}
         >

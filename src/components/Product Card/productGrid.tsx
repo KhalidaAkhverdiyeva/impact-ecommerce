@@ -41,6 +41,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
       <div className="flex justify-center items-center mt-6 w-[100%]">
         <div className="flex justify-center py-[10px] gap-[20px] w-[200px] border-solid border-[1px] border-[#e3e2e2]">
           <button
+            aria-label="Previous page"
             onClick={handlePrev}
             disabled={currentPage === 1}
             className="text-[#4f4f4f] disabled:text-gray-300 "
@@ -51,6 +52,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
             {currentPage} / {totalPages}
           </div>
           <button
+            aria-label="Next page"
             onClick={handleNext}
             disabled={currentPage === totalPages}
             className="text-[#4f4f4f] disabled:text-gray-300"

@@ -13,7 +13,9 @@ const TextContent = () => {
             water-resistant finish, its battery-powered design gives the freedom
             and flexibility to move it anywhere.
           </p>
-          <button className="text-white mt-[30px] bg-[#272727] font-[700] lg:text-[#272727] lg:bg-white w-[135px] py-[13px] px-[24px] flex gap-[5px] items-center">
+          <button 
+            aria-label="Learn more"
+           className="text-white mt-[30px] bg-[#272727] font-[700] lg:text-[#272727] lg:bg-white w-[135px] py-[13px] px-[24px] flex gap-[5px] items-center">
             Learn more
           </button>
         </div>

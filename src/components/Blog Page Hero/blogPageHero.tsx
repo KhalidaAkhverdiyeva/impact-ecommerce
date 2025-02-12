@@ -31,7 +31,9 @@ const BlogPageHero = () => {
             placeholder="Email"
             className="border border-[#476AA4] bg-transparent w-[100%] placeholder:text-[#9CAECE] md:flex-[60%] text-white pr-[32px] pl-[20px] py-[16px] outline-none"
           />
-          <button className="bg-white font-[800] text-[#3C619E] w-[100%] md:flex-[40%] flex items-center justify-center gap-[10px] text-center px-[32px] py-[16px]">
+          <button 
+            aria-label="Submit"
+           className="bg-white font-[800] text-[#3C619E] w-[100%] md:flex-[40%] flex items-center justify-center gap-[10px] text-center px-[32px] py-[16px]">
             <svg
               role="presentation"
               fill="none"
@@ -62,7 +64,8 @@ const BlogPageHero = () => {
         <div className="absolute bottom-0 w-full">
           <div className="flex gap-[15px] md:justify-center overflow-x-auto no-scrollbar px-[20px]">
             {sections.map((section) => (
-              <button
+              <button 
+                aria-label={section}
                 key={section}
                 onClick={() => setActiveSection(section)}
                 className={`px-[20px] lg:px-[24px] lg:py-[14px] py-[10px] border font-[700] text-[16px] md:text-[18px] whitespace-nowrap border-transparent ${

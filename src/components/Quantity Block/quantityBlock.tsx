@@ -19,6 +19,7 @@ const QuantityBlock = () => {
       </p>
       <div className="flex w-[140px] items-center gap-2 mt-4 border border-gray-200 p-2 ">
         <button
+          aria-label="Decrement quantity"
           onClick={decrement}
           className="flex-1 text-lg flex justify-center items-center"
         >
@@ -26,6 +27,7 @@ const QuantityBlock = () => {
         </button>
         <span className="text-lg flex-1 text-center">{quantity}</span>
         <button
+          aria-label="Increment quantity"
           onClick={increment}
           className="flex-1 flex justify-center items-center"
         >

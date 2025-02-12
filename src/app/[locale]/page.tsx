@@ -45,7 +45,9 @@ export default function Home() {
                 className="text-[#484848] flex gap-[5px] items-center"
               >
                 <p>View all</p>
-                <button className="bg-[#E9E9E9] p-[6px] rounded-full flex justify-center items-center">
+                <button
+                  aria-label="View all"
+                 className="bg-[#E9E9E9] p-[6px] rounded-full flex justify-center items-center">
                   <FaAngleRight size={14} />
                 </button>
               </Link>

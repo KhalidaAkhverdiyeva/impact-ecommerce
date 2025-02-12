@@ -27,6 +27,7 @@ const ProgressBarContainer: React.FC<ProgressBarContainerProps> = ({
 
       <div className="hidden md:flex gap-3 z-20 ml-[20px]">
         <button
+          aria-label="Left arrow"
           onClick={onScrollLeft}
           className={`border-[1px] flex justify-center items-center w-[36px] h-[36px] md:w-[56px] md:h-[56px] border-solid rounded-full transition-colors ${
             canScrollLeft
@@ -38,6 +39,7 @@ const ProgressBarContainer: React.FC<ProgressBarContainerProps> = ({
           <LuChevronLeft size={20} />
         </button>
         <button
+          aria-label="Right arrow"
           onClick={onScrollRight}
           className={`border-[1px] flex justify-center items-center w-[36px] h-[36px] md:w-[56px] md:h-[56px] border-solid rounded-full transition-colors ${
             canScrollRight

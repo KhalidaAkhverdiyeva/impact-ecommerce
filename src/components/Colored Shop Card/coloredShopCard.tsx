@@ -43,7 +43,8 @@ const ColoredShopCard: React.FC<ColoredShopCardProps> = ({
           <p className="pt-[20px] leading-[1.2] md:leading-[1.5] text-[#444444]">
             {description}
           </p>
-          <button
+          <button 
+            aria-label="Shop"
             className="mt-[24px] py-[16px] px-[32px] font-[800]"
             style={{ backgroundColor: buttonColor }}
           >

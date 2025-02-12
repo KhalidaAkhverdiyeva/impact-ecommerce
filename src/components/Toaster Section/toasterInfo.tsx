@@ -22,6 +22,7 @@ const ToasterModal: React.FC<InfoModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         <button
+          aria-label="Close toaster"
           className="rounded-full mb-[12px] w-[48px] h-[48px] flex justify-center items-center bg-white text-[#272727] cursor-pointer"
           onClick={closeBottomDiv}
         >

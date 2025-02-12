@@ -40,7 +40,9 @@ const MessageForm: React.FC<MessageFormProps> = ({ bgColor = "#F4F4F4" }) => {
         style={{ minHeight: "60px", color: "rgba(39,39,39,0.6)" }}
       ></textarea>
       <div className="bg-[#272727] w-[170px] py-[16px] px-[32px] text-center flex justify-center items-center gap-[10px]">
-        <button className="text-white font-[700]">Subscribe</button>
+        <button 
+        aria-label="Subscribe"  
+        className="text-white font-[700]">Subscribe</button>
       </div>
     </div>
   );

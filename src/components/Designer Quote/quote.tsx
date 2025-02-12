@@ -87,6 +87,7 @@ const Quote: React.FC<QuoteProps> = ({ bgColor }) => {
           {/* Navigation Buttons */}
           <div className="flex justify-center items-center gap-[20px] mt-4 max-w-[900px] mx-auto">
             <button
+              aria-label="Previous quote"
               onClick={prevQuote}
               className="py-2 px-4 border-[1px] border-[#9CA3AF] w-[48px] h-[48px] rounded-full"
             >
@@ -96,6 +97,7 @@ const Quote: React.FC<QuoteProps> = ({ bgColor }) => {
             <div className="flex justify-center mt-2">
               {quotes.map((_, index) => (
                 <button
+                  aria-label="Quote dot"
                   key={index}
                   onClick={() => changeQuote(index)}
                   className={`h-2 w-2 rounded-full mx-1 transition-all duration-300 ${
@@ -105,6 +107,7 @@ const Quote: React.FC<QuoteProps> = ({ bgColor }) => {
               ))}
             </div>
             <button
+              aria-label="Next quote"
               onClick={nextQuote}
               className="py-2 px-4 border-[1px] border-[#9CA3AF] w-[48px] h-[48px] rounded-full"
             >

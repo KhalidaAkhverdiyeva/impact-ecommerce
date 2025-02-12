@@ -21,6 +21,7 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
   return (
     <div className="hidden lg:flex gap-3 z-20 ml-[20px]">
       <button
+        aria-label="Left arrow"
         onClick={handlePrev}
         disabled={activeIndex === 0}
         className={`border-[1px] flex justify-center border-[#d3d2d2] items-center lg:w-[48px] md:h-[48px] rounded-full ${
@@ -32,6 +33,7 @@ const ControlButtons: React.FC<ControlButtonsProps> = ({
         <LuChevronLeft size={20} />
       </button>
       <button
+        aria-label="Right arrow"
         onClick={handleNext}
         disabled={activeIndex === sectionsLength - 1}
         className={`border-[1px] flex justify-center border-[#d3d2d2] items-center lg:w-[48px] md:h-[48px] rounded-full ${

@@ -141,6 +141,7 @@ const SmallProductCards: React.FC<SmallProductCardsProps> = ({
               className="flex justify-center items-center text-[#5c5a5aa5] border border-[#2727274f] w-[48px] h-[38px] text-center"
             />
             <button
+              aria-label="Remove"
               onClick={handleRemove}
               className="text-[#545353a5] hover:text-[#272727] transition-all ease-in-out underline mt-[5px] text-[14px] cursor-pointer"
             >

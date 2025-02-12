@@ -90,7 +90,9 @@ const NewsletterCard = () => {
                   strokeLinejoin="round"
                 ></path>
               </svg>
-              <button className="text-white font-[700]">Subscribe</button>
+              <button 
+               aria-label="Subscribe"
+               className="text-white font-[700]">Subscribe</button>
             </div>
           </div>
           <p className="text-[12px] text-[#272727B3] pt-[20px]">

@@ -81,6 +81,7 @@ const Accountant: React.FC = () => {
         )}
         <div className="flex justify-end mt-6 max-w-[600px] mx-auto">
           <button
+            aria-label="Logout"
             onClick={handleLogout}
             className="inline bg-[#F4F4F4] text-[#272727] font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition duration-300"
           >

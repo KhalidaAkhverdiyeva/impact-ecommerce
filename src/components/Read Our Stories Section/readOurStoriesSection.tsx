@@ -12,7 +12,9 @@ const ReadOurStoriesSection = () => {
           </h4>
           <div className="text-[#484848] flex gap-[10px] items-center">
             <p className="text-[14px] md:text-[16px]">View all stories</p>
-            <button className="bg-[#e9e9e9] p-[6px] rounded-full flex justify-center items-center">
+            <button 
+            aria-label="View all stories"
+            className="bg-[#e9e9e9] p-[6px] rounded-full flex justify-center items-center">
               <FaAngleRight size={12} />
             </button>
           </div>

@@ -17,7 +17,9 @@ const PlusButtons: React.FC<PlusButtonsProps> = ({ toggleBottomDiv }) => {
       >
         <div className="relative w-[42px] h-[42px] sm:w-[64px] sm:h-[64px] flex justify-center items-center">
           <div className="absolute inset-0 bg-white rounded-full opacity-20 animate-heartbeat"></div>
-          <button className="relative bg-white w-[32px] h-[32px] sm:w-[46px] sm:h-[46px] flex justify-center items-center rounded-full">
+          <button 
+           aria-label="Add to cart" 
+           className="relative bg-white w-[32px] h-[32px] sm:w-[46px] sm:h-[46px] flex justify-center items-center rounded-full">
             <FaPlus className="text-[12px] sm:text-[16px]" />
           </button>
         </div>
@@ -29,7 +31,9 @@ const PlusButtons: React.FC<PlusButtonsProps> = ({ toggleBottomDiv }) => {
       >
         <div className="relative w-[42px] h-[42px] sm:w-[64px] sm:h-[64px] flex justify-center items-center">
           <div className="absolute inset-0 bg-white rounded-full opacity-20 animate-heartbeat"></div>
-          <button className="relative bg-white w-[32px] h-[32px] sm:w-[46px] sm:h-[46px] flex justify-center items-center rounded-full">
+          <button  
+            aria-label="Add to cart"
+          className="relative bg-white w-[32px] h-[32px] sm:w-[46px] sm:h-[46px] flex justify-center items-center rounded-full">
             <FaPlus className="text-[12px] sm:text-[16px]" />
           </button>
         </div>

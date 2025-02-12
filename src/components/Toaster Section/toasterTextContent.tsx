@@ -12,7 +12,9 @@ const ToasterTextContent = () => {
             George Sowden combines intuitive controls and playful colors in his
             Sowden Toaster.
           </p>
-          <button className="text-white mt-[30px] bg-[#272727] font-[700]  py-[13px] px-[24px] flex gap-[5px] items-center">
+          <button 
+          aria-label="View product"
+           className="text-white mt-[30px] bg-[#272727] font-[700]  py-[13px] px-[24px] flex gap-[5px] items-center">
             View product
           </button>
         </div>

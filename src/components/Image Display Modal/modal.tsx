@@ -14,6 +14,7 @@ const Modal: React.FC<ModalProps> = ({
   return (
     <div className="fixed inset-0 bg-white flex items-center justify-center z-50">
       <button
+        aria-label="Close"
         onClick={onClose}
         className="absolute top-5 right-5 text-gray-700 z-10 "
       >
@@ -54,6 +55,7 @@ const Modal: React.FC<ModalProps> = ({
 
         <div className="mt-5 flex items-center absolute bottom-[20px] left-[40%] bg-white rounded-[20px]">
           <button
+            aria-label="Previous image"
             onClick={onPrev}
             disabled={currentIndex === 0}
             className=" text-gray-700 px-[20px]"
@@ -64,6 +66,7 @@ const Modal: React.FC<ModalProps> = ({
             {currentIndex + 1}/{totalImages}
           </span>
           <button
+            aria-label="Next image"
             onClick={onNext}
             disabled={currentIndex === totalImages - 1}
             className=" text-gray-700 px-[20px]"

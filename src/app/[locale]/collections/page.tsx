@@ -46,7 +46,9 @@ const CollectionsPage = () => {
                 Vast and varied selection of fresh, stylish lighting options,
                 including pendant, table, floor lamps and more.
               </p>
-              <button className="mt-[24px] text-white border-solid font-[800] border-white border-[2px] px-[32px] py-[16px]">
+              <button  
+                aria-label="Shop Lighting"
+               className="mt-[24px] text-white border-solid font-[800] border-white border-[2px] px-[32px] py-[16px]">
                 Shop Lighting
               </button>
             </div>
@@ -86,7 +88,9 @@ const CollectionsPage = () => {
               style to a higher level, transforming essential household products
               into decorative as well as functional objects.
             </p>
-            <button className="bg-[#92BEE5] font-[700] text-white py-[16px] px-[32px] mt-[20px] md:mt-[40px]">
+            <button 
+              aria-label="Shop Collection"
+             className="bg-[#92BEE5] font-[700] text-white py-[16px] px-[32px] mt-[20px] md:mt-[40px]">
               Shop Collection
             </button>
           </div>

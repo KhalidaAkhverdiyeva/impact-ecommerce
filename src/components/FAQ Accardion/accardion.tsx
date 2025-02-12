@@ -20,7 +20,8 @@ const Accordion: React.FC<AccordionProps> = ({ title, content, isLast }) => {
 
   return (
     <div className="mx-[20px]">
-      <button
+      <button 
+        aria-label="Toggle accordion"
         className="flex justify-between items-center w-full py-[20px] text-left"
         onClick={toggleAccordion}
       >
