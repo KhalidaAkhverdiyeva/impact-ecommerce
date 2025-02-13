@@ -131,6 +131,24 @@ export interface ControlButtonsProps {
   export interface ToasterPlusButtonsProps {
     toggleBottomDiv: (modalInfo: ModalInfo, buttonId: string) => void;
   }
+
+  
+export interface SmallProductCardsProps {
+  colorId: string;
+  quantity: number;
+  productId: string;
+}
+
+export interface SmallCardData {
+  title: string;
+  price: number;
+  colors: string;
+  colorVariants: ColorVariant[];
+}
+
+export interface ColorVariant {
+  mainImage: string;
+}
   
   
   

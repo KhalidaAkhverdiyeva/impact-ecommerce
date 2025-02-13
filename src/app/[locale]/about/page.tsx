@@ -148,7 +148,8 @@ const AboutPage = () => {
               <p>View all</p>
               <button
                 aria-label="View all"
-               className="bg-[#E9E9E9] p-[6px] rounded-full flex justify-center items-center">
+                className="bg-[#E9E9E9] p-[6px] rounded-full flex justify-center items-center"
+              >
                 <FaAngleRight size={14} />
               </button>
             </div>

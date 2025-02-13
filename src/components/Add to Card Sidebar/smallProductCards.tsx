@@ -2,23 +2,8 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useCart } from "@/contexts/cartContext";
+import { SmallCardData, SmallProductCardsProps } from "@/types";
 
-interface SmallProductCardsProps {
-  colorId: string;
-  quantity: number;
-  productId: string;
-}
-
-interface SmallCardData {
-  title: string;
-  price: number;
-  colors: string;
-  colorVariants: ColorVariant[];
-}
-
-interface ColorVariant {
-  mainImage?: string;
-}
 
 const SmallProductCards: React.FC<SmallProductCardsProps> = ({
   colorId,

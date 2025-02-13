@@ -12,7 +12,13 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   totalPages,
   setCurrentPage,
 }) => {
-  if (loading) return <ProductCardSkeletons />;
+  if (loading) {
+    return (
+      <div className="hidden md:block">
+        <ProductCardSkeletons />
+      </div>
+    );
+  }
   if (error) return <div>Error: {error}</div>;
 
   if (products.length === 0) {
@@ -41,7 +47,6 @@ const ProductGrid: React.FC<ProductGridProps> = ({
       <div className="flex justify-center items-center mt-6 w-[100%]">
         <div className="flex justify-center py-[10px] gap-[20px] w-[200px] border-solid border-[1px] border-[#e3e2e2]">
           <button
-            aria-label="Previous page"
             onClick={handlePrev}
             disabled={currentPage === 1}
             className="text-[#4f4f4f] disabled:text-gray-300 "

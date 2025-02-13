@@ -77,7 +77,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const hoverImage = selectedVariant?.hoverImage || "";
 
   return (
-    <div className="w-[100%] flex-1 min-w-[300px]">
+    <div className="w-[100%] flex-1 ">
       <div
         className="relative mb-6"
         onMouseEnter={() => setIsHovered(true)}
