@@ -19,7 +19,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
         <div className="block md:hidden w-full">
           <MobileSkeletons />
         </div>
-        <div className="hidden md:block md:w-[80%]">
+        <div className="hidden md:block md:w-[100%]">
           <ProductCardSkeletons />
         </div>
       </div>
@@ -44,7 +44,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   };
 
   return (
-    <div className="flex-1 flex flex-col">
+    <div className=" flex flex-col">
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-[10px] lg:gap-6 flex-grow">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />

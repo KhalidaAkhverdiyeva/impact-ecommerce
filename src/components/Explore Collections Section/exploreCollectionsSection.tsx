@@ -12,16 +12,15 @@ const ExploreCollectionsSections = () => {
             Explore the collections
           </h3>
 
-          <Link 
-              aria-label="View all collections"
-           href="/collections">
+          <Link aria-label="View all collections" href="/collections">
             <div className="flex gap-[12px]">
               <p className="text-[14px] md:text-[16px] text-[#272727]">
                 View all
               </p>
-              <button  
-              aria-label="View all"
-              className="bg-[#E9E9E9] rounded-full w-[24px] h-[24px] flex justify-center items-center">
+              <button
+                aria-label="View all"
+                className="bg-[#E9E9E9] rounded-full w-[24px] h-[24px] flex justify-center items-center"
+              >
                 <LuChevronRight size={14} />
               </button>
             </div>

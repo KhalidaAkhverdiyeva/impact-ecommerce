@@ -80,7 +80,7 @@ const FilterSection: React.FC<FilterSectionProps> = ({
           </IconButton>
         </div>
         <div
-          className={`flex ${
+          className={`flex items-center ${
             activeFilters.length > 0 ? "justify-between" : "justify-end"
           } w-[77%]`}
         >
@@ -101,41 +101,7 @@ const FilterSection: React.FC<FilterSectionProps> = ({
         </div>
       </div>
       <div className="flex gap-[40px]">
-        <FilterAccordion
-          setColor={setColor}
-          setDesigner={setDesigner}
-          setType={setType}
-          setMinPrice={setMinPrice}
-          setMaxPrice={setMaxPrice}
-          setInStock={setInStockLocal}
-          currentColor={color}
-          currentDesigner={designer}
-          currentType={type}
-          currentMinPrice={minPrice}
-          currentMaxPrice={maxPrice}
-          currentInStock={inStock}
-        />
-
-        <Drawer
-          anchor="left"
-          open={isDrawerOpen}
-          onClose={() => setIsDrawerOpen(false)}
-          sx={{
-            "& .MuiDrawer-paper": {
-              width: "80%",
-              maxWidth: "300px",
-              padding: "20px",
-            },
-            display: { md: "none" },
-          }}
-        >
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-semibold">Filters</h2>
-            <IconButton onClick={() => setIsDrawerOpen(false)}>
-              <IoCloseOutline />
-            </IconButton>
-          </div>
-
+        <div className="w-[22%]">
           <FilterAccordion
             setColor={setColor}
             setDesigner={setDesigner}
@@ -149,18 +115,54 @@ const FilterSection: React.FC<FilterSectionProps> = ({
             currentMinPrice={minPrice}
             currentMaxPrice={maxPrice}
             currentInStock={inStock}
-            isMobile={true}
           />
-        </Drawer>
+          <Drawer
+            anchor="left"
+            open={isDrawerOpen}
+            onClose={() => setIsDrawerOpen(false)}
+            sx={{
+              "& .MuiDrawer-paper": {
+                width: "80%",
+                maxWidth: "300px",
+                padding: "20px",
+              },
+              display: { md: "none" },
+            }}
+          >
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-lg font-semibold">Filters</h2>
+              <IconButton onClick={() => setIsDrawerOpen(false)}>
+                <IoCloseOutline />
+              </IconButton>
+            </div>
 
-        <ProductGrid
-          products={products}
-          loading={loading}
-          error={error}
-          currentPage={currentPage}
-          totalPages={totalPages}
-          setCurrentPage={setCurrentPage}
-        />
+            <FilterAccordion
+              setColor={setColor}
+              setDesigner={setDesigner}
+              setType={setType}
+              setMinPrice={setMinPrice}
+              setMaxPrice={setMaxPrice}
+              setInStock={setInStockLocal}
+              currentColor={color}
+              currentDesigner={designer}
+              currentType={type}
+              currentMinPrice={minPrice}
+              currentMaxPrice={maxPrice}
+              currentInStock={inStock}
+              isMobile={true}
+            />
+          </Drawer>
+        </div>
+        <div className="w-[78%]">
+          <ProductGrid
+            products={products}
+            loading={loading}
+            error={error}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            setCurrentPage={setCurrentPage}
+          />
+        </div>
       </div>
     </div>
   );

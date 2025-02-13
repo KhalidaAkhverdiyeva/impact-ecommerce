@@ -55,7 +55,7 @@ const FilterAccordion: React.FC<ExtendedAccordionFilterProps> = ({
   };
 
   return (
-    <div className={isMobile ? "block" : "hidden lg:block w-[300px]"}>
+    <div className={isMobile ? "block" : "hidden lg:block"}>
       <StockFilter currentInStock={currentInStock} setInStock={setInStock} />
       <DesignerFilter
         currentDesigner={currentDesigner}
