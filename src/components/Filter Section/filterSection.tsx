@@ -68,7 +68,7 @@ const FilterSection: React.FC<FilterSectionProps> = ({
   return (
     <div className="max-w-[1600px] mx-auto py-[50px] px-[20px] md:px-[32px] lg:px-[48px]">
       <div className="mb-[30px] flex justify-between">
-        <div className="flex items-center gap-[10px] w-[22%]">
+        <div className="flex items-center gap-[10px] w-[15%] md:w-[25%]">
           {/* Show Filter text on desktop, button on mobile */}
           <span className="hidden md:block">Filters</span>
           <IconButton
@@ -85,9 +85,12 @@ const FilterSection: React.FC<FilterSectionProps> = ({
           } w-[77%]`}
         >
           {activeFilters.length > 0 && (
-            <div className="bg-[#E9E9E9] px-[10px] py-[5px] flex items-center gap-[5px]">
+            <div className=" px-[10px] py-[5px] flex items-center gap-[5px]">
               {activeFilters.map((filter, index) => (
-                <div key={index} className="flex items-center gap-[5px]">
+                <div
+                  key={index}
+                  className="flex bg-[#E9E9E9] items-center gap-[5px] p-[5px]"
+                >
                   <span>{filter}</span>
                   <IoCloseOutline
                     className="cursor-pointer"
@@ -100,8 +103,8 @@ const FilterSection: React.FC<FilterSectionProps> = ({
           <SortBy setSortOption={setSortOption} currentSort={sortOption} />
         </div>
       </div>
-      <div className="flex gap-[40px]">
-        <div className="w-[22%]">
+      <div className="w-[100%] flex gap-[40px]">
+        <div className="hidden md:block">
           <FilterAccordion
             setColor={setColor}
             setDesigner={setDesigner}
@@ -153,7 +156,7 @@ const FilterSection: React.FC<FilterSectionProps> = ({
             />
           </Drawer>
         </div>
-        <div className="w-[78%]">
+        <div className="w-[100%]">
           <ProductGrid
             products={products}
             loading={loading}

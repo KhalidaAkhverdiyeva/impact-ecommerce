@@ -23,7 +23,7 @@ export const StockFilter: React.FC<StockFilterProps> = ({
   currentInStock,
   setInStock,
 }) => (
-  <div className="flex justify-between py-[20px] border-t-[1px]">
+  <div className="flex justify-between py-[12px] border-t-[1px] items-center">
     <div className="font-[700] text-[18px]">In stock only</div>
     <CustomSwitch
       onChange={() => setInStock(!currentInStock)}

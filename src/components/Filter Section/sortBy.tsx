@@ -29,7 +29,7 @@ const SortBy: React.FC<SortByProps> = ({ setSortOption, currentSort }) => {
         </div>
       </div>
       {isDropdownOpen && (
-        <div className="absolute top-[30px] left-0 bg-white shadow-lg rounded-md p-[10px] w-[200px]">
+        <div className="absolute top-[30px] right-0 bg-white shadow-lg rounded-md p-[10px] w-[200px]">
           <ul className="flex flex-col gap-[5px]">
             <li
               className={`hover:bg-gray-100 p-[5px] rounded-md cursor-pointer ${
