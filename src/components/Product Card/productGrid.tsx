@@ -3,6 +3,7 @@ import ProductCard from "./productCard";
 import ProductCardSkeletons from "../Skeletons/Product Card Skeleton/productCardSkeleton";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { ProductGridProps } from "@/types";
+import MobileSkeletons from "../Skeletons/Mobile Product Skeleton/mobileSkeleton";
 
 const ProductGrid: React.FC<ProductGridProps> = ({
   products,
@@ -14,8 +15,13 @@ const ProductGrid: React.FC<ProductGridProps> = ({
 }) => {
   if (loading) {
     return (
-      <div className="hidden md:block">
-        <ProductCardSkeletons />
+      <div className="w-full">
+        <div className="block md:hidden w-full">
+          <MobileSkeletons />
+        </div>
+        <div className="hidden md:block md:w-[80%]">
+          <ProductCardSkeletons />
+        </div>
       </div>
     );
   }

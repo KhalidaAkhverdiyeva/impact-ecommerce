@@ -151,7 +151,24 @@ export interface ColorVariant {
 }
   
   
+ export  interface AddToCartSidebarProps {
+    isAddToCartOpen: boolean;
+    setIsAddCartOpen: (isOpen: boolean) => void;
+  }
   
-  
+  export interface AccordionFilterProps {
+    setColor: (color: string | null) => void;
+    setDesigner: (designer: string | null) => void;
+    setType: (type: string | null) => void;
+    setMinPrice: (price: number) => void;
+    setMaxPrice: (price: number) => void;
+    setInStock: (inStock: boolean) => void;
+    currentColor: string | null;
+    currentDesigner: string | null;
+    currentType: string | null;
+    currentMinPrice: number;
+    currentMaxPrice: number;
+    currentInStock: boolean;
+  }
   
   

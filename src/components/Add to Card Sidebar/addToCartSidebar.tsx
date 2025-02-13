@@ -2,13 +2,8 @@
 import React, { useEffect, useState } from "react";
 import SmallProductCards from "./smallProductCards";
 import { Link, useRouter } from "@/i18n/routing";
-import { CartItem } from "@/types";
+import { AddToCartSidebarProps, CartItem } from "@/types";
 import { useCart } from "@/contexts/cartContext";
-
-interface AddToCartSidebarProps {
-  isAddToCartOpen: boolean;
-  setIsAddCartOpen: (isOpen: boolean) => void;
-}
 
 const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
   isAddToCartOpen,
@@ -21,8 +16,6 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
   const [userCartItems, setUserCartItems] = useState<CartItem[]>([]);
   const [isCartFetched, setIsCartFetched] = useState<boolean>(false);
   const { cartItems, removeFromCart } = useCart();
-
-  const router = useRouter();
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
@@ -102,7 +95,7 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
                     {cartItems.length}
                   </span>
                 </div>
-                <button 
+                <button
                   aria-label="Close cart"
                   className="absolute top-[40px] right-[40px] text-gray-600 text-2xl"
                   onClick={closeSidebar}
@@ -138,14 +131,16 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
               <p>Tax included and shipping calculated at checkout</p>
 
               <div className="flex flex-col md:flex-row gap-[10px] py-[15px]">
-                <button 
-                 aria-label="Add to cart"
-                 className="py-[16px] px-[32px] bg-[#3C619E] text-white font-[700] w-[100%]">
+                <button
+                  aria-label="Add to cart"
+                  className="py-[16px] px-[32px] bg-[#3C619E] text-white font-[700] w-[100%]"
+                >
                   Add to cart
                 </button>
-                <button 
-                 aria-label="Buy it now"
-                 className="bg-[#272727] font-[800] w-[100%] text-white px-[32px] py-[16px]">
+                <button
+                  aria-label="Buy it now"
+                  className="bg-[#272727] font-[800] w-[100%] text-white px-[32px] py-[16px]"
+                >
                   Buy it now
                 </button>
               </div>
@@ -158,9 +153,10 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
               </p>
 
               <Link href="/login">
-                <button 
-                 aria-label="Go to Login"
-                 className="py-[16px] px-[32px] bg-[#272727] text-white font-[700] rounded-lg">
+                <button
+                  aria-label="Go to Login"
+                  className="py-[16px] px-[32px] bg-[#272727] text-white font-[700] rounded-lg"
+                >
                   Go to Login
                 </button>
               </Link>

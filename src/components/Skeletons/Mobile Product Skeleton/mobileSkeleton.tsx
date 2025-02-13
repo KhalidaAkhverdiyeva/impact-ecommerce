@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProductCardSkeleton = () => {
+const MobileSkeleton = () => {
   return (
     <div className="w-full">
       <div className="relative mb-6 animate-pulse">
@@ -10,8 +10,8 @@ const ProductCardSkeleton = () => {
         </div>
 
         <div className="relative">
-          <div className="bg-gray-300 w-full h-[440px] "></div>
-          <div className="absolute w-full h-[300px] inset-0 bg-gray-300 "></div>
+          <div className="bg-gray-300 w-full h-[220px] "></div>
+          <div className="absolute w-full h-[15px] inset-0 bg-gray-300 "></div>
 
           <div className="absolute bottom-[0] opacity-0 right-[15px] flex justify-center">
             <div className="bg-gray-300 text-white text-center py-[10px] px-[10px] text-[18px] w-[130px] cursor-pointer font-[800]"></div>
@@ -43,14 +43,13 @@ const ProductCardSkeleton = () => {
   );
 };
 
-const ProductCardSkeletons = () => {
+const MobileSkeletons = () => {
   return (
     <div className="flex gap-[20px] w-[100%]">
-      <ProductCardSkeleton />
-      <ProductCardSkeleton />
-      <ProductCardSkeleton />
+      <MobileSkeleton />
+      <MobileSkeleton />
     </div>
   );
 };
 
-export default ProductCardSkeletons;
+export default MobileSkeletons;
