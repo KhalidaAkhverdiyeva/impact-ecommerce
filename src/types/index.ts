@@ -133,20 +133,15 @@ export interface ControlButtonsProps {
   }
 
   
-export interface SmallProductCardsProps {
-  colorId: string;
-  quantity: number;
-  productId: string;
-}
-
-export interface SmallCardData {
-  title: string;
-  price: number;
-  colors: string;
-  colorVariants: ColorVariant[];
-}
+  export interface SmallProductCardsProps {
+    colorId: string;
+    quantity: number;
+    productId: string;
+  }
 
 export interface ColorVariant {
+  _id: string;
+  color: string;
   mainImage: string;
 }
   

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { IoChevronDownOutline } from "react-icons/io5";
+import { IoChevronDownOutline, IoCloseOutline } from "react-icons/io5";
 
 interface SortByProps {
   setSortOption: (sortOption: string) => void;
@@ -19,6 +19,11 @@ const SortBy: React.FC<SortByProps> = ({ setSortOption, currentSort }) => {
     setIsDropdownOpen(false);
   };
 
+  const clearSort = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setSortOption("");
+  };
+
   return (
     <div className="flex gap-[10px] relative z-20">
       <div className="font-[700]">Sort by:</div>
@@ -28,6 +33,14 @@ const SortBy: React.FC<SortByProps> = ({ setSortOption, currentSort }) => {
           <IoChevronDownOutline />
         </div>
       </div>
+      {currentSort && (
+        <div
+          className="bg-[#E9E9E9] rounded-full w-[24px] h-[24px] flex justify-center items-center cursor-pointer"
+          onClick={clearSort}
+        >
+          <IoCloseOutline />
+        </div>
+      )}
       {isDropdownOpen && (
         <div className="absolute top-[30px] right-0 bg-white shadow-lg rounded-md p-[10px] w-[200px]">
           <ul className="flex flex-col gap-[5px]">

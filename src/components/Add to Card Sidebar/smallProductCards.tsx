@@ -1,102 +1,91 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { useCart } from "@/contexts/cartContext";
-import { SmallCardData, SmallProductCardsProps } from "@/types";
-
+import { Product, SmallProductCardsProps } from "@/types";
 
 const SmallProductCards: React.FC<SmallProductCardsProps> = ({
   colorId,
-  quantity,
   productId,
 }) => {
-  const [smallCardData, setSmallCardData] = useState<SmallCardData | null>(
-    null
-  );
+  const [smallCardData, setSmallCardData] = useState<Product | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [localQuantity, setLocalQuantity] = useState(quantity);
-  const { removeFromCart, updateQuantity } = useCart();
+  const { removeFromCart, updateQuantity, cartItems } = useCart();
+  const [isFetching, setIsFetching] = useState(false);
+
+  // Calculate total quantity for this product
+  const totalQuantity = useMemo(() => {
+    return cartItems
+      .filter((item) => item.productId === productId)
+      .reduce((sum, item) => sum + item.quantity, 0);
+  }, [cartItems, productId]);
+
+  const [localQuantity, setLocalQuantity] = useState(totalQuantity);
+  useEffect(() => {
+    setLocalQuantity(totalQuantity);
+  }, [totalQuantity]);
+
+  const fetchProductData = useCallback(async () => {
+    if (!productId) return;
+
+    setIsFetching(true);
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/products/all/${productId}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch product data");
+      }
+      const data = await response.json();
+      setSmallCardData(data.product);
+    } catch (err) {
+      setError("Failed to load product data.");
+    } finally {
+      setIsFetching(false);
+    }
+  }, [productId]);
 
   useEffect(() => {
-    const fetchProductwithIds = async () => {
-      try {
-        const response = await fetch(
-          `https://impact-server-side-production.up.railway.app/api/products/all/${productId}`
-        );
-        if (response.ok) {
-          const data = await response.json();
-          setSmallCardData(data.product);
-        } else {
-          setError("Failed to fetch product details");
-        }
-      } catch (err) {
-        setError("Error fetching product details");
-      }
-    };
+    if (!smallCardData && productId && !isFetching) {
+      fetchProductData();
+    }
+  }, [productId, fetchProductData, isFetching, smallCardData]);
 
-    fetchProductwithIds();
-  }, [productId]);
+  if (error) return <div className="text-red-500">{error}</div>;
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newQuantity = parseInt(e.target.value) || 0;
     if (newQuantity >= 0) {
       setLocalQuantity(newQuantity);
       updateQuantity(productId, newQuantity);
-
-      // Update backend
-      updateBackendQuantity(newQuantity);
-    }
-  };
-
-  const updateBackendQuantity = async (newQuantity: number) => {
-    const userId = localStorage.getItem("userId");
-    if (!userId) return;
-
-    try {
-      await fetch(
-        `https://impact-server-side-production.up.railway.app/api/users/${userId}/cart/${productId}`,
-        {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ quantity: newQuantity }),
-        }
-      );
-    } catch (err) {
-      setError("Failed to update quantity");
     }
   };
 
   const handleRemove = async () => {
-    const userId = localStorage.getItem("userId");
-    if (!userId) {
-      setError("User is not logged in");
-      return;
-    }
-
     try {
+      const userId = localStorage.getItem("userId");
+      if (!userId) {
+        throw new Error("User not logged in");
+      }
+
       const response = await fetch(
-        `https://impact-server-side-production.up.railway.app/api/users/${userId}/cart`,
+        `http://localhost:3001/api/users/${userId}/cart`,
         {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            productId,
-            colorId,
-          }),
+          body: JSON.stringify({ productId, colorId }),
         }
       );
 
-      if (response.ok) {
-        removeFromCart(productId);
-      } else {
-        setError("Failed to remove item from cart");
+      if (!response.ok) {
+        throw new Error("Failed to remove item from cart");
       }
+
+      removeFromCart(productId);
     } catch (err) {
-      setError("Error removing item from cart");
+      setError(err instanceof Error ? err.message : "Failed to remove item");
     }
   };
-
-  if (error) return <div className="text-red-500">{error}</div>;
 
   return (
     <div className="flex items-center gap-[20px]">
@@ -115,7 +104,7 @@ const SmallProductCards: React.FC<SmallProductCardsProps> = ({
           <div className="flex flex-col gap-[5px] w-[68%]">
             <p className="font-[700]">{smallCardData.title}</p>
             <p className="text-[#272727a5]">${smallCardData.price}</p>
-            <p className="text-[#272727a5]">{smallCardData.colors}</p>
+            {/* <p className="text-[#272727a5]">{smallCardData.colors[]}</p> */}
           </div>
           <div className="flex flex-col items-center gap-[5px]">
             <input

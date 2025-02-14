@@ -50,16 +50,16 @@ export const useProducts = ({
       if (sortOption) {
         switch (sortOption) {
           case "Price, low to high":
-            queryParams.append("sort", "price:asc");
+            queryParams.append("sort", "price:asc"); // Match backend sorting
             break;
           case "Price, high to low":
-            queryParams.append("sort", "price:desc");
+            queryParams.append("sort", "price:desc"); // Match backend sorting
             break;
         }
       }
 
       const response = await fetch(
-        `https://impact-server-side-production.up.railway.app/api/products/all?${queryParams.toString()}`
+        `http://localhost:3001/api/products/all?${queryParams.toString()}`
       );
 
       if (!response.ok) throw new Error("Network response was not ok");

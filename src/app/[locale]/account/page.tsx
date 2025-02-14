@@ -27,7 +27,7 @@ const Accountant: React.FC = () => {
     const fetchUserData = async () => {
       try {
         const response = await fetch(
-          `https://impact-server-side-production.up.railway.app/api/users/${userId}`,
+          `http://localhost:3001/api/users/${userId}`,
           {
             method: "GET",
             headers: {

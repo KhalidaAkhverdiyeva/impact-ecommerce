@@ -38,7 +38,7 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
     async function fetchProduct() {
       try {
         const res = await fetch(
-          `https://impact-server-side-production.up.railway.app/api/products/${params.title}`
+          `http://localhost:3001/api/products/${params.title}`
         );
         if (res.ok) {
           const data = await res.json();
@@ -146,14 +146,16 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
             <QuantityBlock />
             <Stock product={product} />
             <div className="flex flex-col md:flex-row gap-[10px] py-[15px]">
-              <button 
+              <button
                 aria-label="Add to cart"
-               className="py-[16px] px-[32px] bg-[#3C619E] text-white font-[700] w-[100%]">
+                className="py-[16px] px-[32px] bg-[#3C619E] text-white font-[700] w-[100%]"
+              >
                 Add to cart
               </button>
-              <button 
+              <button
                 aria-label="Buy it now"
-               className="bg-[#272727] font-[800] w-[100%] text-white px-[32px] py-[16px]">
+                className="bg-[#272727] font-[800] w-[100%] text-white px-[32px] py-[16px]"
+              >
                 Buy it now
               </button>
             </div>
@@ -197,9 +199,10 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
             <h2 className="text-white font-[800] text-[40px] md:text-[68px] lg:text-[80px] leading-[1] text-center max-w-[700px]">
               We do high-quality products
             </h2>
-            <button 
+            <button
               aria-label="Learn more"
-             className="text-[18px] font-[700] mt-[10px] lg:py-[14px] py-[13px] px-[24px] lg:px-[32px] bg-white inline-block w-[160px] text-center ">
+              className="text-[18px] font-[700] mt-[10px] lg:py-[14px] py-[13px] px-[24px] lg:px-[32px] bg-white inline-block w-[160px] text-center "
+            >
               Learn more
             </button>
           </div>

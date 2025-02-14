@@ -27,17 +27,14 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(
-        "https://impact-server-side-production.up.railway.app/api/auth/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-          credentials: "include",
-        }
-      );
+      const response = await fetch("http://localhost:3001/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+        credentials: "include",
+      });
 
       if (response.ok) {
         const data = await response.json();
@@ -97,9 +94,11 @@ const LoginPage = () => {
               </span>
             </div>
 
-            <Link 
+            <Link
               aria-label="Forgot password"
-             href="/" className="underline text-[14px] text-[#969696] ">
+              href="/"
+              className="underline text-[14px] text-[#969696] "
+            >
               Forgot your password?
             </Link>
             <button
@@ -112,7 +111,7 @@ const LoginPage = () => {
           </form>
 
           <div className="flex flex-col gap-[20px] w-full px-[54px] pb-[50px]">
-            <Link 
+            <Link
               aria-label="Signup"
               href="/signup"
               className="underline text-[14px] text-center text-[#969696] "
