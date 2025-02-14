@@ -7,6 +7,8 @@ import { Product, SmallProductCardsProps } from "@/types";
 const SmallProductCards: React.FC<SmallProductCardsProps> = ({
   colorId,
   productId,
+  _id,
+  quantity,
 }) => {
   const [smallCardData, setSmallCardData] = useState<Product | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -69,11 +71,10 @@ const SmallProductCards: React.FC<SmallProductCardsProps> = ({
       }
 
       const response = await fetch(
-        `http://localhost:3001/api/users/${userId}/cart`,
+        `http://localhost:3001/api/users/${userId}/cart/${_id}`,
         {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ productId, colorId }),
         }
       );
 
@@ -81,7 +82,7 @@ const SmallProductCards: React.FC<SmallProductCardsProps> = ({
         throw new Error("Failed to remove item from cart");
       }
 
-      removeFromCart(productId);
+      removeFromCart(_id);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to remove item");
     }

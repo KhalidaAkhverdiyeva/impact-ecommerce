@@ -27,7 +27,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    console.log("Cart items updated:", cartItems);
   }, [cartItems]);
 
   // Add fetchCart function
@@ -103,8 +102,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   }, []);
 
-  const removeFromCart = useCallback((productId: string) => {
-    setCartItems((prev) => prev.filter((item) => item.productId !== productId));
+  const removeFromCart = useCallback(async (itemId: string) => {
+    setCartItems(prevItems => prevItems.filter(item => item._id !== itemId));
   }, []);
 
   const updateQuantity = useCallback((productId: string, quantity: number) => {

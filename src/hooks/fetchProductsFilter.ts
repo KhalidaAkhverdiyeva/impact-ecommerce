@@ -50,10 +50,10 @@ export const useProducts = ({
       if (sortOption) {
         switch (sortOption) {
           case "Price, low to high":
-            queryParams.append("sort", "price:asc"); // Match backend sorting
+            queryParams.append("sort", "price:asc");
             break;
           case "Price, high to low":
-            queryParams.append("sort", "price:desc"); // Match backend sorting
+            queryParams.append("sort", "price:desc");
             break;
         }
       }

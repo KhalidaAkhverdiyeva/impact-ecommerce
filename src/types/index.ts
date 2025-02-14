@@ -137,6 +137,8 @@ export interface ControlButtonsProps {
     colorId: string;
     quantity: number;
     productId: string;
+    _id: string; 
+
   }
 
 export interface ColorVariant {

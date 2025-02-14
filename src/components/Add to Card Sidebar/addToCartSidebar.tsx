@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState, useMemo } from "react";
-import { Drawer, IconButton, Box, Typography, Divider } from "@mui/material";
+import { Drawer, IconButton, Box, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import SmallProductCards from "./smallProductCards";
 import { Link } from "@/i18n/routing";
@@ -96,6 +95,7 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
                 uniqueCartItems.map((cartItem) => (
                   <SmallProductCards
                     key={cartItem._id}
+                    _id={cartItem._id}
                     productId={cartItem.productId}
                     colorId={cartItem.colorId}
                     quantity={cartItem.quantity}
