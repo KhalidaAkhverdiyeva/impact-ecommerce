@@ -26,8 +26,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-  }, [cartItems]);
+  useEffect(() => {}, [cartItems]);
 
   // Add fetchCart function
   const fetchCart = useCallback(async () => {
@@ -41,7 +40,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
       setIsLoading(true);
       setError(null);
       const response = await fetch(
-        `http://localhost:3001/api/users/${userId}/cart`
+        `https://impact-server-side-production.up.railway.app/api/users/${userId}/cart`
       );
 
       if (!response.ok) {
@@ -70,7 +69,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
     try {
       const response = await fetch(
-        `http://localhost:3001/api/users/${userId}/cart`,
+        `https://impact-server-side-production.up.railway.app/api/users/${userId}/cart`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -103,7 +102,9 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   const removeFromCart = useCallback(async (itemId: string) => {
-    setCartItems(prevItems => prevItems.filter(item => item._id !== itemId));
+    setCartItems((prevItems) =>
+      prevItems.filter((item) => item._id !== itemId)
+    );
   }, []);
 
   const updateQuantity = useCallback((productId: string, quantity: number) => {

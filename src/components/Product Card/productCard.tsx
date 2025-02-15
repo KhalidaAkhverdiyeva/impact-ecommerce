@@ -21,7 +21,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:3001/api/users/${userId}/cart`,
+        `https://impact-server-side-production.up.railway.app/api/users/${userId}/cart`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

@@ -33,7 +33,7 @@ const SmallProductCards: React.FC<SmallProductCardsProps> = ({
     setIsFetching(true);
     try {
       const response = await fetch(
-        `http://localhost:3001/api/products/all/${productId}`
+        `https://impact-server-side-production.up.railway.app/api/products/all/${productId}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch product data");
@@ -71,7 +71,7 @@ const SmallProductCards: React.FC<SmallProductCardsProps> = ({
       }
 
       const response = await fetch(
-        `http://localhost:3001/api/users/${userId}/cart/${_id}`,
+        `https://impact-server-side-production.up.railway.app/api/users/${userId}/cart/${_id}`,
         {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
