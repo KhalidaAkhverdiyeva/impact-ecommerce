@@ -1,25 +1,18 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { Drawer, IconButton, Box, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import SmallProductCards from "./smallProductCards";
 import { Link } from "@/i18n/routing";
 import { AddToCartSidebarProps } from "@/types";
 import { useCart } from "@/contexts/cartContext";
+import AddToCartButtons from "./addToCartButtons";
 
 const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
   isAddToCartOpen,
   setIsAddCartOpen,
 }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const { cartItems, isLoading } = useCart();
-
-  const uniqueCartItems = useMemo(
-    () =>
-      Array.from(
-        new Map(cartItems.map((item) => [item.productId, item])).values()
-      ),
-    [cartItems]
-  );
+  const { cartItems, isLoading, cartTotal } = useCart();
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
@@ -37,6 +30,7 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
           margin: "20px",
           height: "95%",
           borderRadius: "4px",
+          overflow: "hidden",
         },
       }}
     >
@@ -66,7 +60,7 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
                 }}
               >
                 <Typography sx={{ color: "white", fontSize: 14 }}>
-                  {uniqueCartItems.length}
+                  {cartItems.length}
                 </Typography>
               </Box>
               <IconButton
@@ -86,13 +80,16 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
               <Typography>You are eligible for free shipping</Typography>
             </Box>
 
-            <Box sx={{ height: 350, overflowY: "auto" }}>
+            <Box
+              className="custom-scrollbar"
+              sx={{ height: 350, overflowY: "auto" }}
+            >
               {isLoading ? (
                 <Typography sx={{ color: "#7e7e7e", textAlign: "center" }}>
                   Loading cart items...
                 </Typography>
-              ) : uniqueCartItems.length > 0 ? (
-                uniqueCartItems.map((cartItem) => (
+              ) : cartItems.length > 0 ? (
+                cartItems.map((cartItem) => (
                   <SmallProductCards
                     key={cartItem._id}
                     _id={cartItem._id}
@@ -109,29 +106,21 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
             </Box>
 
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-              <Typography variant="h6">Total</Typography>
-              <Typography variant="h6">price</Typography>
+              <Typography variant="h6" className="font-[800] text-[24px]">
+                Total
+              </Typography>
+              <Typography
+                variant="h6"
+                className="font-[800] text-[24px] px-[20px]"
+              >
+                ${cartTotal.toFixed(2)} USD
+              </Typography>
             </Box>
 
             <Typography sx={{ color: "#7e7e7e" }}>
               Tax included and shipping calculated at checkout
             </Typography>
-
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: { xs: "column", md: "row" },
-                gap: 1.25,
-                py: 1.875,
-              }}
-            >
-              <button className="py-[16px] px-[32px] bg-[#3C619E] text-white font-[700] w-[100%]">
-                Add to cart
-              </button>
-              <button className="bg-[#272727] font-[800] w-[100%] text-white px-[32px] py-[16px]">
-                Buy it now
-              </button>
-            </Box>
+            <AddToCartButtons />
           </>
         ) : (
           <Box

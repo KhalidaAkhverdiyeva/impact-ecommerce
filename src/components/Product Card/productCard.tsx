@@ -18,13 +18,19 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
 
   const addProductToCart = async (productId: string, colorId: string) => {
     const userId = localStorage.getItem("userId");
+    if (!userId) {
+      alert("Please log in to add items to cart");
+      return;
+    }
 
     try {
       const response = await fetch(
         `https://impact-server-side-production.up.railway.app/api/users/${userId}/cart`,
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify({
             productId,
             colorId,
@@ -32,20 +38,18 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
           }),
         }
       );
-
       if (!response.ok) {
-        throw new Error("Failed to add product to cart");
+        throw new Error(`Failed to add product to cart: ${response.status}`);
       }
 
-      // Add to local cart state immediately
-      addToCart({
-        productId,
-        colorId,
-        quantity: 1,
-        _id: Date.now().toString(), // temporary id
-      });
+      // The response is an array of all cart items
+      const cartItems = await response.json();
+
+      // Update entire cart state with the new array
+      addToCart(cartItems);
+      setIsOpen(true);
     } catch (error) {
-      alert("Error adding product to cart:");
+      alert("Error adding product to cart. Please try again.");
     }
   };
 
@@ -58,15 +62,26 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       return;
     }
 
-    // If user is logged in, proceed with adding to cart
-    const selectedColorId = product.colorVariants[selectedColorIndex]._id;
-    await addProductToCart(product._id, selectedColorId);
-    setIsOpen(true);
+    try {
+      const selectedVariant = product.colorVariants[selectedColorIndex];
+      if (!selectedVariant) {
+        throw new Error("No color variant selected");
+      }
+
+      await addProductToCart(product._id, selectedVariant._id);
+    } catch (error) {
+      alert("Failed to add product to cart");
+    }
   };
 
   const handleColorSelect = (color: string, index: number) => {
     setSelectedColor(color);
     setSelectedColorIndex(index);
+    // Store the selected variant's ID for later use
+    const selectedVariant = product.colorVariants[index];
+    if (selectedVariant) {
+      setSelectedColor(selectedVariant.color);
+    }
   };
 
   const selectedVariant =
@@ -137,7 +152,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
         <div className="flex gap-2 mt-4">
           {product.colorVariants.map((variant, index) => (
             <div
-              key={index}
+              key={variant._id}
               onClick={() => handleColorSelect(variant.color, index)}
               className="w-[15px] h-[9px] cursor-pointer border"
               style={{ backgroundColor: variant.color }}

@@ -47,7 +47,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
     <div className=" flex flex-col">
       <div className="grid grid-cols-2 lg:grid-cols-3 gap-[10px] lg:gap-6 flex-grow">
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product._id} product={product} />
         ))}
       </div>
       <div className="flex justify-center items-center mt-6 w-[100%]">
