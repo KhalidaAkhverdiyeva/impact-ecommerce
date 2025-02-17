@@ -59,7 +59,7 @@ export const useProducts = ({
       }
 
       const response = await fetch(
-        `https://impact-server-side-production.up.railway.app/api/products/all?${queryParams.toString()}`
+        `http://localhost:3001/api/products/all?${queryParams.toString()}`
       );
 
       if (!response.ok) throw new Error("Network response was not ok");

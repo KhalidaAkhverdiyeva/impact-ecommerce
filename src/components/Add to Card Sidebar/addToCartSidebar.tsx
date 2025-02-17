@@ -120,7 +120,7 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
             <Typography sx={{ color: "#7e7e7e" }}>
               Tax included and shipping calculated at checkout
             </Typography>
-            <AddToCartButtons />
+            <AddToCartButtons/>
           </>
         ) : (
           <Box

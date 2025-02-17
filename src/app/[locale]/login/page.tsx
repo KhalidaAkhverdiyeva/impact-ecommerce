@@ -28,7 +28,7 @@ const LoginPage = () => {
 
     try {
       const response = await fetch(
-        "https://impact-server-side-production.up.railway.app/api/auth/login",
+        "http://localhost:3001/api/auth/login",
         {
           method: "POST",
           headers: {

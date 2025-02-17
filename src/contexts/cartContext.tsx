@@ -43,7 +43,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
       const promises = items.map(async (item) => {
         const response = await fetch(
-          `https://impact-server-side-production.up.railway.app/api/products/all/${item.productId}`
+          `http://localhost:3001/api/products/all/${item.productId}`
         );
 
         if (!response.ok) {
@@ -86,7 +86,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
       setIsLoading(true);
       setError(null);
       const response = await fetch(
-        `https://impact-server-side-production.up.railway.app/api/users/${userId}/cart`
+        `http://localhost:3001/api/users/${userId}/cart`
       );
 
       if (!response.ok) {
@@ -157,7 +157,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
       try {
         const response = await fetch(
-          `https://impact-server-side-production.up.railway.app/api/users/${userId}/cart/quantity`,
+          `http://localhost:3001/api/users/${userId}/cart/quantity`,
           {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
