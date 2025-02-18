@@ -1,28 +1,21 @@
-// pages/success.tsx
-import { useEffect } from "react";
-import { useRouter } from "next/router";
+import Image from "next/image";
 
 const Success = () => {
-  const router = useRouter();
-
-  useEffect(() => {
-    // Extract the session_id from the query string
-    const { session_id } = router.query;
-
-    if (session_id) {
-      // Optionally, make an API call to your backend to verify the session
-      console.log(`Session ID received: ${session_id}`);
-      // You can perform further actions such as saving the session ID to the user or verifying the session with Stripe
-    }
-  }, [router.query]);
-
   return (
-    <div>
-      <h1>Payment Successful!</h1>
-      <p>
-        Your payment has been processed successfully. Thank you for your
-        purchase!
-      </p>
+    <div className="min-h-screen flex flex-col items-center justify-center p-4">
+      <div className="text-center space-y-6">
+        <Image
+          src="/images/success.png"
+          alt="success"
+          width={100}
+          height={100}
+          className="mx-auto"
+        />
+        <p className="text-2xl font-semibold text-gray-800 max-w-md">
+          Your payment has been processed successfully. Thank you for your
+          purchase!
+        </p>
+      </div>
     </div>
   );
 };
