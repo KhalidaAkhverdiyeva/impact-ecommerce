@@ -28,7 +28,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   if (error) return <div>Error: {error}</div>;
 
   if (products.length === 0) {
-    return <div className="lg:w-[1100px]">No Products Found!</div>;
+    return <div className="">No Products Found!</div>;
   }
 
   const handlePrev = () => {

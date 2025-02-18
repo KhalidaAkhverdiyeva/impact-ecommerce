@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { useColor } from "@/contexts/colorContext";
 import { Link } from "@/i18n/routing";
@@ -39,7 +38,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
       });
       setIsOpen(true);
     } catch (error) {
-      alert("Failed to add product to cart");
+      console.error(error);
     }
   };
 

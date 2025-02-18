@@ -68,7 +68,7 @@ const FilterSection: React.FC<FilterSectionProps> = ({
   return (
     <div className="max-w-[1600px] mx-auto py-[50px] px-[20px] md:px-[32px] lg:px-[48px]">
       <div className="mb-[30px] flex justify-between">
-        <div className="flex items-center gap-[10px] w-[15%] md:w-[25%]">
+        <div className="flex items-center gap-[10px] w-[15%] md:w-[29%]">
           {/* Show Filter text on desktop, button on mobile */}
           <span className="hidden md:block">Filters</span>
           <IconButton
