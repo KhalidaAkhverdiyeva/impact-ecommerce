@@ -28,7 +28,6 @@ const Footer = () => {
               <FaFacebookF size={26} />
               <FaInstagram size={26} />
             </div>
-            <div>United States (USD $)</div>
           </div>
           <div className="flex gap-[20px] lg:gap-[0px] flex-col lg:flex-row justify-between">
             <p className="text-[14px]">
