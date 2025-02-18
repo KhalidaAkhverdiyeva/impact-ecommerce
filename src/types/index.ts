@@ -79,7 +79,7 @@ export interface ControlButtonsProps {
     colors: string;
     currency: string;
     price: number;
-    oldPrice: number;
+    oldPrice?: number;
     rating: number;
     isNewProduct: boolean;
     isSoldOut: boolean;
@@ -93,7 +93,32 @@ export interface ControlButtonsProps {
     goToPrevSlide: () => void;
     goToNextSlide: () => void;
   }
+
+  export interface EnrichedCartItemType {
+    _id: string;
+    productId: string;
+    colorId: string;
+    quantity: number;
+    product: Product;
+  }
   
+  export interface CartContextType {
+    cartItems: CartItem[];
+    addToCart: (item: CartItem) => void;
+    removeFromCart: (productId: string) => void;
+    updateQuantity: (
+      productId: string,
+      quantity: number,
+      colorId: string
+    ) => void;
+    isLoading: boolean;
+    error: string | null;
+    cartTotal: number;
+    products: Record<string, Product>;
+    fetchCart: () => Promise<void>;
+     enrichedCartItems: EnrichedCartItemType[]; 
+
+  }
 
  export interface FilterSectionProps {
     filter: string | null;

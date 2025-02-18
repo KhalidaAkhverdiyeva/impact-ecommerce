@@ -5,7 +5,7 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import LoadingSpinner from "@/components/Loading Spinner/loadingSpinner";
-import { CartProvider } from '@/contexts/cartContext';
+import { CartProvider } from "@/contexts/cartContext";
 
 export default async function LocaleLayout({
   children,

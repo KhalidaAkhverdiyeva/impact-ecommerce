@@ -12,12 +12,17 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
   setIsAddCartOpen,
 }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const { cartItems, isLoading, cartTotal } = useCart();
+  const { cartItems, isLoading, cartTotal, fetchCart } = useCart();
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
     setIsLoggedIn(!!userId);
   }, []);
+  useEffect(() => {
+    if (isAddToCartOpen && isLoggedIn) {
+      fetchCart();
+    }
+  }, [isAddToCartOpen, isLoggedIn, fetchCart]);
 
   return (
     <Drawer
@@ -120,7 +125,7 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
             <Typography sx={{ color: "#7e7e7e" }}>
               Tax included and shipping calculated at checkout
             </Typography>
-            <AddToCartButtons/>
+            <AddToCartButtons />
           </>
         ) : (
           <Box

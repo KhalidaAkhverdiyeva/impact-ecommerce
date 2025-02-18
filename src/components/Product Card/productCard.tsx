@@ -16,43 +16,6 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { addToCart } = useCart();
 
-  const addProductToCart = async (productId: string, colorId: string) => {
-    const userId = localStorage.getItem("userId");
-    if (!userId) {
-      alert("Please log in to add items to cart");
-      return;
-    }
-
-    try {
-      const response = await fetch(
-        `http://localhost:3001/api/users/${userId}/cart`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            productId,
-            colorId,
-            quantity: 1,
-          }),
-        }
-      );
-      if (!response.ok) {
-        throw new Error(`Failed to add product to cart: ${response.status}`);
-      }
-
-      // The response is an array of all cart items
-      const cartItems = await response.json();
-
-      // Update entire cart state with the new array
-      addToCart(cartItems);
-      setIsOpen(true);
-    } catch (error) {
-      alert("Error adding product to cart. Please try again.");
-    }
-  };
-
   const openSidebar = async (e: { stopPropagation: () => void }) => {
     e.stopPropagation();
     const userId = localStorage.getItem("userId");
@@ -68,7 +31,13 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
         throw new Error("No color variant selected");
       }
 
-      await addProductToCart(product._id, selectedVariant._id);
+      await addToCart({
+        _id: `${product._id}-${selectedVariant._id}`,
+        productId: product._id,
+        colorId: selectedVariant._id,
+        quantity: 1,
+      });
+      setIsOpen(true);
     } catch (error) {
       alert("Failed to add product to cart");
     }

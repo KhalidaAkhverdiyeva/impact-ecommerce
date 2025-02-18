@@ -6,8 +6,17 @@ import Footer from "@/components/Layout/Footer/footer";
 import Banner from "@/components/Layout/Banner/banner";
 import { ColorProvider } from "@/contexts/colorContext";
 
-const inter = Inter({ subsets: ["latin"] });
-const jost = Jost({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+const jost = Jost({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-jost",
+});
 
 export const metadata: Metadata = {
   title: "Impact to Your Life",
@@ -24,9 +33,11 @@ export default function RootLayout({
   return (
     <html lang={locale}>
       <head>
-        <link rel="icon" href="/favicon2.png" /> {/* Favicon */}
+        <link rel="icon" href="/favicon2.png" />
       </head>
-      <body className={`${inter.className} ${jost.className} antialiased`}>
+      <body
+        className={`${inter.variable} ${jost.variable} font-jost antialiased`}
+      >
         <Banner />
         <ColorProvider defaultColor="#000000">{children}</ColorProvider>
         <Footer />

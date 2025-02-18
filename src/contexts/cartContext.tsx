@@ -7,21 +7,7 @@ import React, {
   useEffect,
   useMemo,
 } from "react";
-import { CartItem } from "@/types";
-
-interface CartContextType {
-  cartItems: CartItem[];
-  addToCart: (item: CartItem) => void;
-  removeFromCart: (productId: string) => void;
-  updateQuantity: (
-    productId: string,
-    quantity: number,
-    colorId: string
-  ) => void;
-  isLoading: boolean;
-  error: string | null;
-  cartTotal: number;
-}
+import { CartContextType, CartItem, Product } from "@/types";
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
@@ -29,52 +15,52 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [products, setProducts] = useState<Record<string, Product>>({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [productPrices, setProductPrices] = useState<Record<string, number>>(
-    {}
-  );
 
   useEffect(() => {}, [cartItems]);
 
-  const fetchProductPrices = useCallback(async (items: CartItem[]) => {
+  //Fetch product details
+
+  const fetchProductDetails = useCallback(async (items: CartItem[]) => {
     try {
       if (!items?.length) return;
 
-      const promises = items.map(async (item) => {
+      const uniqueProductIds = [
+        ...new Set(items.map((item) => item.productId)),
+      ];
+
+      const promises = uniqueProductIds.map(async (productId) => {
         const response = await fetch(
-          `http://localhost:3001/api/products/all/${item.productId}`
+          `http://localhost:3001/api/products/all/${productId}`
         );
 
         if (!response.ok) {
-          throw new Error(
-            `Failed to fetch price for product ${item.productId}`
-          );
+          throw new Error(`Failed to fetch product ${productId}`);
         }
 
         const data = await response.json();
 
-        return {
-          productId: item.productId,
-          price: Number(data.product.price), // Ensure price is a number
-        };
+        return { productId, ...data.product }; // Store full product info
       });
 
-      const products = await Promise.all(promises);
-      const newPrices = products.reduce((acc, { productId, price }) => {
-        acc[productId] = price;
-        return acc;
-      }, {} as Record<string, number>);
+      const productsArray = await Promise.all(promises);
 
-      setProductPrices(newPrices);
+      const productMap = productsArray.reduce((acc, product) => {
+        acc[product.productId] = product;
+        return acc;
+      }, {} as Record<string, Product>);
+
+      setProducts((prev) => ({ ...prev, ...productMap }));
     } catch (err) {
       setError(
-        err instanceof Error ? err.message : "Failed to fetch product prices"
+        err instanceof Error ? err.message : "Failed to fetch product details"
       );
     }
   }, []);
 
-  // Add fetchCart function
+  // Add fetch cartItems function
   const fetchCart = useCallback(async () => {
     const userId = localStorage.getItem("userId");
     if (!userId) {
@@ -101,53 +87,127 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
       setCartItems(data);
 
-      // Only fetch prices if we have cart items
       if (data.length > 0) {
-        await fetchProductPrices(data);
+        await fetchProductDetails(data);
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to fetch cart");
     } finally {
       setIsLoading(false);
     }
-  }, [fetchProductPrices]);
+  }, [fetchProductDetails]);
 
-  // Calculate total whenever cart items or prices change
-  const cartTotal = useMemo(() => {
-    if (!cartItems.length || !Object.keys(productPrices).length) {
-      return 0;
-    }
-
-    const total = cartItems.reduce((sum, item) => {
-      const price = productPrices[item.productId] || 0;
-      const quantity = item.quantity || 0;
-      const itemTotal = price * quantity;
-      return sum + itemTotal;
-    }, 0);
-
-    return total;
-  }, [cartItems, productPrices]);
+  const enrichedCartItems = useMemo(() => {
+    return cartItems.map((item) => ({
+      ...item,
+      product: products[item.productId] || null, // Attach product details
+    }));
+  }, [cartItems, products]);
 
   // Fetch cart on mount and when userId changes
   useEffect(() => {
     fetchCart();
   }, [fetchCart]);
 
+  const cartTotal = useMemo(() => {
+    return enrichedCartItems.reduce((sum, item) => {
+      const price = item.product?.price || 0;
+      const quantity = item.quantity || 0;
+      return sum + price * quantity;
+    }, 0);
+  }, [enrichedCartItems]);
+
   // Modified addToCart to sync with backend
-  const addToCart = useCallback((items: CartItem[] | CartItem) => {
-    // If receiving an array (from backend), replace entire cart
-    if (Array.isArray(items)) {
-      setCartItems(items);
-    } else {
-      // If single item, append to cart
-      setCartItems((prev) => [...prev, items]);
-    }
-  }, []);
+  const addToCart = useCallback(
+    async (items: CartItem[] | CartItem) => {
+      const userId = localStorage.getItem("userId");
+      if (!userId) {
+        setError("User not logged in");
+        return;
+      }
+
+      try {
+        const itemsToAdd = Array.isArray(items) ? items : [items];
+
+        // Validate items before sending
+        if (!itemsToAdd.every((item) => item.productId && item.colorId)) {
+          throw new Error("Invalid item data: Missing productId or colorId");
+        }
+
+        // Format items correctly for the API
+        const formattedItems = itemsToAdd.map((item) => ({
+          productId: item.productId,
+          colorId: item.colorId,
+          quantity: Math.max(1, item.quantity || 1), // Ensure positive quantity
+        }));
+
+        console.log("Attempting to add to cart:", {
+          userId,
+          items: formattedItems,
+        });
+
+        const response = await fetch(
+          `http://localhost:3001/api/users/${userId}/cart`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ items: formattedItems }),
+            credentials: "include", // Add this if using cookies
+          }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          console.error("Server error:", data);
+          throw new Error(data.message || "Failed to add to cart");
+        }
+
+        // Update local state with the server response
+        setCartItems(data);
+
+        // Fetch fresh product details
+        await fetchProductDetails(itemsToAdd);
+
+        // Clear any existing errors
+        setError(null);
+      } catch (err) {
+        console.error("Add to cart error:", err);
+        setError(
+          err instanceof Error
+            ? `Error adding to cart: ${err.message}`
+            : "Failed to add to cart"
+        );
+        throw err; // Re-throw to handle in the component
+      }
+    },
+    [fetchProductDetails]
+  );
 
   const removeFromCart = useCallback(async (itemId: string) => {
-    setCartItems((prevItems) =>
-      prevItems.filter((item) => item._id !== itemId)
-    );
+    const userId = localStorage.getItem("userId");
+    if (!userId) return;
+
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/users/${userId}/cart/${itemId}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!response.ok) throw new Error("Failed to remove from cart");
+
+      setCartItems((prevItems) =>
+        prevItems.filter((item) => item._id !== itemId)
+      );
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Failed to remove from cart"
+      );
+    }
   }, []);
 
   const updateQuantity = useCallback(
@@ -186,13 +246,16 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   return (
     <CartContext.Provider
       value={{
-        cartItems,
+        cartItems: enrichedCartItems,
         addToCart,
         removeFromCart,
         updateQuantity,
         isLoading,
         error,
+        products,
         cartTotal,
+        fetchCart,
+        enrichedCartItems,
       }}
     >
       {children}
