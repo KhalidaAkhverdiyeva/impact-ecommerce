@@ -12,7 +12,7 @@ interface IconButtonsProps {
   setIsAddCartOpen: (isOpen: boolean) => void;
 }
 
-export const IconButtons = ({  setIsAddCartOpen }: IconButtonsProps) => {
+export const IconButtons = ({ setIsAddCartOpen }: IconButtonsProps) => {
   const { cartItems } = useCart();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
@@ -20,8 +20,8 @@ export const IconButtons = ({  setIsAddCartOpen }: IconButtonsProps) => {
     <>
       <div className="flex items-center gap-[15px]">
         <button
-          onClick={() => setIsSearchOpen(true)}
           className="hidden md:block"
+          onClick={() => setIsSearchOpen(true)}
           aria-label="Search"
         >
           <IoSearch className="text-[22px]" />

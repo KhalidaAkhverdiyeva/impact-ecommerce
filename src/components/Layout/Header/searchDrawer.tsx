@@ -14,7 +14,7 @@ interface SearchDrawerProps {
 const SearchDrawer = ({ isOpen, onClose }: SearchDrawerProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -64,46 +64,52 @@ const SearchDrawer = ({ isOpen, onClose }: SearchDrawerProps) => {
         "& .MuiDrawer-paper": {
           width: "100%",
           height: "100vh",
-          padding: "48px",
+          padding: {
+            xs: "24px", // Mobile devices
+            sm: "32px", // Tablet
+            md: "48px", // Desktop
+          },
           background: "#fff",
         },
       }}
     >
-      <div className="flex flex-col gap-6">
-        <button
-          onClick={onClose}
-          className="self-end p-2 hover:bg-gray-100 rounded-full transition-colors"
-          aria-label="Close search"
-        >
-          <IoClose size={24} />
-        </button>
-        <div className="flex flex-col items-center justify-center">
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search for..."
-            className="w-full max-w-2xl  py-3 border-b-2 border-gray-200 focus:border-black outline-none placeholder:text-[#939393] font-[700] text-[32px]"
-            autoFocus
-          />
+      <div className="flex flex-col  md:gap-6">
+        <div className="flex items-center justify-center ">
+          <div className="flex border-b-2 w-[672px] border-gray-200 focus-within:border-black transition-colors duration-200">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search for..."
+              className="w-full px-[20px] py-3  outline-none  placeholder:text-[#939393] font-[700] text-[32px]"
+              autoFocus
+            />
+            <button
+              onClick={onClose}
+              className="p-2 self-center hover:bg-gray-100 rounded-full transition-colors"
+              aria-label="Close search"
+            >
+              <IoClose size={24} />
+            </button>
+          </div>
         </div>
 
         {/* Search Results */}
-        <div className="mt-8 max-w-2xl mx-auto w-full">
+        <div className=" max-w-2xl mx-auto w-full">
           {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2  md:gap-6">
               {[...Array(4)].map((_, index) => (
                 <ProductSkeleton key={index} />
               ))}
             </div>
           ) : products.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2  gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2  md:gap-6">
               {products.map((product) => (
                 <Link
                   key={product._id}
-                  href={`/product/${product._id}`}
+                  href={`/products/${product.title}?index=0`}
                   onClick={onClose}
-                  className="flex items-center gap-4 py-4 hover:bg-gray-50 transition-colors"
+                  className="flex items-center gap-4 py-4 hover:bg-gray-50 transition-colors cursor-pointer"
                 >
                   <div className="relative w-[96px] h-[125px]">
                     <Image
