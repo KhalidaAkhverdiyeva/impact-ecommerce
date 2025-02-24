@@ -31,15 +31,35 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
       onClose={() => setIsAddCartOpen(false)}
       sx={{
         "& .MuiDrawer-paper": {
-          width: "650px",
-          margin: "20px",
-          height: "95%",
-          borderRadius: "4px",
+          width: {
+            xs: "100%",
+            sm: "450px",
+            md: "650px",
+          },
+          margin: {
+            xs: "0px",
+            sm: "20px",
+          },
+          height: {
+            xs: "100%",
+            sm: "95%",
+          },
+          borderRadius: {
+            xs: "0px",
+            sm: "4px",
+          },
           overflow: "hidden",
         },
       }}
     >
-      <Box sx={{ p: 5, display: "flex", flexDirection: "column", gap: 2.5 }}>
+      <Box
+        sx={{
+          p: { xs: 2, sm: 3, md: 5 },
+          display: "flex",
+          flexDirection: "column",
+          gap: 2.5,
+        }}
+      >
         {isLoggedIn ? (
           <>
             <Box
@@ -50,7 +70,13 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
                 position: "relative",
               }}
             >
-              <Typography variant="h5" sx={{ fontWeight: 700 }}>
+              <Typography
+                variant="h5"
+                sx={{
+                  fontWeight: 700,
+                  fontSize: { xs: "1.25rem", sm: "1.5rem" },
+                }}
+              >
                 Cart
               </Typography>
               <Box
@@ -87,7 +113,13 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
 
             <Box
               className="custom-scrollbar"
-              sx={{ height: 350, overflowY: "auto" }}
+              sx={{
+                height: {
+                  xs: "calc(100vh - 300px)",
+                  sm: 350,
+                },
+                overflowY: "auto",
+              }}
             >
               {isLoading ? (
                 <Typography sx={{ color: "#7e7e7e", textAlign: "center" }}>
@@ -111,17 +143,26 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
             </Box>
 
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-              <Typography variant="h6" className="font-[800] text-[24px]">
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: 800,
+                  fontSize: { xs: "20px", sm: "24px" },
+                }}
+              >
                 Total
               </Typography>
               <Typography
                 variant="h6"
-                className="font-[800] text-[24px] px-[20px]"
+                sx={{
+                  fontWeight: 800,
+                  fontSize: { xs: "20px", sm: "24px" },
+                  px: "20px",
+                }}
               >
                 ${cartTotal.toFixed(2)} USD
               </Typography>
             </Box>
-
             <Typography sx={{ color: "#7e7e7e" }}>
               Tax included and shipping calculated at checkout
             </Typography>
@@ -135,6 +176,7 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
               alignItems: "center",
               gap: 2.5,
               textAlign: "center",
+              py: { xs: 4, sm: 0 },
             }}
           >
             <Typography variant="h5" sx={{ fontWeight: 700 }}>
