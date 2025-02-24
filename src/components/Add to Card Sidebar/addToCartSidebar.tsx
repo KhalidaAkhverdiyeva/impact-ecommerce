@@ -54,10 +54,11 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
     >
       <Box
         sx={{
-          p: { xs: 2, sm: 3, md: 5 },
+          p: { xs: 3, sm: 4, md: 6 },
           display: "flex",
           flexDirection: "column",
           gap: 2.5,
+          height: "100%",
         }}
       >
         {isLoggedIn ? (
@@ -114,10 +115,7 @@ const AddToCartSidebar: React.FC<AddToCartSidebarProps> = ({
             <Box
               className="custom-scrollbar"
               sx={{
-                height: {
-                  xs: "calc(100vh - 300px)",
-                  sm: 350,
-                },
+                height: "100%",
                 overflowY: "auto",
               }}
             >

@@ -5,6 +5,7 @@ import DesignersDropdown from "./designersDropdown";
 import FeatureDropdown from "./featureDropdown";
 import DropdownLink from "./dropdownLink";
 import SearchDrawer from "./searchDrawer";
+import MobileMenuDrawer from "./mobileMenuDrawer";
 import { useState } from "react";
 
 interface LeftNavProps {
@@ -14,11 +15,14 @@ interface LeftNavProps {
 
 export const LeftNav = ({ openDropdown, toggleDropdown }: LeftNavProps) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <div className="flex items-center gap-[15px] flex-1">
-      <div className="block lg:hidden">
-        <IoMenu className="text-[30px]" />
+      <div className="flex justify-center items-center lg:hidden">
+        <button onClick={() => setIsMobileMenuOpen(true)}>
+          <IoMenu className="text-[30px]" />
+        </button>
       </div>
       <ul className="text-[18px] font-[700] hidden lg:flex lg:gap-[30px]">
         <li>
@@ -52,6 +56,10 @@ export const LeftNav = ({ openDropdown, toggleDropdown }: LeftNavProps) => {
       >
         <IoSearch className="text-[22px]" />
       </button>
+      <MobileMenuDrawer
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+      />
       <SearchDrawer
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
