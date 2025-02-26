@@ -1,6 +1,10 @@
-import { Drawer, Box, IconButton } from "@mui/material";
+import { Drawer, Box, IconButton, Collapse } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { Link } from "@/i18n/routing";
+import { useState } from "react";
+import LanguageSelector from "./languageSelector";
 
 interface MobileMenuDrawerProps {
   isOpen: boolean;
@@ -8,6 +12,8 @@ interface MobileMenuDrawerProps {
 }
 
 const MobileMenuDrawer = ({ isOpen, onClose }: MobileMenuDrawerProps) => {
+  const [designersOpen, setDesignersOpen] = useState(false);
+
   return (
     <Drawer
       anchor="left"
@@ -35,8 +41,33 @@ const MobileMenuDrawer = ({ isOpen, onClose }: MobileMenuDrawerProps) => {
             <li onClick={onClose}>
               <Link href="/shop">Shop</Link>
             </li>
-            <li onClick={onClose}>
-              <Link href="/designers">Designers</Link>
+            <li>
+              <div
+                className="flex items-center justify-between cursor-pointer"
+                onClick={() => setDesignersOpen(!designersOpen)}
+              >
+                <span>Designers</span>
+                {designersOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+              </div>
+              <Collapse in={designersOpen}>
+                <ul className="ml-4 mt-4 text-[18px] flex flex-col gap-4">
+                  <li onClick={onClose}>
+                    <Link href="/sowden-collection">Sowden</Link>
+                  </li>
+                  <li onClick={onClose}>
+                    <Link href="/andreas-engesvik">Andreas Engesvik</Link>
+                  </li>
+                  <li onClick={onClose}>
+                    <Link href="/thomas-bentzen">Thomas Bentzen</Link>
+                  </li>
+                  <li onClick={onClose}>
+                    <Link href="/collections">Collections</Link>
+                  </li>
+                  <li onClick={onClose}>
+                    <Link href="/designers/all">All Designers</Link>
+                  </li>
+                </ul>
+              </Collapse>
             </li>
             <li onClick={onClose}>
               <Link href="/about">About</Link>
@@ -45,15 +76,13 @@ const MobileMenuDrawer = ({ isOpen, onClose }: MobileMenuDrawerProps) => {
               <Link href="/blog">Blog</Link>
             </li>
             <li onClick={onClose}>
-              <Link href="/features">Features</Link>
-            </li>
-          </ul>
-          <ul className="flex flex-col gap-[px] text-[24px] font-bold pt-[10px]">
-            <li onClick={onClose} className="text-[16px]">
               <Link href="/faq">FAQ</Link>
             </li>
-            <li onClick={onClose} className="text-[16px]">
+            <li onClick={onClose}>
               <Link href="/contact">Contact</Link>
+            </li>
+            <li>
+              <LanguageSelector />
             </li>
           </ul>
         </Box>

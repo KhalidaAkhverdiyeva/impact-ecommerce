@@ -77,7 +77,7 @@ const LanguageSelector: React.FC = () => {
   return (
     <div className="relative z-50" ref={dropdownRef}>
       <div
-        className="hidden  lg:flex lg:items-center lg:gap-[10px] text-[17px] font-[700] mx-[10px] cursor-pointer"
+        className="  flex items-center gap-[10px] text-[17px] font-[700] mx-[10px] cursor-pointer"
         onClick={toggleDropdown}
       >
         {selectedLanguage && (
@@ -108,11 +108,11 @@ const LanguageSelector: React.FC = () => {
       </div>
 
       {isOpen && (
-        <div className="absolute top-full left-[-50%] mt-2 py-[10px] w-[220px] bg-white cursor-pointer border">
+        <div className="absolute top-full left-0 md:left-[-50%] mt-2 py-[10px] w-[220px] bg-white cursor-pointer border">
           {languages.map((language, index) => (
             <div
               key={index}
-              className="flex items-center text-[#999999] gap-2 px-[20px] py-[5px] cursor-pointer transition-all duration-300 hover:text-black"
+              className="flex items-center text-[16px] text-[#999999] gap-2 px-[20px] py-[5px] cursor-pointer transition-all duration-300 hover:text-black"
               onClick={() => selectLanguage(language)}
             >
               <Image

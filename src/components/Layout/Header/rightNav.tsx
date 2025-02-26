@@ -16,10 +16,11 @@ export const RightNav = ({
   <div className="flex-1 flex justify-end gap-[10px]">
     <div className="hidden md:flex gap-[10px] text-[18px] font-[700]">
       <Link href="/faq">FAQ</Link>
-      <Link href="/contact">Contact</Link>
     </div>
 
-    <LanguageSelector />
+    <div className="hidden md:block">
+      <LanguageSelector />
+    </div>
     <IconButtons
       openDropdown={openDropdown}
       openSidebar={openSidebar}

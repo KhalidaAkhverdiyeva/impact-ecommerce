@@ -2,7 +2,6 @@ import { IoMenu } from "react-icons/io5";
 import { IoSearch } from "react-icons/io5";
 import { Link } from "@/i18n/routing";
 import DesignersDropdown from "./designersDropdown";
-import FeatureDropdown from "./featureDropdown";
 import DropdownLink from "./dropdownLink";
 import SearchDrawer from "./searchDrawer";
 import MobileMenuDrawer from "./mobileMenuDrawer";
@@ -17,12 +16,21 @@ export const LeftNav = ({ openDropdown, toggleDropdown }: LeftNavProps) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const handleMobileMenuOpen = () => {
+    setIsMobileMenuOpen(true);
+  };
+
+  const handleMobileMenuClose = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <div className="flex items-center gap-[15px] flex-1">
-      <div className="flex justify-center items-center lg:hidden">
-        <button onClick={() => setIsMobileMenuOpen(true)}>
-          <IoMenu className="text-[30px]" />
-        </button>
+      <div className="block lg:hidden">
+        <IoMenu
+          className="text-[30px] cursor-pointer"
+          onClick={handleMobileMenuOpen}
+        />
       </div>
       <ul className="text-[18px] font-[700] hidden lg:flex lg:gap-[30px]">
         <li>
@@ -41,13 +49,9 @@ export const LeftNav = ({ openDropdown, toggleDropdown }: LeftNavProps) => {
         <li>
           <Link href="/blog">Blog</Link>
         </li>
-        <DropdownLink
-          name="features"
-          text="Features"
-          openDropdown={openDropdown}
-          toggleDropdown={toggleDropdown}
-          DropdownComponent={FeatureDropdown}
-        />
+        <li>
+          <Link href="/contact">Contact</Link>
+        </li>
       </ul>
       <button
         onClick={() => setIsSearchOpen(true)}
@@ -56,13 +60,13 @@ export const LeftNav = ({ openDropdown, toggleDropdown }: LeftNavProps) => {
       >
         <IoSearch className="text-[22px]" />
       </button>
-      <MobileMenuDrawer
-        isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
-      />
       <SearchDrawer
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
+      />
+      <MobileMenuDrawer
+        isOpen={isMobileMenuOpen}
+        onClose={handleMobileMenuClose}
       />
     </div>
   );
