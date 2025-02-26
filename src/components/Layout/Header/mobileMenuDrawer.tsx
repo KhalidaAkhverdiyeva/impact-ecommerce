@@ -26,6 +26,7 @@ const MobileMenuDrawer = ({ isOpen, onClose }: MobileMenuDrawerProps) => {
             sm: "300px",
           },
           height: "100%",
+          padding: "45px 0px",
         },
       }}
     >
@@ -64,7 +65,7 @@ const MobileMenuDrawer = ({ isOpen, onClose }: MobileMenuDrawerProps) => {
                     <Link href="/collections">Collections</Link>
                   </li>
                   <li onClick={onClose}>
-                    <Link href="/designers/all">All Designers</Link>
+                    <Link href="/designers">All Designers</Link>
                   </li>
                 </ul>
               </Collapse>
