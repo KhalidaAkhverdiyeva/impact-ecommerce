@@ -156,7 +156,10 @@ const AboutPage = () => {
           </div>
         </div>
         <div className=" w-full overflow-x-hidden mx-auto max-w-[1600px]">
-          <ScrollableProducts setScrollProgress={setScrollProgress} />
+          <ScrollableProducts
+            scrollProgress={scrollProgress}
+            setScrollProgress={setScrollProgress}
+          />
         </div>
       </section>
       <FloatingTextSection text="9 stores around the world" color="#363D88" />
