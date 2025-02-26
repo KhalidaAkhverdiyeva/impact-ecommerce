@@ -1,25 +1,71 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import ProductCard from "../Product Card/productCard";
+import { Product } from "@/types";
+import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 
 const ShopTheRoomSection = () => {
   const products = [
     {
-      image:
-        "https://impact-theme-home.myshopify.com/cdn/shop/products/507906.jpg?v=1653058051&width=600",
+      productId: "672f45dbeb2a0cb6cf44b9cb", // pillow
     },
     {
-      image:
-        "https://impact-theme-home.myshopify.com/cdn/shop/products/508044_Bottoms_Up_Vase_L_navy_blue.jpg?v=1653058200&width=1400",
+      productId: "672f27dcae83ae5d6d6664ed", // vase
     },
   ];
 
-  const [selectedProduct, setSelectedProduct] = useState(products[0].image);
+  const [selectedProduct, setSelectedProduct] = useState(products[0].productId);
+  const [product, setProduct] = useState<Product | null>(null);
   const [activeBtn, setActiveBtn] = useState(0);
 
-  const handleButtonClick = (index: number, productImage: string) => {
-    setSelectedProduct(productImage);
+  async function fetchProducts(productId: string) {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/api/products/all/${productId}`
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setProduct(data.product);
+      console.log("Fetched product:", data.product);
+    } catch (error) {
+      console.error("Error fetching product:", error);
+    }
+  }
+
+  useEffect(() => {
+    if (selectedProduct) {
+      fetchProducts(selectedProduct);
+    }
+  }, [selectedProduct]);
+
+  const handleButtonClick = (index: number, productId: string) => {
+    setSelectedProduct(productId);
     setActiveBtn(index);
+  };
+
+  const handlePrevProduct = () => {
+    const currentIndex = products.findIndex(
+      (p) => p.productId === selectedProduct
+    );
+    const prevIndex =
+      currentIndex <= 0 ? products.length - 1 : currentIndex - 1;
+    setSelectedProduct(products[prevIndex].productId);
+    setActiveBtn(prevIndex);
+  };
+
+  const handleNextProduct = () => {
+    const currentIndex = products.findIndex(
+      (p) => p.productId === selectedProduct
+    );
+    const nextIndex =
+      currentIndex >= products.length - 1 ? 0 : currentIndex + 1;
+    setSelectedProduct(products[nextIndex].productId);
+    setActiveBtn(nextIndex);
   };
 
   return (
@@ -29,7 +75,7 @@ const ShopTheRoomSection = () => {
           <h1 className="text-[32px] md:text-[40px] lg:text-[48px] font-[800] text-[#272727]">
             Shop the room
           </h1>
-          <div className="relative flex flex-col md:flex-row">
+          <div className="relative flex flex-col gap-[30px] md:gap-[150px] md:flex-row mb-[50px]">
             <div className="w-[100%] md:w-[50%] relative">
               <Image
                 src="https://impact-theme-home.myshopify.com/cdn/shop/files/Pandarine_3_Seater_reclining_armrest_Lint_beige_oiled_oak_legs_Plica_Sprinkle_cream_Shaggy_Rug_cream.jpg?v=1656505302&width=1000"
@@ -42,7 +88,7 @@ const ShopTheRoomSection = () => {
               <div
                 className="absolute cursor-pointer"
                 style={{ top: "47%", left: "12%" }}
-                onClick={() => handleButtonClick(1, products[1].image)}
+                onClick={() => handleButtonClick(1, products[1].productId)}
               >
                 <div
                   className={`relative flex justify-center transition-all duration-300 ease-in-out items-center ${
@@ -64,7 +110,7 @@ const ShopTheRoomSection = () => {
               <div
                 className="absolute cursor-pointer"
                 style={{ top: "40%", left: "74%" }}
-                onClick={() => handleButtonClick(0, products[0].image)}
+                onClick={() => handleButtonClick(0, products[0].productId)}
               >
                 <div
                   className={`relative flex justify-center transition-all duration-300 ease-in-out items-center ${
@@ -84,14 +130,24 @@ const ShopTheRoomSection = () => {
               </div>
             </div>
 
-            <div className="w-[100%] md:w-[50%] flex justify-center">
-              <Image
-                src={selectedProduct}
-                alt="Selected Product"
-                className="w-[500px] "
-                width={600}
-                height={600}
-              />
+            <div className="w-[100%] md:w-[25%] flex flex-col justify-center">
+              {product && <ProductCard product={product} />}
+
+              {/* Navigation Buttons */}
+              <div className="flex gap-[15px] justify-center mt-4">
+                <button
+                  onClick={handlePrevProduct}
+                  className="p-4 border rounded-full text-black  transition-colors"
+                >
+                  <LuChevronLeft size={20} />
+                </button>
+                <button
+                  onClick={handleNextProduct}
+                  className="p-4 border rounded-full text-black  transition-colors"
+                >
+                  <LuChevronRight size={20} />
+                </button>
+              </div>
             </div>
           </div>
         </div>

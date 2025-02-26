@@ -7,16 +7,17 @@ import ProgressBarContainer from "../New Arrivals Section/ProgressBarContainer";
 
 interface ScrollableProductsProps {
   setScrollProgress: (progress: number) => void;
+  scrollProgress: number;
 }
 
 const ScrollableProducts: React.FC<ScrollableProductsProps> = ({
   setScrollProgress,
+  scrollProgress,
 }) => {
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  const [progress, setProgress] = useState(0);
   const totalCards = 8;
 
   const calculateProgress = useCallback(() => {
@@ -40,7 +41,6 @@ const ScrollableProducts: React.FC<ScrollableProductsProps> = ({
       // Combine initial and scroll progress
       const totalProgress = initialProgress + scrollProgress;
 
-      setProgress(Math.min(totalProgress, 100));
       setScrollProgress(Math.min(totalProgress, 100));
     }
   }, [setScrollProgress, totalCards]);
@@ -118,7 +118,7 @@ const ScrollableProducts: React.FC<ScrollableProductsProps> = ({
         </div>
       </div>
       <ProgressBarContainer
-        scrollProgress={progress}
+        scrollProgress={scrollProgress}
         onScrollLeft={scrollLeft}
         onScrollRight={scrollRight}
         canScrollLeft={canScrollLeft}

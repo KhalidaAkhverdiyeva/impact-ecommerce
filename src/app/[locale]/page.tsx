@@ -21,7 +21,6 @@ import { FaAngleRight } from "react-icons/fa";
 import { Link } from "@/i18n/routing";
 
 export default function Home() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [scrollProgress, setScrollProgress] = useState<number>(0);
 
   return (
@@ -47,14 +46,18 @@ export default function Home() {
                 <p>View all</p>
                 <button
                   aria-label="View all"
-                 className="bg-[#E9E9E9] p-[6px] rounded-full flex justify-center items-center">
+                  className="bg-[#E9E9E9] p-[6px] rounded-full flex justify-center items-center"
+                >
                   <FaAngleRight size={14} />
                 </button>
               </Link>
             </div>
           </div>
           <div className="w-full overflow-x-hidden mx-auto max-w-[1600px]">
-            <ScrollableProducts setScrollProgress={setScrollProgress} />
+            <ScrollableProducts
+              scrollProgress={scrollProgress}
+              setScrollProgress={setScrollProgress}
+            />
           </div>
         </section>
         <FloatingTextSection
