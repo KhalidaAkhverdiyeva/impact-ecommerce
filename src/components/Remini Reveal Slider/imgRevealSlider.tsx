@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
 
@@ -10,23 +10,40 @@ const ImageRevealSlider = () => {
     "https://impact-theme-home.myshopify.com/cdn/shop/files/CPH-90-Aquavert-linoleum-wb-Lacquer-Walnut-Base_AAC-155_Sense-nougat-alu-tilt-swivel-base_Slant-Soft-black_3e6d67b8-c715-455e-b387-fc04377ae4e8.jpg?v=1663055873&width=2000";
 
   const [dragPosition, setDragPosition] = useState(50); // Start in the middle
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // Spring animation for smooth dragging
   const [{ clip }, api] = useSpring(() => ({ clip: dragPosition }));
 
   // Gesture handling for dragging
   const bind = useDrag(
-    ({ movement: [mx], memo = dragPosition }) => {
-      // Calculate the new position based on the movement
+    ({ movement: [mx], memo = dragPosition, event }) => {
+      // Prevent default scroll
+      event.preventDefault();
+
+      const containerWidth =
+        containerRef.current?.clientWidth || window.innerWidth;
       const newPos = Math.min(
-        Math.max(0, memo + (mx / window.innerWidth) * 100),
+        Math.max(0, memo + (mx / containerWidth) * 100),
         100
       );
+
       setDragPosition(newPos);
       api.start({ clip: newPos, immediate: true }); // Update the clip-path immediately
       return memo; // Return the memo for the next drag cycle
     },
-    { axis: "x" }
+    {
+      axis: "x",
+      filterTaps: true,
+      preventDefault: true,
+      rubberband: true,
+      from: () => [
+        (dragPosition *
+          (containerRef.current?.clientWidth || window.innerWidth)) /
+          100,
+        0,
+      ],
+    }
   );
 
   return (
@@ -41,7 +58,10 @@ const ImageRevealSlider = () => {
             balance in your home.
           </p>
         </div>
-        <div className="relative h-[200px] md:h-[400px] lg:h-[700px] xl:h-[800px] overflow-hidden">
+        <div
+          ref={containerRef}
+          className="relative h-[200px] md:h-[400px] lg:h-[700px] xl:h-[800px] overflow-hidden touch-none"
+        >
           {/* Left Image with clip-path controlled by drag position  */}
           <animated.div
             className="absolute inset-0"
@@ -76,10 +96,11 @@ const ImageRevealSlider = () => {
           {/* Draggable Slider with centered larger SVG */}
           <animated.div
             {...bind()}
-            className="absolute top-0 bottom-0 w-[2px] bg-white cursor-grab"
+            className="absolute top-0 bottom-0 w-[2px] bg-white cursor-grab active:cursor-grabbing touch-none"
             style={{
               left: `${dragPosition}%`,
               transform: "translateX(-50%)",
+              touchAction: "none",
             }}
           >
             <div className="absolute inset-0 flex items-center justify-center">
