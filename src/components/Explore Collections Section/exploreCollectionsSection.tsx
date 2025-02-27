@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef } from "react";
 import { LuChevronRight } from "react-icons/lu";
 import CollectionCard from "./collectionCard";
