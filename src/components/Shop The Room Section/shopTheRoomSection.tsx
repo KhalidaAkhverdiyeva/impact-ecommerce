@@ -1,11 +1,15 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ProductCard from "../Product Card/productCard";
 import { Product } from "@/types";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
+import { motion, useInView } from "framer-motion";
 
 const ShopTheRoomSection = () => {
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
+
   const products = [
     {
       productId: "672f45dbeb2a0cb6cf44b9cb", // pillow
@@ -68,15 +72,68 @@ const ShopTheRoomSection = () => {
     setActiveBtn(nextIndex);
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: {
+      opacity: 0,
+      y: 30,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.215, 0.61, 0.355, 1],
+      },
+    },
+  };
+
+  const imageVariants = {
+    hidden: {
+      opacity: 0,
+      scale: 0.95,
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 1.2,
+        ease: [0.215, 0.61, 0.355, 1],
+      },
+    },
+  };
+
   return (
     <section className="bg-white">
-      <div className="max-w-[1600px] mx-auto px-[20px] md:px-[32px] lg:px-[48px]">
+      <motion.div
+        ref={sectionRef}
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        className="max-w-[1600px] mx-auto px-[20px] md:px-[32px] lg:px-[48px]"
+      >
         <div className="flex flex-col gap-[20px]">
-          <h1 className="text-[32px] md:text-[40px] lg:text-[48px] font-[800] text-[#272727]">
+          <motion.h1
+            variants={itemVariants}
+            className="text-[32px] md:text-[40px] lg:text-[48px] font-[800] text-[#272727]"
+          >
             Shop the room
-          </h1>
+          </motion.h1>
           <div className="relative flex flex-col gap-[30px] md:gap-[150px] md:flex-row mb-[50px]">
-            <div className="w-[100%] md:w-[50%] relative">
+            <motion.div
+              variants={imageVariants}
+              className="w-[100%] md:w-[50%] relative"
+            >
               <Image
                 src="https://impact-theme-home.myshopify.com/cdn/shop/files/Pandarine_3_Seater_reclining_armrest_Lint_beige_oiled_oak_legs_Plica_Sprinkle_cream_Shaggy_Rug_cream.jpg?v=1656505302&width=1000"
                 alt="Living Room"
@@ -123,18 +180,23 @@ const ShopTheRoomSection = () => {
                     className={`relative bg-white transition-all duration-300 ease-in-out rounded-full ${
                       activeBtn === 0
                         ? "w-[14px] h-[14px]"
-                        : "w-[10px] h-[10px]"
+                        : "w/[10px] h-[10px]"
                     } flex justify-center items-center transition-all duration-300 ease-in-out shadow-md`}
                   ></button>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="w-[100%] md:w-[25%] flex flex-col justify-center">
+            <motion.div
+              variants={itemVariants}
+              className="w-[100%] md:w-[25%] flex flex-col justify-center"
+            >
               {product && <ProductCard product={product} />}
 
-              {/* Navigation Buttons */}
-              <div className="flex gap-[15px] justify-center mt-4">
+              <motion.div
+                variants={itemVariants}
+                className="flex gap-[15px] justify-center mt-4"
+              >
                 <button
                   onClick={handlePrevProduct}
                   className="p-4 border rounded-full text-black  transition-colors"
@@ -147,11 +209,11 @@ const ShopTheRoomSection = () => {
                 >
                   <LuChevronRight size={20} />
                 </button>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

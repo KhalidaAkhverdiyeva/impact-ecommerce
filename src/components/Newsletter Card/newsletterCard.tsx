@@ -1,11 +1,65 @@
-import React from "react";
+import React, { useRef } from "react";
 import Image from "next/image";
+import { motion, useInView } from "framer-motion";
 
 const NewsletterCard = () => {
+  const cardRef = useRef(null);
+  const isInView = useInView(cardRef, { once: true, amount: 0.3 });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: {
+      opacity: 0,
+      y: 30,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.215, 0.61, 0.355, 1],
+      },
+    },
+  };
+
+  const imageVariants = {
+    hidden: {
+      opacity: 0,
+      scale: 0.95,
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 1.2,
+        ease: [0.215, 0.61, 0.355, 1],
+      },
+    },
+  };
+
   return (
     <section className="bg-white">
-      <div className="flex flex-col max-w-[1600px] mx-auto lg:flex-row md:px-[32px] lg:px-[48px] md:py-[50px]">
-        <div className="flex-[75%] lg:flex-[40%] overflow-hidden cursor-pointer">
+      <motion.div
+        ref={cardRef}
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        className="flex flex-col max-w-[1600px] mx-auto lg:flex-row md:px-[32px] lg:px-[48px] md:py-[50px]"
+      >
+        <motion.div
+          variants={imageVariants}
+          className="flex-[75%] lg:flex-[40%] overflow-hidden cursor-pointer"
+        >
           <Image
             src="https://impact-theme-home.myshopify.com/cdn/shop/files/Arcs_Vase_red_Chim_Chim_Scent_Diffuser_light_beige_Tint_Wine_Glass_1.jpg?v=1656418824&width=1500"
             alt="sofa"
@@ -13,10 +67,13 @@ const NewsletterCard = () => {
             height={1125} // Adjust height to maintain aspect ratio
             className="w-full h-full transition-transform duration-500 ease-in-out hover:scale-105 object-cover"
           />
-        </div>
+        </motion.div>
 
-        <div className="flex-[40%] bg-[#A7D3DD] text-[#272727] flex flex-col gap-[24px] p-[20px] md:p-[48px]">
-          <div className="">
+        <motion.div
+          variants={containerVariants}
+          className="flex-[40%] bg-[#A7D3DD] text-[#272727] flex flex-col gap-[24px] p-[20px] md:p-[48px]"
+        >
+          <motion.div variants={itemVariants}>
             <svg
               role="presentation"
               fill="none"
@@ -39,16 +96,27 @@ const NewsletterCard = () => {
                 strokeLinejoin="round"
               ></path>
             </svg>
-          </div>
+          </motion.div>
 
-          <h2 className="text-[36px] md:text-[44px] lg:text-[48px]  font-[800] leading-[1.1] cursor-pointer">
+          <motion.h2
+            variants={itemVariants}
+            className="text-[36px] md:text-[44px] lg:text-[48px] font-[800] leading-[1.1] cursor-pointer"
+          >
             Sign up to the newsletter.
-          </h2>
-          <p className="text-[14px] md:text-[18px] ">
+          </motion.h2>
+
+          <motion.p
+            variants={itemVariants}
+            className="text-[14px] md:text-[18px]"
+          >
             Subscribe to get notified about new stories, news and personal
             offers.
-          </p>
-          <div className="flex flex-col md:flex-row gap-[20px]">
+          </motion.p>
+
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col md:flex-row gap-[20px]"
+          >
             <div
               className="flex justify-between border p-[14px] md:w-[70%] lg:w-[50%]"
               style={{
@@ -90,17 +158,21 @@ const NewsletterCard = () => {
                   strokeLinejoin="round"
                 ></path>
               </svg>
-              <button 
-               aria-label="Subscribe"
-               className="text-white font-[700]">Subscribe</button>
+              <button aria-label="Subscribe" className="text-white font-[700]">
+                Subscribe
+              </button>
             </div>
-          </div>
-          <p className="text-[12px] text-[#272727B3] pt-[20px]">
+          </motion.div>
+
+          <motion.p
+            variants={itemVariants}
+            className="text-[12px] text-[#272727B3] pt-[20px]"
+          >
             By completing this form you are signing up to receive our emails.
             You can unsubscribe at any time.
-          </p>
-        </div>
-      </div>
+          </motion.p>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

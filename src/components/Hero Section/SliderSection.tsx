@@ -10,6 +10,74 @@ const HeroSliderSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isDesktop, setIsDesktop] = useState(false);
 
+  const subtitleAnimation = {
+    hidden: {
+      opacity: 0,
+      y: 20,
+      rotate: 2,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      rotate: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+        type: "spring",
+        stiffness: 100,
+        damping: 12,
+      },
+    },
+    exit: {
+      opacity: 0,
+      y: -20,
+      rotate: -2,
+      transition: {
+        duration: 0.4,
+      },
+    },
+  };
+
+  const titleItemAnimation = (index: number) => ({
+    hidden: {
+      opacity: 0,
+      y: 30,
+      rotate: 4,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      rotate: 0,
+      transition: {
+        delay: 0.2 + index * 0.1, // Stagger effect
+        duration: 0.8,
+        type: "spring",
+        stiffness: 100,
+        damping: 12,
+      },
+    },
+  });
+
+  const buttonAnimation = {
+    hidden: {
+      opacity: 0,
+      y: 20,
+      rotate: 2,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      rotate: 0,
+      transition: {
+        delay: 0.6, // Appears after title
+        duration: 0.8,
+        type: "spring",
+        stiffness: 100,
+        damping: 12,
+      },
+    },
+  };
+
   useEffect(() => {
     // Check window size on mount and resize
     const handleResize = () => {
@@ -65,27 +133,26 @@ const HeroSliderSection = () => {
 
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="max-w-[1600px] w-full flex flex-col items-start p-5 md:p-[32px] lg:p-[48px] z-20">
-                <p className="text-white text-[16px] mb-[20px] font-bold">
+                <motion.p
+                  key={`${currentSlide}-subtitle`}
+                  variants={subtitleAnimation}
+                  initial="hidden"
+                  animate={isCurrent ? "show" : "exit"}
+                  className="text-white text-[16px] mb-[20px] font-bold"
+                >
                   {slide.text}
-                </p>
-                <div className="flex flex-col mt-2 z-50  font-[900] leading-[1.05] text-white">
+                </motion.p>
+                <div className="flex flex-col mt-2 z-50 font-[900] leading-[1.05] text-white">
                   {(isDesktop ? slide.title.desktop : slide.title.mobile).map(
                     (line, i) => (
                       <motion.span
                         key={`${currentSlide}-${i}`}
-                        initial={{ opacity: 0, y: 20, rotate: 4 }}
-                        animate={{
-                          opacity: isCurrent ? 1 : 0,
-                          y: isCurrent ? 0 : 20,
-                          rotate: isCurrent ? 0 : 4,
-                        }}
-                        transition={{
-                          delay: isCurrent ? i * 0.2 : 0,
-                          duration: 0.4,
-                          ease: "easeInOut",
-                        }}
+                        custom={i}
+                        variants={titleItemAnimation(i)}
+                        initial="hidden"
+                        animate={isCurrent ? "show" : "hidden"}
                         style={{
-                          transformOrigin: "top left",
+                          transformOrigin: "left",
                         }}
                         className={`text-[50px] md:text-[64px] lg:text-[80px] font-[900]`}
                       >
@@ -94,14 +161,17 @@ const HeroSliderSection = () => {
                     )
                   )}
                 </div>
-                <Link  
-                aria-label="Shop"
-                href="/shop">
-                  <button  
-                  aria-label="Shop" 
-                  className="text-[#272727] cursor-pointer text-[14px] font-[800] mt-[24px] bg-white py-[16px] px-[32px]">
+                <Link aria-label="Shop" href="/shop">
+                  <motion.button
+                    key={`${currentSlide}-button`}
+                    variants={buttonAnimation}
+                    initial="hidden"
+                    animate={isCurrent ? "show" : "hidden"}
+                    aria-label="Shop"
+                    className="text-[#272727] cursor-pointer text-[14px] font-[800] mt-[24px] bg-white py-[16px] px-[32px]"
+                  >
                     {slide.button}
-                  </button>
+                  </motion.button>
                 </Link>
               </div>
             </div>

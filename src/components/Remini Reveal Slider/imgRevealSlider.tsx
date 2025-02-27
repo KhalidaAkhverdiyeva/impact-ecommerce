@@ -2,6 +2,7 @@
 import React, { useState, useRef } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import { useDrag } from "@use-gesture/react";
+import { motion } from "framer-motion";
 
 const ImageRevealSlider = () => {
   const leftImage =
@@ -46,21 +47,58 @@ const ImageRevealSlider = () => {
     }
   );
 
+  const revealVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
-    <div className="bg-white  py-[50px]">
+    <div className="bg-white py-[50px]">
       <div className="max-w-[1600px] mx-auto px-[20px] md:px-[32px] lg:px-[48px]">
-        <div className="text-center pb-[20px] md:pb-[40px]">
-          <h3 className="text-[32px] md:text-[40px] lg:text-[48px] font-[800]">
+        <motion.div
+          className="text-center pb-[20px] md:pb-[40px]"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.2,
+              },
+            },
+          }}
+        >
+          <motion.h3
+            className="text-[32px] md:text-[40px] lg:text-[48px] font-[800]"
+            variants={revealVariants}
+          >
             Sources of inspiration
-          </h3>
-          <p className="pt-[15px] text-[14px] md:text-[16px]">
+          </motion.h3>
+          <motion.p
+            className="pt-[15px] text-[14px] md:text-[16px]"
+            variants={revealVariants}
+          >
             Explore our environments and inspire yourself to find the right
             balance in your home.
-          </p>
-        </div>
-        <div
+          </motion.p>
+        </motion.div>
+
+        <motion.div
           ref={containerRef}
           className="relative h-[200px] md:h-[400px] lg:h-[700px] xl:h-[800px] overflow-hidden touch-none"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
         >
           {/* Left Image with clip-path controlled by drag position  */}
           <animated.div
@@ -123,7 +161,7 @@ const ImageRevealSlider = () => {
               </svg>
             </div>
           </animated.div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

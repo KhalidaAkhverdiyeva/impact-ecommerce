@@ -40,6 +40,18 @@ const CompanyCountSection = () => {
     }
   }, [isInView, count]);
 
+  const textRevealVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
     <section ref={sectionRef} className="bg-white py-[50px] ">
       <div className="max-w-[1600px] mx-auto flex flex-col gap-[10px] md:gap-[20px] px-[20px] md:px-[32px] lg:px-[48px] text-center">
@@ -47,18 +59,27 @@ const CompanyCountSection = () => {
           {rounded}
         </motion.h1>
 
-        <h3 className="text-[26px] font-[800] text-[#272727]">
+        <motion.h3
+          className="text-[26px] font-[800] text-[#272727]"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={textRevealVariants}
+        >
           A new kind of design company
-        </h3>
-        <div className="mx-auto">
-          {" "}
-          <p className="text-[14px] md:text-[16px] max-w-[750px] ">
+        </motion.h3>
+        <motion.div
+          className="mx-auto"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={textRevealVariants}
+        >
+          <p className="text-[14px] md:text-[16px] max-w-[750px]">
             Motivated by the certainty that good design is everyone&apos;s
             right, we set out to innovate new ways to answer the ever-evolving
             needs of the modern world - but at a more accessible price point
             than industry standards.
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

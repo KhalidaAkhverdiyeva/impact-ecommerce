@@ -16,16 +16,20 @@ const BlueVibezz = () => {
           </h3>
           <div className="text-[#484848] flex gap-[5px] items-center">
             <p>View all</p>
-            <button 
+            <button
               aria-label="View all"
-             className="bg-[#E9E9E9] p-[6px] rounded-full flex justify-center items-center">
+              className="bg-[#E9E9E9] p-[6px] rounded-full flex justify-center items-center"
+            >
               <FaAngleRight size={14} />
             </button>
           </div>
         </div>
       </div>
       <div className=" w-full overflow-x-hidden mx-auto max-w-[1600px]">
-        <ScrollableProducts setScrollProgress={setScrollProgress} />
+        <ScrollableProducts
+          scrollProgress={scrollProgress}
+          setScrollProgress={setScrollProgress}
+        />
       </div>
     </section>
   );

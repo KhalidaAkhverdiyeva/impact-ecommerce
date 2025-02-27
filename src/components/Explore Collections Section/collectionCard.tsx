@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const CollectionCard = () => {
   const collectionImages = [
@@ -40,12 +41,62 @@ const CollectionCard = () => {
     },
   ];
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const item = {
+    hidden: {
+      opacity: 0,
+      y: 20, // Reduced from 50
+      scale: 0.95, // Changed from 0.8
+      rotate: -1, // Reduced from -2
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotate: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15, // Increased from 12 for more stability
+        duration: 0.6, // Reduced from 0.8
+      },
+    },
+  };
+
+  const hoverAnimation = {
+    scale: 1.01, // Reduced from 1.02
+    y: -3, // Reduced from -5
+    transition: {
+      duration: 0.2, // Reduced from 0.3
+      ease: "easeOut",
+    },
+  };
+
   return (
-    <div className="flex gap-[20px] px-[20px] md:px-[32px] lg:px-[48px] ">
+    <motion.div
+      variants={container}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "-100px" }}
+      className="flex gap-[20px] px-[20px] md:px-[32px] lg:px-[48px]"
+    >
       {collectionImages.map((image, index) => (
-        <div
+        <motion.div
           key={index}
-          className=" p-[20px] bg-[#F1F1F1]  overflow-hidden min-w-[200px]"
+          className="p-[20px] bg-[#F1F1F1] overflow-hidden min-w-[200px]"
+          variants={item}
+          whileHover={hoverAnimation}
+          custom={index}
         >
           <picture>
             <source media="(min-width: 768px)" srcSet={image.webImg} />
@@ -60,9 +111,9 @@ const CollectionCard = () => {
           <div className="text-center">
             <div className="font-[700] text-[#272727]">{image.title}</div>
           </div>
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 };
 

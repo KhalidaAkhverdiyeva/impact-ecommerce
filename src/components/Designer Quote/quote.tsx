@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import Image from "next/image";
+import { motion, useInView } from "framer-motion";
 
 interface QuoteProps {
   bgColor: string;
@@ -10,6 +11,8 @@ interface QuoteProps {
 const Quote: React.FC<QuoteProps> = ({ bgColor }) => {
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
   const [isFadingOut, setIsFadingOut] = useState(false);
+  const quoteRef = useRef(null);
+  const isInView = useInView(quoteRef, { once: true, amount: 0.3 });
 
   const quotes = [
     {
@@ -42,10 +45,40 @@ const Quote: React.FC<QuoteProps> = ({ bgColor }) => {
     changeQuote((currentQuoteIndex - 1 + quotes.length) % quotes.length);
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: {
+      opacity: 0,
+      y: 30,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.215, 0.61, 0.355, 1],
+      },
+    },
+  };
+
   return (
     <section className=" bg-white ">
       <div className="py-[20px] max-w-[1600px] mx-auto ">
-        <div
+        <motion.div
+          ref={quoteRef}
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
           className="text-white py-[20px] md:py-[40px] lg:py-[60px] md:mx-[32px] lg:mx-[48px]"
           style={{ backgroundColor: bgColor }}
         >
@@ -58,15 +91,19 @@ const Quote: React.FC<QuoteProps> = ({ bgColor }) => {
                 height={37}
                 className="absolute top-[0px] md:top-[15px] lg:left-[77px] left-[10px] md:left-[50px] w-[51px] h-[37px] md:w-[70px] md:h-[45px]"
               />
-              <blockquote
+              <motion.blockquote
+                variants={itemVariants}
                 className={`text-[26px] p-[20px] md:text-[36px] md:px-[70px] md:py-[40px] lg:text-[44px] relative font-[800] leading-[1.1] text-center transition-opacity duration-300 ease-in-out ${
                   isFadingOut ? "opacity-0" : "opacity-100"
                 }`}
               >
                 {quotes[currentQuoteIndex].text}
-              </blockquote>
+              </motion.blockquote>
             </div>
-            <div className="flex flex-col items-center gap-[10px] justify-center">
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-col items-center gap-[10px] justify-center"
+            >
               <div className="rounded-full w-[70px] h-[70px] overflow-hidden transition-opacity duration-300">
                 <Image
                   src={quotes[currentQuoteIndex].image}
@@ -78,14 +115,19 @@ const Quote: React.FC<QuoteProps> = ({ bgColor }) => {
                   }`}
                 />
               </div>
-              <p className="text-white text-[14px] text-center md:text-[16px]">
+              <motion.p
+                variants={itemVariants}
+                className="text-white text-[14px] text-center md:text-[16px]"
+              >
                 {quotes[currentQuoteIndex].author}
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
           </div>
 
-          {/* Navigation Buttons */}
-          <div className="flex justify-center items-center gap-[20px] mt-4 max-w-[900px] mx-auto">
+          <motion.div
+            variants={itemVariants}
+            className="flex justify-center items-center gap-[20px] mt-4 max-w-[900px] mx-auto"
+          >
             <button
               aria-label="Previous quote"
               onClick={prevQuote}
@@ -113,8 +155,8 @@ const Quote: React.FC<QuoteProps> = ({ bgColor }) => {
             >
               <GrFormNext />
             </button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

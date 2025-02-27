@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import React, { useEffect, useRef, useState, useCallback } from "react";
+import { motion } from "framer-motion";
 import ProductCard from "../Product Card/productCard";
 import { Product } from "@/types";
 import ProgressBarContainer from "../New Arrivals Section/ProgressBarContainer";
@@ -53,7 +53,7 @@ const ScrollableProducts: React.FC<ScrollableProductsProps> = ({
       // Calculate initial progress after products are loaded
       setTimeout(calculateProgress, 0);
     } catch (error) {
-      alert("Failed to fetch products:huahahahahahah");
+      console.error(error);
     }
   }, [calculateProgress]);
 
@@ -103,19 +103,73 @@ const ScrollableProducts: React.FC<ScrollableProductsProps> = ({
     };
   }, [fetchProducts, handleScroll]);
 
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const item = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+      scale: 0.8,
+      rotate: -2,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotate: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 12,
+        duration: 0.8,
+      },
+    },
+  };
+
+  // Add hover animation
+  const hoverAnimation = {
+    scale: 1.02,
+    y: -5,
+    transition: {
+      duration: 0.3,
+      ease: "easeOut",
+    },
+  };
+
   return (
     <div className="w-full">
       <div
         ref={scrollRef}
         className="scroll-container relative flex overflow-x-auto px-[20px] md:px-[32px] lg:px-[48px] max-w-[1600px]"
       >
-        <div className="flex gap-[20px] relative overflow-visible">
-          {products.map((product) => (
-            <div key={product._id} className="flex-1 min-w-[300px]">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          className="flex gap-[20px] relative overflow-visible"
+        >
+          {products.map((product, index) => (
+            <motion.div
+              key={product._id}
+              className="flex-1 min-w-[300px]"
+              variants={item}
+              whileHover={hoverAnimation}
+              custom={index}
+            >
               <ProductCard product={product} />
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
       <ProgressBarContainer
         scrollProgress={scrollProgress}
