@@ -55,7 +55,7 @@ const ProductAboutSection: React.FC<{
             className="text-[#3e3d3d] text-[14px] md:text-[18px]"
           >
             Vertical opaque and clear stripes create a subtle color variance in
-            Kristine Five Melvær's glass vase collection.
+            Kristine Five Melværs glass vase collection.
           </motion.p>
         </motion.div>
 

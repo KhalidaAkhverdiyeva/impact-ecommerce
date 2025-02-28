@@ -54,7 +54,7 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
           setError("Product not found");
         }
       } catch (err) {
-        setError("Failed to fetch product");
+        console.log(err);
       }
     }
 
@@ -224,9 +224,7 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
                 </button>
                 <button
                   onClick={handleBuyNow}
-                  disabled={
-                    isProcessing || quantity > product.availableUnits
-                  }
+                  disabled={isProcessing || quantity > product.availableUnits}
                   aria-label="Buy it now"
                   className="bg-[#272727] font-[800] w-[100%] text-white px-[32px] py-[16px] hover:bg-[#404040] transition-colors duration-300 disabled:opacity-50"
                 >
