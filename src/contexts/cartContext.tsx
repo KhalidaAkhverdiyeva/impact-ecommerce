@@ -141,11 +141,6 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
           quantity: Math.max(1, item.quantity || 1), // Ensure positive quantity
         }));
 
-        console.log("Attempting to add to cart:", {
-          userId,
-          items: formattedItems,
-        });
-
         const response = await fetch(
           `http://localhost:3001/api/users/${userId}/cart`,
           {

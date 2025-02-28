@@ -16,11 +16,18 @@ import Stock from "@/components/Stock/stock";
 import { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import { Product, ProductDetailPageProps } from "@/types";
+import { useCart } from "@/contexts/cartContext";
+import AddToCartSidebar from "@/components/Add to Card Sidebar/addToCartSidebar";
+import SuccessAlert from "@/components/Alert/SuccessAlert";
 
 const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
   const [product, setProduct] = useState<Product>();
   const [index, setIndex] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useCart();
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     const currentUrl = window.location.href;
@@ -65,8 +72,37 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
     selectedVariant.hoverImage,
     ...selectedVariant.detailImages,
   ];
-  const handleColorSelect = (color: string, index: number) => {
+  const handleColorSelect = (index: number) => {
     setIndex(index);
+  };
+
+  const handleAddToCart = async () => {
+    if (!product || !selectedVariant) return;
+
+    try {
+      await addToCart({
+        _id: `${product._id}-${selectedVariant._id}`,
+        productId: product._id,
+        colorId: selectedVariant._id,
+        quantity: quantity,
+      });
+
+      // Show success alert
+      setShowAlert(true);
+
+      // Wait for alert animation before showing cart
+      setTimeout(() => {
+        setIsCartOpen(true);
+      }, 1000);
+    } catch (error) {
+      console.error("Failed to add to cart:", error);
+    }
+  };
+
+  const handleBuyNow = () => {
+    handleAddToCart();
+    // Add your checkout navigation logic here
+    console.log("Proceeding to checkout");
   };
 
   return (
@@ -74,9 +110,9 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
       <Header transparent={false} />
       <div className="max-w-[1600px] mx-auto lg:px-[48px] lg:pt-[50px]">
         <div className="flex flex-col lg:flex-row gap-[40px]">
-          <div className="flex-[60%] overflow-hidden ">
+          {/* Left side - scrollable */}
+          <div className="flex-[60%] overflow-y-auto">
             <ProductImageGrid gatheredImages={gatheredImages} />
-
             <div className="lg:hidden">
               <ProductDetailSwiper
                 product={product}
@@ -84,20 +120,26 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
               />
             </div>
           </div>
-          <div className="flex-[40%] sticky top-[110px] h-[110vh]  px-[20px] md:px-[32px] lg:px-[0px]">
-            <p className="text-[#8a8989] md:text-[18px] md:pb-[10px]">
-              {product.designer}
-            </p>
-            <h1 className="text-[#272727] font-[800] text-[36px] md:text-[42px] lg:text-[50px]">
-              {product.title}
-            </h1>
-            <div className="flex justify-between text-[#272727] pb-[15px] md:pt-[15px] border-b-[#e4e4e4] border-b-solid border-b-[1px]">
+
+          {/* Right side - fixed height, no scroll */}
+          <div className="flex-[40%] sticky overflow-hidden top-[20px] h-fit px-[20px] md:px-[32px] lg:px-[0px]">
+            {/* Product Info Section */}
+            <div className="space-y-4">
+              <p className="text-[#8a8989] md:text-[18px]">
+                {product.designer}
+              </p>
+              <h1 className="text-[#272727] font-[800] text-[36px] md:text-[42px] lg:text-[50px]">
+                {product.title}
+              </h1>
+            </div>
+
+            {/* Price and Rating */}
+            <div className="flex justify-between text-[#272727] py-4 border-b border-[#e4e4e4]">
               <p className="text-[20px]">${product.price.toFixed(2)}</p>
-              <div className="flex items-center gap-[5px] md:mt-[4px] ">
+              <div className="flex items-center gap-[5px] md:mt-[4px]">
                 <div className="text-[14px] md:text-[18px]">
                   {product.rating}
                 </div>
-
                 <svg
                   role="presentation"
                   fill="none"
@@ -114,7 +156,9 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
                 </svg>
               </div>
             </div>
-            <div className="py-[15px]">
+
+            {/* Color Selection */}
+            <div className="py-4">
               <p>
                 <span className="text-[#8d8c8c] pr-[5px]">Colors:</span>
                 {product.colors}
@@ -123,13 +167,12 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
                 {product.colorVariants.map((variant, index) => (
                   <div
                     key={index}
-                    onClick={() => handleColorSelect(variant.color, index)}
+                    onClick={() => handleColorSelect(index)}
                     className="w-[40px] h-[16px] cursor-pointer border"
                     style={{ backgroundColor: variant.color }}
                   ></div>
                 ))}
               </div>
-
               <div className="relative mt-[4px] h-1">
                 <div
                   className="absolute w-[40px] h-[2px] bg-black transition-all duration-300"
@@ -137,27 +180,37 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
                 ></div>
               </div>
             </div>
-            <QuantityBlock />
-            <Stock product={product} />
-            <div className="flex flex-col md:flex-row gap-[10px] py-[15px]">
-              <button
-                aria-label="Add to cart"
-                className="py-[16px] px-[32px] bg-[#3C619E] text-white font-[700] w-[100%]"
-              >
-                Add to cart
-              </button>
-              <button
-                aria-label="Buy it now"
-                className="bg-[#272727] font-[800] w-[100%] text-white px-[32px] py-[16px]"
-              >
-                Buy it now
-              </button>
+
+            {/* Actions */}
+            <div className="space-y-4">
+              <QuantityBlock onQuantityChange={setQuantity} />
+              <Stock product={product} />
+              <div className="flex flex-col md:flex-row gap-[10px] py-[15px]">
+                <button
+                  onClick={handleAddToCart}
+                  aria-label="Add to cart"
+                  className="py-[16px] px-[32px] bg-[#3C619E] text-white font-[700] w-[100%] hover:bg-[#2c4875] transition-colors duration-300"
+                >
+                  Add to cart ({quantity})
+                </button>
+                <button
+                  onClick={handleBuyNow}
+                  aria-label="Buy it now"
+                  className="bg-[#272727] font-[800] w-[100%] text-white px-[32px] py-[16px] hover:bg-[#404040] transition-colors duration-300"
+                >
+                  Buy it now
+                </button>
+              </div>
             </div>
+
+            {/* Additional Info */}
             <Return />
-            <div className="mt-[30px] mx-[-20px]">
+
+            {/* Accordion Section - Limited Height */}
+            <div className="mt-6 mx-[-20px] h-fit">
               <Accordion
                 title="Shipping & Returns"
-                content="We are committed to bring our products to everyone in the world. Our service delivers to most countries in the world and is dedicated to meeting a variety of shipping needs. Shipping is free for all orders over $100."
+                content="We are committed to bringing our products to everyone in the world. Our service delivers to most countries in the world and is dedicated to meeting a variety of shipping needs. Shipping is free for all orders over $100."
               />
               <Accordion
                 title="Warranty"
@@ -167,7 +220,7 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
           </div>
         </div>
       </div>
-      <ProductAboutSection product={product} />
+      <ProductAboutSection product={product} color={colorHex} />
       <FloatingTextSection
         text="Good design is everyones right"
         color={colorHex}
@@ -258,6 +311,15 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
 
       <ExploreCollectionsSections />
       <ShopifySection />
+      <SuccessAlert
+        open={showAlert}
+        onClose={() => setShowAlert(false)}
+        message={`Succesfuly added ${quantity} ${quantity > 1 ? "items" : "item"} to cart`}
+      />
+      <AddToCartSidebar
+        isAddToCartOpen={isCartOpen}
+        setIsAddCartOpen={setIsCartOpen}
+      />
     </div>
   );
 };

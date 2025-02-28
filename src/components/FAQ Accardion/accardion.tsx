@@ -1,66 +1,65 @@
 "use client";
-import { AccordionProps } from "@/types";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { LuChevronDown } from "react-icons/lu";
+
+interface AccordionProps {
+  title: string;
+  content: string;
+  isLast?: boolean;
+}
 
 const Accordion: React.FC<AccordionProps> = ({ title, content, isLast }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const contentRef = useRef<HTMLDivElement>(null);
-
-  const toggleAccordion = () => {
-    setIsOpen(!isOpen);
-  };
-
-  useEffect(() => {
-    if (contentRef.current) {
-      contentRef.current.style.maxHeight = isOpen
-        ? `${contentRef.current.scrollHeight}px`
-        : "0px";
-    }
-  }, [isOpen]);
 
   return (
-    <div className="mx-[20px]">
-      <button 
-        aria-label="Toggle accordion"
-        className="flex justify-between items-center w-full py-[20px] text-left"
-        onClick={toggleAccordion}
+    <div className={`relative border-t border-[#E6E6E6] ${isLast ? "" : ""}`}>
+      <motion.button
+        initial={false}
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex w-full items-center justify-between py-[20px] px-[20px] md:px-[32px]"
       >
-        <span className="text-[16px] md:text-[18px] text-[#272727] w-[270px] font-[800] flex-grow">
+        <span className="text-left text-[16px] font-[700] text-[#272727]">
           {title}
         </span>
-        <div
-          className={`flex items-center justify-center w-[24px] hover:bg-[#272727] hover:text-[white] h-[24px] rounded-full transition-colors duration-300 ${
-            isOpen ? "bg-[#272727] text-white" : "bg-[#DFDFDF] text-[#272727]"
-          }`}
+        <motion.div
+          initial={false}
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
         >
-          <svg
-            role="presentation"
-            focusable="false"
-            width="8"
-            height="6"
-            viewBox="0 0 8 6"
-            className={`transition-transform duration-300 ${
-              isOpen ? "rotate-180" : "rotate-0"
-            }`}
+          <LuChevronDown size={20} />
+        </motion.div>
+      </motion.button>
+
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{
+              height: "auto",
+              opacity: 1,
+              transition: {
+                height: { duration: 0.3 },
+                opacity: { duration: 0.3, delay: 0.1 },
+              },
+            }}
+            exit={{
+              height: 0,
+              opacity: 0,
+              transition: {
+                height: { duration: 0.3 },
+                opacity: { duration: 0.2 },
+              },
+            }}
+            className="overflow-hidden"
+            style={{ transformOrigin: "top" }}
           >
-            <path
-              d="m1 1.5 3 3 3-3"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            ></path>
-          </svg>
-        </div>
-      </button>
-      <div
-        ref={contentRef}
-        className={`overflow-hidden transition-max-height duration-300 ease-in-out ${
-          isLast ? "" : "border-b border-gray-300"
-        }`}
-        style={{ maxHeight: "0px" }}
-      >
-        <div className="pt-[5px] pb-[20px] text-gray-700">{content}</div>
-      </div>
+            <div className="px-[20px] md:px-[32px] pb-[20px] text-[14px] md:text-[16px] text-[#272727B3]">
+              {content}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

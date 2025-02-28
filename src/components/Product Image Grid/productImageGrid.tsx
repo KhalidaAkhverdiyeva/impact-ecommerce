@@ -46,8 +46,8 @@ const ProductImageGrid: React.FC<ProductImageGridProps> = ({
           className="relative group aspect-[3/4]"
           key={index}
         >
-          <div 
-            onClick={() => openModal(index)} 
+          <div
+            onClick={() => openModal(index)}
             className="cursor-pointer w-full h-full"
           >
             <Image

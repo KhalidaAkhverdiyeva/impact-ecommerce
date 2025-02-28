@@ -1,37 +1,41 @@
 "use client";
-import React, { useState } from "react";
-import { FaMinus, FaPlus } from "react-icons/fa6";
+import { useState } from "react";
 
-const QuantityBlock = () => {
+interface QuantityBlockProps {
+  onQuantityChange: (quantity: number) => void;
+}
+
+const QuantityBlock: React.FC<QuantityBlockProps> = ({ onQuantityChange }) => {
   const [quantity, setQuantity] = useState(1);
 
-  const increment = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
+  const handleQuantityChange = (newQuantity: number) => {
+    if (newQuantity >= 1) {
+      setQuantity(newQuantity);
+      onQuantityChange(newQuantity);
+    }
   };
 
-  const decrement = () => {
-    setQuantity((prevQuantity) => Math.max(prevQuantity - 1, 1));
-  };
   return (
-    <div className="py-[15px] ">
-      <p>
-        <span className="text-[#8d8c8c] pr-[5px]">Quantity:</span>
-      </p>
-      <div className="flex w-[140px] items-center gap-2 mt-4 border border-gray-200 p-2 ">
+    <div className="flex items-center gap-[10px] py-[15px]">
+      <div className="flex border-[1px] border-solid border-[#E6E6E6] text-[#272727]">
         <button
-          aria-label="Decrement quantity"
-          onClick={decrement}
-          className="flex-1 text-lg flex justify-center items-center"
+          onClick={() => handleQuantityChange(quantity - 1)}
+          className="px-[16px] py-[12px] border-r-[1px] border-solid border-[#E6E6E6]"
         >
-          <FaMinus size={14} />
+          -
         </button>
-        <span className="text-lg flex-1 text-center">{quantity}</span>
+        <input
+          type="text"
+          value={quantity}
+          onChange={(e) => handleQuantityChange(parseInt(e.target.value) || 1)}
+          className="w-[50px] text-center outline-none"
+          min="1"
+        />
         <button
-          aria-label="Increment quantity"
-          onClick={increment}
-          className="flex-1 flex justify-center items-center"
+          onClick={() => handleQuantityChange(quantity + 1)}
+          className="px-[16px] py-[12px] border-l-[1px] border-solid border-[#E6E6E6]"
         >
-          <FaPlus size={14} />
+          +
         </button>
       </div>
     </div>
