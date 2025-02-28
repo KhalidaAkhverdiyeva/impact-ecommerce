@@ -1,81 +1,90 @@
+"use client";
 import React from "react";
-import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import { IoClose } from "react-icons/io5";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import Image from "next/image";
-import { ModalProps } from "@/types";
+import { motion } from "framer-motion";
+
+interface ModalProps {
+  isOpen: boolean;
+  image: string;
+  onClose: () => void;
+  currentIndex: number;
+  totalImages: number;
+  onPrev: () => void;
+  onNext: () => void;
+  layoutId: string;
+}
 
 const Modal: React.FC<ModalProps> = ({
+  isOpen,
   image,
   onClose,
   currentIndex,
   totalImages,
   onPrev,
   onNext,
+  layoutId,
 }) => {
+  if (!isOpen) return null;
+
   return (
-    <div className="fixed inset-0 bg-white flex items-center justify-center z-50">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[70] bg-black bg-opacity-60 flex items-center justify-center"
+    >
       <button
-        aria-label="Close"
         onClick={onClose}
-        className="absolute top-5 right-5 text-gray-700 z-10 "
+        className="absolute top-4 right-4 text-white p-2 hover:opacity-75 z-[60]"
       >
-        <svg
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          width="56"
-          height="56"
-          viewBox="0 0 56 56"
-        >
-          <path
-            d="M56 28C56 12.536 43.464 0 28 0S0 12.536 0 28s12.536 28 28 28 28-12.536 28-28Z"
-            fill="#fff"
-          ></path>
-          <path
-            d="M55.5 28C55.5 12.812 43.188.5 28 .5S.5 12.812.5 28 12.812 55.5 28 55.5 55.5 43.188 55.5 28Z"
-            stroke="#252627"
-            strokeOpacity=".12"
-          ></path>
-          <path
-            d="m22.344 22.343 11.313 11.314m-11.313 0 11.313-11.313"
-            stroke="#252627"
-            strokeWidth="2"
-          ></path>
-        </svg>
+        <IoClose size={24} />
       </button>
 
-      <div className="relative flex flex-col items-center">
+      <button
+        onClick={onPrev}
+        disabled={currentIndex === 0}
+        className={`absolute left-4 text-white p-2 ${
+          currentIndex === 0
+            ? "opacity-50 cursor-not-allowed"
+            : "hover:opacity-75"
+        }`}
+      >
+        <IoIosArrowBack size={24} />
+      </button>
+
+      <motion.div
+        layoutId={layoutId}
+        className="relative aspect-[3/4] w-auto h-auto max-w-[90vw] max-h-[90vh]"
+        style={{ margin: "auto" }}
+      >
         <Image
           src={image}
-          alt={`Image ${currentIndex + 1}`}
-          className="max-w-full max-h-[100vh] object-cover relative"
-          fill
-          sizes="100vw"
-          style={{ objectFit: "contain" }}
+          alt={`Product view ${currentIndex + 1}`}
+          className="object-contain w-full h-full"
+          width={1200}
+          height={1600}
           priority
         />
+      </motion.div>
 
-        <div className="mt-5 flex items-center absolute bottom-[20px] left-[40%] bg-white rounded-[20px]">
-          <button
-            aria-label="Previous image"
-            onClick={onPrev}
-            disabled={currentIndex === 0}
-            className=" text-gray-700 px-[20px]"
-          >
-            <GrFormPrevious />
-          </button>
-          <span className="px-[12px] py-[8px]">
-            {currentIndex + 1}/{totalImages}
-          </span>
-          <button
-            aria-label="Next image"
-            onClick={onNext}
-            disabled={currentIndex === totalImages - 1}
-            className=" text-gray-700 px-[20px]"
-          >
-            <GrFormNext />
-          </button>
-        </div>
+      <button
+        onClick={onNext}
+        disabled={currentIndex === totalImages - 1}
+        className={`absolute right-4 text-white p-2 ${
+          currentIndex === totalImages - 1
+            ? "opacity-50 cursor-not-allowed"
+            : "hover:opacity-75"
+        }`}
+      >
+        <IoIosArrowForward size={24} />
+      </button>
+
+      <div className="absolute bottom-4 text-white">
+        {currentIndex + 1} / {totalImages}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -100,11 +100,19 @@ const HeroSliderSection = () => {
   }, []);
 
   const goToNextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
+    setCurrentSlide((prev) => {
+      const nextSlide = (prev + 1) % slides.length;
+      console.log("Clicked next, moving to slide:", nextSlide);
+      return nextSlide;
+    });
   };
 
   const goToPrevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    setCurrentSlide((prev) => {
+      const prevSlide = (prev - 1 + slides.length) % slides.length;
+      console.log("Clicked prev, moving to slide:", prevSlide);
+      return prevSlide;
+    });
   };
 
   return (

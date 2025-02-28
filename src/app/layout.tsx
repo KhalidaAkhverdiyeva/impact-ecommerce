@@ -1,16 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Inter } from "next/font/google";
 import { Jost } from "next/font/google";
-import Footer from "@/components/Layout/Footer/footer";
-import Banner from "@/components/Layout/Banner/banner";
 import { ColorProvider } from "@/contexts/colorContext";
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
-});
 
 const jost = Jost({
   subsets: ["latin"],
@@ -35,12 +26,8 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon2.png" />
       </head>
-      <body
-        className={`${inter.variable} ${jost.variable} font-jost antialiased`}
-      >
-        <Banner />
+      <body className={` ${jost.variable} font-jost antialiased`}>
         <ColorProvider defaultColor="#000000">{children}</ColorProvider>
-        <Footer />
       </body>
     </html>
   );

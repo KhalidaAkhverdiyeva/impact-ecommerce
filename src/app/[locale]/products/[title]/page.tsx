@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import RichTextSection from "@/components/Designers Rich Text Section/richTextSection";
 import ExploreCollectionsSections from "@/components/Explore Collections Section/exploreCollectionsSection";
@@ -14,15 +13,12 @@ import Return from "@/components/Return/return";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
 import ProductDetailSkeleton from "@/components/Skeletons/Product Page Skeleton/productPageSkeleton";
 import Stock from "@/components/Stock/stock";
-import { useColor } from "@/contexts/colorContext";
 import { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import { Product, ProductDetailPageProps } from "@/types";
 
 const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
-  const { selectedColor, setSelectedColor } = useColor();
   const [product, setProduct] = useState<Product>();
-  const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [index, setIndex] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -70,8 +66,6 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
     ...selectedVariant.detailImages,
   ];
   const handleColorSelect = (color: string, index: number) => {
-    setSelectedColor(color);
-    setSelectedVariantIndex(index);
     setIndex(index);
   };
 
@@ -201,7 +195,7 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
             </h2>
             <button
               aria-label="Learn more"
-              className="text-[18px] font-[700] mt-[10px] lg:py-[14px] py-[13px] px-[24px] lg:px-[32px] bg-white inline-block w-[160px] text-center "
+              className="text-[18px] whitespace-nowrap font-[700] mt-[10px] lg:py-[14px] py-[13px] px-[24px] lg:px-[32px] bg-white inline-block w-[160px] text-center "
             >
               Learn more
             </button>

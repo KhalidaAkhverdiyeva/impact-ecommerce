@@ -16,7 +16,6 @@ const FilterSection: React.FC<FilterSectionProps> = ({
   setColor,
   setDesigner,
   setType,
-  setInStock: setInStockProp,
 }) => {
   const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number>(1500);
@@ -61,7 +60,6 @@ const FilterSection: React.FC<FilterSectionProps> = ({
     else if (type && filterToRemove.includes(type)) setType(null);
     else if (filterToRemove === "Not in Stock") {
       setInStockLocal(true);
-      setInStockProp(true);
     }
   };
 

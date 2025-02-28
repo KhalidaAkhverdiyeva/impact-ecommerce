@@ -4,6 +4,7 @@ import ProductCardSkeletons from "../Skeletons/Product Card Skeleton/productCard
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { ProductGridProps } from "@/types";
 import MobileSkeletons from "../Skeletons/Mobile Product Skeleton/mobileSkeleton";
+import { motion } from "framer-motion"; // Add this import
 
 const ProductGrid: React.FC<ProductGridProps> = ({
   products,
@@ -13,6 +14,47 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   totalPages,
   setCurrentPage,
 }) => {
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const item = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+      scale: 0.8,
+      rotate: -2,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      rotate: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 12,
+        duration: 0.8,
+      },
+    },
+  };
+
+  const hoverAnimation = {
+    scale: 1.02,
+    y: -5,
+    transition: {
+      duration: 0.3,
+      ease: "easeOut",
+    },
+  };
+
   if (loading) {
     return (
       <div className="w-full">
@@ -44,12 +86,25 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   };
 
   return (
-    <div className=" flex flex-col">
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-[10px] lg:gap-6 flex-grow">
-        {products.map((product) => (
-          <ProductCard key={product._id} product={product} />
+    <div className="flex flex-col">
+      <motion.div
+        className="grid grid-cols-2 lg:grid-cols-3 gap-[10px] lg:gap-6 flex-grow"
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        {products.map((product, index) => (
+          <motion.div
+            key={product._id}
+            variants={item}
+            whileHover={hoverAnimation}
+            custom={index}
+          >
+            <ProductCard product={product} />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
       <div className="flex justify-center items-center mt-6 w-[100%]">
         <div className="flex justify-center py-[10px] gap-[20px] w-[200px] border-solid border-[1px] border-[#e3e2e2]">
           <button
