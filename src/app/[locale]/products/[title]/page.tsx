@@ -19,6 +19,8 @@ import { Product, ProductDetailPageProps } from "@/types";
 import { useCart } from "@/contexts/cartContext";
 import AddToCartSidebar from "@/components/Add to Card Sidebar/addToCartSidebar";
 import SuccessAlert from "@/components/Alert/SuccessAlert";
+import { handleCheckout } from "@/utils/checkout";
+import { Alert, Snackbar } from "@mui/material";
 
 const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
   const [product, setProduct] = useState<Product>();
@@ -28,6 +30,8 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
   const { addToCart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   useEffect(() => {
     const currentUrl = window.location.href;
@@ -99,10 +103,25 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
     }
   };
 
-  const handleBuyNow = () => {
-    handleAddToCart();
-    // Add your checkout navigation logic here
-    console.log("Proceeding to checkout");
+  const handleBuyNow = async () => {
+    if (!product || !selectedVariant) return;
+
+    setIsProcessing(true);
+    try {
+      await handleCheckout([
+        {
+          product,
+          quantity,
+          colorId: selectedVariant._id,
+        },
+      ]);
+    } catch (error) {
+      setCheckoutError(
+        error instanceof Error ? error.message : "Checkout failed"
+      );
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   return (
@@ -183,22 +202,35 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
 
             {/* Actions */}
             <div className="space-y-4">
-              <QuantityBlock onQuantityChange={setQuantity} />
+              <QuantityBlock
+                availableUnits={product.availableUnits}
+                onQuantityChange={setQuantity}
+              />
               <Stock product={product} />
               <div className="flex flex-col md:flex-row gap-[10px] py-[15px]">
                 <button
                   onClick={handleAddToCart}
+                  disabled={quantity > product.availableUnits}
                   aria-label="Add to cart"
-                  className="py-[16px] px-[32px] bg-[#3C619E] text-white font-[700] w-[100%] hover:bg-[#2c4875] transition-colors duration-300"
+                  className={`py-[16px] px-[32px] bg-[#3C619E] text-white font-[700] w-[100%] 
+                    ${
+                      quantity > product.availableUnits
+                        ? "opacity-50 cursor-not-allowed"
+                        : "hover:bg-[#2c4875]"
+                    } 
+                    transition-colors duration-300`}
                 >
                   Add to cart ({quantity})
                 </button>
                 <button
                   onClick={handleBuyNow}
+                  disabled={
+                    isProcessing || quantity > product.availableUnits
+                  }
                   aria-label="Buy it now"
-                  className="bg-[#272727] font-[800] w-[100%] text-white px-[32px] py-[16px] hover:bg-[#404040] transition-colors duration-300"
+                  className="bg-[#272727] font-[800] w-[100%] text-white px-[32px] py-[16px] hover:bg-[#404040] transition-colors duration-300 disabled:opacity-50"
                 >
-                  Buy it now
+                  {isProcessing ? "Processing..." : "Buy it now"}
                 </button>
               </div>
             </div>
@@ -314,12 +346,32 @@ const ProductDetailPage: FC<ProductDetailPageProps> = ({ params }) => {
       <SuccessAlert
         open={showAlert}
         onClose={() => setShowAlert(false)}
-        message={`Succesfuly added ${quantity} ${quantity > 1 ? "items" : "item"} to cart`}
+        message={`Succesfuly added ${quantity} ${
+          quantity > 1 ? "items" : "item"
+        } to cart`}
       />
       <AddToCartSidebar
         isAddToCartOpen={isCartOpen}
         setIsAddCartOpen={setIsCartOpen}
       />
+      <Snackbar
+        open={!!checkoutError}
+        autoHideDuration={6000}
+        onClose={() => setCheckoutError(null)}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert
+          severity="error"
+          onClose={() => setCheckoutError(null)}
+          sx={{
+            backgroundColor: "#272727",
+            color: "white",
+            ".MuiAlert-icon": { color: "white" },
+          }}
+        >
+          {checkoutError}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };
