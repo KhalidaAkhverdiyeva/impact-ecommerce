@@ -180,7 +180,7 @@ const ShopTheRoomSection = () => {
                     className={`relative bg-white transition-all duration-300 ease-in-out rounded-full ${
                       activeBtn === 0
                         ? "w-[14px] h-[14px]"
-                        : "w/[10px] h-[10px]"
+                        : "w-[10px] h-[10px]"
                     } flex justify-center items-center transition-all duration-300 ease-in-out shadow-md`}
                   ></button>
                 </div>

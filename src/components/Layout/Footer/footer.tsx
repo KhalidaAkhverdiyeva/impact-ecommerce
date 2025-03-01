@@ -1,7 +1,12 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { FaFacebookF, FaInstagram } from "react-icons/fa6";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaPinterestP,
+  FaXTwitter,
+} from "react-icons/fa6";
 import { NewsletterSection } from "./newsletterSection";
 import { PaymentMethods } from "./paymentMethods";
 import { FooterLinks } from "./footerLinks";
@@ -74,6 +79,22 @@ const Footer = () => {
                 className="cursor-pointer"
               >
                 <FaInstagram size={26} />
+              </motion.div>
+              <motion.div
+                whileHover="hover"
+                initial="initial"
+                variants={iconVariants}
+                className="cursor-pointer"
+              >
+                <FaPinterestP size={26} />
+              </motion.div>
+              <motion.div
+                whileHover="hover"
+                initial="initial"
+                variants={iconVariants}
+                className="cursor-pointer"
+              >
+                <FaXTwitter size={26} />
               </motion.div>
             </div>
           </div>
