@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ReactNode, Suspense } from "react";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -14,13 +13,13 @@ export default async function LocaleLayout({
   params: { locale },
 }: {
   children: ReactNode;
-  params: { locale: any };
+  params: { locale: string };
 }) {
-  if (!routing.locales.includes(locale)) {
+  if (!routing.locales.includes(locale as "en" | "fr" | "de")) {
     notFound();
   }
 
-  const messages = await getMessages(locale);
+  const messages = await getMessages({ locale });
 
   return (
     <NextIntlClientProvider messages={messages} locale={locale}>
