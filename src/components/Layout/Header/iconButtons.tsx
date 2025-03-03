@@ -7,7 +7,6 @@ import { useState } from "react";
 import SearchDrawer from "./searchDrawer";
 
 interface IconButtonsProps {
-  openDropdown: string | null;
   openSidebar: () => void;
   setIsAddCartOpen: (isOpen: boolean) => void;
 }

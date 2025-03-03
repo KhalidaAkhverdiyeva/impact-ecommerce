@@ -3,13 +3,11 @@ import { IconButtons } from "./iconButtons";
 import LanguageSelector from "./languageSelector";
 
 interface RightNavProps {
-  openDropdown: string | null;
   openSidebar: () => void;
   setIsAddCartOpen: (isOpen: boolean) => void;
 }
 
 export const RightNav = ({
-  openDropdown,
   openSidebar,
   setIsAddCartOpen,
 }: RightNavProps) => (
@@ -22,7 +20,6 @@ export const RightNav = ({
       <LanguageSelector />
     </div>
     <IconButtons
-      openDropdown={openDropdown}
       openSidebar={openSidebar}
       setIsAddCartOpen={setIsAddCartOpen}
     />

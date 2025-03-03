@@ -1,18 +1,19 @@
 import { IoMenu } from "react-icons/io5";
 import { IoSearch } from "react-icons/io5";
 import { Link } from "@/i18n/routing";
-import DesignersDropdown from "./designersDropdown";
 import DropdownLink from "./dropdownLink";
 import SearchDrawer from "./searchDrawer";
 import MobileMenuDrawer from "./mobileMenuDrawer";
 import { useState } from "react";
 
 interface LeftNavProps {
-  openDropdown: string | null;
+  openDropdown: boolean;
   toggleDropdown: (dropdown: string) => void;
+  setIsDropdownOpen: (value: boolean) => void;
+
 }
 
-export const LeftNav = ({ openDropdown, toggleDropdown }: LeftNavProps) => {
+export const LeftNav = ({ openDropdown, toggleDropdown, setIsDropdownOpen }: LeftNavProps) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -41,7 +42,7 @@ export const LeftNav = ({ openDropdown, toggleDropdown }: LeftNavProps) => {
           text="Designers"
           openDropdown={openDropdown}
           toggleDropdown={toggleDropdown}
-          DropdownComponent={DesignersDropdown}
+          setIsDropdownOpen={setIsDropdownOpen}
         />
         <li>
           <Link href="/about">About</Link>

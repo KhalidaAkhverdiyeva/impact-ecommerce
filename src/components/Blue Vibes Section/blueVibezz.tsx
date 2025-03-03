@@ -4,7 +4,6 @@ import { FaAngleRight } from "react-icons/fa6";
 import ScrollableProducts from "../Scrollable Products/scrollProducts";
 
 const BlueVibezz = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [scrollProgress, setScrollProgress] = useState<number>(0);
 
   return (

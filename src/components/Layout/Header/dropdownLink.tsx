@@ -1,12 +1,13 @@
 import React from "react";
 import { FaAngleDown } from "react-icons/fa6";
+import DesignersDropdown from "./designersDropdown";
 
 interface DropdownLinkProps {
   name: string;
   text: string;
-  openDropdown: string | null;
+  openDropdown: boolean;
   toggleDropdown: (dropdown: string) => void;
-  DropdownComponent: React.ComponentType;
+  setIsDropdownOpen: (value: boolean) => void;
 }
 
 const DropdownLink = ({
@@ -14,7 +15,7 @@ const DropdownLink = ({
   text,
   openDropdown,
   toggleDropdown,
-  DropdownComponent,
+  setIsDropdownOpen
 }: DropdownLinkProps) => {
   return (
     <li>
@@ -25,11 +26,11 @@ const DropdownLink = ({
         {text}
         <FaAngleDown
           className={`transition-transform duration-300 ${
-            openDropdown === name ? "rotate-180" : ""
+            openDropdown === true ? "rotate-180" : ""
           }`}
         />
       </button>
-      {openDropdown === name && <DropdownComponent />}
+      {openDropdown === true && <DesignersDropdown setIsDropdownOpen={setIsDropdownOpen}  />}
     </li>
   );
 };

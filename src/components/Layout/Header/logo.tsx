@@ -4,7 +4,7 @@ import { Link } from "@/i18n/routing";
 interface LogoProps {
   transparent: boolean;
   isSticky: boolean;
-  openDropdown: string | null;
+  openDropdown: boolean;
 }
 
 export const Logo = ({ transparent, isSticky, openDropdown }: LogoProps) => (

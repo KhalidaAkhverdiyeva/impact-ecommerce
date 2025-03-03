@@ -1,7 +1,7 @@
 interface HeaderStylesProps {
   transparent: boolean;
   isSticky: boolean;
-  openDropdown: string | null;
+  openDropdown: boolean;
 }
 
 export const useHeaderStyles = ({

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import SearchSidebar from "@/components/Search Sidebar/searchSidebar";
 import AddToCartSidebar from "@/components/Add to Card Sidebar/addToCartSidebar";
 import { useHeaderStyles } from "@/hooks/useHeaderStyles";
@@ -11,16 +11,16 @@ export const Header = ({ transparent = true }) => {
   const [isSticky, setIsSticky] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isAddToCartOpen, setIsAddCartOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const { headerClass } = useHeaderStyles({
     transparent,
     isSticky,
-    openDropdown,
+    openDropdown: isDropdownOpen,
   });
 
-  const toggleDropdown = (dropdown: string) => {
-    setOpenDropdown((prev) => (prev === dropdown ? null : dropdown));
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prev) => !prev);
   };
 
   useEffect(() => {
@@ -38,16 +38,16 @@ export const Header = ({ transparent = true }) => {
       <header className={headerClass}>
         <div className="py-[18px] md:py-[34px] md:px-[32px] lg:px-[48px] px-[20px] flex justify-between items-center w-full max-w-[1600px]">
           <LeftNav
-            openDropdown={openDropdown}
+            setIsDropdownOpen={setIsDropdownOpen}
+            openDropdown={isDropdownOpen}
             toggleDropdown={toggleDropdown}
           />
           <Logo
             transparent={transparent}
             isSticky={isSticky}
-            openDropdown={openDropdown}
+            openDropdown={isDropdownOpen}
           />
           <RightNav
-            openDropdown={openDropdown}
             openSidebar={() => setIsOpen(true)}
             setIsAddCartOpen={setIsAddCartOpen}
           />

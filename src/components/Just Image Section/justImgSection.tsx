@@ -1,8 +1,17 @@
+"use client";
+
 import React from "react";
+import { motion } from "framer-motion";
 
 const JustImgSection = () => {
   return (
-    <section className="bg-white py-[50px] ">
+    <motion.section
+      initial={{ opacity: 0, scale: 0.7 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      className="bg-white py-[50px]"
+    >
       <picture className="w-full">
         <source
           media="(min-width: 640px)"
@@ -14,7 +23,7 @@ const JustImgSection = () => {
           className="w-full h-full object-cover"
         />
       </picture>
-    </section>
+    </motion.section>
   );
 };
 

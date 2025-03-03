@@ -2,9 +2,16 @@ import { Link } from "@/i18n/routing";
 import React from "react";
 import Image from "next/image";
 
-const DesignersDropdown = () => {
+interface DesignersDropdownProps {
+  setIsDropdownOpen: (value: boolean) => void;
+}
+
+const DesignersDropdown = ({ setIsDropdownOpen }: DesignersDropdownProps) => {
   return (
-    <div className="absolute top-[95px] left-0 z-[50] bg-black h-[100vh] w-[100%] bg-opacity-30">
+    <div
+      onClick={() => setIsDropdownOpen(false)}
+      className="absolute top-[95px] left-0 z-[50] bg-black h-[100vh] w-[100%] bg-opacity-30"
+    >
       <div className="bg-white border-t-[1px] border-t-solid border-t-[#dcdbdb]">
         <div className="flex items-center justify-between max-w-[1600px] mx-auto pl-[20px] md:pl-[32px] lg:pl-[48px]  overflow-visible">
           <ul className="text-[#272727] text-left font-[700] text-[26px] w-[30%]">
