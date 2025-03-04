@@ -19,10 +19,10 @@ const AllDesignersGridSection = () => {
           </div>
           <div className="flex-1 flex flex-col lg:gap-6 gap-[10px] w-[100%]">
             <div className="flex gap-[10px] lg:gap-6 flex-1 w-full">
-              <Link 
+              <Link
                 aria-label="Thomas Bentzen"
                 href="/thomas-bentzen"
-                className="w-[50%] relative cursor-pointer overflow-hidden h-[300px]"
+                className="w-[50%] relative cursor-pointer overflow-hidden "
               >
                 <Image
                   src="https://impact-theme-home.myshopify.com/cdn/shop/files/thomas-bentzen.jpg?v=1656420071&width=800"
@@ -36,7 +36,7 @@ const AllDesignersGridSection = () => {
                   </p>
                 </div>
               </Link>
-              <Link 
+              <Link
                 aria-label="Andreas Angesvik"
                 href="/andreas-engesvik"
                 className="w-[50%] relative cursor-pointer overflow-hidden"
@@ -57,7 +57,7 @@ const AllDesignersGridSection = () => {
             </div>
 
             <div className="flex gap-[10px] lg:gap-6 flex-1 w-full">
-              <Link 
+              <Link
                 aria-label="Shane Schneck"
                 href="/shane-schneck"
                 className="flex-1 h-auto relative cursor-pointer overflow-hidden"
@@ -76,7 +76,7 @@ const AllDesignersGridSection = () => {
                 </div>
               </Link>
 
-              <Link 
+              <Link
                 aria-label="Inga Sempe"
                 href="inga-sempe"
                 className="flex-1 h-auto relative cursor-pointer overflow-hidden"
@@ -100,7 +100,7 @@ const AllDesignersGridSection = () => {
         </div>
         <div className="flex flex-col md:flex-row gap-[10px] lg:gap-6 w-full">
           <div className="flex gap-[10px] lg:gap-6 w-full">
-            <Link 
+            <Link
               aria-label="Muller Van Severen"
               href="muller-van-severen"
               className="relative w-1/2 cursor-pointer overflow-hidden"
@@ -119,7 +119,7 @@ const AllDesignersGridSection = () => {
               </div>
             </Link>
 
-            <Link 
+            <Link
               aria-label="Jochen Holz"
               href="jochen-holz"
               className="relative w-1/2 cursor-pointer overflow-hidden"
@@ -140,7 +140,7 @@ const AllDesignersGridSection = () => {
           </div>
 
           <div className="flex gap-[10px] lg:gap-6 w-full">
-            <Link 
+            <Link
               aria-label="Phanta"
               href="phanta"
               className="relative w-1/2 cursor-pointer overflow-hidden"
@@ -159,7 +159,7 @@ const AllDesignersGridSection = () => {
               </div>
             </Link>
 
-            <Link 
+            <Link
               aria-label="Wang & Söderström"
               href="wang-soderstrom"
               className="relative w-1/2 cursor-pointer overflow-hidden"

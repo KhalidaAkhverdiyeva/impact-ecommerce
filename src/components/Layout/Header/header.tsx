@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import SearchSidebar from "@/components/Search Sidebar/searchSidebar";
 import AddToCartSidebar from "@/components/Add to Card Sidebar/addToCartSidebar";
 import { useHeaderStyles } from "@/hooks/useHeaderStyles";

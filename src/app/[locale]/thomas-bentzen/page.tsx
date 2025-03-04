@@ -1,3 +1,4 @@
+"use client";
 import ColoredShopCard from "@/components/Colored Shop Card/coloredShopCard";
 import DesignerInfoCard from "@/components/Designer Info Card/designerInfoCard";
 import RichTextSection from "@/components/Designers Rich Text Section/richTextSection";
@@ -7,12 +8,35 @@ import FloatingTextSection from "@/components/Marquee Text/floatingTexts";
 import ShopifySection from "@/components/Shopify Section/shopifySection";
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const ThomasBentzen = () => {
+  const textVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 1, ease: "easeOut" },
+    },
+  };
   return (
     <div className="relative">
       <Header />
-      <div className=" h-[560px] lg:h-[640px]  relative overflow-hidden">
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={imageVariants}
+        className=" h-[560px] lg:h-[640px]  relative overflow-hidden"
+      >
         <picture className="absolute inset-0 w-full h-full">
           <source
             media="(min-width: 768px)"
@@ -27,11 +51,16 @@ const ThomasBentzen = () => {
           />
         </picture>
         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-10">
-          <h2 className="text-white font-[800] text-[40px] md:text-[48px] lg:text-[68px]  text-center">
+          <motion.h2
+            initial="hidden"
+            animate="visible"
+            variants={textVariants}
+            className="text-white font-[800] text-[40px] md:text-[48px] lg:text-[68px]  text-center"
+          >
             Thomas Bentzen
-          </h2>
+          </motion.h2>
         </div>
-      </div>
+      </motion.div>
       <div className="pt-[50px]">
         <DesignerInfoCard />
       </div>

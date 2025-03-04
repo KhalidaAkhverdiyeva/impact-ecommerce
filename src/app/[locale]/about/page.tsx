@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import AboutNumbersSection from "@/components/About Numbers Section/aboutNumbersSection";
 import Quote from "@/components/Designer Quote/quote";
@@ -10,6 +9,7 @@ import ShopifySection from "@/components/Shopify Section/shopifySection";
 import Image from "next/image";
 import React, { useState } from "react";
 import { FaAngleRight } from "react-icons/fa6";
+import { motion } from "framer-motion";
 
 const AboutPage = () => {
   const [scrollProgress, setScrollProgress] = useState<number>(0);
@@ -33,12 +33,24 @@ const AboutPage = () => {
         </picture>
         <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-10">
           <div className="flex flex-col gap-[10px]">
-            <span className="text-white font-[800] text-[16px]  leading-[1] text-center max-w-[700px]">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }} 
+
+              className="text-white font-[800] text-[16px]  leading-[1] text-center max-w-[700px]"
+            >
               About us
-            </span>
-            <h2 className="text-white font-[800] text-[56px] md:text-[68px] lg:text-[80px] leading-[1] text-center max-w-[700px]">
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0, transition: { delay: 0.2 } }}
+              transition={{ opacity: { duration: 0.8, ease: "easeOut" }, y: { duration: 0.8, ease: "easeOut", delay: 0.2 } }} 
+
+              className="text-white font-[800] text-[56px] md:text-[68px] lg:text-[80px] leading-[1] text-center max-w-[700px]"
+            >
               We do high-quality products
-            </h2>
+            </motion.h2>
           </div>
         </div>
       </div>

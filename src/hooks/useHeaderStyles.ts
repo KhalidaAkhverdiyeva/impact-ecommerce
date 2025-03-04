@@ -5,7 +5,7 @@ export const useHeaderStyles = ({
 }: {
   transparent: boolean;
   isSticky: boolean;
-  openDropdown: string | null;
+  openDropdown: boolean;
 }) => {
   const headerClass = `
     fixed w-full z-50 transition-all duration-300
