@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { useCart } from "@/contexts/cartContext";
 import { SmallProductCardsProps } from "@/types";
