@@ -12,6 +12,7 @@ import {
   Divider,
 } from "@mui/material";
 import Image from "next/image";
+import { EnrichedCartItem } from "@/types/cart";
 
 const CheckoutForm = () => {
   const { enrichedCartItems, cartTotal } = useCart();
@@ -39,6 +40,17 @@ const CheckoutForm = () => {
     event.preventDefault();
     // TODO: Implement payment processing
     console.log("Form submitted:", formData);
+  };
+
+  const getItemImage = (item: EnrichedCartItem): string => {
+    if (!item.product?.colorVariants) {
+      return "/placeholder-image.jpg";
+    }
+
+    const colorVariant = item.product.colorVariants.find(
+      (variant) => variant._id === item.colorId
+    );
+    return colorVariant?.mainImage || "/placeholder-image.jpg";
   };
 
   return (
@@ -204,17 +216,13 @@ const CheckoutForm = () => {
               Order Summary
             </Typography>
             <Box sx={{ maxHeight: "400px", overflowY: "auto" }}>
-              {enrichedCartItems?.map((item) => (
+              {enrichedCartItems?.map((item: EnrichedCartItem) => (
                 <Box key={item._id} sx={{ mb: 2 }}>
                   <Box sx={{ display: "flex", gap: 2, mb: 1 }}>
                     <Box sx={{ position: "relative", width: 60, height: 60 }}>
                       <Image
-                        src={
-                          item.product.colorVariants.find(
-                            (variant) => variant._id === item.colorId
-                          )?.mainImage || ""
-                        }
-                        alt={item.product.title}
+                        src={getItemImage(item)}
+                        alt={item.product?.title || "Product"}
                         fill
                         style={{ objectFit: "cover" }}
                       />
@@ -224,14 +232,14 @@ const CheckoutForm = () => {
                         variant="subtitle2"
                         sx={{ fontWeight: "bold" }}
                       >
-                        {item.product.title}
+                        {item.product?.title || "Product"}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
                         Quantity: {item.quantity}
                       </Typography>
                     </Box>
                     <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
-                      ${(item.product.price * item.quantity).toFixed(2)}
+                      ${((item.product?.price || 0) * item.quantity).toFixed(2)}
                     </Typography>
                   </Box>
                 </Box>
