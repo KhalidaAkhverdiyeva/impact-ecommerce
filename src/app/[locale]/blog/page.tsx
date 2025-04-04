@@ -25,9 +25,10 @@ const BlogPage = () => {
 
           <div className="flex-[40%] bg-[#F8E39A] flex flex-col gap-[20px] p-[20px] md:p-[48px]">
             <div className="">
-              <button 
-              aria-label="News"
-               className="text-[16px] font-[700] bg-[#272727] bg-opacity-15 py-[6px] px-[20px]">
+              <button
+                aria-label="News"
+                className="text-[16px] font-[700] bg-[#272727] bg-opacity-15 py-[6px] px-[20px]"
+              >
                 News
               </button>
             </div>
@@ -99,9 +100,30 @@ const BlogPage = () => {
           </div>
         </div>
         <div className="max-w-[1600px] mx-auto gap-[20px] md:gap-[40px] lg:gap-[70px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-[50px]">
-          <BlogCard imgSrc="https://impact-theme-home.myshopify.com/cdn/shop/articles/Sowden_Bottle_blue_Frotte_Stripe_warm_yellow_3.jpg?v=1658931231&width=1000" />
-          <BlogCard imgSrc="https://impact-theme-home.myshopify.com/cdn/shop/articles/Facade_family_Salt_and_Pepper_M_yellow_Fleck_Stirring_Spoon_grey_Kitchen_Tongs_1.jpg?v=1658998470&width=1000" />
-          <BlogCard imgSrc="https://impact-theme-home.myshopify.com/cdn/shop/articles/Palissade_Lounge_Chair_Low_Palissade_Lounge_Sofa_Palissade_Ottoman_olive_1.jpg?v=1659018161&width=2000" />
+          <BlogCard
+            imgSrc="https://impact-theme-home.myshopify.com/cdn/shop/articles/Sowden_Bottle_blue_Frotte_Stripe_warm_yellow_3.jpg?v=1658931231&width=1000"
+            id="sowden-collection"
+            title="The Sowden Collection"
+            description="George Sowden's kitchen utensil collection for Hay is characterized not only by exceptional quality but also by the unique signature of the British designer."
+            date="May 23, 2022"
+            comments="2 comments"
+          />
+          <BlogCard
+            imgSrc="https://impact-theme-home.myshopify.com/cdn/shop/articles/Facade_family_Salt_and_Pepper_M_yellow_Fleck_Stirring_Spoon_grey_Kitchen_Tongs_1.jpg?v=1658998470&width=1000"
+            id="kitchen-essentials"
+            title="Kitchen Essentials"
+            description="Discover our latest collection of kitchen essentials that combine functionality with modern design."
+            date="June 15, 2022"
+            comments="5 comments"
+          />
+          <BlogCard
+            imgSrc="https://impact-theme-home.myshopify.com/cdn/shop/articles/Palissade_Lounge_Chair_Low_Palissade_Lounge_Sofa_Palissade_Ottoman_olive_1.jpg?v=1659018161&width=2000"
+            id="outdoor-living"
+            title="Outdoor Living"
+            description="Transform your outdoor space with our new collection of durable and stylish furniture pieces."
+            date="July 8, 2022"
+            comments="3 comments"
+          />
         </div>
         <div className=" flex justify-center items-center  bg-white mt-[20px] mb-[70px]">
           <div className="border-solid border-[1px] border-[#e0dede]  flex justify-center items-center">
@@ -149,13 +171,11 @@ const BlogPage = () => {
               <h2 className="text-white font-[800] text-[40px] md:text-[56px] lg:text-[70px] leading-[1] text-center max-w-[300px] md:max-w-[700px] lg:max-w-[800px]">
                 Inspired by architecture art & fashion
               </h2>
-              <Link 
-               href="/about"
-               aria-label="Learn more"
-               >
-                <button 
-                 aria-label="Learn more"
-                 className="text-[18px] font-[700] mt-[10px] lg:py-[14px] py-[13px] px-[24px] lg:px-[32px] bg-white inline-block w-[160px] text-center ">
+              <Link href="/about" aria-label="Learn more">
+                <button
+                  aria-label="Learn more"
+                  className="text-[18px] font-[700] mt-[10px] lg:py-[14px] py-[13px] px-[24px] lg:px-[32px] bg-white inline-block w-[160px] text-center "
+                >
                   Learn more
                 </button>
               </Link>

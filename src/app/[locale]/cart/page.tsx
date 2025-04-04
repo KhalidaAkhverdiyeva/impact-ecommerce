@@ -5,11 +5,9 @@ import { useCart } from "@/contexts/cartContext";
 import { useRouter } from "@/i18n/routing";
 import Image from "next/image";
 import { hexToColorName } from "@/utils";
-import { getStripe } from "@/utils/stripe";
 
 const Cart = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
   const {
     cartItems,
@@ -32,66 +30,12 @@ const Cart = () => {
     fetchCart();
   }, [fetchCart, router]);
 
-  const handleCheckout = async () => {
+  const handleCheckout = () => {
     if (!enrichedCartItems?.length) {
       setCheckoutError("Your cart is empty");
       return;
     }
-
-    try {
-      setIsCheckoutLoading(true);
-      setCheckoutError(null);
-
-      const stripe = await getStripe();
-
-      if (!stripe) {
-        throw new Error("Failed to initialize payment system");
-      }
-
-      const lineItems = enrichedCartItems.map((item) => ({
-        price_data: {
-          currency: "usd",
-          unit_amount: Math.round(item.product.price * 100),
-          product_data: {
-            name: item.product.title,
-            images: [
-              item.product.colorVariants.find(
-                (variant) => variant._id === item.colorId
-              )?.mainImage || "",
-            ],
-          },
-        },
-        quantity: item.quantity,
-      }));
-
-      const response = await fetch("http://localhost:3001/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items: lineItems }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Checkout failed");
-      }
-
-      const { id: sessionId } = await response.json();
-
-      const { error: redirectError } = await stripe.redirectToCheckout({
-        sessionId,
-      });
-
-      if (redirectError) {
-        throw new Error(redirectError.message);
-      }
-    } catch (err) {
-      console.error("Checkout error:", err);
-      setCheckoutError(
-        err instanceof Error ? err.message : "Failed to process checkout"
-      );
-    } finally {
-      setIsCheckoutLoading(false);
-    }
+    router.push("/checkout");
   };
 
   const handleQuantityChange = async (itemId: string, newQuantity: number) => {
@@ -292,10 +236,10 @@ const Cart = () => {
                 )}
                 <button
                   onClick={handleCheckout}
-                  disabled={isCheckoutLoading || cartItems.length === 0}
+                  disabled={cartItems.length === 0}
                   className="w-full bg-[#424140] text-white py-3 rounded-lg hover:bg-gray-800 transition disabled:opacity-50"
                 >
-                  {isCheckoutLoading ? "Processing..." : "Proceed to Checkout"}
+                  Proceed to Checkout
                 </button>
               </div>
             </div>
