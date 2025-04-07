@@ -191,4 +191,19 @@ export interface ColorVariant {
     currentInStock: boolean;
   }
   
+
+  export type BlogPost = {
+    id: string;
+    title: string;
+    description: string;
+    content: string | { text: string; isBold: boolean }[];
+    image: string;
+    category: string;
+    date: string;
+    comments: string;
+    additionalImages: string[];
+    backgroundColor: string;
+  };
+
+
   

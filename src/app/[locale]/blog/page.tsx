@@ -7,6 +7,9 @@ import { Link } from "@/i18n/routing";
 import React from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import Image from "next/image";
+import {blogPosts} from "../../../mockdata/blogPost" 
+
+
 
 const BlogPage = () => {
   return (
@@ -100,37 +103,22 @@ const BlogPage = () => {
           </div>
         </div>
         <div className="max-w-[1600px] mx-auto gap-[20px] md:gap-[40px] lg:gap-[70px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-[50px]">
-          <BlogCard
-            imgSrc="https://impact-theme-home.myshopify.com/cdn/shop/articles/Sowden_Bottle_blue_Frotte_Stripe_warm_yellow_3.jpg?v=1658931231&width=1000"
-            id="sowden-collection"
-            title="The Sowden Collection"
-            description="George Sowden's kitchen utensil collection for Hay is characterized not only by exceptional quality but also by the unique signature of the British designer."
-            date="May 23, 2022"
-            comments="2 comments"
-          />
-          <BlogCard
-            imgSrc="https://impact-theme-home.myshopify.com/cdn/shop/articles/Facade_family_Salt_and_Pepper_M_yellow_Fleck_Stirring_Spoon_grey_Kitchen_Tongs_1.jpg?v=1658998470&width=1000"
-            id="kitchen-essentials"
-            title="Kitchen Essentials"
-            description="Discover our latest collection of kitchen essentials that combine functionality with modern design."
-            date="June 15, 2022"
-            comments="5 comments"
-          />
-          <BlogCard
-            imgSrc="https://impact-theme-home.myshopify.com/cdn/shop/articles/Palissade_Lounge_Chair_Low_Palissade_Lounge_Sofa_Palissade_Ottoman_olive_1.jpg?v=1659018161&width=2000"
-            id="outdoor-living"
-            title="Outdoor Living"
-            description="Transform your outdoor space with our new collection of durable and stylish furniture pieces."
-            date="July 8, 2022"
-            comments="3 comments"
-          />
+          {blogPosts.map((post) => (
+            <BlogCard
+              key={post.id}
+              imgSrc={post.image}
+              id={post.id}
+              title={post.title}
+              description={post.description}
+              date={post.date}
+              comments={post.comments}
+            />
+          ))}
         </div>
         <div className=" flex justify-center items-center  bg-white mt-[20px] mb-[70px]">
           <div className="border-solid border-[1px] border-[#e0dede]  flex justify-center items-center">
             <button
               aria-label="Previous"
-              // onClick={onPrev}
-              // disabled={currentIndex === 0}
               className=" text-gray-700 p-[20px] flex justify-center items-center"
             >
               <GrFormPrevious />
@@ -138,8 +126,6 @@ const BlogPage = () => {
             <span className="px-[12px] py-[8px]">1/2</span>
             <button
               aria-label="Next"
-              // onClick={onNext}
-              // disabled={currentIndex === totalImages - 1}
               className=" text-gray-700 p-[20px] flex justify-center items-center"
             >
               <GrFormNext />

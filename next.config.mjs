@@ -1,4 +1,3 @@
-
 import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin();
@@ -10,6 +9,11 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: 'impact-theme-home.myshopify.com',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'cdn.shopify.com',
                 pathname: '/**',
             },
             {
