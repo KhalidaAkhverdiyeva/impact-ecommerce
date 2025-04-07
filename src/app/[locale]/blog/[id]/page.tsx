@@ -5,6 +5,8 @@ import React from "react";
 import Image from "next/image";
 import { blogPosts } from "@/mockdata/blogPost";
 import { usePathname } from "next/navigation";
+import BlogCard from "@/components/Blog Card/blogCard";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 const BlogDetailPage = ({ params }: { params: { id: string } }) => {
   const blogPost = blogPosts.find((post) => post.id === params.id);
@@ -273,111 +275,27 @@ const BlogDetailPage = ({ params }: { params: { id: string } }) => {
               </div>
             </div>
 
-            {/* Back to Blog Link */}
-            <div className="pt-[40px]">
-              <Link
-                href="/blog"
-                aria-label="Back to blog"
-                className="text-[18px] font-[700] text-[#272727] hover:underline"
-              >
-                ← Back to blog
-              </Link>
-            </div>
-
             {/* Reading Next Section */}
-            <div className="w-full max-w-[1600px] mt-[80px]">
-              <h2 className="text-[32px] md:text-[44px] font-[800] text-[#272727] text-center mb-[40px]">
+            <div className="max-w-[750px] mx-auto">
+              <h2 className="text-[24px] flex items-center gap-[20px] md:text-[32px] font-[800] text-[#272727] mb-[40px]">
+                <FaArrowRightLong />
                 Reading Next
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px]">
+              <div className="gap-[40px] grid grid-cols-1 md:grid-cols-2">
                 {blogPosts
                   .filter((post) => post.id !== blogPost.id)
                   .slice(0, 2)
                   .map((post) => (
-                    <Link
+                    <BlogCard
                       key={post.id}
-                      href={`/blog/${post.id}`}
-                      className="group"
-                    >
-                      <div className="relative h-[300px] md:h-[400px]">
-                        <Image
-                          src={post.image}
-                          alt={post.title}
-                          fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </div>
-                      <div className="mt-[20px]">
-                        <button
-                          aria-label={post.category}
-                          className="text-[16px] font-[700] text-[#272727] bg-[#F8E39A] py-[6px] px-[20px] w-fit"
-                        >
-                          {post.category}
-                        </button>
-                        <h3 className="text-[24px] md:text-[32px] font-[800] text-[#272727] mt-[20px] group-hover:underline">
-                          {post.title}
-                        </h3>
-                        <p className="text-[16px] text-[#272727] mt-[10px] line-clamp-2">
-                          {post.description}
-                        </p>
-                        <div className="flex gap-[12px] mt-[20px] text-[14px] items-center">
-                          <div className="flex gap-[10px] text-[#272727]">
-                            <svg
-                              role="presentation"
-                              fill="none"
-                              focusable="false"
-                              strokeWidth="1.5"
-                              width="16"
-                              height="16"
-                              viewBox="0 0 16 16"
-                            >
-                              <path
-                                d="M5.372 1v2.877M10.455 1v2.877"
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                              ></path>
-                              <path
-                                d="M14.338 7.632H1.497l.179-4.57 6.164-.448 6.497.448v4.57Z"
-                                fill="currentColor"
-                                fillOpacity=".12"
-                              ></path>
-                              <path
-                                d="M1.224 12.073c.183 1.631 1.508 2.925 3.147 3.004a73.18 73.18 0 0 0 3.546.083c1.256 0 2.413-.028 3.546-.083 1.639-.079 2.964-1.374 3.146-3.004.124-1.099.225-2.224.225-3.37 0-1.147-.102-2.273-.225-3.371-.182-1.631-1.507-2.925-3.146-3.004a73.22 73.22 0 0 0-3.546-.083 73.22 73.22 0 0 0-3.546.083c-1.639.079-2.964 1.374-3.147 3.004C1.101 6.43 1 7.556 1 8.703c0 1.146.102 2.272.224 3.37ZM1.331 7.202h13.24"
-                                stroke="currentColor"
-                              ></path>
-                            </svg>
-                            <div>{post.date}</div>
-                          </div>
-                          <div className="flex gap-[10px] text-[#272727]">
-                            <svg
-                              role="presentation"
-                              fill="none"
-                              focusable="false"
-                              strokeWidth="1.5"
-                              width="16"
-                              height="16"
-                              viewBox="0 0 16 16"
-                            >
-                              <path
-                                d="M4.602 1.881A6.961 6.961 0 1 1 5.6 14.318l-3.806.633a.57.57 0 0 1-.635-.745l.974-2.904a6.961 6.961 0 0 1 2.47-9.42Z"
-                                fill="currentColor"
-                                fillOpacity=".12"
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              ></path>
-                              <path
-                                d="M5.5 6.286h5.572M5.5 9.714h4.214"
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              ></path>
-                            </svg>
-                            <div>{post.comments}</div>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
+                      imgSrc={post.image}
+                      id={post.id}
+                      title={post.title}
+                      description={post.description}
+                      date={post.date}
+                      comments={post.comments}
+                      variant="detail"
+                    />
                   ))}
               </div>
             </div>

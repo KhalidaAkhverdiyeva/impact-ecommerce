@@ -3,7 +3,7 @@ export const blogPosts = [
         id: "kitchen-essentials",
         title: "Kitchen Essentials",
         description:
-            "Discover our latest collection of kitchen essentials that combine functionality with modern design.",
+            "From the bright colours of the Sowden's Salt and Pepper, Kettle and Toaster, or Tins, to the stylish practicality of serving supplies like Swirl Bowl and Enamel, HAY will keep your kitchen looking ...",
         content: [
             {
                 type: "paragraph",
@@ -105,5 +105,78 @@ export const blogPosts = [
         date: "August 12, 2022",
         comments: "8 comments",
         backgroundColor: "#F2CD88",
+    },
+    {
+        id: "sustainable-products",
+        title: "Sustainable products",
+        description:
+            "HAY focuses on developing long-lasting products that minimise our environmental impact. We optimise the use of sustainable materials such as recycled materials, FSC certified wood and water-based ...",
+        content: [
+            {
+                type: "paragraph",
+                text: "HAY focuses on developing long-lasting products that minimise our environmental impact.",
+                isBold: true,
+            },
+            {
+                type: "paragraph",
+                text: "We optimise the use of sustainable materials such as recycled materials, FSC certified wood and water-based lacquer, with a growing number of eco-certified products. We have strict regulatory requirements, and the majority of our products are tested to comply with international standards for strength, durability and safetv.",
+            },
+            {
+                type: "paragraph",
+                text: "Sustainable design",
+                isBold: true,
+            },
+            {
+                type: "paragraph",
+                text: "HAY works with the best international designers to make designs in shapes, colours, and materials that utilise innovation and sustainable production methods and ensure sustainable design from the initial product development stages. Our ongoing goal is to reduce our environmental footprint, so we are constantly conducting research into the field of materials to create sustainable products with a strong environmental profile.",
+            },
+            {
+                type: "image",
+                url: "https://cdn.shopify.com/s/files/1/0646/1220/4800/files/sustainability1.jpg?v=1659017986",
+                caption: "This cup is made from borosilicate glass to look distinct and functional, rounded at the edge with an arched handle."
+            },
+            {
+                type: "paragraph",
+                text: "Recycled material",
+                isBold: true,
+            },
+            {
+                type: "paragraph",
+                text: "Recycled plastic material can be derived from two sources: post-consumer and post-industrial. Both sources play an important role in reducing environmental impact and closing the loop to ensure plastic does not end as waste, but becomes a resource that can be used again.",
+            },
+            {
+                type: "paragraph",
+                text: "Post-consumer recycled plastic material is derived from material from households and commercial waste. The plastic is collected, sorted and cleaned in recycling programmes, before being reprocessed into new products containing plastic.",
+            },
+            {
+                type: "paragraph",
+                text: "Post-industrial recycled plastic material is derived from leftover plastic waste generated from the original manufacturing process. The excess plastic is collected and reused to create new products, thus minimising production waste and maximising recycling of the raw materials.",
+            },
+            {
+                type: "image",
+                url: "https://cdn.shopify.com/s/files/1/0646/1220/4800/files/recycling_plastic.jpg?v=1659019194",
+                caption: "This cup is made from borosilicate glass to look distinct and functional, rounded at the edge with an arched handle."
+            },
+            {
+                type: "paragraph",
+                text: "Eco delivery",
+                isBold: true,
+            },
+            {
+                type: "paragraph",
+                text: "Freight transportation plays a fundamental role in global sustainable development, which is why it has become a focus area for HAY. In our efforts to minimise our carbon footprint, we sought to find the most environmentally-friendly solution for transporting our products worldwide. This has resulted in a new partnership with Maersk ECO Delivery, which replaces fossil fuels with sustainable, low-carbon fuel, ECO Delivery, and thus enables HAY to transport its cargo in a more sustainable way. ECO Delivery uses a low-carbon fuel certified by the International Sustainability and Carbon Certification (ISCC) body and manufactured from recycled sustainable biomass. Looking forward, HAY will use ECO Delivery for our Europe and APAC ocean transport, and we see this as an important step in our journey towards a more sustainable and responsible way of running our business.",
+            },
+            {
+                type: "image",
+                url: "https://cdn.shopify.com/s/files/1/0646/1220/4800/files/nazrin-babashova-2KWtph11YVk-unsplash.jpg?v=1659019594",
+                caption: "This cup is made from borosilicate glass to look distinct and functional, rounded at the edge with an arched handle."
+            },
+        ],
+        image:
+            "https://impact-theme-home.myshopify.com/cdn/shop/articles/Palissade_Lounge_Chair_Low_Palissade_Lounge_Sofa_Palissade_Ottoman_olive_1.jpg?v=1659018161&width=1200",
+        category: "Collection",
+        date: "June 15, 2022",
+        comments: "5 comments",
+        backgroundColor: "#708A5C",
     }
 ];
