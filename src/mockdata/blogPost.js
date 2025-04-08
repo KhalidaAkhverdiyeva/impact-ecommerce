@@ -46,6 +46,26 @@ export const blogPosts = [
         date: "June 15, 2022",
         comments: "5 comments",
         backgroundColor: "#804B46",
+        previousComments: [
+            {
+                id: 1,
+                name: "Sarah Johnson",
+                date: "June 16, 2022",
+                text: "I absolutely love the new collection! The design is so modern yet functional. Can't wait to get my hands on these pieces."
+            },
+            {
+                id: 2,
+                name: "Michael Chen",
+                date: "June 17, 2022",
+                text: "The quality of these kitchen essentials is outstanding. I've been using them for a month now and they're holding up great."
+            },
+            {
+                id: 3,
+                name: "Emma Wilson",
+                date: "June 18, 2022",
+                text: "The color combinations are perfect! They add such a nice touch to my kitchen. Highly recommend!"
+            }
+        ]
     },
     {
         id: "the-Sowden-collection",
@@ -83,7 +103,7 @@ export const blogPosts = [
             {
                 type: "image",
                 url: "https://cdn.shopify.com/s/files/1/0646/1220/4800/files/Sowden_Toaster_EU_blue_Soft_Ice_Lunch_Plate_green_1.jpg?v=1658932964",
-                caption: "The Sowden Toaster shares the same distinctive family of colour combinations as the rest of George Sowden’s collection"
+                caption: "The Sowden Toaster shares the same distinctive family of colour combinations as the rest of George Sowden's collection"
             },
             {
                 type: "quote",
@@ -105,6 +125,26 @@ export const blogPosts = [
         date: "August 12, 2022",
         comments: "8 comments",
         backgroundColor: "#F2CD88",
+        previousComments: [
+            {
+                id: 1,
+                name: "David Miller",
+                date: "August 13, 2022",
+                text: "The Sowden collection is a masterpiece! The attention to detail is incredible."
+            },
+            {
+                id: 2,
+                name: "Lisa Anderson",
+                date: "August 14, 2022",
+                text: "I've been collecting kitchenware for years, and this collection is definitely one of my favorites. The quality is exceptional."
+            },
+            {
+                id: 3,
+                name: "Robert Taylor",
+                date: "August 15, 2022",
+                text: "The combination of functionality and aesthetics is perfect. These pieces are not just tools, they're works of art."
+            }
+        ]
     },
     {
         id: "sustainable-products",
