@@ -21,6 +21,18 @@ const nextConfig = {
                 hostname: 'localhost',
                 pathname: '/**',
             },
+            {
+                protocol: 'https',
+                hostname: 'www.kindpng.com',
+                pathname: '/**'
+            },
+            {
+                protocol: 'https',
+                hostname: 'lh3.googleusercontent.com',
+                pathname: '/**'
+            }
+
+
         ],
     },
 };

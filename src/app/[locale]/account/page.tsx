@@ -5,12 +5,14 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { IoIosLogOut } from "react-icons/io";
 import Image from "next/image";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "@/lib/firebase";
 
 interface User {
-  name: string;
-  email: string;
-  phone: string;
-  avatar?: string; // Optional avatar field
+  displayName: string | null;
+  email: string | null;
+  photoURL: string | null;
+  phoneNumber: string | null;
 }
 
 const Accountant: React.FC = () => {
@@ -20,46 +22,31 @@ const Accountant: React.FC = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const userId = localStorage.getItem("userId");
-
-    if (!userId) {
-      router.push("/login");
-      return;
-    }
-
-    const fetchUserData = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:3001/api/users/${userId}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        if (response.ok) {
-          const data: User = await response.json();
-          setUser(data);
-        } else {
-          setError("Failed to load user data");
-          alert("Failed to load user data.");
-        }
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (err) {
-        setError("An error occurred while fetching your data");
-      } finally {
-        setLoading(false);
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      if (firebaseUser) {
+        setUser({
+          displayName: firebaseUser.displayName,
+          email: firebaseUser.email,
+          photoURL: firebaseUser.photoURL,
+          phoneNumber: firebaseUser.phoneNumber,
+        });
+      } else {
+        router.push("/login");
       }
-    };
+      setLoading(false);
+    });
 
-    fetchUserData();
-  }, [router]);
+    return () => unsubscribe();
+  }, [router, auth]);
 
-  const handleLogout = () => {
-    localStorage.removeItem("userId");
-    router.push("/login");
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      router.push("/login");
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      setError("Failed to logout");
+    }
   };
 
   if (loading) {
@@ -91,7 +78,7 @@ const Accountant: React.FC = () => {
                 width={112}
                 height={112}
                 src={
-                  user.avatar ||
+                  user.photoURL ||
                   "https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png"
                 }
                 alt="Profile"
@@ -100,7 +87,7 @@ const Accountant: React.FC = () => {
             </div>
             <div className="text-center">
               <h2 className="text-3xl font-bold text-gray-800">
-                {user.name || "Username"}
+                {user.displayName || "Username"}
               </h2>
               <p className="text-sm text-gray-500">{user.email}</p>
             </div>
@@ -111,9 +98,10 @@ const Accountant: React.FC = () => {
             <div className="flex justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-500">Phone</p>
-                <p className="text-lg text-gray-800">{user.phone}</p>
+                <p className="text-lg text-gray-800">
+                  {user.phoneNumber || "Not provided"}
+                </p>
               </div>
-              {/* You can add other info here */}
             </div>
           </div>
 

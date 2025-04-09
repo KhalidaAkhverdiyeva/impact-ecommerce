@@ -54,7 +54,7 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
           {comments.map((comment) => (
             <div key={comment.id} className="flex flex-col gap-[10px]">
               <div className="flex items-center gap-[15px]">
-                <div className="w-[40px] h-[40px] rounded-full bg-[#B4875D] flex items-center justify-center text-white font-[600] text-[16px]">
+                <div className="w-[50px] h-[50px] rounded-full bg-[#272727] flex items-center justify-center text-white font-[600] text-[16px]">
                   {comment.name
                     .split(" ")
                     .map((n) => n[0])
@@ -69,7 +69,7 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
                   </span>
                 </div>
               </div>
-              <p className="text-[14px] text-[#272727] pl-[55px]">
+              <p className="text-[14px] text-[#272727] pl-[60px]">
                 {comment.text}
               </p>
             </div>
@@ -140,7 +140,7 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
         </div>
         <button
           type="submit"
-          className="bg-[#B4875D] text-white py-[12px] px-[24px] rounded-[4px] font-[600] text-[14px] hover:bg-[#9a6f4a] transition-colors duration-300 w-fit"
+          className="bg-[#272727] text-white py-[12px] px-[24px] rounded-[4px] font-[600] text-[14px] hover:bg-[#9a6f4a] transition-colors duration-300 w-fit"
         >
           Post Comment
         </button>
