@@ -19,9 +19,16 @@ const LoginPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem("userId");
-    if (token) {
-      router.push("/account");
+    const userId = localStorage.getItem("userId");
+    const role = localStorage.getItem("role");
+
+    if (userId) {
+      if (role === "admin") {
+        // Use the base URL to ensure we're redirecting to the correct path
+        window.location.href = "/admin";
+      } else {
+        router.push("/account");
+      }
     }
   }, [router]);
 
@@ -44,9 +51,14 @@ const LoginPage = () => {
 
       if (response.ok) {
         const data = await response.json();
-        const { userId } = data;
+        const { userId, role } = data;
         localStorage.setItem("userId", userId);
-        router.push("/account");
+        localStorage.setItem("role", role);
+        if (role === "admin") {
+          router.push("/admin");
+        } else {
+          router.push("/account");
+        }
       } else {
         alert("Login failed");
       }

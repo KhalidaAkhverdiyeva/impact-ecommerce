@@ -37,7 +37,7 @@ const Accountant: React.FC = () => {
     });
 
     return () => unsubscribe();
-  }, [router, auth]);
+  }, [router]);
 
   const handleLogout = async () => {
     try {
