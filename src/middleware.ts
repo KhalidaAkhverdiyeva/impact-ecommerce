@@ -11,7 +11,7 @@ export default function middleware(request: NextRequest) {
   if (request.nextUrl.pathname.startsWith('/admin')) {
     const token = request.cookies.get('token');
     const role = request.cookies.get('role');
-
+    
     if (!token || role?.value !== 'admin') {
       const loginUrl = new URL('/login', request.url);
       return NextResponse.redirect(loginUrl);
@@ -26,5 +26,5 @@ export default function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/(fr|en)/:path*', '/admin/:path*'],
+  matcher: ['/', '/(fr|en)/:path*', '/admin/:path*']
 };

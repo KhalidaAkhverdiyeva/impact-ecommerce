@@ -24,8 +24,7 @@ const LoginPage = () => {
 
     if (userId) {
       if (role === "admin") {
-        // Use the base URL to ensure we're redirecting to the correct path
-        window.location.href = "/admin";
+        window.location.href = "/admin"; // Use window.location for full page redirect
       } else {
         router.push("/account");
       }
@@ -51,11 +50,18 @@ const LoginPage = () => {
 
       if (response.ok) {
         const data = await response.json();
-        const { userId, role } = data;
+        const { userId, role, token } = data;
+
+        // Store in localStorage (optional, for frontend logic)
         localStorage.setItem("userId", userId);
         localStorage.setItem("role", role);
+
+        // Store in cookies for middleware to access
+        document.cookie = `token=${token}; path=/`;
+        document.cookie = `role=${role}; path=/`;
+
         if (role === "admin") {
-          router.push("/admin");
+          window.location.href = "/admin";
         } else {
           router.push("/account");
         }
