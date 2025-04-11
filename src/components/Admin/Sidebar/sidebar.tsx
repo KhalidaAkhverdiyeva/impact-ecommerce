@@ -6,8 +6,7 @@ import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import CssBaseline from "@mui/material/CssBaseline";
-import Typography from "@mui/material/Typography";
+// import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -19,6 +18,11 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import { GoScreenFull } from "react-icons/go";
+import { IoChatbubblesOutline, IoSettingsOutline } from "react-icons/io5";
+import { HiOutlineMoon } from "react-icons/hi2";
+import Image from "next/image";
+import { IoIosSearch } from "react-icons/io";
 
 const drawerWidth = 240;
 
@@ -105,7 +109,7 @@ const Drawer = styled(MuiDrawer, {
 
 export default function MiniDrawer() {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -117,13 +121,14 @@ export default function MiniDrawer() {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        <Toolbar>
+      {/* <CssBaseline /> */}
+      <AppBar position="fixed" open={open} className="border-none shadow-none">
+        <Toolbar className="bg-white border-none shadow-none flex justify-between p-0">
           <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
+            className="m-0 p-[20px]"
             edge="start"
             sx={[
               {
@@ -132,11 +137,59 @@ export default function MiniDrawer() {
               open && { display: "none" },
             ]}
           >
-            <MenuIcon />
+            <MenuIcon className="text-black" />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
-          </Typography>
+
+          {/* Search Bar */}
+          <div className="flex-1 w-[100%] mx-4">
+            <div className="flex items-center border rounded-full px-4 py-[10px]">
+              <input
+                type="text"
+                placeholder="Search here..."
+                className="bg-transparent outline-none text-sm text-black w-full placeholder:text-sm"
+              />
+              <IoIosSearch className="text-black text-[20px] ml-2" />
+            </div>
+          </div>
+
+          {/* Icons */}
+          <div className="flex items-center gap-4">
+            <div className="bg-[#F2F7FB] p-[14px] rounded-full cursor-pointer">
+              <HiOutlineMoon className="text-black text-[20px]" />
+            </div>
+            <div className="relative bg-[#F2F7FB] p-[14px] rounded-full cursor-pointer">
+              <IoChatbubblesOutline className="text-black text-[20px]" />
+              <span className="absolute flex justify-center items-center -top-[2px] -right-1 bg-red-600 text-white text-center text-[10px] w-[20px] h-[20px] rounded-full animate-bounce">
+                3
+              </span>
+            </div>
+            <div className="bg-[#F2F7FB] p-[14px] rounded-full cursor-pointer">
+              <GoScreenFull className="text-black text-[20px]" />
+            </div>
+
+            {/* User Profile */}
+            <div className="flex items-center gap-3 pr-[20px]">
+              <Image
+                src="/images/veryprettygirl.jpg"
+                alt="User"
+                className="w-10 h-10 rounded-full object-cover"
+                width={200}
+                height={200}
+              />
+              <div className="flex flex-col leading-tight text-sm text-black">
+                <span className="text-[16px] font-[700] whitespace-nowrap">
+                  Khali Akh
+                </span>
+                <span className="text-[12px] text-gray-500">Admin</span>
+              </div>
+            </div>
+            <div className="px-[20px] py-[5px] border-l-[#a8a8a8] border-l-[1px] border-l-solid">
+              <IoSettingsOutline
+                className="text-black text-[24px] cursor-pointer"
+                style={{ animation: "spin 4s linear infinite" }}
+              />
+            </div>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
@@ -254,7 +307,6 @@ export default function MiniDrawer() {
           ))}
         </List>
       </Drawer>
-      
     </Box>
   );
 }
