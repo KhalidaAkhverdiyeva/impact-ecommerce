@@ -45,7 +45,7 @@ const Cart = () => {
         if (item) {
           // First update the cart item in the backend
           const response = await fetch(
-            `http://localhost:3001/api/cart/${itemId}`,
+            `https://impact-server-side.onrender.com/api/cart/${itemId}`,
             {
               method: "PUT",
               headers: {

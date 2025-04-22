@@ -26,7 +26,7 @@ const ShopTheRoomSection = () => {
   async function fetchProducts(productId: string) {
     try {
       const response = await fetch(
-        `http://localhost:3001/api/products/all/${productId}`
+        `https://impact-server-side.onrender.com/api/products/all/${productId}`
       );
 
       if (!response.ok) {

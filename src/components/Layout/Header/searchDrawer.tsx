@@ -25,7 +25,7 @@ const SearchDrawer = ({ isOpen, onClose }: SearchDrawerProps) => {
 
       try {
         setLoading(true);
-        const url = `http://localhost:3001/api/products/all?search=${encodeURIComponent(
+        const url = `https://impact-server-side.onrender.com/api/products/all?search=${encodeURIComponent(
           searchQuery
         )}`;
 

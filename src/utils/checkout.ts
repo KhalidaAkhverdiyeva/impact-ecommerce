@@ -32,7 +32,7 @@ export const handleCheckout = async (items: CheckoutItem[]) => {
       quantity: item.quantity,
     }));
 
-    const response = await fetch('http://localhost:3001/api/checkout', {
+    const response = await fetch('https://impact-server-side.onrender.com/api/checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ items: lineItems }),

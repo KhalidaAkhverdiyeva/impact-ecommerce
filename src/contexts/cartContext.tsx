@@ -33,7 +33,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
       const promises = uniqueProductIds.map(async (productId) => {
         const response = await fetch(
-          `http://localhost:3001/api/products/all/${productId}`
+          `https://impact-server-side.onrender.com/api/products/all/${productId}`
         );
 
         if (!response.ok) {
@@ -72,7 +72,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
       setIsLoading(true);
       setError(null);
       const response = await fetch(
-        `http://localhost:3001/api/users/${userId}/cart`
+        `https://impact-server-side.onrender.com/api/users/${userId}/cart`
       );
 
       if (!response.ok) {
@@ -147,7 +147,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
         });
 
         const response = await fetch(
-          `http://localhost:3001/api/users/${userId}/cart`,
+          `https://impact-server-side.onrender.com/api/users/${userId}/cart`,
           {
             method: "POST",
             headers: {
@@ -192,7 +192,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
     try {
       const response = await fetch(
-        `http://localhost:3001/api/users/${userId}/cart/${itemId}`,
+        `https://impact-server-side.onrender.com/api/users/${userId}/cart/${itemId}`,
         {
           method: "DELETE",
         }
@@ -217,7 +217,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
       try {
         const response = await fetch(
-          `http://localhost:3001/api/users/${userId}/cart/quantity`,
+          `https://impact-server-side.onrender.com/api/users/${userId}/cart/quantity`,
           {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
