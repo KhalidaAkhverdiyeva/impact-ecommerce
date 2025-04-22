@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
-import { blogPosts } from "@/mockdata/blogPost";
+
+interface Comment {
+  id: number;
+  name: string;
+  date: string;
+  text: string;
+}
 
 interface CommentsSectionProps {
   postId: string;
 }
 
-const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
-  const blogPost = blogPosts.find((post) => post.id === postId);
-  const [comments, setComments] = useState(blogPost?.previousComments || []);
+const CommentsSection: React.FC<CommentsSectionProps> = () => {
+  const [comments, setComments] = useState<Comment[]>([]);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -27,7 +32,7 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    const newComment = {
+    const newComment: Comment = {
       id: Date.now(),
       name: formData.name,
       date: new Date().toLocaleDateString("en-US", {
@@ -38,7 +43,7 @@ const CommentsSection: React.FC<CommentsSectionProps> = ({ postId }) => {
       text: formData.comment,
     };
 
-    setComments((prev) => [...prev, newComment]);
+    setComments((prev: Comment[]) => [...prev, newComment]);
     setFormData({ name: "", email: "", comment: "" });
   };
   return (
